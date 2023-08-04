@@ -1,6 +1,30 @@
+.adrian.lux-track {
+    --accent: #bda051;
+}
+.catherine.lux-track {
+    --accent: #479394;
+}
 .emily.lux-track {
-    --accent: #59645f;
+    --accent: #c2575e;
+}
+.hazel.lux-track {
+    --accent: #648561;
+}
+.henry.lux-track {
+    --accent: #434a7a;
 }
 .isaac.lux-track {
-    --accent: #59645f;
+    --accent: #6c7091;
+}
+.lorelai.lux-track {
+    --accent: #996299;
+}
+.mace.lux-track {
+    --accent: #846fa8;
+}
+.nimue.lux-track {
+    --accent: #479394;
+}
+.oliver.lux-track {
+    --accent: #627a57;
 }
