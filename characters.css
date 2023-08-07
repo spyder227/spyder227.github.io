@@ -28,6 +28,12 @@
 .oliver.lux-track {
     --accent: #82b886;
 }
+.prudence.lux-track {
+    --accent: #5fb4c9;
+}
+.sakai.lux-track {
+    --accent: #822741;
+}
 
 
 .bane.lux-track {
@@ -41,6 +47,9 @@
 }
 .nathan.lux-track {
     --accent: #684087;
+}
+.ryan.lux-track {
+    --accent: #bda051;
 }
 .wolfgang.lux-track {
     --accent: #3a7c8c;
