@@ -32,41 +32,44 @@
     --accent: #5fb4c9;
 }
 .sakai.lux-track {
-    --accent: #822741;
+    --accent: #753446;
 }
 .tobias.lux-track {
-    --accent: #ba7429;
+    --accent: #c48e54;
 }
 .wren.lux-track {
-    --accent: #595959;
+    --accent: #856658;
 }
 
 
 .bane.lux-track {
-    --accent: #91303a;
+    --accent: #c2575e;
 }
 .dawson.lux-track {
-    --accent: #32783f;
+    --accent: #648561;
 }
 .kieran.lux-track {
     --accent: #6c7091;
 }
 .logan.lux-track {
-    --accent: #333c87;
+    --accent: #5fb4c9;
 }
 .nathan.lux-track {
-    --accent: #684087;
-}
-.ryan.lux-track {
     --accent: #bda051;
 }
+.ryan.lux-track {
+    --accent: #c48e54;
+}
 .wolfgang.lux-track {
-    --accent: #3a7c8c;
+    --accent: #479394;
+}
+.wright.lux-track {
+    --accent: #856658;
 }
 
 
 .derek.lux-track {
-    --accent: #3a7c8c;
+    --accent: #6c7091;
 }
 .dean.lux-track {
     --accent: #648561;
