@@ -34,16 +34,22 @@
 .sakai.lux-track {
     --accent: #753446;
 }
+.stephen {
+    --accent: #856658;
+}
 .tobias.lux-track {
     --accent: #bd7f3c;
 }
 .wren.lux-track {
-    --accent: #856658;
+    --accent: #888888;
 }
 
 
 .bane.lux-track {
     --accent: #c2575e;
+}
+.cocky.lux-track {
+    --accent: #846fa8;
 }
 .dawson.lux-track {
     --accent: #648561;
