@@ -51,6 +51,9 @@
 .cocky.lux-track {
     --accent: #846fa8;
 }
+.daniel.lux-track {
+    --accent: #856658;
+}
 .dawson.lux-track {
     --accent: #648561;
 }
@@ -70,7 +73,7 @@
     --accent: #479394;
 }
 .wright.lux-track {
-    --accent: #856658;
+    --accent: #888888;
 }
 
 
