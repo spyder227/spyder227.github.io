@@ -4,11 +4,14 @@
 .catherine.lux-track {
     --accent: #bd7da3;
 }
+.dixon.lux-track {
+    --accent: #648561;
+}
 .emily.lux-track {
     --accent: #c2575e;
 }
 .hazel.lux-track {
-    --accent: #648561;
+    --accent: #8c6c58;
 }
 .henry.lux-track {
     --accent: #434a7a;
