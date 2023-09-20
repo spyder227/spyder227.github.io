@@ -1,8 +1,14 @@
 .adrian.lux-track {
     --accent: #bda051;
 }
+.beau.lux-track {
+    --accent: #f0ca78;
+}
 .catherine.lux-track {
     --accent: #bd7da3;
+}
+.connor.lux-track {
+    --accent: #6c7091;
 }
 .dixon.lux-track {
     --accent: #648561;
@@ -17,7 +23,7 @@
     --accent: #434a7a;
 }
 .isaac.lux-track {
-    --accent: #6c7091;
+    --accent: #89a4c9;
 }
 .lorelai.lux-track {
     --accent: #996299;
