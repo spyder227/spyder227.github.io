@@ -25,6 +25,9 @@
 .isaac.lux-track {
     --accent: #89a4c9;
 }
+.julianna.lux-track {
+    --accent: #b55843;
+}
 .lorelai.lux-track {
     --accent: #996299;
 }
@@ -35,7 +38,7 @@
     --accent: #479394;
 }
 .nox.lux-track {
-    --accent: #b55843;
+    --accent: #888888;
 }
 .oliver.lux-track {
     --accent: #82b886;
@@ -53,7 +56,7 @@
     --accent: #bd7f3c;
 }
 .wren.lux-track {
-    --accent: #888888;
+    --accent: #bbbbbb;
 }
 
 
