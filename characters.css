@@ -1,4 +1,4 @@
-.adrian.lux-track {
+.adrian.lux-track, .nathan.lux-track {
     --accent: #d9b043;
 }
 .beau.lux-track {
@@ -7,16 +7,16 @@
 .catherine.lux-track {
     --accent: #bd7da3;
 }
-.connor.lux-track {
+.connor.lux-track, .kieran.lux-track, .derek.lux-track {
     --accent: #6c7091;
 }
-.dixon.lux-track {
+.dixon.lux-track, .dean-lux-track {
     --accent: #648561;
 }
-.emily.lux-track {
+.emily.lux-track, .bane-lux-track {
     --accent: #c2575e;
 }
-.hazel.lux-track {
+.hazel.lux-track, .daniel.lux-track {
     --accent: #8c6c58;
 }
 .henry.lux-track {
@@ -31,19 +31,19 @@
 .lorelai.lux-track {
     --accent: #996299;
 }
-.mace.lux-track {
+.mace.lux-track, .cocky.lux-track {
     --accent: #846fa8;
 }
-.nimue.lux-track {
+.nimue.lux-track, .wolfgang.lux-track {
     --accent: #479394;
 }
-.nox.lux-track {
+.nox.lux-track, .wright.lux-track {
     --accent: #666666;
 }
-.oliver.lux-track {
+.oliver.lux-track, .dawson.lux-track {
     --accent: #82b886;
 }
-.prudence.lux-track {
+.prudence.lux-track, .logan.lux-track {
     --accent: #5fb4c9;
 }
 .sakai.lux-track {
@@ -52,49 +52,9 @@
 .stephen.lux-track {
     --accent: #a5ba61;
 }
-.tobias.lux-track {
+.tobias.lux-track, .ryan.lux-track {
     --accent: #bd7f3c;
 }
 .wren.lux-track {
     --accent: #a6a4a4;
-}
-
-
-.bane.lux-track {
-    --accent: #c2575e;
-}
-.cocky.lux-track {
-    --accent: #846fa8;
-}
-.daniel.lux-track {
-    --accent: #856658;
-}
-.dawson.lux-track {
-    --accent: #648561;
-}
-.kieran.lux-track {
-    --accent: #6c7091;
-}
-.logan.lux-track {
-    --accent: #5fb4c9;
-}
-.nathan.lux-track {
-    --accent: #d9b043;
-}
-.ryan.lux-track {
-    --accent: #bd7f3c;
-}
-.wolfgang.lux-track {
-    --accent: #479394;
-}
-.wright.lux-track {
-    --accent: #888888;
-}
-
-
-.derek.lux-track {
-    --accent: #6c7091;
-}
-.dean.lux-track {
-    --accent: #648561;
 }
