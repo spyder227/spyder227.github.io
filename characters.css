@@ -10,10 +10,10 @@
 .connor.lux-track, .kieran.lux-track, .derek.lux-track {
     --accent: #6c7091;
 }
-.dixon.lux-track, .dean.lux-track {
+.dixon.lux-track, .dawson.lux-track, .dean.lux-track, {
     --accent: #648561;
 }
-.emily.lux-track, .bane-lux-track {
+.emily.lux-track, .bane.lux-track {
     --accent: #c2575e;
 }
 .hazel.lux-track, .daniel.lux-track {
@@ -40,7 +40,7 @@
 .nox.lux-track, .wright.lux-track {
     --accent: #666666;
 }
-.oliver.lux-track, .dawson.lux-track {
+.oliver.lux-track, {
     --accent: #82b886;
 }
 .prudence.lux-track, .logan.lux-track {
