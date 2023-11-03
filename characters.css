@@ -43,6 +43,9 @@
 .mace.lux-track, .cocky.lux-track {
     --accent: #846fa8;
 }
+.mary.lux-track {
+    --accent: #866696;
+}
 .nicholas.lux-track {
     --accent: #918272;
 }
