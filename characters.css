@@ -43,6 +43,9 @@
 .lorelai.lux-track {
     --accent: #996299;
 }
+.lyra.lux-track {
+    --accent: #6f7fb8;
+}
 .mace.lux-track, .cocky.lux-track {
     --accent: #846fa8;
 }
