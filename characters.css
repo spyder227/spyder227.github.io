@@ -16,6 +16,9 @@
 .connor.lux-track, .derek.lux-track, .kieran.lux-track {
     --accent: #6c7091;
 }
+.cyrus.lux-track {
+    --accent: #527c5f;
+}
 .dixon.lux-track, .dean.lux-track, .dawson.lux-track {
     --accent: #6f8a6d;
 }
