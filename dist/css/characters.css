@@ -48,8 +48,9 @@
   .spy-track.isaac,
   .spy.isaac {
     --rgb: 130, 151, 179; }
-  .spy-track.jack,
-  .spy.jack {
+  .spy-track.jack, .spy-track.remington,
+  .spy.jack,
+  .spy.remington {
     --rgb: 93, 138, 76; }
   .spy-track.jacob,
   .spy.jacob {
