@@ -1,0 +1,119 @@
+.spy-track,
+.spy {
+    --rgb: var(--rgb);
+    --dkrgb: var(--rgb-dark, var(--rgb));
+
+    &.adeline {
+        --rgb: 217, 132, 148;
+    }
+
+    &.adrian,
+    &.nathan {
+        --rgb: 196, 172, 106;
+    }
+
+    &.beau {
+        --rgb: 219, 130, 92;
+    }
+    &.cameron {
+        --rgb: 189, 125, 163;
+    }
+    &.catherine {
+        --rgb: 217, 106, 143;
+    }
+    &.connor,
+    &.derek,
+    &.kieran {
+        --rgb: 108, 112, 145;
+    }
+    &.cyrus {
+        --rgb: 82, 124, 95;
+    }
+    &.dixon,
+    &.dean,
+    &.dawson {
+        --rgb: 111, 138, 109;
+    }
+    &.emily,
+    &.bane {
+        --rgb: 194, 87, 94;
+    }
+    &.francis {
+        --rgb: 74, 114, 150;
+    }
+    &.hazel,
+    &.daniel {
+        --rgb: 140, 108, 88;
+    }
+    &.henry {
+        --rgb: 79, 84, 120;
+    }
+    &.isaac {
+        --rgb: 130, 151, 179;
+    }
+    &.jack {
+        --rgb: 93, 138, 76;
+    }
+    &.jacob {
+        --rgb: 211, 164, 89;
+    }
+    &.james {
+        --rgb: 163, 108, 85;
+    }
+    &.julianna {
+        --rgb: 196, 88, 67;
+    }
+    &.lorelai {
+        --rgb: 128, 80, 128;
+    }
+    &.lyra {
+        --rgb: 111, 127, 184;
+    }
+    &.mace,
+    &.cocky {
+        --rgb: 132, 111, 168;
+    }
+    &.mary {
+        --rgb: 167, 154, 179;
+    }
+    &.nicholas {
+        --rgb: 145, 130, 114;
+    }
+    &.nimue,
+    &.wolfgang {
+        --rgb: 83, 147, 148;
+    }
+    &.nox,
+    &.wright {
+        --rgb: 102, 102, 102;
+    }
+    &.oliver {
+        --rgb: 135, 196, 140;
+    }
+    &.prudence,
+    &.logan {
+        --rgb: 113, 176, 191;
+    }
+    &.sakai {
+        --rgb: 153, 98, 113;
+    }
+    &.stephen {
+        --rgb: 169, 199, 113;
+    }
+    &.theodore {
+        --rgb: 126, 191, 171;
+    }
+    &.tobias,
+    &.ryan {
+        --rgb: 189, 127, 60;
+    }
+    &.verona {
+        --rgb: 171, 118, 162;
+    }
+    &.vega {
+        --rgb: 107, 99, 87;
+    }
+    &.wren {
+        --rgb: 166, 164, 164;
+    }
+}
