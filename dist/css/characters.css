@@ -23,8 +23,9 @@
   .spy.derek,
   .spy.kieran {
     --rgb: 108, 112, 145; }
-  .spy-track.cyrus,
-  .spy.cyrus {
+  .spy-track.cyrus, .spy-track.alistair,
+  .spy.cyrus,
+  .spy.alistair {
     --rgb: 82, 124, 95; }
   .spy-track.dixon, .spy-track.dean, .spy-track.dawson,
   .spy.dixon,
@@ -92,8 +93,9 @@
   .spy.prudence,
   .spy.logan {
     --rgb: 113, 176, 191; }
-  .spy-track.sakai,
-  .spy.sakai {
+  .spy-track.sakai, .spy-track.astarion,
+  .spy.sakai,
+  .spy.astarion {
     --rgb: 153, 98, 113; }
   .spy-track.stephen,
   .spy.stephen {
