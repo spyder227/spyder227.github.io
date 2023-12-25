@@ -243,6 +243,9 @@
   .lux-track.jesse,
   .lux.jesse {
     --rgb: 210, 193, 166; }
+  .lux-track.jude,
+  .lux.jude {
+    --rgb: 204, 210, 196; }
   .lux-track.kit,
   .lux.kit {
     --rgb: 217, 195, 167;
@@ -254,6 +257,10 @@
   .lux-track.lance,
   .lux.lance {
     --rgb: 213, 181, 105; }
+  .lux-track.lincoln, .lux-track.link,
+  .lux.lincoln,
+  .lux.link {
+    --rgb: 81, 105, 130; }
   .lux-track.lorelei, .lux-track.lore,
   .lux.lorelei,
   .lux.lore {
