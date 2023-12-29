@@ -120,3 +120,22 @@
         --rgb: 166, 164, 164;
     }
 }
+
+.spyder-track,
+.spyder {
+    --accent: rgb(var(--rgb));
+    --dkAccent: rgb(var(--rgb-dark, var(--rgb)));
+
+/*where THIS is new*/
+    .totl & {
+        --accent: rgb(var(--rgb-dark, var(--rgb)));
+        --ltaccent: rgb(var(--rgb));
+        --ltaccent-40: rgba(var(--rgb), 0.4);
+        --ltaccent-55: rgba(var(--rgb), 0.55);
+    }
+    
+    &.emily,
+    .totl.m-2371 & /*and this line is ALSO new*/{
+        --rgb: 194, 87, 94;
+    }
+}
