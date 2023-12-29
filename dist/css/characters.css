@@ -2,24 +2,28 @@
 .lux {
   --accent: rgb(var(--rgb));
   --dkAccent: rgb(var(--rgb-dark, var(--rgb))); }
-  .lux-track.abigail, .lux-track.abby,
+  .lux-track.abigail, .lux-track.abby, .lux-track.totl-1608,
   .lux.abigail,
-  .lux.abby {
+  .lux.abby,
+  .lux.totl-1608 {
     --rgb: 212,161,168; }
-  .lux-track.adaline, .lux-track.addie,
+  .lux-track.adaline, .lux-track.addie, .lux-track.totl-157,
   .lux.adaline,
-  .lux.addie {
+  .lux.addie,
+  .lux.totl-157 {
     --rgb: 167, 115, 129;
     --rgb-dark: 145, 80, 98; }
-  .lux-track.aiden,
-  .lux.aiden {
+  .lux-track.aiden, .lux-track.totl-838,
+  .lux.aiden,
+  .lux.totl-838 {
     --rgb: 136, 163, 151;
     --rgb-dark: 107, 140, 126; }
   .lux-track.ainara,
   .lux.ainara {
     --rgb: 164, 138, 189; }
-  .lux-track.ambrose,
-  .lux.ambrose {
+  .lux-track.ambrose, .lux-track.totl-995,
+  .lux.ambrose,
+  .lux.totl-995 {
     --rgb: 143, 109, 101;
     --rgb-dark: 115, 73, 63; }
   .lux-track.alastair, .lux-track.al,
@@ -35,31 +39,37 @@
   .lux.andy {
     --rgb: 123, 57, 57;
     --rgb-dark: 90, 8, 8; }
-  .lux-track.antoni,
-  .lux.antoni {
+  .lux-track.antoni, .lux-track.totl-856,
+  .lux.antoni,
+  .lux.totl-856 {
     --rgb: 122, 164, 195;
     --rgb-dark: 89, 142, 181; }
-  .lux-track.archer,
-  .lux.archer {
+  .lux-track.archer, .lux-track.totl-669,
+  .lux.archer,
+  .lux.totl-669 {
     --rgb: 207, 153, 105;
     --rgb-dark: 196, 128, 68; }
-  .lux-track.art,
-  .lux.art {
+  .lux-track.art, .lux-track.totl-1567,
+  .lux.art,
+  .lux.totl-1567 {
     --rgb: 177, 193, 193; }
-  .lux-track.avery,
-  .lux.avery {
+  .lux-track.avery, .lux-track.totl-1147,
+  .lux.avery,
+  .lux.totl-1147 {
     --rgb: 178, 180, 146;
     --rgb-dark: 196, 128, 68; }
-  .lux-track.basil,
-  .lux.basil {
+  .lux-track.basil, .lux-track.totl-261,
+  .lux.basil,
+  .lux.totl-261 {
     --rgb: 152, 158, 145;
     --rgb-dark: 127, 134, 118; }
-  .lux-track.raphael, .lux-track.raph, .lux-track.ben, .lux-track.loki, .lux-track.cain,
+  .lux-track.raphael, .lux-track.raph, .lux-track.ben, .lux-track.loki, .lux-track.cain, .lux-track.totl-854,
   .lux.raphael,
   .lux.raph,
   .lux.ben,
   .lux.loki,
-  .lux.cain {
+  .lux.cain,
+  .lux.totl-854 {
     --rgb: 149, 165, 71;
     --rgb-dark: 123, 143, 26; }
   .lux-track.benji,
@@ -69,13 +79,15 @@
   .lux.brennan {
     --rgb: 118, 132, 92;
     --rgb-dark: 84, 102, 52; }
-  .lux-track.bryn,
-  .lux.bryn {
+  .lux-track.bryn, .lux-track.totl-670,
+  .lux.bryn,
+  .lux.totl-670 {
     --rgb: 155, 209, 186;
     --rgb-dark: 130, 198, 169; }
-  .lux-track.cameron, .lux-track.cam,
+  .lux-track.cameron, .lux-track.cam, .lux-track.totl-1146,
   .lux.cameron,
-  .lux.cam {
+  .lux.cam,
+  .lux.totl-1146 {
     --rgb: 111, 121, 106; }
   .lux-track.casper, .lux-track.cas,
   .lux.casper,
@@ -86,9 +98,10 @@
   .lux.cassiopeia,
   .lux.cassie {
     --rgb: 166, 138, 172; }
-  .lux-track.catarina, .lux-track.cat,
+  .lux-track.catarina, .lux-track.cat, .lux-track.totl-855,
   .lux.catarina,
-  .lux.cat {
+  .lux.cat,
+  .lux.totl-855 {
     --rgb: 202, 143, 126;
     --rgb-dark: 189, 116, 94; }
   .lux-track.christopher, .lux-track.chris, .lux-track.nikola, .lux-track.tesla,
@@ -98,8 +111,9 @@
   .lux.tesla {
     --rgb: 104,118,139;
     --rgb-dark: 67, 84, 111; }
-  .lux-track.connor,
-  .lux.connor {
+  .lux-track.connor, .lux-track.totl-57,
+  .lux.connor,
+  .lux.totl-57 {
     --rgb: 194, 175, 129;
     --rgb-dark: 179, 155, 98; }
   .lux-track.cordelia, .lux-track.corey,
@@ -124,50 +138,60 @@
   .lux.daniel,
   .lux.dan {
     --rgb: 168, 168, 168; }
-  .lux-track.darcy,
-  .lux.darcy {
+  .lux-track.darcy, .lux-track.totl-395,
+  .lux.darcy,
+  .lux.totl-395 {
     --rgb: 187, 160, 197;
     --rgb-dark: 171, 137, 183; }
-  .lux-track.diana,
-  .lux.diana {
+  .lux-track.diana, .lux-track.totl-906,
+  .lux.diana,
+  .lux.totl-906 {
     --rgb: 106, 109, 143;
     --rgb-dark: 69, 73, 115; }
-  .lux-track.diego,
-  .lux.diego {
+  .lux-track.diego, .lux-track.totl-1578,
+  .lux.diego,
+  .lux.totl-1578 {
     --rgb: 87, 116, 147; }
-  .lux-track.draco,
-  .lux.draco {
+  .lux-track.draco, .lux-track.totl-408,
+  .lux.draco,
+  .lux.totl-408 {
     --rgb: 71, 88, 66;
     --rgb-dark: 26, 47, 19; }
-  .lux-track.duncan, .lux-track.duck,
+  .lux-track.duncan, .lux-track.duck, .lux-track.totl-58,
   .lux.duncan,
-  .lux.duck {
+  .lux.duck,
+  .lux.totl-58 {
     --rgb: 153, 126, 143;
     --rgb-dark: 128, 94, 115; }
   .lux-track.elias,
   .lux.elias {
     --rgb: 99, 99, 99;
     --rgb-dark: 60, 60, 60; }
-  .lux-track.ellis,
-  .lux.ellis {
+  .lux-track.ellis, .lux-track.totl-705,
+  .lux.ellis,
+  .lux.totl-705 {
     --rgb: 232, 151, 127;
     --rgb-dark: 227, 126, 95; }
-  .lux-track.emmalina, .lux-track.emma,
+  .lux-track.emmalina, .lux-track.emma, .lux-track.totl-273,
   .lux.emmalina,
-  .lux.emma {
+  .lux.emma,
+  .lux.totl-273 {
     --rgb: 223, 186, 199;
     --rgb-dark: 215, 169, 186; }
-  .lux-track.evangeline, .lux-track.evan,
+  .lux-track.evangeline, .lux-track.evan, .lux-track.totl-317,
   .lux.evangeline,
-  .lux.evan {
+  .lux.evan,
+  .lux.totl-317 {
     --rgb: 115, 69, 51;
     --rgb-dark: 81, 23, 0; }
-  .lux-track.everest,
-  .lux.everest {
+  .lux-track.everest, .lux-track.totl-1577,
+  .lux.everest,
+  .lux.totl-1577 {
     --rgb: 77, 26, 26; }
-  .lux-track.felicity, .lux-track.fee,
+  .lux-track.felicity, .lux-track.fee, .lux-track.totl-588,
   .lux.felicity,
-  .lux.fee {
+  .lux.fee,
+  .lux.totl-588 {
     --rgb: 159, 120, 123;
     --rgb-dark: 136, 87, 91; }
   .lux-track.gabriel, .lux-track.gabe,
@@ -175,26 +199,31 @@
   .lux.gabe {
     --rgb: 167, 182, 154;
     --rgb-dark: 146, 164, 129; }
-  .lux-track.gavin,
-  .lux.gavin {
+  .lux-track.gavin, .lux-track.totl-901,
+  .lux.gavin,
+  .lux.totl-901 {
     --rgb: 141, 163, 141;
     --rgb-dark: 113, 140, 113; }
-  .lux-track.genevieve, .lux-track.gen,
+  .lux-track.genevieve, .lux-track.gen, .lux-track.totl-587,
   .lux.genevieve,
-  .lux.gen {
+  .lux.gen,
+  .lux.totl-587 {
     --rgb: 202, 182, 200;
     --rgb-dark: 145, 92, 139; }
-  .lux-track.grace,
-  .lux.grace {
+  .lux-track.grace, .lux-track.totl-1565,
+  .lux.grace,
+  .lux.totl-1565 {
     --rgb: 204, 176, 176; }
   .lux-track.graeme,
   .lux.graeme {
     --rgb: 206, 174, 97; }
-  .lux-track.griffin,
-  .lux.griffin {
+  .lux-track.griffin, .lux-track.totl-1356,
+  .lux.griffin,
+  .lux.totl-1356 {
     --rgb: 146, 158, 159; }
-  .lux-track.hallie,
-  .lux.hallie {
+  .lux-track.hallie, .lux-track.totl-836,
+  .lux.hallie,
+  .lux.totl-836 {
     --rgb: 184, 144, 158;
     --rgb-dark: 167, 117, 134; }
   .lux-track.harley,
@@ -211,21 +240,25 @@
   .lux.hayd {
     --rgb: 115, 126, 103;
     --rgb-dark: 81, 94, 65; }
-  .lux-track.heiko,
-  .lux.heiko {
+  .lux-track.heiko, .lux-track.totl-750,
+  .lux.heiko,
+  .lux.totl-750 {
     --rgb: 197, 187, 181;
     --rgb-dark: 183, 170, 163; }
-  .lux-track.hiroki, .lux-track.hiro,
+  .lux-track.hiroki, .lux-track.hiro, .lux-track.totl-1088,
   .lux.hiroki,
-  .lux.hiro {
+  .lux.hiro,
+  .lux.totl-1088 {
     --rgb: 146, 183, 188;
     --rgb-dark: 119, 165, 172; }
-  .lux-track.holly,
-  .lux.holly {
+  .lux-track.holly, .lux-track.totl-1354,
+  .lux.holly,
+  .lux.totl-1354 {
     --rgb: 183,133,79; }
-  .lux-track.irina, .lux-track.iri,
+  .lux-track.irina, .lux-track.iri, .lux-track.totl-1145,
   .lux.irina,
-  .lux.iri {
+  .lux.iri,
+  .lux.totl-1145 {
     --rgb: 17, 74, 108; }
   .lux-track.isaiah,
   .lux.isaiah {
@@ -235,9 +268,10 @@
   .lux.isa,
   .lux.belle {
     --rgb: 213, 188, 204; }
-  .lux-track.jasper, .lux-track.jazz,
+  .lux-track.jasper, .lux-track.jazz, .lux-track.totl-264,
   .lux.jasper,
-  .lux.jazz {
+  .lux.jazz,
+  .lux.totl-264 {
     --rgb: 171, 147, 159;
     --rgb-dark: 150, 121, 136; }
   .lux-track.jesse,
@@ -250,12 +284,14 @@
   .lux.kit {
     --rgb: 217, 195, 167;
     --rgb-dark: 208, 181, 146; }
-  .lux-track.kristopher, .lux-track.kris,
+  .lux-track.kristopher, .lux-track.kris, .lux-track.totl-1324,
   .lux.kristopher,
-  .lux.kris {
+  .lux.kris,
+  .lux.totl-1324 {
     --rgb: 160, 181, 162; }
-  .lux-track.lance,
-  .lux.lance {
+  .lux-track.lance, .lux-track.totl-1355,
+  .lux.lance,
+  .lux.totl-1355 {
     --rgb: 213, 181, 105; }
   .lux-track.lincoln, .lux-track.link,
   .lux.lincoln,
@@ -265,8 +301,9 @@
   .lux.lorelei,
   .lux.lore {
     --rgb: 191, 117, 81; }
-  .lux-track.lottie,
-  .lux.lottie {
+  .lux-track.lottie, .lux-track.totl-315,
+  .lux.lottie,
+  .lux.totl-315 {
     --rgb: 212, 161, 168;
     --rgb-dark: 202, 138, 147; }
   .lux-track.luisa, .lux-track.lou,
@@ -274,23 +311,26 @@
   .lux.lou {
     --rgb: 183, 133, 79;
     --rgb-dark: 166, 103, 36; }
-  .lux-track.magnolia, .lux-track.maggie,
+  .lux-track.magnolia, .lux-track.maggie, .lux-track.totl-56,
   .lux.magnolia,
-  .lux.maggie {
+  .lux.maggie,
+  .lux.totl-56 {
     --rgb: 107, 126, 103;
     --rgb-dark: 70, 94, 66; }
-  .lux-track.malcolm, .lux-track.mal,
+  .lux-track.malcolm, .lux-track.mal, .lux-track.totl-853,
   .lux.malcolm,
-  .lux.mal {
+  .lux.mal,
+  .lux.totl-853 {
     --rgb: 99, 92, 92;
     --rgb-dark: 60, 52, 52; }
   .lux-track.malik,
   .lux.malik {
     --rgb: 80, 94, 126;
     --rgb-dark: 37, 54, 94; }
-  .lux-track.marica, .lux-track.mari,
+  .lux-track.marica, .lux-track.mari, .lux-track.totl-1089,
   .lux.marica,
-  .lux.mari {
+  .lux.mari,
+  .lux.totl-1089 {
     --rgb: 175, 112, 106;
     --rgb-dark: 155, 77, 69; }
   .lux-track.marlowe, .lux-track.mar,
@@ -303,37 +343,43 @@
   .lux.mav {
     --rgb: 185, 135, 129;
     --rgb-dark: 168, 105, 98; }
-  .lux-track.milo,
-  .lux.milo {
+  .lux-track.milo, .lux-track.totl-112,
+  .lux.milo,
+  .lux.totl-112 {
     --rgb: 220, 163, 147;
     --rgb-dark: 212, 141, 121; }
-  .lux-track.montana, .lux-track.monty,
+  .lux-track.montana, .lux-track.monty, .lux-track.totl-59,
   .lux.montana,
-  .lux.monty {
+  .lux.monty,
+  .lux.totl-59 {
     --rgb: 135, 151, 148;
     --rgb-dark: 106, 125, 122; }
   .lux-track.morgan,
   .lux.morgan {
     --rgb: 151, 151, 171;
     --rgb-dark: 126, 125, 150; }
-  .lux-track.nayara, .lux-track.naya,
+  .lux-track.nayara, .lux-track.naya, .lux-track.totl-905,
   .lux.nayara,
-  .lux.naya {
+  .lux.naya,
+  .lux.totl-905 {
     --rgb: 187, 118, 131;
     --rgb-dark: 170, 84, 100; }
-  .lux-track.nikolas, .lux-track.nik, .lux-track.niko,
+  .lux-track.nikolas, .lux-track.nik, .lux-track.niko, .lux-track.totl-54,
   .lux.nikolas,
   .lux.nik,
-  .lux.niko {
+  .lux.niko,
+  .lux.totl-54 {
     --rgb: 142, 173, 179;
     --rgb-dark: 114, 153, 160; }
-  .lux-track.nimue, .lux-track.nim,
+  .lux-track.nimue, .lux-track.nim, .lux-track.totl-902,
   .lux.nimue,
-  .lux.nim {
+  .lux.nim,
+  .lux.totl-902 {
     --rgb: 191, 177, 188;
     --rgb-dark: 176, 158, 172; }
-  .lux-track.noah,
-  .lux.noah {
+  .lux-track.noah, .lux-track.totl-314,
+  .lux.noah,
+  .lux.totl-314 {
     --rgb: 155, 167, 142;
     --rgb-dark: 130, 146, 114; }
   .lux-track.oliver, .lux-track.oli,
@@ -341,8 +387,9 @@
   .lux.oli {
     --rgb: 200, 150, 119;
     --rgb-dark: 187, 124, 86; }
-  .lux-track.percy,
-  .lux.percy {
+  .lux-track.percy, .lux-track.totl-482,
+  .lux.percy,
+  .lux.totl-482 {
     --rgb: 168, 143, 128;
     --rgb-dark: 145, 102, 76; }
   .lux-track.persephone, .lux-track.sephi,
@@ -350,17 +397,19 @@
   .lux.sephi {
     --rgb: 163, 101, 145;
     --rgb-dark: 141, 63, 118; }
-  .lux-track.rebecca,
-  .lux.rebecca {
+  .lux-track.rebecca, .lux-track.totl-994,
+  .lux.rebecca,
+  .lux.totl-994 {
     --rgb: 211, 202, 195;
     --rgb-dark: 200, 189, 181; }
   .lux-track.remy,
   .lux.remy {
     --rgb: 151, 180, 173;
     --rgb-dark: 125, 162, 153; }
-  .lux-track.renata, .lux-track.ren,
+  .lux-track.renata, .lux-track.ren, .lux-track.totl-701,
   .lux.renata,
-  .lux.ren {
+  .lux.ren,
+  .lux.totl-701 {
     --rgb: 7, 116, 90;
     --rgb-dark: 88, 142, 151; }
   .lux-track.riordan, .lux-track.rory,
@@ -373,8 +422,9 @@
   .lux.riv {
     --rgb: 151, 159, 170;
     --rgb-dark: 125, 136, 149; }
-  .lux-track.ryan,
-  .lux.ryan {
+  .lux-track.ryan, .lux-track.totl-589,
+  .lux.ryan,
+  .lux.totl-589 {
     --rgb: 214, 189, 114;
     --rgb-dark: 204, 173, 79; }
   .lux-track.salih, .lux-track.sal,
@@ -382,8 +432,9 @@
   .lux.sal {
     --rgb: 219, 145, 123;
     --rgb-dark: 210, 118, 90; }
-  .lux-track.sarah,
-  .lux.sarah {
+  .lux-track.sarah, .lux-track.totl-1358,
+  .lux.sarah,
+  .lux.totl-1358 {
     --rgb: 196, 212, 213; }
   .lux-track.satiah, .lux-track.tia,
   .lux.satiah,
@@ -398,36 +449,42 @@
   .lux-track.silas,
   .lux.silas {
     --rgb: 158, 181, 187; }
-  .lux-track.simon,
-  .lux.simon {
+  .lux-track.simon, .lux-track.totl-265,
+  .lux.simon,
+  .lux.totl-265 {
     --rgb: 180, 199, 129;
     --rgb-dark: 162, 185, 98; }
-  .lux-track.sorren,
-  .lux.sorren {
+  .lux-track.sorren, .lux-track.totl-702,
+  .lux.sorren,
+  .lux.totl-702 {
     --rgb: 97, 79, 79;
     --rgb-dark: 58, 35, 35; }
-  .lux-track.spencer, .lux-track.spence,
+  .lux-track.spencer, .lux-track.spence, .lux-track.totl-862,
   .lux.spencer,
-  .lux.spence {
+  .lux.spence,
+  .lux.totl-862 {
     --rgb: 138, 151, 174;
     --rgb-dark: 109, 125, 154; }
-  .lux-track.sterling, .lux-track.matteo, .lux-track.matty,
+  .lux-track.sterling, .lux-track.matteo, .lux-track.matty, .lux-track.totl-907,
   .lux.sterling,
   .lux.matteo,
-  .lux.matty {
+  .lux.matty,
+  .lux.totl-907 {
     --rgb: 207, 167, 52;
     --rgb-dark: 196, 145, 2; }
-  .lux-track.thomas, .lux-track.tom, .lux-track.tommy,
+  .lux-track.thomas, .lux-track.tom, .lux-track.tommy, .lux-track.totl-863,
   .lux.thomas,
   .lux.tom,
-  .lux.tommy {
+  .lux.tommy,
+  .lux.totl-863 {
     --rgb: 183, 207, 150;
     --rgb-dark: 166, 196, 124; }
-  .lux-track.tobias, .lux-track.fletch, .lux-track.fletcher, .lux-track.toby,
+  .lux-track.tobias, .lux-track.fletch, .lux-track.fletcher, .lux-track.toby, .lux-track.totl-60,
   .lux.tobias,
   .lux.fletch,
   .lux.fletcher,
-  .lux.toby {
+  .lux.toby,
+  .lux.totl-60 {
     --rgb: 137, 143, 121;
     --rgb-dark: 108, 115, 88; }
   .lux-track.vitae, .lux-track.vee,
@@ -439,7 +496,8 @@
   .lux.viveka,
   .lux.viv {
     --rgb: 185,135,129; }
-  .lux-track.william, .lux-track.will,
+  .lux-track.william, .lux-track.will, .lux-track.totl-1148,
   .lux.william,
-  .lux.will {
+  .lux.will,
+  .lux.totl-1148 {
     --rgb: 177, 181, 160; }

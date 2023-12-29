@@ -4,17 +4,20 @@
     --dkAccent: rgb(var(--rgb-dark, var(--rgb)));
     
     &.abigail,
-    &.abby {
+    &.abby,
+    &.totl-1608 {
         --rgb: 212,161,168;
     }
     
     &.adaline,
-    &.addie {
+    &.addie,
+    &.totl-157 {
         --rgb: 167, 115, 129;
         --rgb-dark: 145, 80, 98;
     }
 
-    &.aiden {
+    &.aiden,
+    &.totl-838 {
         --rgb: 136, 163, 151;
         --rgb-dark: 107, 140, 126;
     }
@@ -23,7 +26,8 @@
         --rgb: 164, 138, 189;
     }
 
-    &.ambrose {
+    &.ambrose,
+    &.totl-995 {
         --rgb: 143, 109, 101;
         --rgb-dark: 115, 73, 63;
     }
@@ -44,26 +48,31 @@
         --rgb-dark: 90, 8, 8;
     }
 
-    &.antoni {
+    &.antoni,
+    &.totl-856 {
         --rgb: 122, 164, 195;
         --rgb-dark: 89, 142, 181;
     }
 
-    &.archer {
+    &.archer,
+    &.totl-669 {
         --rgb: 207, 153, 105;
         --rgb-dark: 196, 128, 68;
     }
 
-    &.art {
+    &.art,
+    &.totl-1567 {
         --rgb: 177, 193, 193;
     }
 
-    &.avery {
+    &.avery,
+    &.totl-1147 {
         --rgb: 178, 180, 146;
         --rgb-dark: 196, 128, 68;
     }
 
-    &.basil {
+    &.basil,
+    &.totl-261 {
         --rgb: 152, 158, 145;
         --rgb-dark: 127, 134, 118;
     }
@@ -72,7 +81,8 @@
     &.raph,
     &.ben,
     &.loki,
-    &.cain {
+    &.cain,
+    &.totl-854 {
         --rgb: 149, 165, 71;
         --rgb-dark: 123, 143, 26;
     }
@@ -86,13 +96,15 @@
         --rgb-dark: 84, 102, 52;
     }
 
-    &.bryn {
+    &.bryn,
+    &.totl-670 {
         --rgb: 155, 209, 186;
         --rgb-dark: 130, 198, 169;
     }
 
     &.cameron,
-    &.cam {
+    &.cam,
+    &.totl-1146 {
         --rgb: 111, 121, 106;
     }
 
@@ -108,7 +120,8 @@
     }
 
     &.catarina,
-    &.cat {
+    &.cat,
+    &.totl-855 {
         --rgb: 202, 143, 126;
         --rgb-dark: 189, 116, 94;
     }
@@ -121,7 +134,8 @@
         --rgb-dark: 67, 84, 111;
     }
 
-    &.connor {
+    &.connor,
+    &.totl-57 {
         --rgb: 194, 175, 129;
         --rgb-dark: 179, 155, 98;
     }
@@ -153,27 +167,32 @@
         --rgb: 168, 168, 168;
     }
 
-    &.darcy {
+    &.darcy,
+    &.totl-395 {
         --rgb: 187, 160, 197;
         --rgb-dark: 171, 137, 183;
     }
 
-    &.diana {
+    &.diana,
+    &.totl-906 {
         --rgb: 106, 109, 143;
         --rgb-dark: 69, 73, 115;
     }
 
-    &.diego {
+    &.diego,
+    &.totl-1578 {
         --rgb: 87, 116, 147;
     }
 
-    &.draco {
+    &.draco,
+    &.totl-408 {
         --rgb: 71, 88, 66;
         --rgb-dark: 26, 47, 19;
     }
 
     &.duncan,
-    &.duck {
+    &.duck,
+    &.totl-58 {
         --rgb: 153, 126, 143;
         --rgb-dark: 128, 94, 115;
     }
@@ -183,29 +202,34 @@
         --rgb-dark: 60, 60, 60;
     }
 
-    &.ellis {
+    &.ellis,
+    &.totl-705 {
         --rgb: 232, 151, 127;
         --rgb-dark: 227, 126, 95;
     }
 
     &.emmalina,
-    &.emma {
+    &.emma,
+    &.totl-273 {
         --rgb: 223, 186, 199;
         --rgb-dark: 215, 169, 186;
     }
 
     &.evangeline,
-    &.evan {
+    &.evan,
+    &.totl-317 {
         --rgb: 115, 69, 51;
         --rgb-dark: 81, 23, 0;
     }
 
-    &.everest {
+    &.everest,
+    &.totl-1577 {
         --rgb: 77, 26, 26;
     }
 
     &.felicity,
-    &.fee {
+    &.fee,
+    &.totl-588 {
         --rgb: 159, 120, 123;
         --rgb-dark: 136, 87, 91;
     }
@@ -216,18 +240,21 @@
         --rgb-dark: 146, 164, 129;
     }
 
-    &.gavin {
+    &.gavin,
+    &.totl-901 {
         --rgb: 141, 163, 141;
         --rgb-dark: 113, 140, 113;
     }
 
     &.genevieve,
-    &.gen {
+    &.gen,
+    &.totl-587 {
         --rgb: 202, 182, 200;
         --rgb-dark: 145, 92, 139;
     }
 
-    &.grace {
+    &.grace,
+    &.totl-1565 {
         --rgb: 204, 176, 176;
     }
 
@@ -235,11 +262,13 @@
         --rgb: 206, 174, 97;
     }
 
-    &.griffin {
+    &.griffin,
+    &.totl-1356 {
         --rgb: 146, 158, 159;
     }
 
-    &.hallie {
+    &.hallie,
+    &.totl-836 {
         --rgb: 184, 144, 158;
         --rgb-dark: 167, 117, 134;
     }
@@ -261,23 +290,27 @@
         --rgb-dark: 81, 94, 65;
     }
 
-    &.heiko {
+    &.heiko,
+    &.totl-750 {
         --rgb: 197, 187, 181;
         --rgb-dark: 183, 170, 163;
     }
 
     &.hiroki,
-    &.hiro {
+    &.hiro,
+    &.totl-1088 {
         --rgb: 146, 183, 188;
         --rgb-dark: 119, 165, 172;
     }
 
-    &.holly {
+    &.holly,
+    &.totl-1354 {
         --rgb: 183,133,79;
     }
 
     &.irina,
-    &.iri {
+    &.iri,
+    &.totl-1145 {
         --rgb: 17, 74, 108;
     }
 
@@ -292,7 +325,8 @@
     }
 
     &.jasper,
-    &.jazz {
+    &.jazz,
+    &.totl-264 {
         --rgb: 171, 147, 159;
         --rgb-dark: 150, 121, 136;
     }
@@ -311,11 +345,13 @@
     }
 
     &.kristopher,
-    &.kris {
+    &.kris,
+    &.totl-1324 {
         --rgb: 160, 181, 162;
     }
 
-    &.lance {
+    &.lance,
+    &.totl-1355 {
         --rgb: 213, 181, 105;
     }
 
@@ -329,7 +365,8 @@
         --rgb: 191, 117, 81;
     }
 
-    &.lottie {
+    &.lottie,
+    &.totl-315 {
         --rgb: 212, 161, 168;
         --rgb-dark: 202, 138, 147;
     }
@@ -341,13 +378,15 @@
     }
 
     &.magnolia,
-    &.maggie {
+    &.maggie,
+    &.totl-56 {
         --rgb: 107, 126, 103;
         --rgb-dark: 70, 94, 66;
     }
 
     &.malcolm,
-    &.mal {
+    &.mal,
+    &.totl-853 {
         --rgb: 99, 92, 92;
         --rgb-dark: 60, 52, 52;
     }
@@ -358,7 +397,8 @@
     }
 
     &.marica,
-    &.mari {
+    &.mari,
+    &.totl-1089 {
         --rgb: 175, 112, 106;
         --rgb-dark: 155, 77, 69;
     }
@@ -375,13 +415,15 @@
         --rgb-dark: 168, 105, 98;
     }
 
-    &.milo {
+    &.milo,
+    &.totl-112 {
         --rgb: 220, 163, 147;
         --rgb-dark: 212, 141, 121;
     }
 
     &.montana,
-    &.monty {
+    &.monty,
+    &.totl-59 {
         --rgb: 135, 151, 148;
         --rgb-dark: 106, 125, 122;
     }
@@ -392,25 +434,29 @@
     }
 
     &.nayara,
-    &.naya {
+    &.naya,
+    &.totl-905 {
         --rgb: 187, 118, 131;
         --rgb-dark: 170, 84, 100;
     }
 
     &.nikolas,
     &.nik,
-    &.niko {
+    &.niko,
+    &.totl-54 {
         --rgb: 142, 173, 179;
         --rgb-dark: 114, 153, 160;
     }
 
     &.nimue,
-    &.nim {
+    &.nim,
+    &.totl-902 {
         --rgb: 191, 177, 188;
         --rgb-dark: 176, 158, 172;
     }
 
-    &.noah {
+    &.noah,
+    &.totl-314 {
         --rgb: 155, 167, 142;
         --rgb-dark: 130, 146, 114;
     }
@@ -421,7 +467,8 @@
         --rgb-dark: 187, 124, 86;
     }
 
-    &.percy {
+    &.percy,
+    &.totl-482 {
         --rgb: 168, 143, 128;
         --rgb-dark: 145, 102, 76;
     }
@@ -432,7 +479,8 @@
         --rgb-dark: 141, 63, 118;
     }
 
-    &.rebecca {
+    &.rebecca,
+    &.totl-994 {
         --rgb: 211, 202, 195;
         --rgb-dark: 200, 189, 181;
     }
@@ -443,7 +491,8 @@
     }
 
     &.renata,
-    &.ren {
+    &.ren,
+    &.totl-701 {
         --rgb: 7, 116, 90;
         --rgb-dark: 88, 142, 151;
     }
@@ -460,7 +509,8 @@
         --rgb-dark: 125, 136, 149;
     }
 
-    &.ryan {
+    &.ryan,
+    &.totl-589 {
         --rgb: 214, 189, 114;
         --rgb-dark: 204, 173, 79;
     }
@@ -471,7 +521,8 @@
         --rgb-dark: 210, 118, 90;
     }
 
-    &.sarah {
+    &.sarah,
+    &.totl-1358 {
         --rgb: 196, 212, 213;
     }
 
@@ -491,32 +542,37 @@
         --rgb: 158, 181, 187;
     }
 
-    &.simon {
+    &.simon,
+    &.totl-265 {
         --rgb: 180, 199, 129;
         --rgb-dark: 162, 185, 98;
     }
 
-    &.sorren {
+    &.sorren,
+    &.totl-702 {
         --rgb: 97, 79, 79;
         --rgb-dark: 58, 35, 35;
     }
 
     &.spencer,
-    &.spence {
+    &.spence,
+    &.totl-862 {
         --rgb: 138, 151, 174;
         --rgb-dark: 109, 125, 154;
     }
 
     &.sterling,
     &.matteo,
-    &.matty {
+    &.matty,
+    &.totl-907 {
         --rgb: 207, 167, 52;
         --rgb-dark: 196, 145, 2;
     }
 
     &.thomas,
     &.tom,
-    &.tommy {
+    &.tommy,
+    &.totl-863 {
         --rgb: 183, 207, 150;
         --rgb-dark: 166, 196, 124;
     }
@@ -524,7 +580,8 @@
     &.tobias,
     &.fletch,
     &.fletcher,
-    &.toby {
+    &.toby,
+    &.totl-60 {
         --rgb: 137, 143, 121;
         --rgb-dark: 108, 115, 88;
     }
@@ -541,7 +598,8 @@
     }
 
     &.william,
-    &.will {
+    &.will,
+    &.totl-1148 {
         --rgb: 177, 181, 160;
     }
 }
