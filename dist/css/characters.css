@@ -117,6 +117,7 @@
   .spy.wren {
     --rgb: 166, 164, 164; }
 
+/*TOTL STYLES*/
 .spyder-track,
 .spyder {
   --accent: rgb(var(--rgb));
