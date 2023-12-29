@@ -119,14 +119,7 @@
     &.wren {
         --rgb: 166, 164, 164;
     }
-}
-
-.spyder-track,
-.spyder {
-    --accent: rgb(var(--rgb));
-    --dkAccent: rgb(var(--rgb-dark, var(--rgb)));
-
-/*where THIS is new*/
+    
     .totl & {
         --accent: rgb(var(--rgb-dark, var(--rgb)));
         --ltaccent: rgb(var(--rgb));
