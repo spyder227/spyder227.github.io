@@ -33,7 +33,7 @@
         function sass() {
             return gulp.src(srcPath + '/sass/**/*.scss')
               .pipe(gulpSass({
-                  style: 'expanded',
+                  outputStyle: 'compact',
                   includePaths: [
                       modulesPath,
                       srcPath + '/sass'
