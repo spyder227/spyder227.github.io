@@ -2,28 +2,36 @@
 .lux {
   --accent: rgb(var(--rgb));
   --dkAccent: rgb(var(--rgb-dark, var(--rgb))); }
-  .lux-track.abigail, .lux-track.abby, .lux-track.totl-1608,
+  .lux-track.abigail, .lux-track.abby,
+  .totl-1608 .lux-track,
   .lux.abigail,
   .lux.abby,
-  .lux.totl-1608 {
+  .totl-1608
+  .lux {
     --rgb: 212,161,168; }
-  .lux-track.adaline, .lux-track.addie, .lux-track.totl-157,
+  .lux-track.adaline, .lux-track.addie,
+  .totl-157 .lux-track,
   .lux.adaline,
   .lux.addie,
-  .lux.totl-157 {
+  .totl-157
+  .lux {
     --rgb: 167, 115, 129;
     --rgb-dark: 145, 80, 98; }
-  .lux-track.aiden, .lux-track.totl-838,
+  .lux-track.aiden,
+  .totl-838 .lux-track,
   .lux.aiden,
-  .lux.totl-838 {
+  .totl-838
+  .lux {
     --rgb: 136, 163, 151;
     --rgb-dark: 107, 140, 126; }
   .lux-track.ainara,
   .lux.ainara {
     --rgb: 164, 138, 189; }
-  .lux-track.ambrose, .lux-track.totl-995,
+  .lux-track.ambrose,
+  .totl-995 .lux-track,
   .lux.ambrose,
-  .lux.totl-995 {
+  .totl-995
+  .lux {
     --rgb: 143, 109, 101;
     --rgb-dark: 115, 73, 63; }
   .lux-track.alastair, .lux-track.al,
@@ -39,37 +47,49 @@
   .lux.andy {
     --rgb: 123, 57, 57;
     --rgb-dark: 90, 8, 8; }
-  .lux-track.antoni, .lux-track.totl-856,
+  .lux-track.antoni,
+  .totl-856 .lux-track,
   .lux.antoni,
-  .lux.totl-856 {
+  .totl-856
+  .lux {
     --rgb: 122, 164, 195;
     --rgb-dark: 89, 142, 181; }
-  .lux-track.archer, .lux-track.totl-669,
+  .lux-track.archer,
+  .totl-669 .lux-track,
   .lux.archer,
-  .lux.totl-669 {
+  .totl-669
+  .lux {
     --rgb: 207, 153, 105;
     --rgb-dark: 196, 128, 68; }
-  .lux-track.art, .lux-track.totl-1567,
+  .lux-track.art,
+  .totl-1567 .lux-track,
   .lux.art,
-  .lux.totl-1567 {
+  .totl-1567
+  .lux {
     --rgb: 177, 193, 193; }
-  .lux-track.avery, .lux-track.totl-1147,
+  .lux-track.avery,
+  .totl-1147 .lux-track,
   .lux.avery,
-  .lux.totl-1147 {
+  .totl-1147
+  .lux {
     --rgb: 178, 180, 146;
     --rgb-dark: 196, 128, 68; }
-  .lux-track.basil, .lux-track.totl-261,
+  .lux-track.basil,
+  .totl-261 .lux-track,
   .lux.basil,
-  .lux.totl-261 {
+  .totl-261
+  .lux {
     --rgb: 152, 158, 145;
     --rgb-dark: 127, 134, 118; }
-  .lux-track.raphael, .lux-track.raph, .lux-track.ben, .lux-track.loki, .lux-track.cain, .lux-track.totl-854,
+  .lux-track.raphael, .lux-track.raph, .lux-track.ben, .lux-track.loki, .lux-track.cain,
+  .totl-854 .lux-track,
   .lux.raphael,
   .lux.raph,
   .lux.ben,
   .lux.loki,
   .lux.cain,
-  .lux.totl-854 {
+  .totl-854
+  .lux {
     --rgb: 149, 165, 71;
     --rgb-dark: 123, 143, 26; }
   .lux-track.benji,
@@ -79,15 +99,19 @@
   .lux.brennan {
     --rgb: 118, 132, 92;
     --rgb-dark: 84, 102, 52; }
-  .lux-track.bryn, .lux-track.totl-670,
+  .lux-track.bryn,
+  .totl-670 .lux-track,
   .lux.bryn,
-  .lux.totl-670 {
+  .totl-670
+  .lux {
     --rgb: 155, 209, 186;
     --rgb-dark: 130, 198, 169; }
-  .lux-track.cameron, .lux-track.cam, .lux-track.totl-1146,
+  .lux-track.cameron, .lux-track.cam,
+  .totl-1146 .lux-track,
   .lux.cameron,
   .lux.cam,
-  .lux.totl-1146 {
+  .totl-1146
+  .lux {
     --rgb: 111, 121, 106; }
   .lux-track.casper, .lux-track.cas,
   .lux.casper,
@@ -98,10 +122,12 @@
   .lux.cassiopeia,
   .lux.cassie {
     --rgb: 166, 138, 172; }
-  .lux-track.catarina, .lux-track.cat, .lux-track.totl-855,
+  .lux-track.catarina, .lux-track.cat,
+  .totl-855 .lux-track,
   .lux.catarina,
   .lux.cat,
-  .lux.totl-855 {
+  .totl-855
+  .lux {
     --rgb: 202, 143, 126;
     --rgb-dark: 189, 116, 94; }
   .lux-track.christopher, .lux-track.chris, .lux-track.nikola, .lux-track.tesla,
@@ -111,9 +137,11 @@
   .lux.tesla {
     --rgb: 104,118,139;
     --rgb-dark: 67, 84, 111; }
-  .lux-track.connor, .lux-track.totl-57,
+  .lux-track.connor,
+  .totl-57 .lux-track,
   .lux.connor,
-  .lux.totl-57 {
+  .totl-57
+  .lux {
     --rgb: 194, 175, 129;
     --rgb-dark: 179, 155, 98; }
   .lux-track.cordelia, .lux-track.corey,
@@ -138,60 +166,80 @@
   .lux.daniel,
   .lux.dan {
     --rgb: 168, 168, 168; }
-  .lux-track.darcy, .lux-track.totl-395,
+  .lux-track.darcy,
+  .totl-395 .lux-track,
   .lux.darcy,
-  .lux.totl-395 {
+  .totl-395
+  .lux {
     --rgb: 187, 160, 197;
     --rgb-dark: 171, 137, 183; }
-  .lux-track.diana, .lux-track.totl-906,
+  .lux-track.diana,
+  .totl-906 .lux-track,
   .lux.diana,
-  .lux.totl-906 {
+  .totl-906
+  .lux {
     --rgb: 106, 109, 143;
     --rgb-dark: 69, 73, 115; }
-  .lux-track.diego, .lux-track.totl-1578,
+  .lux-track.diego,
+  .totl-1578 .lux-track,
   .lux.diego,
-  .lux.totl-1578 {
+  .totl-1578
+  .lux {
     --rgb: 87, 116, 147; }
-  .lux-track.draco, .lux-track.totl-408,
+  .lux-track.draco,
+  .totl-408 .lux-track,
   .lux.draco,
-  .lux.totl-408 {
+  .totl-408
+  .lux {
     --rgb: 71, 88, 66;
     --rgb-dark: 26, 47, 19; }
-  .lux-track.duncan, .lux-track.duck, .lux-track.totl-58,
+  .lux-track.duncan, .lux-track.duck,
+  .totl-58 .lux-track,
   .lux.duncan,
   .lux.duck,
-  .lux.totl-58 {
+  .totl-58
+  .lux {
     --rgb: 153, 126, 143;
     --rgb-dark: 128, 94, 115; }
   .lux-track.elias,
   .lux.elias {
     --rgb: 99, 99, 99;
     --rgb-dark: 60, 60, 60; }
-  .lux-track.ellis, .lux-track.totl-705,
+  .lux-track.ellis,
+  .totl-705 .lux-track,
   .lux.ellis,
-  .lux.totl-705 {
+  .totl-705
+  .lux {
     --rgb: 232, 151, 127;
     --rgb-dark: 227, 126, 95; }
-  .lux-track.emmalina, .lux-track.emma, .lux-track.totl-273,
+  .lux-track.emmalina, .lux-track.emma,
+  .totl-273 .lux-track,
   .lux.emmalina,
   .lux.emma,
-  .lux.totl-273 {
+  .totl-273
+  .lux {
     --rgb: 223, 186, 199;
     --rgb-dark: 215, 169, 186; }
-  .lux-track.evangeline, .lux-track.evan, .lux-track.totl-317,
+  .lux-track.evangeline, .lux-track.evan,
+  .totl-317 .lux-track,
   .lux.evangeline,
   .lux.evan,
-  .lux.totl-317 {
+  .totl-317
+  .lux {
     --rgb: 115, 69, 51;
     --rgb-dark: 81, 23, 0; }
-  .lux-track.everest, .lux-track.totl-1577,
+  .lux-track.everest,
+  .totl-1577 .lux-track,
   .lux.everest,
-  .lux.totl-1577 {
+  .totl-1577
+  .lux {
     --rgb: 77, 26, 26; }
-  .lux-track.felicity, .lux-track.fee, .lux-track.totl-588,
+  .lux-track.felicity, .lux-track.fee,
+  .totl-588 .lux-track,
   .lux.felicity,
   .lux.fee,
-  .lux.totl-588 {
+  .totl-588
+  .lux {
     --rgb: 159, 120, 123;
     --rgb-dark: 136, 87, 91; }
   .lux-track.gabriel, .lux-track.gabe,
@@ -199,31 +247,41 @@
   .lux.gabe {
     --rgb: 167, 182, 154;
     --rgb-dark: 146, 164, 129; }
-  .lux-track.gavin, .lux-track.totl-901,
+  .lux-track.gavin,
+  .totl-901 .lux-track,
   .lux.gavin,
-  .lux.totl-901 {
+  .totl-901
+  .lux {
     --rgb: 141, 163, 141;
     --rgb-dark: 113, 140, 113; }
-  .lux-track.genevieve, .lux-track.gen, .lux-track.totl-587,
+  .lux-track.genevieve, .lux-track.gen,
+  .totl-587 .lux-track,
   .lux.genevieve,
   .lux.gen,
-  .lux.totl-587 {
+  .totl-587
+  .lux {
     --rgb: 202, 182, 200;
     --rgb-dark: 145, 92, 139; }
-  .lux-track.grace, .lux-track.totl-1565,
+  .lux-track.grace,
+  .totl-1565 .lux-track,
   .lux.grace,
-  .lux.totl-1565 {
+  .totl-1565
+  .lux {
     --rgb: 204, 176, 176; }
   .lux-track.graeme,
   .lux.graeme {
     --rgb: 206, 174, 97; }
-  .lux-track.griffin, .lux-track.totl-1356,
+  .lux-track.griffin,
+  .totl-1356 .lux-track,
   .lux.griffin,
-  .lux.totl-1356 {
+  .totl-1356
+  .lux {
     --rgb: 146, 158, 159; }
-  .lux-track.hallie, .lux-track.totl-836,
+  .lux-track.hallie,
+  .totl-836 .lux-track,
   .lux.hallie,
-  .lux.totl-836 {
+  .totl-836
+  .lux {
     --rgb: 184, 144, 158;
     --rgb-dark: 167, 117, 134; }
   .lux-track.harley,
@@ -240,25 +298,33 @@
   .lux.hayd {
     --rgb: 115, 126, 103;
     --rgb-dark: 81, 94, 65; }
-  .lux-track.heiko, .lux-track.totl-750,
+  .lux-track.heiko,
+  .totl-750 .lux-track,
   .lux.heiko,
-  .lux.totl-750 {
+  .totl-750
+  .lux {
     --rgb: 197, 187, 181;
     --rgb-dark: 183, 170, 163; }
-  .lux-track.hiroki, .lux-track.hiro, .lux-track.totl-1088,
+  .lux-track.hiroki, .lux-track.hiro,
+  .totl-1088 .lux-track,
   .lux.hiroki,
   .lux.hiro,
-  .lux.totl-1088 {
+  .totl-1088
+  .lux {
     --rgb: 146, 183, 188;
     --rgb-dark: 119, 165, 172; }
-  .lux-track.holly, .lux-track.totl-1354,
+  .lux-track.holly,
+  .totl-1354 .lux-track,
   .lux.holly,
-  .lux.totl-1354 {
+  .totl-1354
+  .lux {
     --rgb: 183,133,79; }
-  .lux-track.irina, .lux-track.iri, .lux-track.totl-1145,
+  .lux-track.irina, .lux-track.iri,
+  .totl-1145 .lux-track,
   .lux.irina,
   .lux.iri,
-  .lux.totl-1145 {
+  .totl-1145
+  .lux {
     --rgb: 17, 74, 108; }
   .lux-track.isaiah,
   .lux.isaiah {
@@ -268,10 +334,12 @@
   .lux.isa,
   .lux.belle {
     --rgb: 213, 188, 204; }
-  .lux-track.jasper, .lux-track.jazz, .lux-track.totl-264,
+  .lux-track.jasper, .lux-track.jazz,
+  .totl-264 .lux-track,
   .lux.jasper,
   .lux.jazz,
-  .lux.totl-264 {
+  .totl-264
+  .lux {
     --rgb: 171, 147, 159;
     --rgb-dark: 150, 121, 136; }
   .lux-track.jesse,
@@ -284,14 +352,18 @@
   .lux.kit {
     --rgb: 217, 195, 167;
     --rgb-dark: 208, 181, 146; }
-  .lux-track.kristopher, .lux-track.kris, .lux-track.totl-1324,
+  .lux-track.kristopher, .lux-track.kris,
+  .totl-1324 .lux-track,
   .lux.kristopher,
   .lux.kris,
-  .lux.totl-1324 {
+  .totl-1324
+  .lux {
     --rgb: 160, 181, 162; }
-  .lux-track.lance, .lux-track.totl-1355,
+  .lux-track.lance,
+  .totl-1355 .lux-track,
   .lux.lance,
-  .lux.totl-1355 {
+  .totl-1355
+  .lux {
     --rgb: 213, 181, 105; }
   .lux-track.lincoln, .lux-track.link,
   .lux.lincoln,
@@ -301,9 +373,11 @@
   .lux.lorelei,
   .lux.lore {
     --rgb: 191, 117, 81; }
-  .lux-track.lottie, .lux-track.totl-315,
+  .lux-track.lottie,
+  .totl-315 .lux-track,
   .lux.lottie,
-  .lux.totl-315 {
+  .totl-315
+  .lux {
     --rgb: 212, 161, 168;
     --rgb-dark: 202, 138, 147; }
   .lux-track.luisa, .lux-track.lou,
@@ -311,26 +385,32 @@
   .lux.lou {
     --rgb: 183, 133, 79;
     --rgb-dark: 166, 103, 36; }
-  .lux-track.magnolia, .lux-track.maggie, .lux-track.totl-56,
+  .lux-track.magnolia, .lux-track.maggie,
+  .totl-56 .lux-track,
   .lux.magnolia,
   .lux.maggie,
-  .lux.totl-56 {
+  .totl-56
+  .lux {
     --rgb: 107, 126, 103;
     --rgb-dark: 70, 94, 66; }
-  .lux-track.malcolm, .lux-track.mal, .lux-track.totl-853,
+  .lux-track.malcolm, .lux-track.mal,
+  .totl-853 .lux-track,
   .lux.malcolm,
   .lux.mal,
-  .lux.totl-853 {
+  .totl-853
+  .lux {
     --rgb: 99, 92, 92;
     --rgb-dark: 60, 52, 52; }
   .lux-track.malik,
   .lux.malik {
     --rgb: 80, 94, 126;
     --rgb-dark: 37, 54, 94; }
-  .lux-track.marica, .lux-track.mari, .lux-track.totl-1089,
+  .lux-track.marica, .lux-track.mari,
+  .totl-1089 .lux-track,
   .lux.marica,
   .lux.mari,
-  .lux.totl-1089 {
+  .totl-1089
+  .lux {
     --rgb: 175, 112, 106;
     --rgb-dark: 155, 77, 69; }
   .lux-track.marlowe, .lux-track.mar,
@@ -343,43 +423,55 @@
   .lux.mav {
     --rgb: 185, 135, 129;
     --rgb-dark: 168, 105, 98; }
-  .lux-track.milo, .lux-track.totl-112,
+  .lux-track.milo,
+  .totl-112 .lux-track,
   .lux.milo,
-  .lux.totl-112 {
+  .totl-112
+  .lux {
     --rgb: 220, 163, 147;
     --rgb-dark: 212, 141, 121; }
-  .lux-track.montana, .lux-track.monty, .lux-track.totl-59,
+  .lux-track.montana, .lux-track.monty,
+  .totl-59 .lux-track,
   .lux.montana,
   .lux.monty,
-  .lux.totl-59 {
+  .totl-59
+  .lux {
     --rgb: 135, 151, 148;
     --rgb-dark: 106, 125, 122; }
   .lux-track.morgan,
   .lux.morgan {
     --rgb: 151, 151, 171;
     --rgb-dark: 126, 125, 150; }
-  .lux-track.nayara, .lux-track.naya, .lux-track.totl-905,
+  .lux-track.nayara, .lux-track.naya,
+  .totl-905 .lux-track,
   .lux.nayara,
   .lux.naya,
-  .lux.totl-905 {
+  .totl-905
+  .lux {
     --rgb: 187, 118, 131;
     --rgb-dark: 170, 84, 100; }
-  .lux-track.nikolas, .lux-track.nik, .lux-track.niko, .lux-track.totl-54,
+  .lux-track.nikolas, .lux-track.nik, .lux-track.niko,
+  .totl-54 .lux-track,
   .lux.nikolas,
   .lux.nik,
   .lux.niko,
-  .lux.totl-54 {
+  .totl-54
+  .lux {
     --rgb: 142, 173, 179;
     --rgb-dark: 114, 153, 160; }
-  .lux-track.nimue, .lux-track.nim, .lux-track.totl-902,
+  .lux-track.nimue, .lux-track.nim,
+  .totl-902 .lux-track,
   .lux.nimue,
   .lux.nim,
-  .lux.totl-902 {
+  .totl-902
+  .lux {
     --rgb: 191, 177, 188;
     --rgb-dark: 176, 158, 172; }
-  .lux-track.noah, .lux-track.totl-314,
+  .lux-track.noah,
+  .totl-314 .lux-track,
   .lux.noah,
-  .lux.totl-314 {
+  .totl-314
+  .lux {
     --rgb: 155, 167, 142;
     --rgb-dark: 130, 146, 114; }
   .lux-track.oliver, .lux-track.oli,
@@ -387,9 +479,11 @@
   .lux.oli {
     --rgb: 200, 150, 119;
     --rgb-dark: 187, 124, 86; }
-  .lux-track.percy, .lux-track.totl-482,
+  .lux-track.percy,
+  .totl-482 .lux-track,
   .lux.percy,
-  .lux.totl-482 {
+  .totl-482
+  .lux {
     --rgb: 168, 143, 128;
     --rgb-dark: 145, 102, 76; }
   .lux-track.persephone, .lux-track.sephi,
@@ -397,19 +491,23 @@
   .lux.sephi {
     --rgb: 163, 101, 145;
     --rgb-dark: 141, 63, 118; }
-  .lux-track.rebecca, .lux-track.totl-994,
+  .lux-track.rebecca,
+  .totl-994 .lux-track,
   .lux.rebecca,
-  .lux.totl-994 {
+  .totl-994
+  .lux {
     --rgb: 211, 202, 195;
     --rgb-dark: 200, 189, 181; }
   .lux-track.remy,
   .lux.remy {
     --rgb: 151, 180, 173;
     --rgb-dark: 125, 162, 153; }
-  .lux-track.renata, .lux-track.ren, .lux-track.totl-701,
+  .lux-track.renata, .lux-track.ren,
+  .totl-701 .lux-track,
   .lux.renata,
   .lux.ren,
-  .lux.totl-701 {
+  .totl-701
+  .lux {
     --rgb: 7, 116, 90;
     --rgb-dark: 88, 142, 151; }
   .lux-track.riordan, .lux-track.rory,
@@ -422,9 +520,11 @@
   .lux.riv {
     --rgb: 151, 159, 170;
     --rgb-dark: 125, 136, 149; }
-  .lux-track.ryan, .lux-track.totl-589,
+  .lux-track.ryan,
+  .totl-589 .lux-track,
   .lux.ryan,
-  .lux.totl-589 {
+  .totl-589
+  .lux {
     --rgb: 214, 189, 114;
     --rgb-dark: 204, 173, 79; }
   .lux-track.salih, .lux-track.sal,
@@ -432,9 +532,11 @@
   .lux.sal {
     --rgb: 219, 145, 123;
     --rgb-dark: 210, 118, 90; }
-  .lux-track.sarah, .lux-track.totl-1358,
+  .lux-track.sarah,
+  .totl-1358 .lux-track,
   .lux.sarah,
-  .lux.totl-1358 {
+  .totl-1358
+  .lux {
     --rgb: 196, 212, 213; }
   .lux-track.satiah, .lux-track.tia,
   .lux.satiah,
@@ -449,42 +551,54 @@
   .lux-track.silas,
   .lux.silas {
     --rgb: 158, 181, 187; }
-  .lux-track.simon, .lux-track.totl-265,
+  .lux-track.simon,
+  .totl-265 .lux-track,
   .lux.simon,
-  .lux.totl-265 {
+  .totl-265
+  .lux {
     --rgb: 180, 199, 129;
     --rgb-dark: 162, 185, 98; }
-  .lux-track.sorren, .lux-track.totl-702,
+  .lux-track.sorren,
+  .totl-702 .lux-track,
   .lux.sorren,
-  .lux.totl-702 {
+  .totl-702
+  .lux {
     --rgb: 97, 79, 79;
     --rgb-dark: 58, 35, 35; }
-  .lux-track.spencer, .lux-track.spence, .lux-track.totl-862,
+  .lux-track.spencer, .lux-track.spence,
+  .totl-862 .lux-track,
   .lux.spencer,
   .lux.spence,
-  .lux.totl-862 {
+  .totl-862
+  .lux {
     --rgb: 138, 151, 174;
     --rgb-dark: 109, 125, 154; }
-  .lux-track.sterling, .lux-track.matteo, .lux-track.matty, .lux-track.totl-907,
+  .lux-track.sterling, .lux-track.matteo, .lux-track.matty,
+  .totl-907 .lux-track,
   .lux.sterling,
   .lux.matteo,
   .lux.matty,
-  .lux.totl-907 {
+  .totl-907
+  .lux {
     --rgb: 207, 167, 52;
     --rgb-dark: 196, 145, 2; }
-  .lux-track.thomas, .lux-track.tom, .lux-track.tommy, .lux-track.totl-863,
+  .lux-track.thomas, .lux-track.tom, .lux-track.tommy,
+  .totl-863 .lux-track,
   .lux.thomas,
   .lux.tom,
   .lux.tommy,
-  .lux.totl-863 {
+  .totl-863
+  .lux {
     --rgb: 183, 207, 150;
     --rgb-dark: 166, 196, 124; }
-  .lux-track.tobias, .lux-track.fletch, .lux-track.fletcher, .lux-track.toby, .lux-track.totl-60,
+  .lux-track.tobias, .lux-track.fletch, .lux-track.fletcher, .lux-track.toby,
+  .totl-60 .lux-track,
   .lux.tobias,
   .lux.fletch,
   .lux.fletcher,
   .lux.toby,
-  .lux.totl-60 {
+  .totl-60
+  .lux {
     --rgb: 137, 143, 121;
     --rgb-dark: 108, 115, 88; }
   .lux-track.vitae, .lux-track.vee,
@@ -496,8 +610,10 @@
   .lux.viveka,
   .lux.viv {
     --rgb: 185,135,129; }
-  .lux-track.william, .lux-track.will, .lux-track.totl-1148,
+  .lux-track.william, .lux-track.will,
+  .totl-1148 .lux-track,
   .lux.william,
   .lux.will,
-  .lux.totl-1148 {
+  .totl-1148
+  .lux {
     --rgb: 177, 181, 160; }
