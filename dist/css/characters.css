@@ -1,137 +1,74 @@
-.spy-track,
-.spy {
-  --rgb: var(--rgb);
-  --dkrgb: var(--rgb-dark, var(--rgb)); }
-  .spy-track.adeline,
-  .spy.adeline {
-    --rgb: 217, 132, 148; }
-  .spy-track.adrian, .spy-track.nathan,
-  .spy.adrian,
-  .spy.nathan {
-    --rgb: 196, 172, 106; }
-  .spy-track.beau,
-  .spy.beau {
-    --rgb: 219, 130, 92; }
-  .spy-track.cameron,
-  .spy.cameron {
-    --rgb: 189, 125, 163; }
-  .spy-track.catherine,
-  .spy.catherine {
-    --rgb: 217, 106, 143; }
-  .spy-track.connor, .spy-track.derek, .spy-track.kieran,
-  .spy.connor,
-  .spy.derek,
-  .spy.kieran {
-    --rgb: 108, 112, 145; }
-  .spy-track.cyrus, .spy-track.alistair,
-  .spy.cyrus,
-  .spy.alistair {
-    --rgb: 82, 124, 95; }
-  .spy-track.dixon, .spy-track.dean, .spy-track.dawson,
-  .spy.dixon,
-  .spy.dean,
-  .spy.dawson {
-    --rgb: 111, 138, 109; }
-  .spy-track.emily, .spy-track.bane,
-  .spy.emily,
-  .spy.bane {
-    --rgb: 194, 87, 94; }
-  .spy-track.francis,
-  .spy.francis {
-    --rgb: 74, 114, 150; }
-  .spy-track.hazel, .spy-track.daniel,
-  .spy.hazel,
-  .spy.daniel {
-    --rgb: 140, 108, 88; }
-  .spy-track.henry,
-  .spy.henry {
-    --rgb: 79, 84, 120; }
-  .spy-track.isaac,
-  .spy.isaac {
-    --rgb: 130, 151, 179; }
-  .spy-track.jack, .spy-track.remington,
-  .spy.jack,
-  .spy.remington {
-    --rgb: 93, 138, 76; }
-  .spy-track.jacob,
-  .spy.jacob {
-    --rgb: 211, 164, 89; }
-  .spy-track.james,
-  .spy.james {
-    --rgb: 163, 108, 85; }
-  .spy-track.julianna,
-  .spy.julianna {
-    --rgb: 196, 88, 67; }
-  .spy-track.lorelai,
-  .spy.lorelai {
-    --rgb: 128, 80, 128; }
-  .spy-track.lyra,
-  .spy.lyra {
-    --rgb: 111, 127, 184; }
-  .spy-track.mace, .spy-track.cocky,
-  .spy.mace,
-  .spy.cocky {
-    --rgb: 132, 111, 168; }
-  .spy-track.mary,
-  .spy.mary {
-    --rgb: 167, 154, 179; }
-  .spy-track.nicholas,
-  .spy.nicholas {
-    --rgb: 145, 130, 114; }
-  .spy-track.nimue, .spy-track.wolfgang,
-  .spy.nimue,
-  .spy.wolfgang {
-    --rgb: 83, 147, 148; }
-  .spy-track.nox, .spy-track.wright,
-  .spy.nox,
-  .spy.wright {
-    --rgb: 102, 102, 102; }
-  .spy-track.oliver,
-  .spy.oliver {
-    --rgb: 135, 196, 140; }
-  .spy-track.prudence, .spy-track.logan,
-  .spy.prudence,
-  .spy.logan {
-    --rgb: 113, 176, 191; }
-  .spy-track.sakai, .spy-track.astarion,
-  .spy.sakai,
-  .spy.astarion {
-    --rgb: 153, 98, 113; }
-  .spy-track.stephen,
-  .spy.stephen {
-    --rgb: 169, 199, 113; }
-  .spy-track.theodore,
-  .spy.theodore {
-    --rgb: 126, 191, 171; }
-  .spy-track.tobias, .spy-track.ryan,
-  .spy.tobias,
-  .spy.ryan {
-    --rgb: 189, 127, 60; }
-  .spy-track.verona,
-  .spy.verona {
-    --rgb: 171, 118, 162; }
-  .spy-track.vega,
-  .spy.vega {
-    --rgb: 107, 99, 87; }
-  .spy-track.wren,
-  .spy.wren {
-    --rgb: 166, 164, 164; }
+.spy-track, .spy { --rgb: var(--rgb); --dkrgb: var(--rgb-dark, var(--rgb)); }
+
+.spy-track.adeline, .spy.adeline { --rgb: 217, 132, 148; }
+
+.spy-track.adrian, .spy-track.nathan, .spy.adrian, .spy.nathan { --rgb: 196, 172, 106; }
+
+.spy-track.beau, .spy.beau { --rgb: 219, 130, 92; }
+
+.spy-track.cameron, .spy.cameron { --rgb: 189, 125, 163; }
+
+.spy-track.catherine, .spy.catherine { --rgb: 217, 106, 143; }
+
+.spy-track.connor, .spy-track.derek, .spy-track.kieran, .spy.connor, .spy.derek, .spy.kieran { --rgb: 108, 112, 145; }
+
+.spy-track.cyrus, .spy-track.alistair, .spy.cyrus, .spy.alistair { --rgb: 82, 124, 95; }
+
+.spy-track.dixon, .spy-track.dean, .spy-track.dawson, .spy.dixon, .spy.dean, .spy.dawson { --rgb: 111, 138, 109; }
+
+.spy-track.emily, .spy-track.bane, .spy.emily, .spy.bane { --rgb: 194, 87, 94; }
+
+.spy-track.francis, .spy.francis { --rgb: 74, 114, 150; }
+
+.spy-track.hazel, .spy-track.daniel, .spy.hazel, .spy.daniel { --rgb: 140, 108, 88; }
+
+.spy-track.henry, .spy.henry { --rgb: 79, 84, 120; }
+
+.spy-track.isaac, .spy.isaac { --rgb: 130, 151, 179; }
+
+.spy-track.jack, .spy-track.remington, .spy.jack, .spy.remington { --rgb: 93, 138, 76; }
+
+.spy-track.jacob, .spy.jacob { --rgb: 211, 164, 89; }
+
+.spy-track.james, .spy.james { --rgb: 163, 108, 85; }
+
+.spy-track.julianna, .spy.julianna { --rgb: 196, 88, 67; }
+
+.spy-track.lorelai, .spy.lorelai { --rgb: 128, 80, 128; }
+
+.spy-track.lyra, .spy.lyra { --rgb: 111, 127, 184; }
+
+.spy-track.mace, .spy-track.cocky, .spy.mace, .spy.cocky { --rgb: 132, 111, 168; }
+
+.spy-track.mary, .spy.mary { --rgb: 167, 154, 179; }
+
+.spy-track.nicholas, .spy.nicholas { --rgb: 145, 130, 114; }
+
+.spy-track.nimue, .spy-track.wolfgang, .spy.nimue, .spy.wolfgang { --rgb: 83, 147, 148; }
+
+.spy-track.nox, .spy-track.wright, .spy.nox, .spy.wright { --rgb: 102, 102, 102; }
+
+.spy-track.oliver, .spy.oliver { --rgb: 135, 196, 140; }
+
+.spy-track.prudence, .spy-track.logan, .spy.prudence, .spy.logan { --rgb: 113, 176, 191; }
+
+.spy-track.sakai, .spy-track.astarion, .spy.sakai, .spy.astarion { --rgb: 153, 98, 113; }
+
+.spy-track.stephen, .spy.stephen { --rgb: 169, 199, 113; }
+
+.spy-track.theodore, .spy.theodore { --rgb: 126, 191, 171; }
+
+.spy-track.tobias, .spy-track.ryan, .spy.tobias, .spy.ryan { --rgb: 189, 127, 60; }
+
+.spy-track.verona, .spy.verona { --rgb: 171, 118, 162; }
+
+.spy-track.vega, .spy.vega { --rgb: 107, 99, 87; }
+
+.spy-track.wren, .spy.wren { --rgb: 166, 164, 164; }
 
 /*TOTL STYLES*/
-.spyder-track,
-.spyder {
-  --accent: rgb(var(--rgb));
-  --dkAccent: rgb(var(--rgb-dark, var(--rgb)));
-  /*where THIS is new*/ }
-  .totl .spyder-track, .totl
-  .spyder {
-    --accent: rgb(var(--rgb-dark, var(--rgb)));
-    --ltaccent: rgb(var(--rgb));
-    --ltaccent-40: rgba(var(--rgb), 0.4);
-    --ltaccent-55: rgba(var(--rgb), 0.55); }
-  .spyder-track.emily,
-  .totl.m-2371 .spyder-track,
-  .spyder.emily,
-  .totl.m-2371
-  .spyder {
-    --rgb: 194, 87, 94; }
+.spyder-track, .spyder { --accent: rgb(var(--rgb)); --dkAccent: rgb(var(--rgb-dark, var(--rgb))); /*where THIS is new*/ }
+
+.totl .spyder-track, .totl .spyder { --accent: rgb(var(--rgb-dark, var(--rgb))); --ltaccent: rgb(var(--rgb)); --ltaccent-40: rgba(var(--rgb), 0.4); --ltaccent-55: rgba(var(--rgb), 0.55); }
+
+.spyder-track.emily, .totl.m-2371 .spyder-track, .spyder.emily, .totl.m-2371 .spyder { --rgb: 194, 87, 94; }
