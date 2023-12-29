@@ -116,15 +116,21 @@
   .spy-track.wren,
   .spy.wren {
     --rgb: 166, 164, 164; }
-  .totl .spy-track, .totl
-  .spy {
+
+.spyder-track,
+.spyder {
+  --accent: rgb(var(--rgb));
+  --dkAccent: rgb(var(--rgb-dark, var(--rgb)));
+  /*where THIS is new*/ }
+  .totl .spyder-track, .totl
+  .spyder {
     --accent: rgb(var(--rgb-dark, var(--rgb)));
     --ltaccent: rgb(var(--rgb));
     --ltaccent-40: rgba(var(--rgb), 0.4);
     --ltaccent-55: rgba(var(--rgb), 0.55); }
-  .spy-track.emily,
-  .totl.m-2371 .spy-track,
-  .spy.emily,
+  .spyder-track.emily,
+  .totl.m-2371 .spyder-track,
+  .spyder.emily,
   .totl.m-2371
-  .spy {
+  .spyder {
     --rgb: 194, 87, 94; }
