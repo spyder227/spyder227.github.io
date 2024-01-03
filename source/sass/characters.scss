@@ -46,6 +46,9 @@
     &.daniel {
         --rgb: 140, 108, 88;
     }
+    &.henrich {
+        --rgb: 133, 74, 62;
+    }
     &.henry {
         --rgb: 79, 84, 120;
     }
@@ -128,7 +131,6 @@
     --accent: rgb(var(--rgb));
     --dkAccent: rgb(var(--rgb-dark, var(--rgb)));
 
-/*where THIS is new*/
     .totl & {
         --accent: rgb(var(--rgb-dark, var(--rgb)));
         --ltaccent: rgb(var(--rgb));
@@ -137,7 +139,7 @@
     }
     
     &.emily,
-    .totl.m-2371 & /*and this line is ALSO new*/{
+    .totl.m-2371 & {
         --rgb: 194, 87, 94;
     }
 }

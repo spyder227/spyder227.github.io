@@ -22,6 +22,8 @@
 
 .spy-track.hazel, .spy-track.daniel, .spy.hazel, .spy.daniel { --rgb: 140, 108, 88; }
 
+.spy-track.henrich, .spy.henrich { --rgb: 133, 74, 62; }
+
 .spy-track.henry, .spy.henry { --rgb: 79, 84, 120; }
 
 .spy-track.isaac, .spy.isaac { --rgb: 130, 151, 179; }
@@ -67,7 +69,7 @@
 .spy-track.wren, .spy.wren { --rgb: 166, 164, 164; }
 
 /*TOTL STYLES*/
-.spyder-track, .spyder { --accent: rgb(var(--rgb)); --dkAccent: rgb(var(--rgb-dark, var(--rgb))); /*where THIS is new*/ }
+.spyder-track, .spyder { --accent: rgb(var(--rgb)); --dkAccent: rgb(var(--rgb-dark, var(--rgb))); }
 
 .totl .spyder-track, .totl .spyder { --accent: rgb(var(--rgb-dark, var(--rgb))); --ltaccent: rgb(var(--rgb)); --ltaccent-40: rgba(var(--rgb), 0.4); --ltaccent-55: rgba(var(--rgb), 0.55); }
 
