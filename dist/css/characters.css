@@ -56,6 +56,8 @@
 
 .spy-track.sakai, .spy-track.astarion, .spy.sakai, .spy.astarion { --rgb: 153, 98, 113; }
 
+.spy-track.staff, .spy-track.npc, .spy-track.open, .spy.staff, .spy.npc, .spy.open { --rgb: 166, 164, 164; }
+
 .spy-track.stephen, .spy.stephen { --rgb: 169, 199, 113; }
 
 .spy-track.theodore, .spy.theodore { --rgb: 126, 191, 171; }
@@ -66,7 +68,7 @@
 
 .spy-track.vega, .spy.vega { --rgb: 107, 99, 87; }
 
-.spy-track.wren, .spy.wren { --rgb: 166, 164, 164; }
+.spy-track.wren, .spy.wren { --rgb: 136, 109, 68; }
 
 /*TOTL STYLES*/
 .spyder-track, .spyder { --accent: rgb(var(--rgb)); --dkAccent: rgb(var(--rgb-dark, var(--rgb))); }
