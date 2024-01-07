@@ -44,6 +44,8 @@
 
 .spy-track.mary, .spy.mary { --rgb: 167, 154, 179; }
 
+.spy-track.matteo, .spy.matteo { --rgb: 63, 175, 176; }
+
 .spy-track.nicholas, .spy.nicholas { --rgb: 145, 130, 114; }
 
 .spy-track.nimue, .spy-track.wolfgang, .spy.nimue, .spy.wolfgang { --rgb: 83, 147, 148; }
@@ -69,6 +71,8 @@
 .spy-track.vega, .spy.vega { --rgb: 107, 99, 87; }
 
 .spy-track.wren, .spy.wren { --rgb: 136, 109, 68; }
+
+.spy-track.zelda, .spy.zelda { --rgb: 98, 96, 185; }
 
 /*TOTL STYLES*/
 .spyder-track, .spyder { --accent: rgb(var(--rgb)); --dkAccent: rgb(var(--rgb-dark, var(--rgb))); }
