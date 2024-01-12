@@ -16,7 +16,7 @@
 
 .spy-track.dixon, .spy-track.dean, .spy-track.dawson, .spy.dixon, .spy.dean, .spy.dawson { --rgb: 111, 138, 109; }
 
-.spy-track.emily, .spy-track.bane, .spy.emily, .spy.bane { --rgb: 194, 87, 94; }
+.spy-track.emily, .spy.emily { --rgb: 194, 87, 94; }
 
 .spy-track.francis, .spy.francis { --rgb: 74, 114, 150; }
 
@@ -34,7 +34,7 @@
 
 .spy-track.james, .spy.james { --rgb: 163, 108, 85; }
 
-.spy-track.julianna, .spy.julianna { --rgb: 196, 88, 67; }
+.spy-track.julianna, .spy-track.bane, .spy.julianna, .spy.bane { --rgb: 196, 88, 67; }
 
 .spy-track.lorelai, .spy.lorelai { --rgb: 128, 80, 128; }
 
