@@ -3,21 +3,10 @@
     --rgb: var(--rgb);
     --dkrgb: var(--rgb-dark, var(--rgb));
 
-    &.adeline {
-        --rgb: 217, 132, 148;
-    }
-
-    &.adrian,
-    &.nathan {
-        --rgb: 196, 172, 106;
-    }
-
-    &.beau {
-        --rgb: 219, 130, 92;
-    }
-    &.cameron {
-        --rgb: 189, 125, 163;
-    }
+    &.adeline {--rgb: 217, 132, 148;}
+    &.adrian {--rgb: 196, 172, 106;}
+    &.beau {--rgb: 219, 130, 92;}
+    &.cameron {--rgb: 189, 125, 163;}
     &.catherine {
         --rgb: 217, 106, 143;
     }
@@ -84,6 +73,7 @@
     &.matteo {
         --rgb: 63, 175, 176;
     }
+    &.nathan
     &.nicholas {
         --rgb: 145, 130, 114;
     }

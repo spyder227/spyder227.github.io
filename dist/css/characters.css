@@ -2,7 +2,7 @@
 
 .spy-track.adeline, .spy.adeline { --rgb: 217, 132, 148; }
 
-.spy-track.adrian, .spy-track.nathan, .spy.adrian, .spy.nathan { --rgb: 196, 172, 106; }
+.spy-track.adrian, .spy.adrian { --rgb: 196, 172, 106; }
 
 .spy-track.beau, .spy.beau { --rgb: 219, 130, 92; }
 
@@ -46,7 +46,7 @@
 
 .spy-track.matteo, .spy.matteo { --rgb: 63, 175, 176; }
 
-.spy-track.nicholas, .spy.nicholas { --rgb: 145, 130, 114; }
+.spy-track.nathan .spy-track.nicholas, .spy.nathan .spy-track.nicholas, .spy-track.nathan .spy.nicholas, .spy.nathan .spy.nicholas { --rgb: 145, 130, 114; }
 
 .spy-track.nimue, .spy-track.wolfgang, .spy.nimue, .spy.wolfgang { --rgb: 83, 147, 148; }
 
