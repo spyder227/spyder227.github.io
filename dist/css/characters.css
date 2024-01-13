@@ -4,23 +4,33 @@
 
 .spy-track.adrian, .spy.adrian { --rgb: 196, 172, 106; }
 
+.spy-track.alistair, .spy.alistair { --rgb: 102, 124, 182; }
+
+.spy-track.bane, .spy.bane { --rgb: 196, 88, 67; }
+
 .spy-track.beau, .spy.beau { --rgb: 219, 130, 92; }
 
 .spy-track.cameron, .spy.cameron { --rgb: 189, 125, 163; }
 
-.spy-track.catherine, .spy.catherine { --rgb: 217, 106, 143; }
+.spy-track.catherine, .spy.catherine { --rgb: 218, 94, 135; }
 
-.spy-track.connor, .spy-track.derek, .spy-track.kieran, .spy.connor, .spy.derek, .spy.kieran { --rgb: 108, 112, 145; }
+.spy-track.cocky, .spy.cocky { --rgb: 67, 72, 158; }
 
-.spy-track.cyrus, .spy-track.alistair, .spy.cyrus, .spy.alistair { --rgb: 82, 124, 95; }
+.spy-track.connor, .spy-track.derek, .spy.connor, .spy.derek { --rgb: ; }
 
-.spy-track.dixon, .spy-track.dean, .spy-track.dawson, .spy.dixon, .spy.dean, .spy.dawson { --rgb: 111, 138, 109; }
+.spy-track.cyrus, .spy.cyrus { --rgb: 82, 124, 95; }
 
-.spy-track.emily, .spy.emily { --rgb: 194, 87, 94; }
+.spy-track.daniel, .spy.daniel { --rgb: 140, 108, 88; }
 
-.spy-track.francis, .spy.francis { --rgb: 74, 114, 150; }
+.spy-track.dixon, .spy-track.dean, .spy.dixon, .spy.dean { --rgb: 90, 112, 160; }
 
-.spy-track.hazel, .spy-track.daniel, .spy.hazel, .spy.daniel { --rgb: 140, 108, 88; }
+.spy-track.dawson, .spy.dawson { --rgb: 77, 119, 74; }
+
+.spy-track.emily, .spy-track.julianna, .spy.emily, .spy.julianna { --rgb: 194, 87, 94; }
+
+.spy-track.francis, .spy.francis { --rgb: 90, 124, 155; }
+
+.spy-track.hazel, .spy.hazel { --rgb: 111, 138, 109; }
 
 .spy-track.henrich, .spy.henrich { --rgb: 133, 74, 62; }
 
@@ -32,49 +42,59 @@
 
 .spy-track.jacob, .spy.jacob { --rgb: 211, 164, 89; }
 
-.spy-track.james, .spy.james { --rgb: 163, 108, 85; }
+.spy-track.james, .spy.james { --rgb: 151, 93, 123; }
 
-.spy-track.julianna, .spy-track.bane, .spy.julianna, .spy.bane { --rgb: 196, 88, 67; }
+.spy-track.kieran, .spy.kieran { --rgb: 108, 112, 145; }
 
-.spy-track.lorelai, .spy.lorelai { --rgb: 128, 80, 128; }
+.spy-track.logan, .spy.logan { --rgb: 113, 176, 191; }
 
-.spy-track.lyra, .spy.lyra { --rgb: 111, 127, 184; }
+.spy-track.lorelai, .spy.lorelai { --rgb: 147, 115, 147; }
 
-.spy-track.mace, .spy-track.cocky, .spy.mace, .spy.cocky { --rgb: 132, 111, 168; }
+.spy-track.lyra, .spy.lyra { --rgb: 120, 128, 159; }
+
+.spy-track.mace, .spy.mace { --rgb: 132, 111, 168; }
 
 .spy-track.mary, .spy.mary { --rgb: 167, 154, 179; }
 
-.spy-track.matteo, .spy.matteo { --rgb: 63, 175, 176; }
+.spy-track.matteo, .spy-track.astarion, .spy.matteo, .spy.astarion { --rgb: 212, 69, 69; }
 
-.spy-track.nathan .spy-track.nicholas, .spy.nathan .spy-track.nicholas, .spy-track.nathan .spy.nicholas, .spy.nathan .spy.nicholas { --rgb: 145, 130, 114; }
+.spy-track.nathan, .spy.nathan { --rgb: 212, 154, 74; }
 
-.spy-track.nimue, .spy-track.wolfgang, .spy.nimue, .spy.wolfgang { --rgb: 83, 147, 148; }
+.spy-track.nicholas, .spy.nicholas { --rgb: 145, 130, 114; }
 
-.spy-track.nox, .spy-track.wright, .spy.nox, .spy.wright { --rgb: 102, 102, 102; }
+.spy-track.nimue, .spy.nimue { --rgb: 63, 175, 176; }
+
+.spy-track.nox, .spy.nox { --rgb: 128, 80, 128; }
 
 .spy-track.oliver, .spy.oliver { --rgb: 135, 196, 140; }
 
-.spy-track.prudence, .spy-track.logan, .spy.prudence, .spy.logan { --rgb: 113, 176, 191; }
+.spy-track.prudence, .spy.prudence { --rgb: 102, 88, 166; }
 
 .spy-track.raymond, .spy.raymond { --rgb: 209, 130, 203; }
 
-.spy-track.sakai, .spy-track.astarion, .spy.sakai, .spy.astarion { --rgb: 153, 98, 113; }
+.spy-track.ryan, .spy.ryan { --rgb: 189, 127, 60; }
 
-.spy-track.staff, .spy-track.npc, .spy-track.open, .spy.staff, .spy.npc, .spy.open { --rgb: 166, 164, 164; }
+.spy-track.sakai, .spy.sakai { --rgb: 136, 71, 89; }
+
+.spy-track.staff, .spy-track.npc, .spy-track.open, .spy.staff, .spy.npc, .spy.open { --rgb: 166, 166, 166; }
 
 .spy-track.stephen, .spy.stephen { --rgb: 169, 199, 113; }
 
 .spy-track.theodore, .spy.theodore { --rgb: 126, 191, 171; }
 
-.spy-track.tobias, .spy-track.ryan, .spy.tobias, .spy.ryan { --rgb: 189, 127, 60; }
-
-.spy-track.verona, .spy.verona { --rgb: 171, 118, 162; }
+.spy-track.tobias, .spy.tobias { --rgb: 163, 108, 85; }
 
 .spy-track.vega, .spy.vega { --rgb: 107, 99, 87; }
 
+.spy-track.verona, .spy.verona { --rgb: 171, 118, 162; }
+
+.spy-track.wolfgang, .spy.wolfgang { --rgb: 98, 96, 185; }
+
 .spy-track.wren, .spy.wren { --rgb: 136, 109, 68; }
 
-.spy-track.zelda, .spy.zelda { --rgb: 98, 96, 185; }
+.spy-track.wright, .spy.wright { --rgb: 102, 102, 102; }
+
+.spy-track.zelda, .spy.zelda { --rgb: 83, 147, 148; }
 
 /*TOTL STYLES*/
 .spyder-track, .spyder { --accent: rgb(var(--rgb)); --dkAccent: rgb(var(--rgb-dark, var(--rgb))); }
