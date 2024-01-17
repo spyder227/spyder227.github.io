@@ -7,10 +7,23 @@
     &.gb tag-wrap,
     &.gb tag-comm,
     &.gb tag-social {
+        //shared
         --accent: rgb(var(--rgb-dark, var(--rgb)));
+
+        //gb only
+        --accent: rgb(var(--rgb));
+        --accent-20: rgba(var(--rgb), 0.2);
+        --bg-color: var(--accent);
+        --bg-color-transparent: var(--accent-20);
+        --text-color: var(--accent);
+        --border-color: var(--accent);
+
+        //gb:et only
         --accent-30: rgba(var(--rgb-dark, var(--rgb)), 0.3);
         --accent-50: rgba(var(--rgb-dark, var(--rgb)), 0.5);
         --accent-90: rgba(var(--rgb-dark, var(--rgb)), 0.8);
+
+        //totl only
         --ltaccent: rgb(var(--rgb));
         --ltaccent-40: rgba(var(--rgb), 0.4);
         --ltaccent-55: rgba(var(--rgb), 0.55);
