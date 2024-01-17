@@ -3,16 +3,18 @@
     --accent: rgb(var(--rgb));
     --dkAccent: rgb(var(--rgb-dark, var(--rgb)));
 
-    .totl & {
-        --accent: rgb(var(--rgb-dark, var(--rgb)));
-        --ltaccent: rgb(var(--rgb));
-        --ltaccent-40: rgba(var(--rgb), 0.4);
-        --ltaccent-55: rgba(var(--rgb), 0.55);
+    .totl &,
+    .gb & {
+        --accent: rgb(var(--rgb-dark, var(--rgb))) !important;
+        --ltaccent: rgb(var(--rgb)) !important;
+        --ltaccent-40: rgba(var(--rgb), 0.4) !important;
+        --ltaccent-55: rgba(var(--rgb), 0.55) !important;
     }
     
     &.abigail,
     &.abby,
-    .totl.m-1608 & {
+    .totl.m-1608 &,
+    .gb-71 & {
         --rgb: 212,161,168;
     }
     
@@ -24,7 +26,8 @@
     }
 
     &.aiden,
-    .totl.m-838 & {
+    .totl.m-838 &,
+    .gb-7 & {
         --rgb: 136, 163, 151;
         --rgb-dark: 107, 140, 126;
     }
@@ -45,7 +48,8 @@
         --rgb-dark: 208, 131, 107;
     }
 
-    &.alya {
+    &.alya,
+    .gb-331 & {
         --rgb: 107,126,103;
     }
 
@@ -75,7 +79,7 @@
     &.avery,
     .totl.m-1147 & {
         --rgb: 178, 180, 146;
-        --rgb-dark: 196, 128, 68;
+        --rgb-dark: 134, 136, 107;
     }
 
     &.basil,
@@ -89,7 +93,8 @@
     &.ben,
     &.loki,
     &.cain,
-    .totl.m-854 & {
+    .totl.m-854 &,
+    .gb-8 & {
         --rgb: 149, 165, 71;
         --rgb-dark: 123, 143, 26;
     }
@@ -98,13 +103,15 @@
         --rgb: 221, 189, 128;
     }
 
-    &.brennan {
+    &.brennan,
+    .gb-175 & {
         --rgb: 118, 132, 92;
         --rgb-dark: 84, 102, 52;
     }
 
     &.bryn,
-    .totl.m-670 & {
+    .totl.m-670 &,
+    .gb-328 & {
         --rgb: 155, 209, 186;
         --rgb-dark: 130, 198, 169;
     }
@@ -122,7 +129,8 @@
     }
 
     &.cassiopeia,
-    &.cassie {
+    &.cassie,
+    .gb-490 & {
         --rgb: 166, 138, 172;
     }
 
@@ -136,7 +144,8 @@
     &.christopher,
     &.chris,
     &.nikola,
-    &.tesla {
+    &.tesla,
+    .gb-271 & {
         --rgb: 104,118,139;
         --rgb-dark: 67, 84, 111;
     }
@@ -154,7 +163,8 @@
     }
 
     &.cynbel,
-    &.cyn {
+    &.cyn,
+    .gb-17 & {
         --rgb: 101, 63, 63;
         --rgb-dark: 63, 15, 15;
     }
@@ -164,7 +174,8 @@
         --rgb-dark: 98, 94, 113;
     }
 
-    &.damian {
+    &.damian,
+    .gb-226 & {
         --rgb: 119,132,162;
         --rgb-dark: 119,132,162;
     }
@@ -199,7 +210,8 @@
 
     &.duncan,
     &.duck,
-    .totl.m-58 & {
+    .totl.m-58 &,
+    .gb-329 & {
         --rgb: 153, 126, 143;
         --rgb-dark: 128, 94, 115;
     }
@@ -217,14 +229,16 @@
 
     &.emmalina,
     &.emma,
-    .totl.m-273 & {
+    .totl.m-273 &,
+    .gb-593 & {
         --rgb: 223, 186, 199;
         --rgb-dark: 215, 169, 186;
     }
 
     &.evangeline,
     &.evan,
-    .totl.m-317 & {
+    .totl.m-317 &,
+    .gb-418 & {
         --rgb: 115, 69, 51;
         --rgb-dark: 81, 23, 0;
     }
@@ -280,19 +294,22 @@
         --rgb-dark: 167, 117, 134;
     }
 
-    &.harley {
+    &.harley,
+    .gb-611 & {
         --rgb: 200, 176, 191;
         --rgb-dark: 187, 157, 175;
     }
 
     &.harriet,
     &.harry,
-    &.helen {
+    &.helen,
+    .gb-263 & {
         --rgb: 208,183,190;
     }
 
     &.hayden,
-    &.hayd {
+    &.hayd,
+    .gb-246 & {
         --rgb: 115, 126, 103;
         --rgb-dark: 81, 94, 65;
     }
@@ -311,7 +328,8 @@
     }
 
     &.holly,
-    .totl.m-1354 & {
+    .totl.m-1354 &,
+    .gb-115 & {
         --rgb: 183,133,79;
     }
 
@@ -321,13 +339,15 @@
         --rgb: 17, 74, 108;
     }
 
-    &.isaiah {
+    &.isaiah,
+    .gb-117 & {
         --rgb: 135,151,148;
     }
 
     &.isobel,
     &.isa,
-    &.belle {
+    &.belle,
+    .gb-153 & {
         --rgb: 213, 188, 204;
     }
 
@@ -338,11 +358,13 @@
         --rgb-dark: 150, 121, 136;
     }
 
-    &.jesse {
+    &.jesse,
+    .gb-79 & {
         --rgb: 210, 193, 166;
     }
 
-    &.jude {
+    &.jude,
+    .gb-429 & {
         --rgb: 204, 210, 196;
     }
 
@@ -363,7 +385,8 @@
     }
 
     &.lincoln,
-    &.link {
+    &.link,
+    .gb-430 & {
         --rgb: 81, 105, 130;
     }
 
@@ -393,7 +416,8 @@
 
     &.malcolm,
     &.mal,
-    .totl.m-853 & {
+    .totl.m-853 &,
+    .gb-80 & {
         --rgb: 99, 92, 92;
         --rgb-dark: 60, 52, 52;
     }
@@ -411,7 +435,8 @@
     }
 
     &.marlowe,
-    &.mar {
+    &.mar,
+    .gb-69 & {
         --rgb: 181, 196, 202;
         --rgb-dark: 133, 147, 153;
     }
@@ -435,7 +460,8 @@
         --rgb-dark: 106, 125, 122;
     }
 
-    &.morgan {
+    &.morgan,
+    .gb-70 & {
         --rgb: 151, 151, 171;
         --rgb-dark: 126, 125, 150;
     }
@@ -450,7 +476,8 @@
     &.nikolas,
     &.nik,
     &.niko,
-    .totl.m-54 & {
+    .totl.m-54 &,
+    .gb-3 & {
         --rgb: 142, 173, 179;
         --rgb-dark: 114, 153, 160;
     }
@@ -492,7 +519,13 @@
         --rgb-dark: 200, 189, 181;
     }
 
-    &.remy {
+    &.reed,
+    .gb-584 & {
+        --rgb: 191, 101, 101;
+    }
+
+    &.remy,
+    .gb-44 & {
         --rgb: 151, 180, 173;
         --rgb-dark: 125, 162, 153;
     }
@@ -505,7 +538,8 @@
     }
 
     &.riordan,
-    &.rory {
+    &.rory,
+    .gb-154 & {
         --rgb: 159, 157, 150;
         --rgb-dark: 136, 134, 126;
     }
@@ -534,18 +568,21 @@
     }
 
     &.satiah,
-    &.tia {
+    &.tia,
+    .gb-43 & {
         --rgb: 197, 160, 128;
         --rgb-dark: 183, 137, 97;
     }
 
     &.sebastian,
     &.seb,
-    &.bash {
+    &.bash,
+    .gb-227 & {
         --rgb: 197,187,181;
     }
 
-    &.silas {
+    &.silas,
+    .gb-116 & {
         --rgb: 158, 181, 187;
     }
 
@@ -563,7 +600,8 @@
 
     &.spencer,
     &.spence,
-    .totl.m-862 & {
+    .totl.m-862 &,
+    .gb-45 & {
         --rgb: 138, 151, 174;
         --rgb-dark: 109, 125, 154;
     }
@@ -571,7 +609,8 @@
     &.sterling,
     &.matteo,
     &.matty,
-    .totl.m-907 & {
+    .totl.m-907 &,
+    .gb-16 & {
         --rgb: 207, 167, 52;
         --rgb-dark: 196, 145, 2;
     }
@@ -594,13 +633,15 @@
     }
 
     &.vitae,
-    &.vee {
+    &.vee,
+    .gb-6 & {
         --rgb: 111, 77, 77;
         --rgb-dark: 76, 33, 33;
     }
 
     &.viveka,
-    &.viv {
+    &.viv,
+    .gb-330 & {
         --rgb: 185,135,129;
     }
 
