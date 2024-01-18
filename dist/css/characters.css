@@ -1,207 +1,207 @@
-.lux-track, .lux { --accent: rgb(var(--rgb)); --dkAccent: rgb(var(--rgb-dark, var(--rgb))); }
+.lux-track, .lux, .parent-1 { --accent: rgb(var(--rgb)); --dkAccent: rgb(var(--rgb-dark, var(--rgb))); }
 
-.totl .lux-track, .lux-track.gb tag-wrap, .lux-track.gb tag-comm, .lux-track.gb tag-social, .totl .lux, .lux.gb tag-wrap, .lux.gb tag-comm, .lux.gb tag-social { --accent: rgb(var(--rgb-dark, var(--rgb))); --accent-20: rgba(var(--rgb), 0.2); --bg-color: var(--accent); --bg-color-transparent: var(--accent-20); --text-color: var(--accent); --border-color: var(--accent); --accent-30: rgba(var(--rgb-dark, var(--rgb)), 0.3); --accent-50: rgba(var(--rgb-dark, var(--rgb)), 0.5); --accent-90: rgba(var(--rgb-dark, var(--rgb)), 0.8); --ltaccent: rgb(var(--rgb)); --ltaccent-40: rgba(var(--rgb), 0.4); --ltaccent-55: rgba(var(--rgb), 0.55); }
+.totl .lux-track, .lux-track.gb tag-wrap, .lux-track.gb tag-comm, .lux-track.gb tag-social, .totl .lux, .lux.gb tag-wrap, .lux.gb tag-comm, .lux.gb tag-social, .totl .parent-1, .parent-1.gb tag-wrap, .parent-1.gb tag-comm, .parent-1.gb tag-social { --accent: rgb(var(--rgb-dark, var(--rgb))); --accent-20: rgba(var(--rgb), 0.2); --bg-color: var(--accent); --bg-color-transparent: var(--accent-20); --text-color: var(--accent); --border-color: var(--accent); --accent-30: rgba(var(--rgb-dark, var(--rgb)), 0.3); --accent-50: rgba(var(--rgb-dark, var(--rgb)), 0.5); --accent-90: rgba(var(--rgb-dark, var(--rgb)), 0.8); --ltaccent: rgb(var(--rgb)); --ltaccent-40: rgba(var(--rgb), 0.4); --ltaccent-55: rgba(var(--rgb), 0.55); }
 
-.lux-track.abigail, .lux-track.abby, .totl.m-1608 .lux-track, .lux-track.gb-71, .lux.abigail, .lux.abby, .totl.m-1608 .lux, .lux.gb-71 { --rgb: 212,161,168; }
+.lux-track.abigail, .lux-track.abby, .totl.m-1608 .lux-track, .lux-track.gb-71, .lux.abigail, .lux.abby, .totl.m-1608 .lux, .lux.gb-71, .parent-1.abigail, .parent-1.abby, .totl.m-1608 .parent-1, .parent-1.gb-71 { --rgb: 212,161,168; }
 
-.lux-track.adaline, .lux-track.addie, .totl.m-157 .lux-track, .lux.adaline, .lux.addie, .totl.m-157 .lux { --rgb: 167, 115, 129; --rgb-dark: 145, 80, 98; }
+.lux-track.adaline, .lux-track.addie, .totl.m-157 .lux-track, .lux.adaline, .lux.addie, .totl.m-157 .lux, .parent-1.adaline, .parent-1.addie, .totl.m-157 .parent-1 { --rgb: 167, 115, 129; --rgb-dark: 145, 80, 98; }
 
-.lux-track.aiden, .totl.m-838 .lux-track, .lux-track.gb-7, .lux.aiden, .totl.m-838 .lux, .lux.gb-7 { --rgb: 136, 163, 151; --rgb-dark: 107, 140, 126; }
+.lux-track.aiden, .totl.m-838 .lux-track, .lux-track.gb-7, .lux.aiden, .totl.m-838 .lux, .lux.gb-7, .parent-1.aiden, .totl.m-838 .parent-1, .parent-1.gb-7 { --rgb: 136, 163, 151; --rgb-dark: 107, 140, 126; }
 
-.lux-track.ainara, .lux.ainara { --rgb: 164, 138, 189; }
+.lux-track.ainara, .lux.ainara, .parent-1.ainara { --rgb: 164, 138, 189; }
 
-.lux-track.ambrose, .totl.m-995 .lux-track, .lux.ambrose, .totl.m-995 .lux { --rgb: 143, 109, 101; --rgb-dark: 115, 73, 63; }
+.lux-track.ambrose, .totl.m-995 .lux-track, .lux.ambrose, .totl.m-995 .lux, .parent-1.ambrose, .totl.m-995 .parent-1 { --rgb: 143, 109, 101; --rgb-dark: 115, 73, 63; }
 
-.lux-track.alastair, .lux-track.al, .lux.alastair, .lux.al { --rgb: 217, 155, 136; --rgb-dark: 208, 131, 107; }
+.lux-track.alastair, .lux-track.al, .lux.alastair, .lux.al, .parent-1.alastair, .parent-1.al { --rgb: 217, 155, 136; --rgb-dark: 208, 131, 107; }
 
-.lux-track.alya, .lux-track.gb-331, .lux.alya, .lux.gb-331 { --rgb: 107,126,103; }
+.lux-track.alya, .lux-track.gb-331, .lux.alya, .lux.gb-331, .parent-1.alya, .parent-1.gb-331 { --rgb: 107,126,103; }
 
-.lux-track.alexander, .lux-track.andy, .lux.alexander, .lux.andy { --rgb: 123, 57, 57; --rgb-dark: 90, 8, 8; }
+.lux-track.alexander, .lux-track.andy, .lux.alexander, .lux.andy, .parent-1.alexander, .parent-1.andy { --rgb: 123, 57, 57; --rgb-dark: 90, 8, 8; }
 
-.lux-track.antoni, .totl.m-856 .lux-track, .lux.antoni, .totl.m-856 .lux { --rgb: 122, 164, 195; --rgb-dark: 89, 142, 181; }
+.lux-track.antoni, .totl.m-856 .lux-track, .lux.antoni, .totl.m-856 .lux, .parent-1.antoni, .totl.m-856 .parent-1 { --rgb: 122, 164, 195; --rgb-dark: 89, 142, 181; }
 
-.lux-track.archer, .totl.m-669 .lux-track, .lux.archer, .totl.m-669 .lux { --rgb: 207, 153, 105; --rgb-dark: 196, 128, 68; }
+.lux-track.archer, .totl.m-669 .lux-track, .lux.archer, .totl.m-669 .lux, .parent-1.archer, .totl.m-669 .parent-1 { --rgb: 207, 153, 105; --rgb-dark: 196, 128, 68; }
 
-.lux-track.art, .totl.m-1567 .lux-track, .lux.art, .totl.m-1567 .lux { --rgb: 177, 193, 193; }
+.lux-track.art, .totl.m-1567 .lux-track, .lux.art, .totl.m-1567 .lux, .parent-1.art, .totl.m-1567 .parent-1 { --rgb: 177, 193, 193; }
 
-.lux-track.avery, .totl.m-1147 .lux-track, .lux.avery, .totl.m-1147 .lux { --rgb: 178, 180, 146; --rgb-dark: 134, 136, 107; }
+.lux-track.avery, .totl.m-1147 .lux-track, .lux.avery, .totl.m-1147 .lux, .parent-1.avery, .totl.m-1147 .parent-1 { --rgb: 178, 180, 146; --rgb-dark: 134, 136, 107; }
 
-.lux-track.basil, .totl.m-261 .lux-track, .lux.basil, .totl.m-261 .lux { --rgb: 152, 158, 145; --rgb-dark: 127, 134, 118; }
+.lux-track.basil, .totl.m-261 .lux-track, .lux.basil, .totl.m-261 .lux, .parent-1.basil, .totl.m-261 .parent-1 { --rgb: 152, 158, 145; --rgb-dark: 127, 134, 118; }
 
-.lux-track.raphael, .lux-track.raph, .lux-track.ben, .lux-track.loki, .lux-track.cain, .totl.m-854 .lux-track, .lux-track.gb-8, .lux.raphael, .lux.raph, .lux.ben, .lux.loki, .lux.cain, .totl.m-854 .lux, .lux.gb-8 { --rgb: 149, 165, 71; --rgb-dark: 123, 143, 26; }
+.lux-track.raphael, .lux-track.raph, .lux-track.ben, .lux-track.loki, .lux-track.cain, .totl.m-854 .lux-track, .lux-track.gb-8, .lux.raphael, .lux.raph, .lux.ben, .lux.loki, .lux.cain, .totl.m-854 .lux, .lux.gb-8, .parent-1.raphael, .parent-1.raph, .parent-1.ben, .parent-1.loki, .parent-1.cain, .totl.m-854 .parent-1, .parent-1.gb-8 { --rgb: 149, 165, 71; --rgb-dark: 123, 143, 26; }
 
-.lux-track.benji, .lux.benji { --rgb: 221, 189, 128; }
+.lux-track.benji, .lux.benji, .parent-1.benji { --rgb: 221, 189, 128; }
 
-.lux-track.brennan, .lux-track.gb-175, .lux.brennan, .lux.gb-175 { --rgb: 118, 132, 92; --rgb-dark: 84, 102, 52; }
+.lux-track.brennan, .lux-track.gb-175, .lux.brennan, .lux.gb-175, .parent-1.brennan, .parent-1.gb-175 { --rgb: 118, 132, 92; --rgb-dark: 84, 102, 52; }
 
-.lux-track.bryn, .totl.m-670 .lux-track, .lux-track.gb-328, .lux.bryn, .totl.m-670 .lux, .lux.gb-328 { --rgb: 155, 209, 186; --rgb-dark: 130, 198, 169; }
+.lux-track.bryn, .totl.m-670 .lux-track, .lux-track.gb-328, .lux.bryn, .totl.m-670 .lux, .lux.gb-328, .parent-1.bryn, .totl.m-670 .parent-1, .parent-1.gb-328 { --rgb: 155, 209, 186; --rgb-dark: 130, 198, 169; }
 
-.lux-track.cameron, .lux-track.cam, .totl.m-1146 .lux-track, .lux.cameron, .lux.cam, .totl.m-1146 .lux { --rgb: 111, 121, 106; }
+.lux-track.cameron, .lux-track.cam, .totl.m-1146 .lux-track, .lux.cameron, .lux.cam, .totl.m-1146 .lux, .parent-1.cameron, .parent-1.cam, .totl.m-1146 .parent-1 { --rgb: 111, 121, 106; }
 
-.lux-track.casper, .lux-track.cas, .lux.casper, .lux.cas { --rgb: 175, 132, 116; --rgb-dark: 156, 102, 82; }
+.lux-track.casper, .lux-track.cas, .lux.casper, .lux.cas, .parent-1.casper, .parent-1.cas { --rgb: 175, 132, 116; --rgb-dark: 156, 102, 82; }
 
-.lux-track.cassiopeia, .lux-track.cassie, .lux-track.gb-490, .lux.cassiopeia, .lux.cassie, .lux.gb-490 { --rgb: 166, 138, 172; }
+.lux-track.cassiopeia, .lux-track.cassie, .lux-track.gb-490, .lux.cassiopeia, .lux.cassie, .lux.gb-490, .parent-1.cassiopeia, .parent-1.cassie, .parent-1.gb-490 { --rgb: 166, 138, 172; }
 
-.lux-track.catarina, .lux-track.cat, .totl.m-855 .lux-track, .lux.catarina, .lux.cat, .totl.m-855 .lux { --rgb: 202, 143, 126; --rgb-dark: 189, 116, 94; }
+.lux-track.catarina, .lux-track.cat, .totl.m-855 .lux-track, .lux.catarina, .lux.cat, .totl.m-855 .lux, .parent-1.catarina, .parent-1.cat, .totl.m-855 .parent-1 { --rgb: 202, 143, 126; --rgb-dark: 189, 116, 94; }
 
-.lux-track.christopher, .lux-track.chris, .lux-track.nikola, .lux-track.tesla, .lux-track.gb-271, .lux.christopher, .lux.chris, .lux.nikola, .lux.tesla, .lux.gb-271 { --rgb: 104,118,139; --rgb-dark: 67, 84, 111; }
+.lux-track.christopher, .lux-track.chris, .lux-track.nikola, .lux-track.tesla, .lux-track.gb-271, .lux.christopher, .lux.chris, .lux.nikola, .lux.tesla, .lux.gb-271, .parent-1.christopher, .parent-1.chris, .parent-1.nikola, .parent-1.tesla, .parent-1.gb-271 { --rgb: 104,118,139; --rgb-dark: 67, 84, 111; }
 
-.lux-track.connor, .totl.m-57 .lux-track, .lux.connor, .totl.m-57 .lux { --rgb: 194, 175, 129; --rgb-dark: 179, 155, 98; }
+.lux-track.connor, .totl.m-57 .lux-track, .lux.connor, .totl.m-57 .lux, .parent-1.connor, .totl.m-57 .parent-1 { --rgb: 194, 175, 129; --rgb-dark: 179, 155, 98; }
 
-.lux-track.cordelia, .lux-track.corey, .lux.cordelia, .lux.corey { --rgb: 90, 79, 111; --rgb-dark: 49, 36, 76; }
+.lux-track.cordelia, .lux-track.corey, .lux.cordelia, .lux.corey, .parent-1.cordelia, .parent-1.corey { --rgb: 90, 79, 111; --rgb-dark: 49, 36, 76; }
 
-.lux-track.cynbel, .lux-track.cyn, .lux-track.gb-17, .lux.cynbel, .lux.cyn, .lux.gb-17 { --rgb: 101, 63, 63; --rgb-dark: 63, 15, 15; }
+.lux-track.cynbel, .lux-track.cyn, .lux-track.gb-17, .lux.cynbel, .lux.cyn, .lux.gb-17, .parent-1.cynbel, .parent-1.cyn, .parent-1.gb-17 { --rgb: 101, 63, 63; --rgb-dark: 63, 15, 15; }
 
-.lux-track.dalton, .lux.dalton { --rgb: 129, 126, 141; --rgb-dark: 98, 94, 113; }
+.lux-track.dalton, .lux.dalton, .parent-1.dalton { --rgb: 129, 126, 141; --rgb-dark: 98, 94, 113; }
 
-.lux-track.damian, .lux-track.gb-226, .lux.damian, .lux.gb-226 { --rgb: 119,132,162; --rgb-dark: 119,132,162; }
+.lux-track.damian, .lux-track.gb-226, .lux.damian, .lux.gb-226, .parent-1.damian, .parent-1.gb-226 { --rgb: 119,132,162; --rgb-dark: 119,132,162; }
 
-.lux-track.daniel, .lux-track.dan, .lux.daniel, .lux.dan { --rgb: 168, 168, 168; }
+.lux-track.daniel, .lux-track.dan, .lux.daniel, .lux.dan, .parent-1.daniel, .parent-1.dan { --rgb: 168, 168, 168; }
 
-.lux-track.darcy, .totl.m-395 .lux-track, .lux.darcy, .totl.m-395 .lux { --rgb: 187, 160, 197; --rgb-dark: 171, 137, 183; }
+.lux-track.darcy, .totl.m-395 .lux-track, .lux.darcy, .totl.m-395 .lux, .parent-1.darcy, .totl.m-395 .parent-1 { --rgb: 187, 160, 197; --rgb-dark: 171, 137, 183; }
 
-.lux-track.diana, .totl.m-906 .lux-track, .lux.diana, .totl.m-906 .lux { --rgb: 106, 109, 143; --rgb-dark: 69, 73, 115; }
+.lux-track.diana, .totl.m-906 .lux-track, .lux.diana, .totl.m-906 .lux, .parent-1.diana, .totl.m-906 .parent-1 { --rgb: 106, 109, 143; --rgb-dark: 69, 73, 115; }
 
-.lux-track.diego, .totl.m-1578 .lux-track, .lux.diego, .totl.m-1578 .lux { --rgb: 87, 116, 147; }
+.lux-track.diego, .totl.m-1578 .lux-track, .lux.diego, .totl.m-1578 .lux, .parent-1.diego, .totl.m-1578 .parent-1 { --rgb: 87, 116, 147; }
 
-.lux-track.draco, .totl.m-408 .lux-track, .lux.draco, .totl.m-408 .lux { --rgb: 71, 88, 66; --rgb-dark: 26, 47, 19; }
+.lux-track.draco, .totl.m-408 .lux-track, .lux.draco, .totl.m-408 .lux, .parent-1.draco, .totl.m-408 .parent-1 { --rgb: 71, 88, 66; --rgb-dark: 26, 47, 19; }
 
-.lux-track.duncan, .lux-track.duck, .totl.m-58 .lux-track, .lux-track.gb-329, .lux.duncan, .lux.duck, .totl.m-58 .lux, .lux.gb-329 { --rgb: 153, 126, 143; --rgb-dark: 128, 94, 115; }
+.lux-track.duncan, .lux-track.duck, .totl.m-58 .lux-track, .lux-track.gb-329, .lux.duncan, .lux.duck, .totl.m-58 .lux, .lux.gb-329, .parent-1.duncan, .parent-1.duck, .totl.m-58 .parent-1, .parent-1.gb-329 { --rgb: 153, 126, 143; --rgb-dark: 128, 94, 115; }
 
-.lux-track.elias, .lux.elias { --rgb: 99, 99, 99; --rgb-dark: 60, 60, 60; }
+.lux-track.elias, .lux.elias, .parent-1.elias { --rgb: 99, 99, 99; --rgb-dark: 60, 60, 60; }
 
-.lux-track.ellis, .totl.m-705 .lux-track, .lux.ellis, .totl.m-705 .lux { --rgb: 232, 151, 127; --rgb-dark: 227, 126, 95; }
+.lux-track.ellis, .totl.m-705 .lux-track, .lux.ellis, .totl.m-705 .lux, .parent-1.ellis, .totl.m-705 .parent-1 { --rgb: 232, 151, 127; --rgb-dark: 227, 126, 95; }
 
-.lux-track.emmalina, .lux-track.emma, .totl.m-273 .lux-track, .lux-track.gb-593, .lux.emmalina, .lux.emma, .totl.m-273 .lux, .lux.gb-593 { --rgb: 223, 186, 199; --rgb-dark: 215, 169, 186; }
+.lux-track.emmalina, .lux-track.emma, .totl.m-273 .lux-track, .lux-track.gb-593, .lux.emmalina, .lux.emma, .totl.m-273 .lux, .lux.gb-593, .parent-1.emmalina, .parent-1.emma, .totl.m-273 .parent-1, .parent-1.gb-593 { --rgb: 223, 186, 199; --rgb-dark: 215, 169, 186; }
 
-.lux-track.evangeline, .lux-track.evan, .totl.m-317 .lux-track, .lux-track.gb-418, .lux.evangeline, .lux.evan, .totl.m-317 .lux, .lux.gb-418 { --rgb: 115, 69, 51; --rgb-dark: 81, 23, 0; }
+.lux-track.evangeline, .lux-track.evan, .totl.m-317 .lux-track, .lux-track.gb-418, .lux.evangeline, .lux.evan, .totl.m-317 .lux, .lux.gb-418, .parent-1.evangeline, .parent-1.evan, .totl.m-317 .parent-1, .parent-1.gb-418 { --rgb: 115, 69, 51; --rgb-dark: 81, 23, 0; }
 
-.lux-track.everest, .totl.m-1577 .lux-track, .lux.everest, .totl.m-1577 .lux { --rgb: 77, 26, 26; }
+.lux-track.everest, .totl.m-1577 .lux-track, .lux.everest, .totl.m-1577 .lux, .parent-1.everest, .totl.m-1577 .parent-1 { --rgb: 77, 26, 26; }
 
-.lux-track.felicity, .lux-track.fee, .totl.m-588 .lux-track, .lux.felicity, .lux.fee, .totl.m-588 .lux { --rgb: 159, 120, 123; --rgb-dark: 136, 87, 91; }
+.lux-track.felicity, .lux-track.fee, .totl.m-588 .lux-track, .lux.felicity, .lux.fee, .totl.m-588 .lux, .parent-1.felicity, .parent-1.fee, .totl.m-588 .parent-1 { --rgb: 159, 120, 123; --rgb-dark: 136, 87, 91; }
 
-.lux-track.gabriel, .lux-track.gabe, .lux.gabriel, .lux.gabe { --rgb: 167, 182, 154; --rgb-dark: 146, 164, 129; }
+.lux-track.gabriel, .lux-track.gabe, .lux.gabriel, .lux.gabe, .parent-1.gabriel, .parent-1.gabe { --rgb: 167, 182, 154; --rgb-dark: 146, 164, 129; }
 
-.lux-track.gavin, .totl.m-901 .lux-track, .lux.gavin, .totl.m-901 .lux { --rgb: 141, 163, 141; --rgb-dark: 113, 140, 113; }
+.lux-track.gavin, .totl.m-901 .lux-track, .lux.gavin, .totl.m-901 .lux, .parent-1.gavin, .totl.m-901 .parent-1 { --rgb: 141, 163, 141; --rgb-dark: 113, 140, 113; }
 
-.lux-track.genevieve, .lux-track.gen, .totl.m-587 .lux-track, .lux.genevieve, .lux.gen, .totl.m-587 .lux { --rgb: 202, 182, 200; --rgb-dark: 145, 92, 139; }
+.lux-track.genevieve, .lux-track.gen, .totl.m-587 .lux-track, .lux.genevieve, .lux.gen, .totl.m-587 .lux, .parent-1.genevieve, .parent-1.gen, .totl.m-587 .parent-1 { --rgb: 202, 182, 200; --rgb-dark: 145, 92, 139; }
 
-.lux-track.grace, .totl.m-1565 .lux-track, .lux.grace, .totl.m-1565 .lux { --rgb: 204, 176, 176; }
+.lux-track.grace, .totl.m-1565 .lux-track, .lux.grace, .totl.m-1565 .lux, .parent-1.grace, .totl.m-1565 .parent-1 { --rgb: 204, 176, 176; }
 
-.lux-track.graeme, .lux.graeme { --rgb: 206, 174, 97; }
+.lux-track.graeme, .lux.graeme, .parent-1.graeme { --rgb: 206, 174, 97; }
 
-.lux-track.griffin, .totl.m-1356 .lux-track, .lux.griffin, .totl.m-1356 .lux { --rgb: 146, 158, 159; }
+.lux-track.griffin, .totl.m-1356 .lux-track, .lux.griffin, .totl.m-1356 .lux, .parent-1.griffin, .totl.m-1356 .parent-1 { --rgb: 146, 158, 159; }
 
-.lux-track.hallie, .totl.m-836 .lux-track, .lux.hallie, .totl.m-836 .lux { --rgb: 184, 144, 158; --rgb-dark: 167, 117, 134; }
+.lux-track.hallie, .totl.m-836 .lux-track, .lux.hallie, .totl.m-836 .lux, .parent-1.hallie, .totl.m-836 .parent-1 { --rgb: 184, 144, 158; --rgb-dark: 167, 117, 134; }
 
-.lux-track.harley, .lux-track.gb-611, .lux.harley, .lux.gb-611 { --rgb: 200, 176, 191; --rgb-dark: 187, 157, 175; }
+.lux-track.harley, .lux-track.gb-611, .lux.harley, .lux.gb-611, .parent-1.harley, .parent-1.gb-611 { --rgb: 200, 176, 191; --rgb-dark: 187, 157, 175; }
 
-.lux-track.harriet, .lux-track.harry, .lux-track.helen, .lux-track.gb-263, .lux.harriet, .lux.harry, .lux.helen, .lux.gb-263 { --rgb: 208,183,190; }
+.lux-track.harriet, .lux-track.harry, .lux-track.helen, .lux-track.gb-263, .lux.harriet, .lux.harry, .lux.helen, .lux.gb-263, .parent-1.harriet, .parent-1.harry, .parent-1.helen, .parent-1.gb-263 { --rgb: 208,183,190; }
 
-.lux-track.hayden, .lux-track.hayd, .lux-track.gb-246, .lux.hayden, .lux.hayd, .lux.gb-246 { --rgb: 115, 126, 103; --rgb-dark: 81, 94, 65; }
+.lux-track.hayden, .lux-track.hayd, .lux-track.gb-246, .lux.hayden, .lux.hayd, .lux.gb-246, .parent-1.hayden, .parent-1.hayd, .parent-1.gb-246 { --rgb: 115, 126, 103; --rgb-dark: 81, 94, 65; }
 
-.lux-track.heiko, .totl.m-750 .lux-track, .lux.heiko, .totl.m-750 .lux { --rgb: 197, 187, 181; --rgb-dark: 183, 170, 163; }
+.lux-track.heiko, .totl.m-750 .lux-track, .lux.heiko, .totl.m-750 .lux, .parent-1.heiko, .totl.m-750 .parent-1 { --rgb: 197, 187, 181; --rgb-dark: 183, 170, 163; }
 
-.lux-track.hiroki, .lux-track.hiro, .totl.m-1088 .lux-track, .lux.hiroki, .lux.hiro, .totl.m-1088 .lux { --rgb: 146, 183, 188; --rgb-dark: 119, 165, 172; }
+.lux-track.hiroki, .lux-track.hiro, .totl.m-1088 .lux-track, .lux.hiroki, .lux.hiro, .totl.m-1088 .lux, .parent-1.hiroki, .parent-1.hiro, .totl.m-1088 .parent-1 { --rgb: 146, 183, 188; --rgb-dark: 119, 165, 172; }
 
-.lux-track.holly, .totl.m-1354 .lux-track, .lux-track.gb-115, .lux.holly, .totl.m-1354 .lux, .lux.gb-115 { --rgb: 183,133,79; }
+.lux-track.holly, .totl.m-1354 .lux-track, .lux-track.gb-115, .lux.holly, .totl.m-1354 .lux, .lux.gb-115, .parent-1.holly, .totl.m-1354 .parent-1, .parent-1.gb-115 { --rgb: 183,133,79; }
 
-.lux-track.irina, .lux-track.iri, .totl.m-1145 .lux-track, .lux.irina, .lux.iri, .totl.m-1145 .lux { --rgb: 17, 74, 108; }
+.lux-track.irina, .lux-track.iri, .totl.m-1145 .lux-track, .lux.irina, .lux.iri, .totl.m-1145 .lux, .parent-1.irina, .parent-1.iri, .totl.m-1145 .parent-1 { --rgb: 17, 74, 108; }
 
-.lux-track.isaiah, .lux-track.gb-117, .lux.isaiah, .lux.gb-117 { --rgb: 135,151,148; }
+.lux-track.isaiah, .lux-track.gb-117, .lux.isaiah, .lux.gb-117, .parent-1.isaiah, .parent-1.gb-117 { --rgb: 135,151,148; }
 
-.lux-track.isobel, .lux-track.isa, .lux-track.belle, .lux-track.gb-153, .lux.isobel, .lux.isa, .lux.belle, .lux.gb-153 { --rgb: 213, 188, 204; }
+.lux-track.isobel, .lux-track.isa, .lux-track.belle, .lux-track.gb-153, .lux.isobel, .lux.isa, .lux.belle, .lux.gb-153, .parent-1.isobel, .parent-1.isa, .parent-1.belle, .parent-1.gb-153 { --rgb: 213, 188, 204; }
 
-.lux-track.jasper, .lux-track.jazz, .totl.m-264 .lux-track, .lux.jasper, .lux.jazz, .totl.m-264 .lux { --rgb: 171, 147, 159; --rgb-dark: 150, 121, 136; }
+.lux-track.jasper, .lux-track.jazz, .totl.m-264 .lux-track, .lux.jasper, .lux.jazz, .totl.m-264 .lux, .parent-1.jasper, .parent-1.jazz, .totl.m-264 .parent-1 { --rgb: 171, 147, 159; --rgb-dark: 150, 121, 136; }
 
-.lux-track.jesse, .lux-track.gb-79, .lux.jesse, .lux.gb-79 { --rgb: 210, 193, 166; }
+.lux-track.jesse, .lux-track.gb-79, .lux.jesse, .lux.gb-79, .parent-1.jesse, .parent-1.gb-79 { --rgb: 210, 193, 166; }
 
-.lux-track.jude, .lux-track.gb-429, .lux.jude, .lux.gb-429 { --rgb: 204, 210, 196; }
+.lux-track.jude, .lux-track.gb-429, .lux.jude, .lux.gb-429, .parent-1.jude, .parent-1.gb-429 { --rgb: 204, 210, 196; }
 
-.lux-track.kit, .lux.kit { --rgb: 217, 195, 167; --rgb-dark: 208, 181, 146; }
+.lux-track.kit, .lux.kit, .parent-1.kit { --rgb: 217, 195, 167; --rgb-dark: 208, 181, 146; }
 
-.lux-track.kristopher, .lux-track.kris, .totl.m-1324 .lux-track, .lux.kristopher, .lux.kris, .totl.m-1324 .lux { --rgb: 160, 181, 162; }
+.lux-track.kristopher, .lux-track.kris, .totl.m-1324 .lux-track, .lux.kristopher, .lux.kris, .totl.m-1324 .lux, .parent-1.kristopher, .parent-1.kris, .totl.m-1324 .parent-1 { --rgb: 160, 181, 162; }
 
-.lux-track.lance, .totl.m-1355 .lux-track, .lux.lance, .totl.m-1355 .lux { --rgb: 213, 181, 105; }
+.lux-track.lance, .totl.m-1355 .lux-track, .lux.lance, .totl.m-1355 .lux, .parent-1.lance, .totl.m-1355 .parent-1 { --rgb: 213, 181, 105; }
 
-.lux-track.lincoln, .lux-track.link, .lux-track.gb-430, .lux.lincoln, .lux.link, .lux.gb-430 { --rgb: 81, 105, 130; }
+.lux-track.lincoln, .lux-track.link, .lux-track.gb-430, .lux.lincoln, .lux.link, .lux.gb-430, .parent-1.lincoln, .parent-1.link, .parent-1.gb-430 { --rgb: 81, 105, 130; }
 
-.lux-track.lorelei, .lux-track.lore, .lux.lorelei, .lux.lore { --rgb: 191, 117, 81; }
+.lux-track.lorelei, .lux-track.lore, .lux.lorelei, .lux.lore, .parent-1.lorelei, .parent-1.lore { --rgb: 191, 117, 81; }
 
-.lux-track.lottie, .totl.m-315 .lux-track, .lux.lottie, .totl.m-315 .lux { --rgb: 212, 161, 168; --rgb-dark: 202, 138, 147; }
+.lux-track.lottie, .totl.m-315 .lux-track, .lux.lottie, .totl.m-315 .lux, .parent-1.lottie, .totl.m-315 .parent-1 { --rgb: 212, 161, 168; --rgb-dark: 202, 138, 147; }
 
-.lux-track.luisa, .lux-track.lou, .lux.luisa, .lux.lou { --rgb: 183, 133, 79; --rgb-dark: 166, 103, 36; }
+.lux-track.luisa, .lux-track.lou, .lux.luisa, .lux.lou, .parent-1.luisa, .parent-1.lou { --rgb: 183, 133, 79; --rgb-dark: 166, 103, 36; }
 
-.lux-track.magnolia, .lux-track.maggie, .totl.m-56 .lux-track, .lux.magnolia, .lux.maggie, .totl.m-56 .lux { --rgb: 107, 126, 103; --rgb-dark: 70, 94, 66; }
+.lux-track.magnolia, .lux-track.maggie, .totl.m-56 .lux-track, .lux.magnolia, .lux.maggie, .totl.m-56 .lux, .parent-1.magnolia, .parent-1.maggie, .totl.m-56 .parent-1 { --rgb: 107, 126, 103; --rgb-dark: 70, 94, 66; }
 
-.lux-track.malcolm, .lux-track.mal, .totl.m-853 .lux-track, .lux-track.gb-80, .lux.malcolm, .lux.mal, .totl.m-853 .lux, .lux.gb-80 { --rgb: 99, 92, 92; --rgb-dark: 60, 52, 52; }
+.lux-track.malcolm, .lux-track.mal, .totl.m-853 .lux-track, .lux-track.gb-80, .lux.malcolm, .lux.mal, .totl.m-853 .lux, .lux.gb-80, .parent-1.malcolm, .parent-1.mal, .totl.m-853 .parent-1, .parent-1.gb-80 { --rgb: 99, 92, 92; --rgb-dark: 60, 52, 52; }
 
-.lux-track.malik, .lux.malik { --rgb: 80, 94, 126; --rgb-dark: 37, 54, 94; }
+.lux-track.malik, .lux.malik, .parent-1.malik { --rgb: 80, 94, 126; --rgb-dark: 37, 54, 94; }
 
-.lux-track.marica, .lux-track.mari, .totl.m-1089 .lux-track, .lux.marica, .lux.mari, .totl.m-1089 .lux { --rgb: 175, 112, 106; --rgb-dark: 155, 77, 69; }
+.lux-track.marica, .lux-track.mari, .totl.m-1089 .lux-track, .lux.marica, .lux.mari, .totl.m-1089 .lux, .parent-1.marica, .parent-1.mari, .totl.m-1089 .parent-1 { --rgb: 175, 112, 106; --rgb-dark: 155, 77, 69; }
 
-.lux-track.marlowe, .lux-track.mar, .lux-track.gb-69, .lux.marlowe, .lux.mar, .lux.gb-69 { --rgb: 181, 196, 202; --rgb-dark: 133, 147, 153; }
+.lux-track.marlowe, .lux-track.mar, .lux-track.gb-69, .lux.marlowe, .lux.mar, .lux.gb-69, .parent-1.marlowe, .parent-1.mar, .parent-1.gb-69 { --rgb: 181, 196, 202; --rgb-dark: 133, 147, 153; }
 
-.lux-track.maverick, .lux-track.mav, .lux.maverick, .lux.mav { --rgb: 185, 135, 129; --rgb-dark: 168, 105, 98; }
+.lux-track.maverick, .lux-track.mav, .lux.maverick, .lux.mav, .parent-1.maverick, .parent-1.mav { --rgb: 185, 135, 129; --rgb-dark: 168, 105, 98; }
 
-.lux-track.milo, .totl.m-112 .lux-track, .lux.milo, .totl.m-112 .lux { --rgb: 220, 163, 147; --rgb-dark: 212, 141, 121; }
+.lux-track.milo, .totl.m-112 .lux-track, .lux.milo, .totl.m-112 .lux, .parent-1.milo, .totl.m-112 .parent-1 { --rgb: 220, 163, 147; --rgb-dark: 212, 141, 121; }
 
-.lux-track.montana, .lux-track.monty, .totl.m-59 .lux-track, .lux.montana, .lux.monty, .totl.m-59 .lux { --rgb: 135, 151, 148; --rgb-dark: 106, 125, 122; }
+.lux-track.montana, .lux-track.monty, .totl.m-59 .lux-track, .lux.montana, .lux.monty, .totl.m-59 .lux, .parent-1.montana, .parent-1.monty, .totl.m-59 .parent-1 { --rgb: 135, 151, 148; --rgb-dark: 106, 125, 122; }
 
-.lux-track.morgan, .lux-track.gb-70, .lux.morgan, .lux.gb-70 { --rgb: 151, 151, 171; --rgb-dark: 126, 125, 150; }
+.lux-track.morgan, .lux-track.gb-70, .lux.morgan, .lux.gb-70, .parent-1.morgan, .parent-1.gb-70 { --rgb: 151, 151, 171; --rgb-dark: 126, 125, 150; }
 
-.lux-track.nayara, .lux-track.naya, .totl.m-905 .lux-track, .lux.nayara, .lux.naya, .totl.m-905 .lux { --rgb: 187, 118, 131; --rgb-dark: 170, 84, 100; }
+.lux-track.nayara, .lux-track.naya, .totl.m-905 .lux-track, .lux.nayara, .lux.naya, .totl.m-905 .lux, .parent-1.nayara, .parent-1.naya, .totl.m-905 .parent-1 { --rgb: 187, 118, 131; --rgb-dark: 170, 84, 100; }
 
-.lux-track.nikolas, .lux-track.nik, .lux-track.niko, .totl.m-54 .lux-track, .lux-track.gb-3, .lux.nikolas, .lux.nik, .lux.niko, .totl.m-54 .lux, .lux.gb-3 { --rgb: 142, 173, 179; --rgb-dark: 114, 153, 160; }
+.lux-track.nikolas, .lux-track.nik, .lux-track.niko, .totl.m-54 .lux-track, .lux-track.gb-3, .lux.nikolas, .lux.nik, .lux.niko, .totl.m-54 .lux, .lux.gb-3, .parent-1.nikolas, .parent-1.nik, .parent-1.niko, .totl.m-54 .parent-1, .parent-1.gb-3 { --rgb: 142, 173, 179; --rgb-dark: 114, 153, 160; }
 
-.lux-track.nimue, .lux-track.nim, .totl.m-902 .lux-track, .lux.nimue, .lux.nim, .totl.m-902 .lux { --rgb: 191, 177, 188; --rgb-dark: 176, 158, 172; }
+.lux-track.nimue, .lux-track.nim, .totl.m-902 .lux-track, .lux.nimue, .lux.nim, .totl.m-902 .lux, .parent-1.nimue, .parent-1.nim, .totl.m-902 .parent-1 { --rgb: 191, 177, 188; --rgb-dark: 176, 158, 172; }
 
-.lux-track.noah, .totl.m-314 .lux-track, .lux.noah, .totl.m-314 .lux { --rgb: 155, 167, 142; --rgb-dark: 130, 146, 114; }
+.lux-track.noah, .totl.m-314 .lux-track, .lux.noah, .totl.m-314 .lux, .parent-1.noah, .totl.m-314 .parent-1 { --rgb: 155, 167, 142; --rgb-dark: 130, 146, 114; }
 
-.lux-track.oliver, .lux-track.oli, .lux.oliver, .lux.oli { --rgb: 200, 150, 119; --rgb-dark: 187, 124, 86; }
+.lux-track.oliver, .lux-track.oli, .lux.oliver, .lux.oli, .parent-1.oliver, .parent-1.oli { --rgb: 200, 150, 119; --rgb-dark: 187, 124, 86; }
 
-.lux-track.percy, .totl.m-482 .lux-track, .lux.percy, .totl.m-482 .lux { --rgb: 168, 143, 128; --rgb-dark: 145, 102, 76; }
+.lux-track.percy, .totl.m-482 .lux-track, .lux.percy, .totl.m-482 .lux, .parent-1.percy, .totl.m-482 .parent-1 { --rgb: 168, 143, 128; --rgb-dark: 145, 102, 76; }
 
-.lux-track.persephone, .lux-track.sephi, .lux.persephone, .lux.sephi { --rgb: 163, 101, 145; --rgb-dark: 141, 63, 118; }
+.lux-track.persephone, .lux-track.sephi, .lux.persephone, .lux.sephi, .parent-1.persephone, .parent-1.sephi { --rgb: 163, 101, 145; --rgb-dark: 141, 63, 118; }
 
-.lux-track.rebecca, .totl.m-994 .lux-track, .lux.rebecca, .totl.m-994 .lux { --rgb: 211, 202, 195; --rgb-dark: 200, 189, 181; }
+.lux-track.rebecca, .totl.m-994 .lux-track, .lux.rebecca, .totl.m-994 .lux, .parent-1.rebecca, .totl.m-994 .parent-1 { --rgb: 211, 202, 195; --rgb-dark: 200, 189, 181; }
 
-.lux-track.reed, .lux-track.gb-584, .lux.reed, .lux.gb-584 { --rgb: 191, 101, 101; }
+.lux-track.reed, .lux-track.gb-584, .lux.reed, .lux.gb-584, .parent-1.reed, .parent-1.gb-584 { --rgb: 191, 101, 101; }
 
-.lux-track.remy, .lux-track.gb-44, .lux.remy, .lux.gb-44 { --rgb: 151, 180, 173; --rgb-dark: 125, 162, 153; }
+.lux-track.remy, .lux-track.gb-44, .lux.remy, .lux.gb-44, .parent-1.remy, .parent-1.gb-44 { --rgb: 151, 180, 173; --rgb-dark: 125, 162, 153; }
 
-.lux-track.renata, .lux-track.ren, .totl.m-701 .lux-track, .lux.renata, .lux.ren, .totl.m-701 .lux { --rgb: 7, 116, 90; --rgb-dark: 88, 142, 151; }
+.lux-track.renata, .lux-track.ren, .totl.m-701 .lux-track, .lux.renata, .lux.ren, .totl.m-701 .lux, .parent-1.renata, .parent-1.ren, .totl.m-701 .parent-1 { --rgb: 7, 116, 90; --rgb-dark: 88, 142, 151; }
 
-.lux-track.riordan, .lux-track.rory, .lux-track.gb-154, .lux.riordan, .lux.rory, .lux.gb-154 { --rgb: 159, 157, 150; --rgb-dark: 136, 134, 126; }
+.lux-track.riordan, .lux-track.rory, .lux-track.gb-154, .lux.riordan, .lux.rory, .lux.gb-154, .parent-1.riordan, .parent-1.rory, .parent-1.gb-154 { --rgb: 159, 157, 150; --rgb-dark: 136, 134, 126; }
 
-.lux-track.riven, .lux-track.riv, .lux.riven, .lux.riv { --rgb: 151, 159, 170; --rgb-dark: 125, 136, 149; }
+.lux-track.riven, .lux-track.riv, .lux.riven, .lux.riv, .parent-1.riven, .parent-1.riv { --rgb: 151, 159, 170; --rgb-dark: 125, 136, 149; }
 
-.lux-track.ryan, .totl.m-589 .lux-track, .lux.ryan, .totl.m-589 .lux { --rgb: 214, 189, 114; --rgb-dark: 204, 173, 79; }
+.lux-track.ryan, .totl.m-589 .lux-track, .lux.ryan, .totl.m-589 .lux, .parent-1.ryan, .totl.m-589 .parent-1 { --rgb: 214, 189, 114; --rgb-dark: 204, 173, 79; }
 
-.lux-track.salih, .lux-track.sal, .lux.salih, .lux.sal { --rgb: 219, 145, 123; --rgb-dark: 210, 118, 90; }
+.lux-track.salih, .lux-track.sal, .lux.salih, .lux.sal, .parent-1.salih, .parent-1.sal { --rgb: 219, 145, 123; --rgb-dark: 210, 118, 90; }
 
-.lux-track.sarah, .totl.m-1358 .lux-track, .lux.sarah, .totl.m-1358 .lux { --rgb: 196, 212, 213; }
+.lux-track.sarah, .totl.m-1358 .lux-track, .lux.sarah, .totl.m-1358 .lux, .parent-1.sarah, .totl.m-1358 .parent-1 { --rgb: 196, 212, 213; }
 
-.lux-track.satiah, .lux-track.tia, .lux-track.gb-43, .lux.satiah, .lux.tia, .lux.gb-43 { --rgb: 197, 160, 128; --rgb-dark: 183, 137, 97; }
+.lux-track.satiah, .lux-track.tia, .lux-track.gb-43, .lux.satiah, .lux.tia, .lux.gb-43, .parent-1.satiah, .parent-1.tia, .parent-1.gb-43 { --rgb: 197, 160, 128; --rgb-dark: 183, 137, 97; }
 
-.lux-track.sebastian, .lux-track.seb, .lux-track.bash, .lux-track.gb-227, .lux.sebastian, .lux.seb, .lux.bash, .lux.gb-227 { --rgb: 197,187,181; }
+.lux-track.sebastian, .lux-track.seb, .lux-track.bash, .lux-track.gb-227, .lux.sebastian, .lux.seb, .lux.bash, .lux.gb-227, .parent-1.sebastian, .parent-1.seb, .parent-1.bash, .parent-1.gb-227 { --rgb: 197,187,181; }
 
-.lux-track.silas, .lux-track.gb-116, .lux.silas, .lux.gb-116 { --rgb: 158, 181, 187; }
+.lux-track.silas, .lux-track.gb-116, .lux.silas, .lux.gb-116, .parent-1.silas, .parent-1.gb-116 { --rgb: 158, 181, 187; }
 
-.lux-track.simon, .totl.m-265 .lux-track, .lux.simon, .totl.m-265 .lux { --rgb: 180, 199, 129; --rgb-dark: 162, 185, 98; }
+.lux-track.simon, .totl.m-265 .lux-track, .lux.simon, .totl.m-265 .lux, .parent-1.simon, .totl.m-265 .parent-1 { --rgb: 180, 199, 129; --rgb-dark: 162, 185, 98; }
 
-.lux-track.sorren, .totl.m-702 .lux-track, .lux.sorren, .totl.m-702 .lux { --rgb: 97, 79, 79; --rgb-dark: 58, 35, 35; }
+.lux-track.sorren, .totl.m-702 .lux-track, .lux.sorren, .totl.m-702 .lux, .parent-1.sorren, .totl.m-702 .parent-1 { --rgb: 97, 79, 79; --rgb-dark: 58, 35, 35; }
 
-.lux-track.spencer, .lux-track.spence, .totl.m-862 .lux-track, .lux-track.gb-45, .lux.spencer, .lux.spence, .totl.m-862 .lux, .lux.gb-45 { --rgb: 138, 151, 174; --rgb-dark: 109, 125, 154; }
+.lux-track.spencer, .lux-track.spence, .totl.m-862 .lux-track, .lux-track.gb-45, .lux.spencer, .lux.spence, .totl.m-862 .lux, .lux.gb-45, .parent-1.spencer, .parent-1.spence, .totl.m-862 .parent-1, .parent-1.gb-45 { --rgb: 138, 151, 174; --rgb-dark: 109, 125, 154; }
 
-.lux-track.sterling, .lux-track.matteo, .lux-track.matty, .totl.m-907 .lux-track, .lux-track.gb-16, .lux.sterling, .lux.matteo, .lux.matty, .totl.m-907 .lux, .lux.gb-16 { --rgb: 207, 167, 52; --rgb-dark: 196, 145, 2; }
+.lux-track.sterling, .lux-track.matteo, .lux-track.matty, .totl.m-907 .lux-track, .lux-track.gb-16, .lux.sterling, .lux.matteo, .lux.matty, .totl.m-907 .lux, .lux.gb-16, .parent-1.sterling, .parent-1.matteo, .parent-1.matty, .totl.m-907 .parent-1, .parent-1.gb-16 { --rgb: 207, 167, 52; --rgb-dark: 196, 145, 2; }
 
-.lux-track.thomas, .lux-track.tom, .lux-track.tommy, .totl.m-863 .lux-track, .lux.thomas, .lux.tom, .lux.tommy, .totl.m-863 .lux { --rgb: 183, 207, 150; --rgb-dark: 166, 196, 124; }
+.lux-track.thomas, .lux-track.tom, .lux-track.tommy, .totl.m-863 .lux-track, .lux.thomas, .lux.tom, .lux.tommy, .totl.m-863 .lux, .parent-1.thomas, .parent-1.tom, .parent-1.tommy, .totl.m-863 .parent-1 { --rgb: 183, 207, 150; --rgb-dark: 166, 196, 124; }
 
-.lux-track.tobias, .lux-track.fletch, .lux-track.fletcher, .lux-track.toby, .totl.m-60 .lux-track, .lux.tobias, .lux.fletch, .lux.fletcher, .lux.toby, .totl.m-60 .lux { --rgb: 137, 143, 121; --rgb-dark: 108, 115, 88; }
+.lux-track.tobias, .lux-track.fletch, .lux-track.fletcher, .lux-track.toby, .totl.m-60 .lux-track, .lux.tobias, .lux.fletch, .lux.fletcher, .lux.toby, .totl.m-60 .lux, .parent-1.tobias, .parent-1.fletch, .parent-1.fletcher, .parent-1.toby, .totl.m-60 .parent-1 { --rgb: 137, 143, 121; --rgb-dark: 108, 115, 88; }
 
-.lux-track.vitae, .lux-track.vee, .lux-track.gb-6, .lux.vitae, .lux.vee, .lux.gb-6 { --rgb: 111, 77, 77; --rgb-dark: 76, 33, 33; }
+.lux-track.vitae, .lux-track.vee, .lux-track.gb-6, .lux.vitae, .lux.vee, .lux.gb-6, .parent-1.vitae, .parent-1.vee, .parent-1.gb-6 { --rgb: 111, 77, 77; --rgb-dark: 76, 33, 33; }
 
-.lux-track.viveka, .lux-track.viv, .lux-track.gb-330, .lux.viveka, .lux.viv, .lux.gb-330 { --rgb: 185,135,129; }
+.lux-track.viveka, .lux-track.viv, .lux-track.gb-330, .lux.viveka, .lux.viv, .lux.gb-330, .parent-1.viveka, .parent-1.viv, .parent-1.gb-330 { --rgb: 185,135,129; }
 
-.lux-track.william, .lux-track.will, .totl.m-1148 .lux-track, .lux.william, .lux.will, .totl.m-1148 .lux { --rgb: 177, 181, 160; }
+.lux-track.william, .lux-track.will, .totl.m-1148 .lux-track, .lux.william, .lux.will, .totl.m-1148 .lux, .parent-1.william, .parent-1.will, .totl.m-1148 .parent-1 { --rgb: 177, 181, 160; }
