@@ -22,6 +22,12 @@
         --accent-30: rgba(var(--rgb-dark, var(--rgb)), 0.3);
         --accent-50: rgba(var(--rgb-dark, var(--rgb)), 0.5);
         --accent-90: rgba(var(--rgb-dark, var(--rgb)), 0.8);
+        --border-accent: var(--accent);
+        --bg-accent: var(--accent);
+        --bg-accent-solid: var(--accent);
+        --bg-accent-30: var(--accent-30);
+        --bg-accent-50: var(--accent-50);
+        --text-accent: var(--accent);
 
         //totl only
         --ltaccent: rgb(var(--rgb));
