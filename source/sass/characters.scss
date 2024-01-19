@@ -1,15 +1,24 @@
 .lux-track,
 .lux,
 .parent-1 {
-    --accent: rgb(var(--rgb));
-    --dkAccent: rgb(var(--rgb-dark, var(--rgb)));
+    &,
+    .light &,
+    .dark & {
+        --accent: rgb(var(--rgb));
+        --dkAccent: rgb(var(--rgb-dark, var(--rgb)));
+    }
 
     .totl &,
     &.gb tag-wrap,
     &.gb tag-comm,
     &.gb tag-social {
         //shared
-        --accent: rgb(var(--rgb-dark, var(--rgb)));
+        .light & {
+            --accent: rgb(var(--rgb-dark, var(--rgb)));
+        }
+        body:not(.light) & {
+            --accent: rgb(var(--rgb));
+        }
 
         //gb only
         --accent-20: rgba(var(--rgb), 0.2);
@@ -19,15 +28,23 @@
         --border-color: var(--accent);
 
         //gb:et only
-        --accent-30: rgba(var(--rgb-dark, var(--rgb)), 0.3);
-        --accent-50: rgba(var(--rgb-dark, var(--rgb)), 0.5);
-        --accent-90: rgba(var(--rgb-dark, var(--rgb)), 0.8);
         --border-accent: var(--accent);
         --bg-accent: var(--accent);
         --bg-accent-solid: var(--accent);
         --bg-accent-30: var(--accent-30);
         --bg-accent-50: var(--accent-50);
         --text-accent: var(--accent);
+        //shared
+        .light & {
+            --accent-30: rgba(var(--rgb-dark, var(--rgb)), 0.3);
+            --accent-50: rgba(var(--rgb-dark, var(--rgb)), 0.5);
+            --accent-90: rgba(var(--rgb-dark, var(--rgb)), 0.8);
+        }
+        body:not(.light) & {
+            --accent-30: rgba(var(--rgb), 0.3);
+            --accent-50: rgba(var(--rgb), 0.5);
+            --accent-90: rgba(var(--rgb), 0.8);
+        }
 
         //totl only
         --ltaccent: rgb(var(--rgb));
