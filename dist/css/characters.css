@@ -1,221 +1,229 @@
-.lux-track, .lux, .parent-1 { --defaultPostImage: url(https://files.jcink.net/uploads2/godlybehaviour/GB24/forum_guidebook_min.jpg); }
+.lux-track, .lux, .parent-1, .gb-1.parent-0 { --defaultPostImage: url(https://files.jcink.net/uploads2/godlybehaviour/GB24/forum_guidebook_min.jpg); }
 
-.lux-track, .light .lux-track, .dark .lux-track, .lux, .light .lux, .dark .lux, .parent-1, .light .parent-1, .dark .parent-1 { --accent: rgb(var(--rgb)); --dkAccent: rgb(var(--rgb-dark, var(--rgb))); }
+.lux-track, .dark .lux-track, .lux, .dark .lux, .parent-1, .dark .parent-1, .gb-1.parent-0, .dark .gb-1.parent-0 { --accent: rgb(var(--rgb)); --dkAccent: rgb(var(--rgb-dark, var(--rgb))); }
 
-.totl .lux-track, .lux-track.gb tag-wrap, .lux-track.gb tag-comm, .lux-track.gb tag-social, .totl .lux, .lux.gb tag-wrap, .lux.gb tag-comm, .lux.gb tag-social, .totl .parent-1, .parent-1.gb tag-wrap, .parent-1.gb tag-comm, .parent-1.gb tag-social { --accent-20: rgba(var(--rgb), 0.2); --bg-color: var(--accent); --bg-color-transparent: var(--accent-20); --text-color: var(--accent); --border-color: var(--accent); --border-accent: var(--accent); --bg-accent: var(--accent); --bg-accent-solid: var(--accent); --bg-accent-30: var(--accent-30); --bg-accent-50: var(--accent-50); --text-accent: var(--accent); --ltaccent: rgb(var(--rgb)); --ltaccent-40: rgba(var(--rgb), 0.4); --ltaccent-55: rgba(var(--rgb), 0.55); }
+.light .lux-track, .light .lux, .light .parent-1, .light .gb-1.parent-0 { --accent: rgb(var(--rgb-dark, var(--rgb))); --dkAccent: rgb(var(--rgb)); }
 
-.light .totl .lux-track, .light .lux-track.gb tag-wrap, .light .lux-track.gb tag-comm, .light .lux-track.gb tag-social, .light .totl .lux, .light .lux.gb tag-wrap, .light .lux.gb tag-comm, .light .lux.gb tag-social, .light .totl .parent-1, .light .parent-1.gb tag-wrap, .light .parent-1.gb tag-comm, .light .parent-1.gb tag-social { --accent: rgb(var(--rgb-dark, var(--rgb))); }
+.totl .lux-track, .lux-track.gb tag-wrap, .lux-track.gb tag-comm, .lux-track.gb tag-social, .lux-track.gb et-wrap, .lux-track.gb et-comm, .lux-track.gb et-social, .totl .lux, .lux.gb tag-wrap, .lux.gb tag-comm, .lux.gb tag-social, .lux.gb et-wrap, .lux.gb et-comm, .lux.gb et-social, .totl .parent-1, .parent-1.gb tag-wrap, .parent-1.gb tag-comm, .parent-1.gb tag-social, .parent-1.gb et-wrap, .parent-1.gb et-comm, .parent-1.gb et-social, .totl .gb-1.parent-0, .gb-1.parent-0.gb tag-wrap, .gb-1.parent-0.gb tag-comm, .gb-1.parent-0.gb tag-social, .gb-1.parent-0.gb et-wrap, .gb-1.parent-0.gb et-comm, .gb-1.parent-0.gb et-social { --accent-20: rgba(var(--rgb), 0.2); --bg-color: var(--accent); --bg-color-transparent: var(--accent-20); --text-color: var(--accent); --border-color: var(--accent); --border-accent: var(--accent); --bg-accent: var(--accent); --bg-accent-solid: var(--accent); --bg-accent-30: var(--accent-30); --bg-accent-50: var(--accent-50); --text-accent: var(--accent); --ltaccent: rgb(var(--rgb)); --ltaccent-40: rgba(var(--rgb), 0.4); --ltaccent-55: rgba(var(--rgb), 0.55); }
 
-body:not(.light) .totl .lux-track, body:not(.light) .lux-track.gb tag-wrap, body:not(.light) .lux-track.gb tag-comm, body:not(.light) .lux-track.gb tag-social, body:not(.light) .totl .lux, body:not(.light) .lux.gb tag-wrap, body:not(.light) .lux.gb tag-comm, body:not(.light) .lux.gb tag-social, body:not(.light) .totl .parent-1, body:not(.light) .parent-1.gb tag-wrap, body:not(.light) .parent-1.gb tag-comm, body:not(.light) .parent-1.gb tag-social { --accent: rgb(var(--rgb)); }
+.light .totl .lux-track, .light .lux-track.gb tag-wrap, .light .lux-track.gb tag-comm, .light .lux-track.gb tag-social, .light .lux-track.gb et-wrap, .light .lux-track.gb et-comm, .light .lux-track.gb et-social, .light .totl .lux, .light .lux.gb tag-wrap, .light .lux.gb tag-comm, .light .lux.gb tag-social, .light .lux.gb et-wrap, .light .lux.gb et-comm, .light .lux.gb et-social, .light .totl .parent-1, .light .parent-1.gb tag-wrap, .light .parent-1.gb tag-comm, .light .parent-1.gb tag-social, .light .parent-1.gb et-wrap, .light .parent-1.gb et-comm, .light .parent-1.gb et-social, .light .totl .gb-1.parent-0, .light .gb-1.parent-0.gb tag-wrap, .light .gb-1.parent-0.gb tag-comm, .light .gb-1.parent-0.gb tag-social, .light .gb-1.parent-0.gb et-wrap, .light .gb-1.parent-0.gb et-comm, .light .gb-1.parent-0.gb et-social { --accent: rgb(var(--rgb-dark, var(--rgb))); }
 
-.light .totl .lux-track, .light .lux-track.gb tag-wrap, .light .lux-track.gb tag-comm, .light .lux-track.gb tag-social, .light .totl .lux, .light .lux.gb tag-wrap, .light .lux.gb tag-comm, .light .lux.gb tag-social, .light .totl .parent-1, .light .parent-1.gb tag-wrap, .light .parent-1.gb tag-comm, .light .parent-1.gb tag-social { --accent-30: rgba(var(--rgb-dark, var(--rgb)), 0.3); --accent-50: rgba(var(--rgb-dark, var(--rgb)), 0.5); --accent-90: rgba(var(--rgb-dark, var(--rgb)), 0.8); }
+body:not(.light) .totl .lux-track, body:not(.light) .lux-track.gb tag-wrap, body:not(.light) .lux-track.gb tag-comm, body:not(.light) .lux-track.gb tag-social, body:not(.light) .lux-track.gb et-wrap, body:not(.light) .lux-track.gb et-comm, body:not(.light) .lux-track.gb et-social, body:not(.light) .totl .lux, body:not(.light) .lux.gb tag-wrap, body:not(.light) .lux.gb tag-comm, body:not(.light) .lux.gb tag-social, body:not(.light) .lux.gb et-wrap, body:not(.light) .lux.gb et-comm, body:not(.light) .lux.gb et-social, body:not(.light) .totl .parent-1, body:not(.light) .parent-1.gb tag-wrap, body:not(.light) .parent-1.gb tag-comm, body:not(.light) .parent-1.gb tag-social, body:not(.light) .parent-1.gb et-wrap, body:not(.light) .parent-1.gb et-comm, body:not(.light) .parent-1.gb et-social, body:not(.light) .totl .gb-1.parent-0, body:not(.light) .gb-1.parent-0.gb tag-wrap, body:not(.light) .gb-1.parent-0.gb tag-comm, body:not(.light) .gb-1.parent-0.gb tag-social, body:not(.light) .gb-1.parent-0.gb et-wrap, body:not(.light) .gb-1.parent-0.gb et-comm, body:not(.light) .gb-1.parent-0.gb et-social { --accent: rgb(var(--rgb)); }
 
-body:not(.light) .totl .lux-track, body:not(.light) .lux-track.gb tag-wrap, body:not(.light) .lux-track.gb tag-comm, body:not(.light) .lux-track.gb tag-social, body:not(.light) .totl .lux, body:not(.light) .lux.gb tag-wrap, body:not(.light) .lux.gb tag-comm, body:not(.light) .lux.gb tag-social, body:not(.light) .totl .parent-1, body:not(.light) .parent-1.gb tag-wrap, body:not(.light) .parent-1.gb tag-comm, body:not(.light) .parent-1.gb tag-social { --accent-30: rgba(var(--rgb), 0.3); --accent-50: rgba(var(--rgb), 0.5); --accent-90: rgba(var(--rgb), 0.8); }
+.light .totl .lux-track, .light .lux-track.gb tag-wrap, .light .lux-track.gb tag-comm, .light .lux-track.gb tag-social, .light .lux-track.gb et-wrap, .light .lux-track.gb et-comm, .light .lux-track.gb et-social, .light .totl .lux, .light .lux.gb tag-wrap, .light .lux.gb tag-comm, .light .lux.gb tag-social, .light .lux.gb et-wrap, .light .lux.gb et-comm, .light .lux.gb et-social, .light .totl .parent-1, .light .parent-1.gb tag-wrap, .light .parent-1.gb tag-comm, .light .parent-1.gb tag-social, .light .parent-1.gb et-wrap, .light .parent-1.gb et-comm, .light .parent-1.gb et-social, .light .totl .gb-1.parent-0, .light .gb-1.parent-0.gb tag-wrap, .light .gb-1.parent-0.gb tag-comm, .light .gb-1.parent-0.gb tag-social, .light .gb-1.parent-0.gb et-wrap, .light .gb-1.parent-0.gb et-comm, .light .gb-1.parent-0.gb et-social { --accent-30: rgba(var(--rgb-dark, var(--rgb)), 0.3); --accent-50: rgba(var(--rgb-dark, var(--rgb)), 0.5); --accent-90: rgba(var(--rgb-dark, var(--rgb)), 0.8); }
 
-.lux-track et-image::before, .lux et-image::before, .parent-1 et-image::before { content: ''; position: absolute; top: 10px; left: 10px; width: calc(100% - 20px); height: calc(100% - 20px); background-size: cover; background-position: center; background-image: var(--postImage, var(--defaultPostImage)); z-index: 1; }
+body:not(.light) .totl .lux-track, body:not(.light) .lux-track.gb tag-wrap, body:not(.light) .lux-track.gb tag-comm, body:not(.light) .lux-track.gb tag-social, body:not(.light) .lux-track.gb et-wrap, body:not(.light) .lux-track.gb et-comm, body:not(.light) .lux-track.gb et-social, body:not(.light) .totl .lux, body:not(.light) .lux.gb tag-wrap, body:not(.light) .lux.gb tag-comm, body:not(.light) .lux.gb tag-social, body:not(.light) .lux.gb et-wrap, body:not(.light) .lux.gb et-comm, body:not(.light) .lux.gb et-social, body:not(.light) .totl .parent-1, body:not(.light) .parent-1.gb tag-wrap, body:not(.light) .parent-1.gb tag-comm, body:not(.light) .parent-1.gb tag-social, body:not(.light) .parent-1.gb et-wrap, body:not(.light) .parent-1.gb et-comm, body:not(.light) .parent-1.gb et-social, body:not(.light) .totl .gb-1.parent-0, body:not(.light) .gb-1.parent-0.gb tag-wrap, body:not(.light) .gb-1.parent-0.gb tag-comm, body:not(.light) .gb-1.parent-0.gb tag-social, body:not(.light) .gb-1.parent-0.gb et-wrap, body:not(.light) .gb-1.parent-0.gb et-comm, body:not(.light) .gb-1.parent-0.gb et-social { --accent-30: rgba(var(--rgb), 0.3); --accent-50: rgba(var(--rgb), 0.5); --accent-90: rgba(var(--rgb), 0.8); }
 
-.lux-track et-tag, .lux et-tag, .parent-1 et-tag { z-index: 10; }
+.lux-track et-image::before, .lux et-image::before, .parent-1 et-image::before, .gb-1.parent-0 et-image::before { content: ''; position: absolute; top: 10px; left: 10px; width: calc(100% - 20px); height: calc(100% - 20px); background-size: cover; background-position: var(--postImagePosition, center); background-image: var(--postImage, var(--defaultPostImage)); z-index: 1; }
 
-.lux-track.abigail, .lux-track.abby, .totl.m-1608 .lux-track, .lux-track.gb-71, .lux.abigail, .lux.abby, .totl.m-1608 .lux, .lux.gb-71, .parent-1.abigail, .parent-1.abby, .totl.m-1608 .parent-1, .parent-1.gb-71 { --rgb: 212,161,168; }
+.lux-track et-tag, .lux et-tag, .parent-1 et-tag, .gb-1.parent-0 et-tag { -webkit-box-ordinal-group: 11; -webkit-order: 10; -ms-flex-order: 10; order: 10; }
 
-.lux-track.adaline, .lux-track.addie, .totl.m-157 .lux-track, .lux.adaline, .lux.addie, .totl.m-157 .lux, .parent-1.adaline, .parent-1.addie, .totl.m-157 .parent-1 { --rgb: 167, 115, 129; --rgb-dark: 145, 80, 98; }
+.lux-track.abigail, .lux-track.abby, .totl.m-1608 .lux-track, .lux-track.gb-71, .lux.abigail, .lux.abby, .totl.m-1608 .lux, .lux.gb-71, .parent-1.abigail, .parent-1.abby, .totl.m-1608 .parent-1, .parent-1.gb-71, .gb-1.parent-0.abigail, .gb-1.parent-0.abby, .totl.m-1608 .gb-1.parent-0, .gb-1.parent-0.gb-71 { --rgb: 212,161,168; --postImage: url(https://64.media.tumblr.com/288a9e33ee421ac9ec1ce828a7a92177/99a274faae674591-e8/s500x750/75b7bc0cb6e8133cf92fc7785e634cdcc3397203.jpg); --postImagePosition: top; }
 
-.lux-track.aiden, .totl.m-838 .lux-track, .lux-track.gb-7, .lux.aiden, .totl.m-838 .lux, .lux.gb-7, .parent-1.aiden, .totl.m-838 .parent-1, .parent-1.gb-7 { --rgb: 136, 163, 151; --rgb-dark: 107, 140, 126; --postImage: url(https://64.media.tumblr.com/9047d35f1ad89106c47e968ea4c7db70/31edb05a278d2403-34/s1280x1920/a4f80ba04eee73cb1a52c1c8f6b86f047b92b5f7.jpg); }
+.lux-track.adaline, .lux-track.addie, .totl.m-157 .lux-track, .lux.adaline, .lux.addie, .totl.m-157 .lux, .parent-1.adaline, .parent-1.addie, .totl.m-157 .parent-1, .gb-1.parent-0.adaline, .gb-1.parent-0.addie, .totl.m-157 .gb-1.parent-0 { --rgb: 167, 115, 129; --rgb-dark: 145, 80, 98; }
 
-.lux-track.ainara, .lux.ainara, .parent-1.ainara { --rgb: 164, 138, 189; }
+.lux-track.aiden, .totl.m-838 .lux-track, .lux-track.gb-7, .lux.aiden, .totl.m-838 .lux, .lux.gb-7, .parent-1.aiden, .totl.m-838 .parent-1, .parent-1.gb-7, .gb-1.parent-0.aiden, .totl.m-838 .gb-1.parent-0, .gb-1.parent-0.gb-7 { --rgb: 136, 163, 151; --rgb-dark: 107, 140, 126; --postImage: url(https://64.media.tumblr.com/9047d35f1ad89106c47e968ea4c7db70/31edb05a278d2403-34/s1280x1920/a4f80ba04eee73cb1a52c1c8f6b86f047b92b5f7.jpg); }
 
-.lux-track.ambrose, .totl.m-995 .lux-track, .lux.ambrose, .totl.m-995 .lux, .parent-1.ambrose, .totl.m-995 .parent-1 { --rgb: 143, 109, 101; --rgb-dark: 115, 73, 63; }
+.lux-track.ainara, .lux.ainara, .parent-1.ainara, .gb-1.parent-0.ainara { --rgb: 164, 138, 189; }
 
-.lux-track.alastair, .lux-track.al, .lux.alastair, .lux.al, .parent-1.alastair, .parent-1.al { --rgb: 217, 155, 136; --rgb-dark: 208, 131, 107; }
+.lux-track.ambrose, .totl.m-995 .lux-track, .lux.ambrose, .totl.m-995 .lux, .parent-1.ambrose, .totl.m-995 .parent-1, .gb-1.parent-0.ambrose, .totl.m-995 .gb-1.parent-0 { --rgb: 143, 109, 101; --rgb-dark: 115, 73, 63; }
 
-.lux-track.alya, .lux-track.gb-331, .lux.alya, .lux.gb-331, .parent-1.alya, .parent-1.gb-331 { --rgb: 107,126,103; }
+.lux-track.alastair, .lux-track.al, .lux-track.gb-635, .lux.alastair, .lux.al, .lux.gb-635, .parent-1.alastair, .parent-1.al, .parent-1.gb-635, .gb-1.parent-0.alastair, .gb-1.parent-0.al, .gb-1.parent-0.gb-635 { --rgb: 217, 155, 136; --rgb-dark: 208, 131, 107; --postImage: url(https://64.media.tumblr.com/6347429a4882a828c9e509a9569570f5/tumblr_p2mo6ipVzd1vz2ghao8_250.gif); }
 
-.lux-track.alexander, .lux-track.andy, .lux.alexander, .lux.andy, .parent-1.alexander, .parent-1.andy { --rgb: 123, 57, 57; --rgb-dark: 90, 8, 8; }
+.lux-track.alya, .lux-track.gb-331, .lux.alya, .lux.gb-331, .parent-1.alya, .parent-1.gb-331, .gb-1.parent-0.alya, .gb-1.parent-0.gb-331 { --rgb: 107,126,103; --postImage: url(https://64.media.tumblr.com/0c053a114f79d908b4e75c0379917b7b/09483cbf07989c08-88/s1280x1920/445f165388d2e2b9e5a0e8cf3a7b25796715eafb.jpg); }
 
-.lux-track.antoni, .totl.m-856 .lux-track, .lux.antoni, .totl.m-856 .lux, .parent-1.antoni, .totl.m-856 .parent-1 { --rgb: 122, 164, 195; --rgb-dark: 89, 142, 181; }
+.lux-track.alexander, .lux-track.andy, .lux.alexander, .lux.andy, .parent-1.alexander, .parent-1.andy, .gb-1.parent-0.alexander, .gb-1.parent-0.andy { --rgb: 123, 57, 57; --rgb-dark: 90, 8, 8; }
 
-.lux-track.archer, .totl.m-669 .lux-track, .lux.archer, .totl.m-669 .lux, .parent-1.archer, .totl.m-669 .parent-1 { --rgb: 207, 153, 105; --rgb-dark: 196, 128, 68; }
+.lux-track.antoni, .totl.m-856 .lux-track, .lux.antoni, .totl.m-856 .lux, .parent-1.antoni, .totl.m-856 .parent-1, .gb-1.parent-0.antoni, .totl.m-856 .gb-1.parent-0 { --rgb: 122, 164, 195; --rgb-dark: 89, 142, 181; }
 
-.lux-track.art, .totl.m-1567 .lux-track, .lux.art, .totl.m-1567 .lux, .parent-1.art, .totl.m-1567 .parent-1 { --rgb: 177, 193, 193; }
+.lux-track.archer, .totl.m-669 .lux-track, .lux.archer, .totl.m-669 .lux, .parent-1.archer, .totl.m-669 .parent-1, .gb-1.parent-0.archer, .totl.m-669 .gb-1.parent-0 { --rgb: 207, 153, 105; --rgb-dark: 196, 128, 68; }
 
-.lux-track.avery, .totl.m-1147 .lux-track, .lux.avery, .totl.m-1147 .lux, .parent-1.avery, .totl.m-1147 .parent-1 { --rgb: 178, 180, 146; --rgb-dark: 134, 136, 107; }
+.lux-track.art, .totl.m-1567 .lux-track, .lux.art, .totl.m-1567 .lux, .parent-1.art, .totl.m-1567 .parent-1, .gb-1.parent-0.art, .totl.m-1567 .gb-1.parent-0 { --rgb: 177, 193, 193; }
 
-.lux-track.basil, .totl.m-261 .lux-track, .lux.basil, .totl.m-261 .lux, .parent-1.basil, .totl.m-261 .parent-1 { --rgb: 152, 158, 145; --rgb-dark: 127, 134, 118; }
+.lux-track.avery, .totl.m-1147 .lux-track, .lux.avery, .totl.m-1147 .lux, .parent-1.avery, .totl.m-1147 .parent-1, .gb-1.parent-0.avery, .totl.m-1147 .gb-1.parent-0 { --rgb: 178, 180, 146; --rgb-dark: 134, 136, 107; }
 
-.lux-track.raphael, .lux-track.raph, .lux-track.ben, .lux-track.loki, .lux-track.cain, .totl.m-854 .lux-track, .lux-track.gb-8, .lux.raphael, .lux.raph, .lux.ben, .lux.loki, .lux.cain, .totl.m-854 .lux, .lux.gb-8, .parent-1.raphael, .parent-1.raph, .parent-1.ben, .parent-1.loki, .parent-1.cain, .totl.m-854 .parent-1, .parent-1.gb-8 { --rgb: 149, 165, 71; --rgb-dark: 123, 143, 26; }
+.lux-track.basil, .totl.m-261 .lux-track, .lux.basil, .totl.m-261 .lux, .parent-1.basil, .totl.m-261 .parent-1, .gb-1.parent-0.basil, .totl.m-261 .gb-1.parent-0 { --rgb: 152, 158, 145; --rgb-dark: 127, 134, 118; }
 
-.lux-track.benji, .lux.benji, .parent-1.benji { --rgb: 221, 189, 128; }
+.lux-track.benji, .lux.benji, .parent-1.benji, .gb-1.parent-0.benji { --rgb: 221, 189, 128; }
 
-.lux-track.brennan, .lux-track.gb-175, .lux.brennan, .lux.gb-175, .parent-1.brennan, .parent-1.gb-175 { --rgb: 118, 132, 92; --rgb-dark: 84, 102, 52; }
+.lux-track.brennan, .lux-track.gb-175, .lux.brennan, .lux.gb-175, .parent-1.brennan, .parent-1.gb-175, .gb-1.parent-0.brennan, .gb-1.parent-0.gb-175 { --rgb: 118, 132, 92; --rgb-dark: 84, 102, 52; --postImage: url(https://64.media.tumblr.com/74095c7658b8d2d8fb78776dc86188a3/tumblr_oo8zv9JIkT1vlcymso1_500.gif); }
 
-.lux-track.bryn, .totl.m-670 .lux-track, .lux-track.gb-328, .lux.bryn, .totl.m-670 .lux, .lux.gb-328, .parent-1.bryn, .totl.m-670 .parent-1, .parent-1.gb-328 { --rgb: 155, 209, 186; --rgb-dark: 130, 198, 169; }
+.lux-track.bryn, .totl.m-670 .lux-track, .lux-track.gb-328, .lux.bryn, .totl.m-670 .lux, .lux.gb-328, .parent-1.bryn, .totl.m-670 .parent-1, .parent-1.gb-328, .gb-1.parent-0.bryn, .totl.m-670 .gb-1.parent-0, .gb-1.parent-0.gb-328 { --rgb: 155, 209, 186; --rgb-dark: 130, 198, 169; --postImage: url(https://64.media.tumblr.com/2cf6853be602a9c27a64b2878235d245/255b4de1638d9f68-e3/s1280x1920/d03354d0af439c49e5775424f098c45051d9f836.jpg); }
 
-.lux-track.cameron, .lux-track.cam, .totl.m-1146 .lux-track, .lux.cameron, .lux.cam, .totl.m-1146 .lux, .parent-1.cameron, .parent-1.cam, .totl.m-1146 .parent-1 { --rgb: 111, 121, 106; }
+.lux-track.cameron, .lux-track.cam, .totl.m-1146 .lux-track, .lux.cameron, .lux.cam, .totl.m-1146 .lux, .parent-1.cameron, .parent-1.cam, .totl.m-1146 .parent-1, .gb-1.parent-0.cameron, .gb-1.parent-0.cam, .totl.m-1146 .gb-1.parent-0 { --rgb: 111, 121, 106; }
 
-.lux-track.casper, .lux-track.cas, .lux.casper, .lux.cas, .parent-1.casper, .parent-1.cas { --rgb: 175, 132, 116; --rgb-dark: 156, 102, 82; }
+.lux-track.casper, .lux-track.cas, .lux.casper, .lux.cas, .parent-1.casper, .parent-1.cas, .gb-1.parent-0.casper, .gb-1.parent-0.cas { --rgb: 175, 132, 116; --rgb-dark: 156, 102, 82; }
 
-.lux-track.cassiopeia, .lux-track.cassie, .lux-track.gb-490, .lux.cassiopeia, .lux.cassie, .lux.gb-490, .parent-1.cassiopeia, .parent-1.cassie, .parent-1.gb-490 { --rgb: 166, 138, 172; }
+.lux-track.cassiopeia, .lux-track.cassie, .lux-track.gb-490, .lux.cassiopeia, .lux.cassie, .lux.gb-490, .parent-1.cassiopeia, .parent-1.cassie, .parent-1.gb-490, .gb-1.parent-0.cassiopeia, .gb-1.parent-0.cassie, .gb-1.parent-0.gb-490 { --rgb: 166, 138, 172; --postImage: url(https://64.media.tumblr.com/0df62c1b3fb4688c43a74907af59b146/8d21545ec67571e1-20/s1280x1920/0cc8d6a5ffc1561af18e18ef134870d075fee84f.gif); }
 
-.lux-track.catarina, .lux-track.cat, .totl.m-855 .lux-track, .lux.catarina, .lux.cat, .totl.m-855 .lux, .parent-1.catarina, .parent-1.cat, .totl.m-855 .parent-1 { --rgb: 202, 143, 126; --rgb-dark: 189, 116, 94; }
+.lux-track.catarina, .lux-track.cat, .totl.m-855 .lux-track, .lux.catarina, .lux.cat, .totl.m-855 .lux, .parent-1.catarina, .parent-1.cat, .totl.m-855 .parent-1, .gb-1.parent-0.catarina, .gb-1.parent-0.cat, .totl.m-855 .gb-1.parent-0 { --rgb: 202, 143, 126; --rgb-dark: 189, 116, 94; }
 
-.lux-track.christopher, .lux-track.chris, .lux-track.nikola, .lux-track.tesla, .lux-track.gb-271, .lux.christopher, .lux.chris, .lux.nikola, .lux.tesla, .lux.gb-271, .parent-1.christopher, .parent-1.chris, .parent-1.nikola, .parent-1.tesla, .parent-1.gb-271 { --rgb: 104,118,139; --rgb-dark: 67, 84, 111; }
+.lux-track.christopher, .lux-track.chris, .lux-track.nikola, .lux-track.tesla, .lux-track.gb-271, .lux.christopher, .lux.chris, .lux.nikola, .lux.tesla, .lux.gb-271, .parent-1.christopher, .parent-1.chris, .parent-1.nikola, .parent-1.tesla, .parent-1.gb-271, .gb-1.parent-0.christopher, .gb-1.parent-0.chris, .gb-1.parent-0.nikola, .gb-1.parent-0.tesla, .gb-1.parent-0.gb-271 { --rgb: 104,118,139; --rgb-dark: 67, 84, 111; --postImage: url(https://64.media.tumblr.com/9ac89f48e2f61ed892fcefb1ea3537e7/tumblr_p2mleuhBzQ1vz2ghao7_250.gif); }
 
-.lux-track.connor, .totl.m-57 .lux-track, .lux.connor, .totl.m-57 .lux, .parent-1.connor, .totl.m-57 .parent-1 { --rgb: 194, 175, 129; --rgb-dark: 179, 155, 98; }
+.lux-track.connor, .totl.m-57 .lux-track, .lux.connor, .totl.m-57 .lux, .parent-1.connor, .totl.m-57 .parent-1, .gb-1.parent-0.connor, .totl.m-57 .gb-1.parent-0 { --rgb: 194, 175, 129; --rgb-dark: 179, 155, 98; }
 
-.lux-track.cordelia, .lux-track.corey, .lux.cordelia, .lux.corey, .parent-1.cordelia, .parent-1.corey { --rgb: 90, 79, 111; --rgb-dark: 49, 36, 76; }
+.lux-track.cordelia, .lux-track.corey, .lux.cordelia, .lux.corey, .parent-1.cordelia, .parent-1.corey, .gb-1.parent-0.cordelia, .gb-1.parent-0.corey { --rgb: 90, 79, 111; --rgb-dark: 49, 36, 76; }
 
-.lux-track.cynbel, .lux-track.cyn, .lux-track.gb-17, .lux.cynbel, .lux.cyn, .lux.gb-17, .parent-1.cynbel, .parent-1.cyn, .parent-1.gb-17 { --rgb: 101, 63, 63; --rgb-dark: 63, 15, 15; }
+.lux-track.cynbel, .lux-track.cyn, .lux-track.gb-17, .lux.cynbel, .lux.cyn, .lux.gb-17, .parent-1.cynbel, .parent-1.cyn, .parent-1.gb-17, .gb-1.parent-0.cynbel, .gb-1.parent-0.cyn, .gb-1.parent-0.gb-17 { --rgb: 101, 63, 63; --rgb-dark: 63, 15, 15; --postImage: url(https://64.media.tumblr.com/618e01719add1d676636deb576891574/f104b885346aef95-1d/s1280x1920/e7eb102d72bc038f97db53eb8eb2c2c814fba800.jpg); }
 
-.lux-track.dalton, .lux.dalton, .parent-1.dalton { --rgb: 129, 126, 141; --rgb-dark: 98, 94, 113; }
+.lux-track.dalton, .lux.dalton, .parent-1.dalton, .gb-1.parent-0.dalton { --rgb: 129, 126, 141; --rgb-dark: 98, 94, 113; }
 
-.lux-track.damian, .lux-track.gb-226, .lux.damian, .lux.gb-226, .parent-1.damian, .parent-1.gb-226 { --rgb: 119,132,162; --rgb-dark: 119,132,162; }
+.lux-track.damian, .lux-track.gb-226, .lux.damian, .lux.gb-226, .parent-1.damian, .parent-1.gb-226, .gb-1.parent-0.damian, .gb-1.parent-0.gb-226 { --rgb: 119,132,162; --rgb-dark: 119,132,162; --postImage: url(https://64.media.tumblr.com/af6c43a7a955a2206317958b4ba1a021/27d4a70554b926f7-80/s1280x1920/f78965d14a06e59673d040dd85de5b85779ab6d0.jpg); }
 
-.lux-track.daniel, .lux-track.dan, .lux.daniel, .lux.dan, .parent-1.daniel, .parent-1.dan { --rgb: 168, 168, 168; }
+.lux-track.daniel, .lux-track.dan, .lux.daniel, .lux.dan, .parent-1.daniel, .parent-1.dan, .gb-1.parent-0.daniel, .gb-1.parent-0.dan { --rgb: 168, 168, 168; }
 
-.lux-track.darcy, .totl.m-395 .lux-track, .lux.darcy, .totl.m-395 .lux, .parent-1.darcy, .totl.m-395 .parent-1 { --rgb: 187, 160, 197; --rgb-dark: 171, 137, 183; }
+.lux-track.darcy, .totl.m-395 .lux-track, .lux.darcy, .totl.m-395 .lux, .parent-1.darcy, .totl.m-395 .parent-1, .gb-1.parent-0.darcy, .totl.m-395 .gb-1.parent-0 { --rgb: 187, 160, 197; --rgb-dark: 171, 137, 183; }
 
-.lux-track.diana, .totl.m-906 .lux-track, .lux.diana, .totl.m-906 .lux, .parent-1.diana, .totl.m-906 .parent-1 { --rgb: 106, 109, 143; --rgb-dark: 69, 73, 115; }
+.lux-track.diana, .totl.m-906 .lux-track, .lux.diana, .totl.m-906 .lux, .parent-1.diana, .totl.m-906 .parent-1, .gb-1.parent-0.diana, .totl.m-906 .gb-1.parent-0 { --rgb: 106, 109, 143; --rgb-dark: 69, 73, 115; }
 
-.lux-track.diego, .totl.m-1578 .lux-track, .lux.diego, .totl.m-1578 .lux, .parent-1.diego, .totl.m-1578 .parent-1 { --rgb: 87, 116, 147; }
+.lux-track.diego, .totl.m-1578 .lux-track, .lux.diego, .totl.m-1578 .lux, .parent-1.diego, .totl.m-1578 .parent-1, .gb-1.parent-0.diego, .totl.m-1578 .gb-1.parent-0 { --rgb: 87, 116, 147; }
 
-.lux-track.draco, .totl.m-408 .lux-track, .lux.draco, .totl.m-408 .lux, .parent-1.draco, .totl.m-408 .parent-1 { --rgb: 71, 88, 66; --rgb-dark: 26, 47, 19; }
+.lux-track.draco, .totl.m-408 .lux-track, .lux.draco, .totl.m-408 .lux, .parent-1.draco, .totl.m-408 .parent-1, .gb-1.parent-0.draco, .totl.m-408 .gb-1.parent-0 { --rgb: 71, 88, 66; --rgb-dark: 26, 47, 19; }
 
-.lux-track.duncan, .lux-track.duck, .totl.m-58 .lux-track, .lux-track.gb-329, .lux.duncan, .lux.duck, .totl.m-58 .lux, .lux.gb-329, .parent-1.duncan, .parent-1.duck, .totl.m-58 .parent-1, .parent-1.gb-329 { --rgb: 153, 126, 143; --rgb-dark: 128, 94, 115; }
+.lux-track.duncan, .lux-track.duck, .totl.m-58 .lux-track, .lux-track.gb-329, .lux.duncan, .lux.duck, .totl.m-58 .lux, .lux.gb-329, .parent-1.duncan, .parent-1.duck, .totl.m-58 .parent-1, .parent-1.gb-329, .gb-1.parent-0.duncan, .gb-1.parent-0.duck, .totl.m-58 .gb-1.parent-0, .gb-1.parent-0.gb-329 { --rgb: 153, 126, 143; --rgb-dark: 128, 94, 115; --postImage: url(https://64.media.tumblr.com/d793bd29255a4d83e854080a9194c968/tumblr_ph2abyvj0i1xz9gf8o6_500.png); }
 
-.lux-track.elias, .lux.elias, .parent-1.elias { --rgb: 99, 99, 99; --rgb-dark: 60, 60, 60; }
+.lux-track.elias, .lux.elias, .parent-1.elias, .gb-1.parent-0.elias { --rgb: 99, 99, 99; --rgb-dark: 60, 60, 60; }
 
-.lux-track.ellis, .totl.m-705 .lux-track, .lux.ellis, .totl.m-705 .lux, .parent-1.ellis, .totl.m-705 .parent-1 { --rgb: 232, 151, 127; --rgb-dark: 227, 126, 95; }
+.lux-track.ellis, .totl.m-705 .lux-track, .lux.ellis, .totl.m-705 .lux, .parent-1.ellis, .totl.m-705 .parent-1, .gb-1.parent-0.ellis, .totl.m-705 .gb-1.parent-0 { --rgb: 232, 151, 127; --rgb-dark: 227, 126, 95; }
 
-.lux-track.emmalina, .lux-track.emma, .totl.m-273 .lux-track, .lux-track.gb-593, .lux.emmalina, .lux.emma, .totl.m-273 .lux, .lux.gb-593, .parent-1.emmalina, .parent-1.emma, .totl.m-273 .parent-1, .parent-1.gb-593 { --rgb: 223, 186, 199; --rgb-dark: 215, 169, 186; }
+.lux-track.emmalina, .lux-track.emma, .totl.m-273 .lux-track, .lux-track.gb-593, .lux.emmalina, .lux.emma, .totl.m-273 .lux, .lux.gb-593, .parent-1.emmalina, .parent-1.emma, .totl.m-273 .parent-1, .parent-1.gb-593, .gb-1.parent-0.emmalina, .gb-1.parent-0.emma, .totl.m-273 .gb-1.parent-0, .gb-1.parent-0.gb-593 { --rgb: 223, 186, 199; --rgb-dark: 215, 169, 186; --postImage: url(https://64.media.tumblr.com/dcc69eeae4787614c6b9baf63b6f509b/1890138647412025-f3/s1280x1920/dd9b164fd29668af6c148403ff829d7cd7ae1645.jpg); }
 
-.lux-track.evangeline, .lux-track.evan, .totl.m-317 .lux-track, .lux-track.gb-418, .lux.evangeline, .lux.evan, .totl.m-317 .lux, .lux.gb-418, .parent-1.evangeline, .parent-1.evan, .totl.m-317 .parent-1, .parent-1.gb-418 { --rgb: 115, 69, 51; --rgb-dark: 81, 23, 0; }
+.lux-track.evangeline, .lux-track.evan, .totl.m-317 .lux-track, .lux-track.gb-418, .lux.evangeline, .lux.evan, .totl.m-317 .lux, .lux.gb-418, .parent-1.evangeline, .parent-1.evan, .totl.m-317 .parent-1, .parent-1.gb-418, .gb-1.parent-0.evangeline, .gb-1.parent-0.evan, .totl.m-317 .gb-1.parent-0, .gb-1.parent-0.gb-418 { --rgb: 115, 69, 51; --rgb-dark: 81, 23, 0; }
 
-.lux-track.everest, .totl.m-1577 .lux-track, .lux.everest, .totl.m-1577 .lux, .parent-1.everest, .totl.m-1577 .parent-1 { --rgb: 77, 26, 26; }
+.lux-track.everest, .totl.m-1577 .lux-track, .lux.everest, .totl.m-1577 .lux, .parent-1.everest, .totl.m-1577 .parent-1, .gb-1.parent-0.everest, .totl.m-1577 .gb-1.parent-0 { --rgb: 77, 26, 26; }
 
-.lux-track.felicity, .lux-track.fee, .totl.m-588 .lux-track, .lux.felicity, .lux.fee, .totl.m-588 .lux, .parent-1.felicity, .parent-1.fee, .totl.m-588 .parent-1 { --rgb: 159, 120, 123; --rgb-dark: 136, 87, 91; }
+.lux-track.felicity, .lux-track.fee, .totl.m-588 .lux-track, .lux.felicity, .lux.fee, .totl.m-588 .lux, .parent-1.felicity, .parent-1.fee, .totl.m-588 .parent-1, .gb-1.parent-0.felicity, .gb-1.parent-0.fee, .totl.m-588 .gb-1.parent-0 { --rgb: 159, 120, 123; --rgb-dark: 136, 87, 91; }
 
-.lux-track.gabriel, .lux-track.gabe, .lux.gabriel, .lux.gabe, .parent-1.gabriel, .parent-1.gabe { --rgb: 167, 182, 154; --rgb-dark: 146, 164, 129; }
+.lux-track.gabriel, .lux-track.gabe, .lux.gabriel, .lux.gabe, .parent-1.gabriel, .parent-1.gabe, .gb-1.parent-0.gabriel, .gb-1.parent-0.gabe { --rgb: 167, 182, 154; --rgb-dark: 146, 164, 129; }
 
-.lux-track.gavin, .totl.m-901 .lux-track, .lux.gavin, .totl.m-901 .lux, .parent-1.gavin, .totl.m-901 .parent-1 { --rgb: 141, 163, 141; --rgb-dark: 113, 140, 113; }
+.lux-track.gavin, .totl.m-901 .lux-track, .lux.gavin, .totl.m-901 .lux, .parent-1.gavin, .totl.m-901 .parent-1, .gb-1.parent-0.gavin, .totl.m-901 .gb-1.parent-0 { --rgb: 141, 163, 141; --rgb-dark: 113, 140, 113; }
 
-.lux-track.genevieve, .lux-track.gen, .totl.m-587 .lux-track, .lux.genevieve, .lux.gen, .totl.m-587 .lux, .parent-1.genevieve, .parent-1.gen, .totl.m-587 .parent-1 { --rgb: 202, 182, 200; --rgb-dark: 145, 92, 139; }
+.lux-track.genevieve, .lux-track.gen, .totl.m-587 .lux-track, .lux.genevieve, .lux.gen, .totl.m-587 .lux, .parent-1.genevieve, .parent-1.gen, .totl.m-587 .parent-1, .gb-1.parent-0.genevieve, .gb-1.parent-0.gen, .totl.m-587 .gb-1.parent-0 { --rgb: 202, 182, 200; --rgb-dark: 145, 92, 139; }
 
-.lux-track.grace, .totl.m-1565 .lux-track, .lux.grace, .totl.m-1565 .lux, .parent-1.grace, .totl.m-1565 .parent-1 { --rgb: 204, 176, 176; }
+.lux-track.grace, .totl.m-1565 .lux-track, .lux.grace, .totl.m-1565 .lux, .parent-1.grace, .totl.m-1565 .parent-1, .gb-1.parent-0.grace, .totl.m-1565 .gb-1.parent-0 { --rgb: 204, 176, 176; }
 
-.lux-track.graeme, .lux.graeme, .parent-1.graeme { --rgb: 206, 174, 97; }
+.lux-track.graeme, .lux.graeme, .parent-1.graeme, .gb-1.parent-0.graeme { --rgb: 206, 174, 97; }
 
-.lux-track.griffin, .totl.m-1356 .lux-track, .lux.griffin, .totl.m-1356 .lux, .parent-1.griffin, .totl.m-1356 .parent-1 { --rgb: 146, 158, 159; }
+.lux-track.griffin, .totl.m-1356 .lux-track, .lux.griffin, .totl.m-1356 .lux, .parent-1.griffin, .totl.m-1356 .parent-1, .gb-1.parent-0.griffin, .totl.m-1356 .gb-1.parent-0 { --rgb: 146, 158, 159; }
 
-.lux-track.hallie, .totl.m-836 .lux-track, .lux.hallie, .totl.m-836 .lux, .parent-1.hallie, .totl.m-836 .parent-1 { --rgb: 184, 144, 158; --rgb-dark: 167, 117, 134; }
+.lux-track.hallie, .totl.m-836 .lux-track, .lux.hallie, .totl.m-836 .lux, .parent-1.hallie, .totl.m-836 .parent-1, .gb-1.parent-0.hallie, .totl.m-836 .gb-1.parent-0 { --rgb: 184, 144, 158; --rgb-dark: 167, 117, 134; }
 
-.lux-track.harley, .lux-track.gb-611, .lux.harley, .lux.gb-611, .parent-1.harley, .parent-1.gb-611 { --rgb: 200, 176, 191; --rgb-dark: 187, 157, 175; }
+.lux-track.hanne, .lux-track.gb-656, .lux.hanne, .lux.gb-656, .parent-1.hanne, .parent-1.gb-656, .gb-1.parent-0.hanne, .gb-1.parent-0.gb-656 { --rgb: 111, 91, 130; --rgb-dark: 90, 74, 105; --postImage: url(https://64.media.tumblr.com/66bb4369c1afa72ac277e68ed07c7fa2/b9ea0d22c7c30737-eb/s1280x1920/8c196ca31e9bd426ffb8c175552b0e40be7e6df8.jpg); }
 
-.lux-track.harriet, .lux-track.harry, .lux-track.helen, .lux-track.gb-263, .lux.harriet, .lux.harry, .lux.helen, .lux.gb-263, .parent-1.harriet, .parent-1.harry, .parent-1.helen, .parent-1.gb-263 { --rgb: 208,183,190; }
+.lux-track.harley, .lux-track.gb-611, .lux.harley, .lux.gb-611, .parent-1.harley, .parent-1.gb-611, .gb-1.parent-0.harley, .gb-1.parent-0.gb-611 { --rgb: 200, 176, 191; --rgb-dark: 187, 157, 175; --postImage: url(https://64.media.tumblr.com/c1003be3f2640da516e73f8e30139f97/a2b0567dca8400b1-96/s540x810/97483a753024434459733feb4d8e2e817cb05348.gif); }
 
-.lux-track.hayden, .lux-track.hayd, .lux-track.gb-246, .lux.hayden, .lux.hayd, .lux.gb-246, .parent-1.hayden, .parent-1.hayd, .parent-1.gb-246 { --rgb: 115, 126, 103; --rgb-dark: 81, 94, 65; }
+.lux-track.harriet, .lux-track.harry, .lux-track.helen, .lux-track.gb-263, .lux.harriet, .lux.harry, .lux.helen, .lux.gb-263, .parent-1.harriet, .parent-1.harry, .parent-1.helen, .parent-1.gb-263, .gb-1.parent-0.harriet, .gb-1.parent-0.harry, .gb-1.parent-0.helen, .gb-1.parent-0.gb-263 { --rgb: 208,183,190; --postImage: url(https://64.media.tumblr.com/2ce76781ffb02920923703d0fef77be1/dc693759869c3a18-ad/s400x600/b5f65ed2788462e505e45b44e7e603db7b121b6e.gif); }
 
-.lux-track.heiko, .totl.m-750 .lux-track, .lux.heiko, .totl.m-750 .lux, .parent-1.heiko, .totl.m-750 .parent-1 { --rgb: 197, 187, 181; --rgb-dark: 183, 170, 163; }
+.lux-track.hayden, .lux-track.hayd, .lux-track.gb-246, .lux.hayden, .lux.hayd, .lux.gb-246, .parent-1.hayden, .parent-1.hayd, .parent-1.gb-246, .gb-1.parent-0.hayden, .gb-1.parent-0.hayd, .gb-1.parent-0.gb-246 { --rgb: 115, 126, 103; --rgb-dark: 81, 94, 65; --postImage: url(https://64.media.tumblr.com/ad387123c3e518aa9e150bbcf1e15516/d11abbca8359c565-51/s640x960/b1cf93f0046344b9d0c85a650242094db89eba65.jpg); }
 
-.lux-track.hiroki, .lux-track.hiro, .totl.m-1088 .lux-track, .lux.hiroki, .lux.hiro, .totl.m-1088 .lux, .parent-1.hiroki, .parent-1.hiro, .totl.m-1088 .parent-1 { --rgb: 146, 183, 188; --rgb-dark: 119, 165, 172; }
+.lux-track.heiko, .totl.m-750 .lux-track, .lux.heiko, .totl.m-750 .lux, .parent-1.heiko, .totl.m-750 .parent-1, .gb-1.parent-0.heiko, .totl.m-750 .gb-1.parent-0 { --rgb: 197, 187, 181; --rgb-dark: 183, 170, 163; }
 
-.lux-track.holly, .totl.m-1354 .lux-track, .lux-track.gb-115, .lux.holly, .totl.m-1354 .lux, .lux.gb-115, .parent-1.holly, .totl.m-1354 .parent-1, .parent-1.gb-115 { --rgb: 183,133,79; }
+.lux-track.hiroki, .lux-track.hiro, .totl.m-1088 .lux-track, .lux.hiroki, .lux.hiro, .totl.m-1088 .lux, .parent-1.hiroki, .parent-1.hiro, .totl.m-1088 .parent-1, .gb-1.parent-0.hiroki, .gb-1.parent-0.hiro, .totl.m-1088 .gb-1.parent-0 { --rgb: 146, 183, 188; --rgb-dark: 119, 165, 172; }
 
-.lux-track.irina, .lux-track.iri, .totl.m-1145 .lux-track, .lux.irina, .lux.iri, .totl.m-1145 .lux, .parent-1.irina, .parent-1.iri, .totl.m-1145 .parent-1 { --rgb: 17, 74, 108; }
+.lux-track.holly, .totl.m-1354 .lux-track, .lux-track.gb-115, .lux.holly, .totl.m-1354 .lux, .lux.gb-115, .parent-1.holly, .totl.m-1354 .parent-1, .parent-1.gb-115, .gb-1.parent-0.holly, .totl.m-1354 .gb-1.parent-0, .gb-1.parent-0.gb-115 { --rgb: 183,133,79; --postImage: url(https://64.media.tumblr.com/93067679a02efe45781a7b31a84ec427/91e599f7e3b9f80f-d1/s250x400/91f2a4a8e22504b7a939a0f9cc2676d2442d5878.gif); }
 
-.lux-track.isaiah, .lux-track.gb-117, .lux.isaiah, .lux.gb-117, .parent-1.isaiah, .parent-1.gb-117 { --rgb: 135,151,148; }
+.lux-track.irina, .lux-track.iri, .totl.m-1145 .lux-track, .lux.irina, .lux.iri, .totl.m-1145 .lux, .parent-1.irina, .parent-1.iri, .totl.m-1145 .parent-1, .gb-1.parent-0.irina, .gb-1.parent-0.iri, .totl.m-1145 .gb-1.parent-0 { --rgb: 17, 74, 108; }
 
-.lux-track.isobel, .lux-track.isa, .lux-track.belle, .lux-track.gb-153, .lux.isobel, .lux.isa, .lux.belle, .lux.gb-153, .parent-1.isobel, .parent-1.isa, .parent-1.belle, .parent-1.gb-153 { --rgb: 213, 188, 204; }
+.lux-track.isaiah, .lux-track.gb-117, .lux.isaiah, .lux.gb-117, .parent-1.isaiah, .parent-1.gb-117, .gb-1.parent-0.isaiah, .gb-1.parent-0.gb-117 { --rgb: 135,151,148; --postImage: url(https://64.media.tumblr.com/c0322baa9058f1738f974cddb2150d9c/d8c88430f183597b-e6/s1280x1920/7b83f3c9077c9b3e2c68de2c1278e3f2981bcf3e.jpg); }
 
-.lux-track.jasper, .lux-track.jazz, .totl.m-264 .lux-track, .lux.jasper, .lux.jazz, .totl.m-264 .lux, .parent-1.jasper, .parent-1.jazz, .totl.m-264 .parent-1 { --rgb: 171, 147, 159; --rgb-dark: 150, 121, 136; }
+.lux-track.isobel, .lux-track.isa, .lux-track.belle, .lux-track.gb-153, .lux.isobel, .lux.isa, .lux.belle, .lux.gb-153, .parent-1.isobel, .parent-1.isa, .parent-1.belle, .parent-1.gb-153, .gb-1.parent-0.isobel, .gb-1.parent-0.isa, .gb-1.parent-0.belle, .gb-1.parent-0.gb-153 { --rgb: 213, 188, 204; --postImage: url(https://64.media.tumblr.com/eb0dd5b6ec04ae4812b4e22f878ad9bc/acb9348dbf8cb67a-75/s1280x1920/33c8f6552e96ae7d308fe48e61cf74f6b97feef2.png); }
 
-.lux-track.jesse, .lux-track.gb-79, .lux.jesse, .lux.gb-79, .parent-1.jesse, .parent-1.gb-79 { --rgb: 210, 193, 166; }
+.lux-track.jasper, .lux-track.jazz, .totl.m-264 .lux-track, .lux.jasper, .lux.jazz, .totl.m-264 .lux, .parent-1.jasper, .parent-1.jazz, .totl.m-264 .parent-1, .gb-1.parent-0.jasper, .gb-1.parent-0.jazz, .totl.m-264 .gb-1.parent-0 { --rgb: 171, 147, 159; --rgb-dark: 150, 121, 136; }
 
-.lux-track.jude, .lux-track.gb-429, .lux.jude, .lux.gb-429, .parent-1.jude, .parent-1.gb-429 { --rgb: 204, 210, 196; }
+.lux-track.jesse, .lux-track.gb-79, .lux.jesse, .lux.gb-79, .parent-1.jesse, .parent-1.gb-79, .gb-1.parent-0.jesse, .gb-1.parent-0.gb-79 { --rgb: 210, 193, 166; --postImage: url(https://64.media.tumblr.com/a2ef7dbf678361d0c594fb7e8f1c5833/af990ad6c68dd970-ff/s1280x1920/93d23a77350f93249a804acde644987bf29c1ef6.jpg); }
 
-.lux-track.kit, .lux.kit, .parent-1.kit { --rgb: 217, 195, 167; --rgb-dark: 208, 181, 146; }
+.lux-track.jude, .lux-track.gb-429, .lux.jude, .lux.gb-429, .parent-1.jude, .parent-1.gb-429, .gb-1.parent-0.jude, .gb-1.parent-0.gb-429 { --rgb: 204, 210, 196; --postImage: url(https://64.media.tumblr.com/f9ffa99896dd22412c1ba2fa8744ee60/dba77a4021045760-8d/s1280x1920/7a2b12329dc0efbef0907a75a01595b36a82c3db.gif); }
 
-.lux-track.kristopher, .lux-track.kris, .totl.m-1324 .lux-track, .lux.kristopher, .lux.kris, .totl.m-1324 .lux, .parent-1.kristopher, .parent-1.kris, .totl.m-1324 .parent-1 { --rgb: 160, 181, 162; }
+.lux-track.kit, .lux.kit, .parent-1.kit, .gb-1.parent-0.kit { --rgb: 217, 195, 167; --rgb-dark: 208, 181, 146; }
 
-.lux-track.lance, .totl.m-1355 .lux-track, .lux.lance, .totl.m-1355 .lux, .parent-1.lance, .totl.m-1355 .parent-1 { --rgb: 213, 181, 105; }
+.lux-track.kristopher, .lux-track.kris, .totl.m-1324 .lux-track, .lux.kristopher, .lux.kris, .totl.m-1324 .lux, .parent-1.kristopher, .parent-1.kris, .totl.m-1324 .parent-1, .gb-1.parent-0.kristopher, .gb-1.parent-0.kris, .totl.m-1324 .gb-1.parent-0 { --rgb: 160, 181, 162; }
 
-.lux-track.lincoln, .lux-track.link, .lux-track.gb-430, .lux.lincoln, .lux.link, .lux.gb-430, .parent-1.lincoln, .parent-1.link, .parent-1.gb-430 { --rgb: 81, 105, 130; }
+.lux-track.lance, .totl.m-1355 .lux-track, .lux.lance, .totl.m-1355 .lux, .parent-1.lance, .totl.m-1355 .parent-1, .gb-1.parent-0.lance, .totl.m-1355 .gb-1.parent-0 { --rgb: 213, 181, 105; }
 
-.lux-track.lorelei, .lux-track.lore, .lux.lorelei, .lux.lore, .parent-1.lorelei, .parent-1.lore { --rgb: 191, 117, 81; }
+.lux-track.lincoln, .lux-track.link, .lux-track.gb-430, .lux.lincoln, .lux.link, .lux.gb-430, .parent-1.lincoln, .parent-1.link, .parent-1.gb-430, .gb-1.parent-0.lincoln, .gb-1.parent-0.link, .gb-1.parent-0.gb-430 { --rgb: 81, 105, 130; --postImage: url(https://64.media.tumblr.com/75bff6e4bd2f89f8efc5ce86554ca76b/4c1713a289ca5989-90/s1280x1920/83f2f48a661e956186a9389a7eedc5233b48d40d.jpg); --postImagePosition: top; }
 
-.lux-track.lottie, .totl.m-315 .lux-track, .lux.lottie, .totl.m-315 .lux, .parent-1.lottie, .totl.m-315 .parent-1 { --rgb: 212, 161, 168; --rgb-dark: 202, 138, 147; }
+.lux-track.lorelei, .lux-track.lore, .lux.lorelei, .lux.lore, .parent-1.lorelei, .parent-1.lore, .gb-1.parent-0.lorelei, .gb-1.parent-0.lore { --rgb: 191, 117, 81; }
 
-.lux-track.luisa, .lux-track.lou, .lux.luisa, .lux.lou, .parent-1.luisa, .parent-1.lou { --rgb: 183, 133, 79; --rgb-dark: 166, 103, 36; }
+.lux-track.lottie, .totl.m-315 .lux-track, .lux.lottie, .totl.m-315 .lux, .parent-1.lottie, .totl.m-315 .parent-1, .gb-1.parent-0.lottie, .totl.m-315 .gb-1.parent-0 { --rgb: 212, 161, 168; --rgb-dark: 202, 138, 147; }
 
-.lux-track.magnolia, .lux-track.maggie, .totl.m-56 .lux-track, .lux.magnolia, .lux.maggie, .totl.m-56 .lux, .parent-1.magnolia, .parent-1.maggie, .totl.m-56 .parent-1 { --rgb: 107, 126, 103; --rgb-dark: 70, 94, 66; }
+.lux-track.luisa, .lux-track.lou, .lux.luisa, .lux.lou, .parent-1.luisa, .parent-1.lou, .gb-1.parent-0.luisa, .gb-1.parent-0.lou { --rgb: 183, 133, 79; --rgb-dark: 166, 103, 36; }
 
-.lux-track.malcolm, .lux-track.mal, .totl.m-853 .lux-track, .lux-track.gb-80, .lux.malcolm, .lux.mal, .totl.m-853 .lux, .lux.gb-80, .parent-1.malcolm, .parent-1.mal, .totl.m-853 .parent-1, .parent-1.gb-80 { --rgb: 99, 92, 92; --rgb-dark: 60, 52, 52; }
+.lux-track.magnolia, .lux-track.maggie, .totl.m-56 .lux-track, .lux.magnolia, .lux.maggie, .totl.m-56 .lux, .parent-1.magnolia, .parent-1.maggie, .totl.m-56 .parent-1, .gb-1.parent-0.magnolia, .gb-1.parent-0.maggie, .totl.m-56 .gb-1.parent-0 { --rgb: 107, 126, 103; --rgb-dark: 70, 94, 66; }
 
-.lux-track.malik, .lux.malik, .parent-1.malik { --rgb: 80, 94, 126; --rgb-dark: 37, 54, 94; }
+.lux-track.malcolm, .lux-track.mal, .totl.m-853 .lux-track, .lux-track.gb-80, .lux.malcolm, .lux.mal, .totl.m-853 .lux, .lux.gb-80, .parent-1.malcolm, .parent-1.mal, .totl.m-853 .parent-1, .parent-1.gb-80, .gb-1.parent-0.malcolm, .gb-1.parent-0.mal, .totl.m-853 .gb-1.parent-0, .gb-1.parent-0.gb-80 { --rgb: 99, 92, 92; --rgb-dark: 60, 52, 52; --postImage: url(https://64.media.tumblr.com/b6418aa64cf9ed7c5a5d83acb5206f43/tumblr_p3wz67wAPP1vz2ghao4_640.jpg); }
 
-.lux-track.marica, .lux-track.mari, .totl.m-1089 .lux-track, .lux.marica, .lux.mari, .totl.m-1089 .lux, .parent-1.marica, .parent-1.mari, .totl.m-1089 .parent-1 { --rgb: 175, 112, 106; --rgb-dark: 155, 77, 69; }
+.lux-track.malik, .lux.malik, .parent-1.malik, .gb-1.parent-0.malik { --rgb: 80, 94, 126; --rgb-dark: 37, 54, 94; }
 
-.lux-track.marlowe, .lux-track.mar, .lux-track.gb-69, .lux.marlowe, .lux.mar, .lux.gb-69, .parent-1.marlowe, .parent-1.mar, .parent-1.gb-69 { --rgb: 181, 196, 202; --rgb-dark: 133, 147, 153; }
+.lux-track.marica, .lux-track.mari, .totl.m-1089 .lux-track, .lux.marica, .lux.mari, .totl.m-1089 .lux, .parent-1.marica, .parent-1.mari, .totl.m-1089 .parent-1, .gb-1.parent-0.marica, .gb-1.parent-0.mari, .totl.m-1089 .gb-1.parent-0 { --rgb: 175, 112, 106; --rgb-dark: 155, 77, 69; }
 
-.lux-track.maverick, .lux-track.mav, .lux.maverick, .lux.mav, .parent-1.maverick, .parent-1.mav { --rgb: 185, 135, 129; --rgb-dark: 168, 105, 98; }
+.lux-track.marlowe, .lux-track.mar, .lux-track.gb-69, .lux.marlowe, .lux.mar, .lux.gb-69, .parent-1.marlowe, .parent-1.mar, .parent-1.gb-69, .gb-1.parent-0.marlowe, .gb-1.parent-0.mar, .gb-1.parent-0.gb-69 { --rgb: 181, 196, 202; --rgb-dark: 133, 147, 153; --postImage: url(https://64.media.tumblr.com/138253abd33f1eb8f0901eea866e701b/81225a0a408d6181-a0/s250x400/eaf7782a851d75c249460b724e9a4b51520c83ee.gif); }
 
-.lux-track.milo, .totl.m-112 .lux-track, .lux.milo, .totl.m-112 .lux, .parent-1.milo, .totl.m-112 .parent-1 { --rgb: 220, 163, 147; --rgb-dark: 212, 141, 121; }
+.lux-track.maverick, .lux-track.mav, .lux.maverick, .lux.mav, .parent-1.maverick, .parent-1.mav, .gb-1.parent-0.maverick, .gb-1.parent-0.mav { --rgb: 185, 135, 129; --rgb-dark: 168, 105, 98; }
 
-.lux-track.montana, .lux-track.monty, .totl.m-59 .lux-track, .lux.montana, .lux.monty, .totl.m-59 .lux, .parent-1.montana, .parent-1.monty, .totl.m-59 .parent-1 { --rgb: 135, 151, 148; --rgb-dark: 106, 125, 122; }
+.lux-track.michel, .lux-track.gb-626, .lux.michel, .lux.gb-626, .parent-1.michel, .parent-1.gb-626, .gb-1.parent-0.michel, .gb-1.parent-0.gb-626 { --postImage: url(https://64.media.tumblr.com/c664346c3755d43f2ba293a319b0636a/032c429b9900fe2a-d3/s1280x1920/78305b774ef065304f67906cd0117189608b5243.jpg); }
 
-.lux-track.morgan, .lux-track.gb-70, .lux.morgan, .lux.gb-70, .parent-1.morgan, .parent-1.gb-70 { --rgb: 151, 151, 171; --rgb-dark: 126, 125, 150; }
+.lux-track.milo, .totl.m-112 .lux-track, .lux.milo, .totl.m-112 .lux, .parent-1.milo, .totl.m-112 .parent-1, .gb-1.parent-0.milo, .totl.m-112 .gb-1.parent-0 { --rgb: 220, 163, 147; --rgb-dark: 212, 141, 121; }
 
-.lux-track.nayara, .lux-track.naya, .totl.m-905 .lux-track, .lux.nayara, .lux.naya, .totl.m-905 .lux, .parent-1.nayara, .parent-1.naya, .totl.m-905 .parent-1 { --rgb: 187, 118, 131; --rgb-dark: 170, 84, 100; }
+.lux-track.montana, .lux-track.monty, .totl.m-59 .lux-track, .lux.montana, .lux.monty, .totl.m-59 .lux, .parent-1.montana, .parent-1.monty, .totl.m-59 .parent-1, .gb-1.parent-0.montana, .gb-1.parent-0.monty, .totl.m-59 .gb-1.parent-0 { --rgb: 135, 151, 148; --rgb-dark: 106, 125, 122; }
 
-.lux-track.nikolas, .lux-track.nik, .lux-track.niko, .totl.m-54 .lux-track, .lux-track.gb-3, .lux.nikolas, .lux.nik, .lux.niko, .totl.m-54 .lux, .lux.gb-3, .parent-1.nikolas, .parent-1.nik, .parent-1.niko, .totl.m-54 .parent-1, .parent-1.gb-3 { --rgb: 142, 173, 179; --rgb-dark: 114, 153, 160; }
+.lux-track.morgan, .lux-track.gb-70, .lux.morgan, .lux.gb-70, .parent-1.morgan, .parent-1.gb-70, .gb-1.parent-0.morgan, .gb-1.parent-0.gb-70 { --rgb: 151, 151, 171; --rgb-dark: 126, 125, 150; --postImage: url(https://64.media.tumblr.com/49246853b03feeea03a5bbd000013493/de6a6b86eb223447-f2/s500x750/1cca94b1f3e940237626312fe485652aae8052b2.gif); --postImagePosition: left; }
 
-.lux-track.nimue, .lux-track.nim, .totl.m-902 .lux-track, .lux.nimue, .lux.nim, .totl.m-902 .lux, .parent-1.nimue, .parent-1.nim, .totl.m-902 .parent-1 { --rgb: 191, 177, 188; --rgb-dark: 176, 158, 172; }
+.lux-track.nayara, .lux-track.naya, .totl.m-905 .lux-track, .lux.nayara, .lux.naya, .totl.m-905 .lux, .parent-1.nayara, .parent-1.naya, .totl.m-905 .parent-1, .gb-1.parent-0.nayara, .gb-1.parent-0.naya, .totl.m-905 .gb-1.parent-0 { --rgb: 187, 118, 131; --rgb-dark: 170, 84, 100; }
 
-.lux-track.noah, .totl.m-314 .lux-track, .lux.noah, .totl.m-314 .lux, .parent-1.noah, .totl.m-314 .parent-1 { --rgb: 155, 167, 142; --rgb-dark: 130, 146, 114; }
+.lux-track.nikolas, .lux-track.nik, .lux-track.niko, .totl.m-54 .lux-track, .lux-track.gb-3, .lux.nikolas, .lux.nik, .lux.niko, .totl.m-54 .lux, .lux.gb-3, .parent-1.nikolas, .parent-1.nik, .parent-1.niko, .totl.m-54 .parent-1, .parent-1.gb-3, .gb-1.parent-0.nikolas, .gb-1.parent-0.nik, .gb-1.parent-0.niko, .totl.m-54 .gb-1.parent-0, .gb-1.parent-0.gb-3 { --rgb: 142, 173, 179; --rgb-dark: 114, 153, 160; --postImage: url(https://64.media.tumblr.com/591aa501b27fd6aaa07a701ed88c0586/af6fdf304f4c49a1-d0/s250x400/3c7aa9195a1113e38f9367d486fce880243150ce.jpg); }
 
-.lux-track.oliver, .lux-track.oli, .lux.oliver, .lux.oli, .parent-1.oliver, .parent-1.oli { --rgb: 200, 150, 119; --rgb-dark: 187, 124, 86; }
+.lux-track.nimue, .lux-track.nim, .totl.m-902 .lux-track, .lux.nimue, .lux.nim, .totl.m-902 .lux, .parent-1.nimue, .parent-1.nim, .totl.m-902 .parent-1, .gb-1.parent-0.nimue, .gb-1.parent-0.nim, .totl.m-902 .gb-1.parent-0 { --rgb: 191, 177, 188; --rgb-dark: 176, 158, 172; }
 
-.lux-track.percy, .totl.m-482 .lux-track, .lux.percy, .totl.m-482 .lux, .parent-1.percy, .totl.m-482 .parent-1 { --rgb: 168, 143, 128; --rgb-dark: 145, 102, 76; }
+.lux-track.noah, .totl.m-314 .lux-track, .lux.noah, .totl.m-314 .lux, .parent-1.noah, .totl.m-314 .parent-1, .gb-1.parent-0.noah, .totl.m-314 .gb-1.parent-0 { --rgb: 155, 167, 142; --rgb-dark: 130, 146, 114; }
 
-.lux-track.persephone, .lux-track.sephi, .lux.persephone, .lux.sephi, .parent-1.persephone, .parent-1.sephi { --rgb: 163, 101, 145; --rgb-dark: 141, 63, 118; }
+.lux-track.oliver, .lux-track.oli, .lux.oliver, .lux.oli, .parent-1.oliver, .parent-1.oli, .gb-1.parent-0.oliver, .gb-1.parent-0.oli { --rgb: 200, 150, 119; --rgb-dark: 187, 124, 86; }
 
-.lux-track.rebecca, .totl.m-994 .lux-track, .lux.rebecca, .totl.m-994 .lux, .parent-1.rebecca, .totl.m-994 .parent-1 { --rgb: 211, 202, 195; --rgb-dark: 200, 189, 181; }
+.lux-track.percy, .totl.m-482 .lux-track, .lux.percy, .totl.m-482 .lux, .parent-1.percy, .totl.m-482 .parent-1, .gb-1.parent-0.percy, .totl.m-482 .gb-1.parent-0 { --rgb: 168, 143, 128; --rgb-dark: 145, 102, 76; }
 
-.lux-track.reed, .lux-track.gb-584, .lux.reed, .lux.gb-584, .parent-1.reed, .parent-1.gb-584 { --rgb: 191, 101, 101; }
+.lux-track.persephone, .lux-track.sephi, .lux.persephone, .lux.sephi, .parent-1.persephone, .parent-1.sephi, .gb-1.parent-0.persephone, .gb-1.parent-0.sephi { --rgb: 163, 101, 145; --rgb-dark: 141, 63, 118; }
 
-.lux-track.remy, .lux-track.gb-44, .lux.remy, .lux.gb-44, .parent-1.remy, .parent-1.gb-44 { --rgb: 151, 180, 173; --rgb-dark: 125, 162, 153; }
+.lux-track.raphael, .lux-track.raph, .lux-track.ben, .lux-track.loki, .lux-track.cain, .totl.m-854 .lux-track, .lux-track.gb-8, .lux.raphael, .lux.raph, .lux.ben, .lux.loki, .lux.cain, .totl.m-854 .lux, .lux.gb-8, .parent-1.raphael, .parent-1.raph, .parent-1.ben, .parent-1.loki, .parent-1.cain, .totl.m-854 .parent-1, .parent-1.gb-8, .gb-1.parent-0.raphael, .gb-1.parent-0.raph, .gb-1.parent-0.ben, .gb-1.parent-0.loki, .gb-1.parent-0.cain, .totl.m-854 .gb-1.parent-0, .gb-1.parent-0.gb-8 { --rgb: 149, 165, 71; --rgb-dark: 123, 143, 26; --postImage: url(https://64.media.tumblr.com/cdf7209f27043503a9c40ccf10c3d6e8/769762ce2643cedc-71/s540x810/687713871d54183e9fa56a5ab302bb630d8bf74f.gif); }
 
-.lux-track.renata, .lux-track.ren, .totl.m-701 .lux-track, .lux.renata, .lux.ren, .totl.m-701 .lux, .parent-1.renata, .parent-1.ren, .totl.m-701 .parent-1 { --rgb: 7, 116, 90; --rgb-dark: 88, 142, 151; }
+.lux-track.rebecca, .totl.m-994 .lux-track, .lux.rebecca, .totl.m-994 .lux, .parent-1.rebecca, .totl.m-994 .parent-1, .gb-1.parent-0.rebecca, .totl.m-994 .gb-1.parent-0 { --rgb: 211, 202, 195; --rgb-dark: 200, 189, 181; }
 
-.lux-track.riordan, .lux-track.rory, .lux-track.gb-154, .lux.riordan, .lux.rory, .lux.gb-154, .parent-1.riordan, .parent-1.rory, .parent-1.gb-154 { --rgb: 159, 157, 150; --rgb-dark: 136, 134, 126; }
+.lux-track.reed, .lux-track.gb-584, .lux.reed, .lux.gb-584, .parent-1.reed, .parent-1.gb-584, .gb-1.parent-0.reed, .gb-1.parent-0.gb-584 { --rgb: 191, 101, 101; --postImage: url(https://64.media.tumblr.com/4210f442230f205fbd3928884d767f53/de5b0746707e63dd-d8/s1280x1920/a2a61daffc28fd0c4b77f20d9c69cda5df3dc3a8.jpg); }
 
-.lux-track.riven, .lux-track.riv, .lux.riven, .lux.riv, .parent-1.riven, .parent-1.riv { --rgb: 151, 159, 170; --rgb-dark: 125, 136, 149; }
+.lux-track.remy, .lux-track.gb-44, .lux.remy, .lux.gb-44, .parent-1.remy, .parent-1.gb-44, .gb-1.parent-0.remy, .gb-1.parent-0.gb-44 { --rgb: 151, 180, 173; --rgb-dark: 125, 162, 153; --postImage: url(https://64.media.tumblr.com/22cb19fd322e01f0c0997a97bb0ce535/tumblr_p3wy0d3PRq1vz2ghao2_500.jpg); }
 
-.lux-track.ryan, .totl.m-589 .lux-track, .lux.ryan, .totl.m-589 .lux, .parent-1.ryan, .totl.m-589 .parent-1 { --rgb: 214, 189, 114; --rgb-dark: 204, 173, 79; }
+.lux-track.renata, .lux-track.ren, .totl.m-701 .lux-track, .lux.renata, .lux.ren, .totl.m-701 .lux, .parent-1.renata, .parent-1.ren, .totl.m-701 .parent-1, .gb-1.parent-0.renata, .gb-1.parent-0.ren, .totl.m-701 .gb-1.parent-0 { --rgb: 7, 116, 90; --rgb-dark: 88, 142, 151; }
 
-.lux-track.salih, .lux-track.sal, .lux.salih, .lux.sal, .parent-1.salih, .parent-1.sal { --rgb: 219, 145, 123; --rgb-dark: 210, 118, 90; }
+.lux-track.riley, .lux-track.gb-637, .lux.riley, .lux.gb-637, .parent-1.riley, .parent-1.gb-637, .gb-1.parent-0.riley, .gb-1.parent-0.gb-637 { --rgb: 151, 180, 173; --rgb-dark: 125, 162, 153; --postImage: url(https://64.media.tumblr.com/5360f6f11b1dc0cea6e1d3f3a6efc38f/04f2d4a53730ebe8-da/s1280x1920/56302f7684a5a86f0297363c5643942ff4033e54.jpg); }
 
-.lux-track.sarah, .totl.m-1358 .lux-track, .lux.sarah, .totl.m-1358 .lux, .parent-1.sarah, .totl.m-1358 .parent-1 { --rgb: 196, 212, 213; }
+.lux-track.riordan, .lux-track.rory, .lux-track.gb-154, .lux.riordan, .lux.rory, .lux.gb-154, .parent-1.riordan, .parent-1.rory, .parent-1.gb-154, .gb-1.parent-0.riordan, .gb-1.parent-0.rory, .gb-1.parent-0.gb-154 { --rgb: 159, 157, 150; --rgb-dark: 136, 134, 126; --postImage: url(https://64.media.tumblr.com/434fab39ec0498aa76292669410eba13/cc781a69d683e7d7-7e/s1280x1920/d903af61d207154704ab8498ee47b9d9d6887f3d.jpg); }
 
-.lux-track.satiah, .lux-track.tia, .lux-track.gb-43, .lux.satiah, .lux.tia, .lux.gb-43, .parent-1.satiah, .parent-1.tia, .parent-1.gb-43 { --rgb: 197, 160, 128; --rgb-dark: 183, 137, 97; }
+.lux-track.riven, .lux-track.riv, .lux.riven, .lux.riv, .parent-1.riven, .parent-1.riv, .gb-1.parent-0.riven, .gb-1.parent-0.riv { --rgb: 151, 159, 170; --rgb-dark: 125, 136, 149; }
 
-.lux-track.sebastian, .lux-track.seb, .lux-track.bash, .lux-track.gb-227, .lux.sebastian, .lux.seb, .lux.bash, .lux.gb-227, .parent-1.sebastian, .parent-1.seb, .parent-1.bash, .parent-1.gb-227 { --rgb: 197,187,181; }
+.lux-track.ryan, .totl.m-589 .lux-track, .lux.ryan, .totl.m-589 .lux, .parent-1.ryan, .totl.m-589 .parent-1, .gb-1.parent-0.ryan, .totl.m-589 .gb-1.parent-0 { --rgb: 214, 189, 114; --rgb-dark: 204, 173, 79; }
 
-.lux-track.silas, .lux-track.gb-116, .lux.silas, .lux.gb-116, .parent-1.silas, .parent-1.gb-116 { --rgb: 158, 181, 187; }
+.lux-track.salih, .lux-track.sal, .lux.salih, .lux.sal, .parent-1.salih, .parent-1.sal, .gb-1.parent-0.salih, .gb-1.parent-0.sal { --rgb: 219, 145, 123; --rgb-dark: 210, 118, 90; }
 
-.lux-track.simon, .totl.m-265 .lux-track, .lux.simon, .totl.m-265 .lux, .parent-1.simon, .totl.m-265 .parent-1 { --rgb: 180, 199, 129; --rgb-dark: 162, 185, 98; }
+.lux-track.sarah, .totl.m-1358 .lux-track, .lux.sarah, .totl.m-1358 .lux, .parent-1.sarah, .totl.m-1358 .parent-1, .gb-1.parent-0.sarah, .totl.m-1358 .gb-1.parent-0 { --rgb: 196, 212, 213; }
 
-.lux-track.sorren, .totl.m-702 .lux-track, .lux.sorren, .totl.m-702 .lux, .parent-1.sorren, .totl.m-702 .parent-1 { --rgb: 97, 79, 79; --rgb-dark: 58, 35, 35; }
+.lux-track.satiah, .lux-track.tia, .lux-track.gb-43, .lux.satiah, .lux.tia, .lux.gb-43, .parent-1.satiah, .parent-1.tia, .parent-1.gb-43, .gb-1.parent-0.satiah, .gb-1.parent-0.tia, .gb-1.parent-0.gb-43 { --rgb: 197, 160, 128; --rgb-dark: 183, 137, 97; --postImage: url(https://64.media.tumblr.com/6bd3f7eeb1127ee49dd5c91d8b370c85/tumblr_pylo3jNAqX1vz2ghao8_1280.jpg); --postImagePosition: left; }
 
-.lux-track.spencer, .lux-track.spence, .totl.m-862 .lux-track, .lux-track.gb-45, .lux.spencer, .lux.spence, .totl.m-862 .lux, .lux.gb-45, .parent-1.spencer, .parent-1.spence, .totl.m-862 .parent-1, .parent-1.gb-45 { --rgb: 138, 151, 174; --rgb-dark: 109, 125, 154; }
+.lux-track.sebastian, .lux-track.seb, .lux-track.bash, .lux-track.gb-227, .lux.sebastian, .lux.seb, .lux.bash, .lux.gb-227, .parent-1.sebastian, .parent-1.seb, .parent-1.bash, .parent-1.gb-227, .gb-1.parent-0.sebastian, .gb-1.parent-0.seb, .gb-1.parent-0.bash, .gb-1.parent-0.gb-227 { --rgb: 197,187,181; --postImage: url(https://64.media.tumblr.com/525d0db67d6e823adf81276766d4bb22/09d0430af12e9787-fa/s1280x1920/97fcb45cd5d386403c558d22ee9c2e0274282420.png); }
 
-.lux-track.sterling, .lux-track.matteo, .lux-track.matty, .totl.m-907 .lux-track, .lux-track.gb-16, .lux.sterling, .lux.matteo, .lux.matty, .totl.m-907 .lux, .lux.gb-16, .parent-1.sterling, .parent-1.matteo, .parent-1.matty, .totl.m-907 .parent-1, .parent-1.gb-16 { --rgb: 207, 167, 52; --rgb-dark: 196, 145, 2; }
+.lux-track.silas, .lux-track.gb-116, .lux.silas, .lux.gb-116, .parent-1.silas, .parent-1.gb-116, .gb-1.parent-0.silas, .gb-1.parent-0.gb-116 { --rgb: 158, 181, 187; --postImage: url(https://64.media.tumblr.com/2b85cbd37e24e49578f48a29a1715fc7/bfa5a23c90156cf7-d3/s1280x1920/304dc6ecd900ff49ab8e2a5aecf5e057f129ec48.jpg); }
 
-.lux-track.thomas, .lux-track.tom, .lux-track.tommy, .totl.m-863 .lux-track, .lux.thomas, .lux.tom, .lux.tommy, .totl.m-863 .lux, .parent-1.thomas, .parent-1.tom, .parent-1.tommy, .totl.m-863 .parent-1 { --rgb: 183, 207, 150; --rgb-dark: 166, 196, 124; }
+.lux-track.simon, .totl.m-265 .lux-track, .lux.simon, .totl.m-265 .lux, .parent-1.simon, .totl.m-265 .parent-1, .gb-1.parent-0.simon, .totl.m-265 .gb-1.parent-0 { --rgb: 180, 199, 129; --rgb-dark: 162, 185, 98; }
 
-.lux-track.tobias, .lux-track.fletch, .lux-track.fletcher, .lux-track.toby, .totl.m-60 .lux-track, .lux.tobias, .lux.fletch, .lux.fletcher, .lux.toby, .totl.m-60 .lux, .parent-1.tobias, .parent-1.fletch, .parent-1.fletcher, .parent-1.toby, .totl.m-60 .parent-1 { --rgb: 137, 143, 121; --rgb-dark: 108, 115, 88; }
+.lux-track.sorren, .totl.m-702 .lux-track, .lux-track.gb-636, .lux.sorren, .totl.m-702 .lux, .lux.gb-636, .parent-1.sorren, .totl.m-702 .parent-1, .parent-1.gb-636, .gb-1.parent-0.sorren, .totl.m-702 .gb-1.parent-0, .gb-1.parent-0.gb-636 { --rgb: 97, 79, 79; --rgb-dark: 58, 35, 35; --postImage: url(https://64.media.tumblr.com/1f7173b431a96525b873526ec13c2cb6/tumblr_p2imgnm4VN1vz2ghao3_250.png); }
 
-.lux-track.vitae, .lux-track.vee, .lux-track.gb-6, .lux.vitae, .lux.vee, .lux.gb-6, .parent-1.vitae, .parent-1.vee, .parent-1.gb-6 { --rgb: 111, 77, 77; --rgb-dark: 76, 33, 33; }
+.lux-track.spencer, .lux-track.spence, .totl.m-862 .lux-track, .lux-track.gb-45, .lux.spencer, .lux.spence, .totl.m-862 .lux, .lux.gb-45, .parent-1.spencer, .parent-1.spence, .totl.m-862 .parent-1, .parent-1.gb-45, .gb-1.parent-0.spencer, .gb-1.parent-0.spence, .totl.m-862 .gb-1.parent-0, .gb-1.parent-0.gb-45 { --rgb: 138, 151, 174; --rgb-dark: 109, 125, 154; --postImage: url(https://64.media.tumblr.com/f3cbeb06c988e0c6ab6af8911cfeea4a/tumblr_p2s9rxYaMm1vz2ghao1_1280.jpg); }
 
-.lux-track.viveka, .lux-track.viv, .lux-track.gb-330, .lux.viveka, .lux.viv, .lux.gb-330, .parent-1.viveka, .parent-1.viv, .parent-1.gb-330 { --rgb: 185,135,129; }
+.lux-track.sterling, .lux-track.matteo, .lux-track.matty, .totl.m-907 .lux-track, .lux-track.gb-16, .lux.sterling, .lux.matteo, .lux.matty, .totl.m-907 .lux, .lux.gb-16, .parent-1.sterling, .parent-1.matteo, .parent-1.matty, .totl.m-907 .parent-1, .parent-1.gb-16, .gb-1.parent-0.sterling, .gb-1.parent-0.matteo, .gb-1.parent-0.matty, .totl.m-907 .gb-1.parent-0, .gb-1.parent-0.gb-16 { --rgb: 207, 167, 52; --rgb-dark: 196, 145, 2; --postImage: url(https://64.media.tumblr.com/9cd2ad95eeaefc08ccbb7f011efd5ab1/c4a88870f28cf267-27/s1280x1920/40a19c8a21ad45069a33fd4621794f5426532c1a.jpg); }
 
-.lux-track.william, .lux-track.will, .totl.m-1148 .lux-track, .lux.william, .lux.will, .totl.m-1148 .lux, .parent-1.william, .parent-1.will, .totl.m-1148 .parent-1 { --rgb: 177, 181, 160; }
+.lux-track.thomas, .lux-track.tom, .lux-track.tommy, .totl.m-863 .lux-track, .lux.thomas, .lux.tom, .lux.tommy, .totl.m-863 .lux, .parent-1.thomas, .parent-1.tom, .parent-1.tommy, .totl.m-863 .parent-1, .gb-1.parent-0.thomas, .gb-1.parent-0.tom, .gb-1.parent-0.tommy, .totl.m-863 .gb-1.parent-0 { --rgb: 183, 207, 150; --rgb-dark: 166, 196, 124; }
+
+.lux-track.tobias, .lux-track.fletch, .lux-track.fletcher, .lux-track.toby, .totl.m-60 .lux-track, .lux.tobias, .lux.fletch, .lux.fletcher, .lux.toby, .totl.m-60 .lux, .parent-1.tobias, .parent-1.fletch, .parent-1.fletcher, .parent-1.toby, .totl.m-60 .parent-1, .gb-1.parent-0.tobias, .gb-1.parent-0.fletch, .gb-1.parent-0.fletcher, .gb-1.parent-0.toby, .totl.m-60 .gb-1.parent-0 { --rgb: 137, 143, 121; --rgb-dark: 108, 115, 88; }
+
+.lux-track.vitae, .lux-track.vee, .lux-track.gb-6, .lux.vitae, .lux.vee, .lux.gb-6, .parent-1.vitae, .parent-1.vee, .parent-1.gb-6, .gb-1.parent-0.vitae, .gb-1.parent-0.vee, .gb-1.parent-0.gb-6 { --rgb: 111, 77, 77; --rgb-dark: 76, 33, 33; --postImage: url(https://64.media.tumblr.com/60ed9e156c6076fc309080bb40fc4f89/tumblr_pehwdpjqpX1r3i2gwo5_540.gif); }
+
+.lux-track.viveka, .lux-track.viv, .lux-track.gb-330, .lux.viveka, .lux.viv, .lux.gb-330, .parent-1.viveka, .parent-1.viv, .parent-1.gb-330, .gb-1.parent-0.viveka, .gb-1.parent-0.viv, .gb-1.parent-0.gb-330 { --rgb: 185,135,129; --postImage: url(https://64.media.tumblr.com/0f6f62fa30e7e2200af6b61b4a25b4a7/dbba5b4109c080d8-c1/s1280x1920/7c94bfc621670470ee68e00be8f76a4ffe8b7ca3.gif); }
+
+.lux-track.william, .lux-track.will, .totl.m-1148 .lux-track, .lux-track.gb-657, .lux.william, .lux.will, .totl.m-1148 .lux, .lux.gb-657, .parent-1.william, .parent-1.will, .totl.m-1148 .parent-1, .parent-1.gb-657, .gb-1.parent-0.william, .gb-1.parent-0.will, .totl.m-1148 .gb-1.parent-0, .gb-1.parent-0.gb-657 { --rgb: 177, 181, 160; --postImage: url(https://64.media.tumblr.com/b52ff31f1064f8029e1cc27cd7dd05b1/e24e6b7fcd6bbb2b-6f/s500x750/754dbba335753a4d861ea74365b263274575f2eb.gif); }

@@ -1,19 +1,27 @@
 .lux-track,
 .lux,
-.parent-1 {
+.parent-1,
+.gb-1.parent-0 {
     --defaultPostImage: url(https://files.jcink.net/uploads2/godlybehaviour/GB24/forum_guidebook_min.jpg);
 
     &,
-    .light &,
     .dark & {
         --accent: rgb(var(--rgb));
         --dkAccent: rgb(var(--rgb-dark, var(--rgb)));
     }
 
+    .light & {
+        --accent: rgb(var(--rgb-dark, var(--rgb)));
+        --dkAccent: rgb(var(--rgb));
+    }
+
     .totl &,
     &.gb tag-wrap,
     &.gb tag-comm,
-    &.gb tag-social {
+    &.gb tag-social,
+    &.gb et-wrap,
+    &.gb et-comm,
+    &.gb et-social {
         //shared
         .light & {
             --accent: rgb(var(--rgb-dark, var(--rgb)));
@@ -62,12 +70,12 @@
         width: calc(100% - 20px);
         height: calc(100% - 20px);
         background-size: cover;
-        background-position: center;
+        background-position: var(--postImagePosition, center);
         background-image: var(--postImage, var(--defaultPostImage));
         z-index: 1;
     }
     et-tag {
-        z-index: 10;
+        order: 10;
     }
     
     &.abigail,
@@ -75,6 +83,8 @@
     .totl.m-1608 &,
     &.gb-71 {
         --rgb: 212,161,168;
+        --postImage: url(https://64.media.tumblr.com/288a9e33ee421ac9ec1ce828a7a92177/99a274faae674591-e8/s500x750/75b7bc0cb6e8133cf92fc7785e634cdcc3397203.jpg);
+        --postImagePosition: top;
     }
     
     &.adaline,
@@ -103,14 +113,17 @@
     }
 
     &.alastair,
-    &.al {
+    &.al,
+    &.gb-635 {
         --rgb: 217, 155, 136;
         --rgb-dark: 208, 131, 107;
+        --postImage: url(https://64.media.tumblr.com/6347429a4882a828c9e509a9569570f5/tumblr_p2mo6ipVzd1vz2ghao8_250.gif);
     }
 
     &.alya,
     &.gb-331 {
         --rgb: 107,126,103;
+        --postImage: url(https://64.media.tumblr.com/0c053a114f79d908b4e75c0379917b7b/09483cbf07989c08-88/s1280x1920/445f165388d2e2b9e5a0e8cf3a7b25796715eafb.jpg);
     }
 
     &.alexander,
@@ -148,17 +161,6 @@
         --rgb-dark: 127, 134, 118;
     }
 
-    &.raphael,
-    &.raph,
-    &.ben,
-    &.loki,
-    &.cain,
-    .totl.m-854 &,
-    &.gb-8 {
-        --rgb: 149, 165, 71;
-        --rgb-dark: 123, 143, 26;
-    }
-
     &.benji {
         --rgb: 221, 189, 128;
     }
@@ -167,6 +169,7 @@
     &.gb-175 {
         --rgb: 118, 132, 92;
         --rgb-dark: 84, 102, 52;
+        --postImage: url(https://64.media.tumblr.com/74095c7658b8d2d8fb78776dc86188a3/tumblr_oo8zv9JIkT1vlcymso1_500.gif);
     }
 
     &.bryn,
@@ -174,6 +177,7 @@
     &.gb-328 {
         --rgb: 155, 209, 186;
         --rgb-dark: 130, 198, 169;
+        --postImage: url(https://64.media.tumblr.com/2cf6853be602a9c27a64b2878235d245/255b4de1638d9f68-e3/s1280x1920/d03354d0af439c49e5775424f098c45051d9f836.jpg);
     }
 
     &.cameron,
@@ -192,6 +196,7 @@
     &.cassie,
     &.gb-490 {
         --rgb: 166, 138, 172;
+        --postImage: url(https://64.media.tumblr.com/0df62c1b3fb4688c43a74907af59b146/8d21545ec67571e1-20/s1280x1920/0cc8d6a5ffc1561af18e18ef134870d075fee84f.gif);
     }
 
     &.catarina,
@@ -208,6 +213,7 @@
     &.gb-271 {
         --rgb: 104,118,139;
         --rgb-dark: 67, 84, 111;
+        --postImage: url(https://64.media.tumblr.com/9ac89f48e2f61ed892fcefb1ea3537e7/tumblr_p2mleuhBzQ1vz2ghao7_250.gif);
     }
 
     &.connor,
@@ -227,6 +233,7 @@
     &.gb-17 {
         --rgb: 101, 63, 63;
         --rgb-dark: 63, 15, 15;
+        --postImage: url(https://64.media.tumblr.com/618e01719add1d676636deb576891574/f104b885346aef95-1d/s1280x1920/e7eb102d72bc038f97db53eb8eb2c2c814fba800.jpg);
     }
 
     &.dalton {
@@ -238,6 +245,7 @@
     &.gb-226 {
         --rgb: 119,132,162;
         --rgb-dark: 119,132,162;
+        --postImage: url(https://64.media.tumblr.com/af6c43a7a955a2206317958b4ba1a021/27d4a70554b926f7-80/s1280x1920/f78965d14a06e59673d040dd85de5b85779ab6d0.jpg);
     }
 
     &.daniel,
@@ -274,6 +282,7 @@
     &.gb-329 {
         --rgb: 153, 126, 143;
         --rgb-dark: 128, 94, 115;
+        --postImage: url(https://64.media.tumblr.com/d793bd29255a4d83e854080a9194c968/tumblr_ph2abyvj0i1xz9gf8o6_500.png);
     }
 
     &.elias {
@@ -293,6 +302,7 @@
     &.gb-593 {
         --rgb: 223, 186, 199;
         --rgb-dark: 215, 169, 186;
+        --postImage: url(https://64.media.tumblr.com/dcc69eeae4787614c6b9baf63b6f509b/1890138647412025-f3/s1280x1920/dd9b164fd29668af6c148403ff829d7cd7ae1645.jpg);
     }
 
     &.evangeline,
@@ -354,10 +364,18 @@
         --rgb-dark: 167, 117, 134;
     }
 
+    &.hanne,
+    &.gb-656 {
+        --rgb: 111, 91, 130;
+        --rgb-dark: 90, 74, 105;
+        --postImage: url(https://64.media.tumblr.com/66bb4369c1afa72ac277e68ed07c7fa2/b9ea0d22c7c30737-eb/s1280x1920/8c196ca31e9bd426ffb8c175552b0e40be7e6df8.jpg);
+    }
+
     &.harley,
     &.gb-611 {
         --rgb: 200, 176, 191;
         --rgb-dark: 187, 157, 175;
+        --postImage: url(https://64.media.tumblr.com/c1003be3f2640da516e73f8e30139f97/a2b0567dca8400b1-96/s540x810/97483a753024434459733feb4d8e2e817cb05348.gif);
     }
 
     &.harriet,
@@ -365,6 +383,7 @@
     &.helen,
     &.gb-263 {
         --rgb: 208,183,190;
+        --postImage: url(https://64.media.tumblr.com/2ce76781ffb02920923703d0fef77be1/dc693759869c3a18-ad/s400x600/b5f65ed2788462e505e45b44e7e603db7b121b6e.gif);
     }
 
     &.hayden,
@@ -372,6 +391,7 @@
     &.gb-246 {
         --rgb: 115, 126, 103;
         --rgb-dark: 81, 94, 65;
+        --postImage: url(https://64.media.tumblr.com/ad387123c3e518aa9e150bbcf1e15516/d11abbca8359c565-51/s640x960/b1cf93f0046344b9d0c85a650242094db89eba65.jpg);
     }
 
     &.heiko,
@@ -391,6 +411,7 @@
     .totl.m-1354 &,
     &.gb-115 {
         --rgb: 183,133,79;
+        --postImage: url(https://64.media.tumblr.com/93067679a02efe45781a7b31a84ec427/91e599f7e3b9f80f-d1/s250x400/91f2a4a8e22504b7a939a0f9cc2676d2442d5878.gif);
     }
 
     &.irina,
@@ -402,6 +423,7 @@
     &.isaiah,
     &.gb-117 {
         --rgb: 135,151,148;
+        --postImage: url(https://64.media.tumblr.com/c0322baa9058f1738f974cddb2150d9c/d8c88430f183597b-e6/s1280x1920/7b83f3c9077c9b3e2c68de2c1278e3f2981bcf3e.jpg);
     }
 
     &.isobel,
@@ -409,6 +431,7 @@
     &.belle,
     &.gb-153 {
         --rgb: 213, 188, 204;
+        --postImage: url(https://64.media.tumblr.com/eb0dd5b6ec04ae4812b4e22f878ad9bc/acb9348dbf8cb67a-75/s1280x1920/33c8f6552e96ae7d308fe48e61cf74f6b97feef2.png);
     }
 
     &.jasper,
@@ -421,11 +444,13 @@
     &.jesse,
     &.gb-79 {
         --rgb: 210, 193, 166;
+        --postImage: url(https://64.media.tumblr.com/a2ef7dbf678361d0c594fb7e8f1c5833/af990ad6c68dd970-ff/s1280x1920/93d23a77350f93249a804acde644987bf29c1ef6.jpg);
     }
 
     &.jude,
     &.gb-429 {
         --rgb: 204, 210, 196;
+        --postImage: url(https://64.media.tumblr.com/f9ffa99896dd22412c1ba2fa8744ee60/dba77a4021045760-8d/s1280x1920/7a2b12329dc0efbef0907a75a01595b36a82c3db.gif);
     }
 
     &.kit {
@@ -448,6 +473,8 @@
     &.link,
     &.gb-430 {
         --rgb: 81, 105, 130;
+        --postImage: url(https://64.media.tumblr.com/75bff6e4bd2f89f8efc5ce86554ca76b/4c1713a289ca5989-90/s1280x1920/83f2f48a661e956186a9389a7eedc5233b48d40d.jpg);
+        --postImagePosition: top;
     }
 
     &.lorelei,
@@ -480,6 +507,7 @@
     &.gb-80 {
         --rgb: 99, 92, 92;
         --rgb-dark: 60, 52, 52;
+        --postImage: url(https://64.media.tumblr.com/b6418aa64cf9ed7c5a5d83acb5206f43/tumblr_p3wz67wAPP1vz2ghao4_640.jpg);
     }
 
     &.malik {
@@ -499,12 +527,18 @@
     &.gb-69 {
         --rgb: 181, 196, 202;
         --rgb-dark: 133, 147, 153;
+        --postImage: url(https://64.media.tumblr.com/138253abd33f1eb8f0901eea866e701b/81225a0a408d6181-a0/s250x400/eaf7782a851d75c249460b724e9a4b51520c83ee.gif);
     }
 
     &.maverick,
     &.mav {
         --rgb: 185, 135, 129;
         --rgb-dark: 168, 105, 98;
+    }
+
+    &.michel,
+    &.gb-626 {
+        --postImage: url(https://64.media.tumblr.com/c664346c3755d43f2ba293a319b0636a/032c429b9900fe2a-d3/s1280x1920/78305b774ef065304f67906cd0117189608b5243.jpg);
     }
 
     &.milo,
@@ -524,6 +558,8 @@
     &.gb-70 {
         --rgb: 151, 151, 171;
         --rgb-dark: 126, 125, 150;
+        --postImage: url(https://64.media.tumblr.com/49246853b03feeea03a5bbd000013493/de6a6b86eb223447-f2/s500x750/1cca94b1f3e940237626312fe485652aae8052b2.gif);
+        --postImagePosition: left;
     }
 
     &.nayara,
@@ -540,6 +576,7 @@
     &.gb-3 {
         --rgb: 142, 173, 179;
         --rgb-dark: 114, 153, 160;
+        --postImage: url(https://64.media.tumblr.com/591aa501b27fd6aaa07a701ed88c0586/af6fdf304f4c49a1-d0/s250x400/3c7aa9195a1113e38f9367d486fce880243150ce.jpg);
     }
 
     &.nimue,
@@ -573,6 +610,18 @@
         --rgb-dark: 141, 63, 118;
     }
 
+    &.raphael,
+    &.raph,
+    &.ben,
+    &.loki,
+    &.cain,
+    .totl.m-854 &,
+    &.gb-8 {
+        --rgb: 149, 165, 71;
+        --rgb-dark: 123, 143, 26;
+        --postImage: url(https://64.media.tumblr.com/cdf7209f27043503a9c40ccf10c3d6e8/769762ce2643cedc-71/s540x810/687713871d54183e9fa56a5ab302bb630d8bf74f.gif);
+    }
+
     &.rebecca,
     .totl.m-994 & {
         --rgb: 211, 202, 195;
@@ -582,12 +631,14 @@
     &.reed,
     &.gb-584 {
         --rgb: 191, 101, 101;
+        --postImage: url(https://64.media.tumblr.com/4210f442230f205fbd3928884d767f53/de5b0746707e63dd-d8/s1280x1920/a2a61daffc28fd0c4b77f20d9c69cda5df3dc3a8.jpg);
     }
 
     &.remy,
     &.gb-44 {
         --rgb: 151, 180, 173;
         --rgb-dark: 125, 162, 153;
+        --postImage: url(https://64.media.tumblr.com/22cb19fd322e01f0c0997a97bb0ce535/tumblr_p3wy0d3PRq1vz2ghao2_500.jpg);
     }
 
     &.renata,
@@ -597,11 +648,19 @@
         --rgb-dark: 88, 142, 151;
     }
 
+    &.riley,
+    &.gb-637 {
+        --rgb: 151, 180, 173;
+        --rgb-dark: 125, 162, 153;
+        --postImage: url(https://64.media.tumblr.com/5360f6f11b1dc0cea6e1d3f3a6efc38f/04f2d4a53730ebe8-da/s1280x1920/56302f7684a5a86f0297363c5643942ff4033e54.jpg);
+    }
+
     &.riordan,
     &.rory,
     &.gb-154 {
         --rgb: 159, 157, 150;
         --rgb-dark: 136, 134, 126;
+        --postImage: url(https://64.media.tumblr.com/434fab39ec0498aa76292669410eba13/cc781a69d683e7d7-7e/s1280x1920/d903af61d207154704ab8498ee47b9d9d6887f3d.jpg);
     }
 
     &.riven,
@@ -632,6 +691,8 @@
     &.gb-43 {
         --rgb: 197, 160, 128;
         --rgb-dark: 183, 137, 97;
+        --postImage: url(https://64.media.tumblr.com/6bd3f7eeb1127ee49dd5c91d8b370c85/tumblr_pylo3jNAqX1vz2ghao8_1280.jpg);
+        --postImagePosition: left;
     }
 
     &.sebastian,
@@ -639,11 +700,13 @@
     &.bash,
     &.gb-227 {
         --rgb: 197,187,181;
+        --postImage: url(https://64.media.tumblr.com/525d0db67d6e823adf81276766d4bb22/09d0430af12e9787-fa/s1280x1920/97fcb45cd5d386403c558d22ee9c2e0274282420.png);
     }
 
     &.silas,
     &.gb-116 {
         --rgb: 158, 181, 187;
+        --postImage: url(https://64.media.tumblr.com/2b85cbd37e24e49578f48a29a1715fc7/bfa5a23c90156cf7-d3/s1280x1920/304dc6ecd900ff49ab8e2a5aecf5e057f129ec48.jpg);
     }
 
     &.simon,
@@ -653,9 +716,11 @@
     }
 
     &.sorren,
-    .totl.m-702 & {
+    .totl.m-702 &,
+    &.gb-636 {
         --rgb: 97, 79, 79;
         --rgb-dark: 58, 35, 35;
+        --postImage: url(https://64.media.tumblr.com/1f7173b431a96525b873526ec13c2cb6/tumblr_p2imgnm4VN1vz2ghao3_250.png);
     }
 
     &.spencer,
@@ -664,6 +729,7 @@
     &.gb-45 {
         --rgb: 138, 151, 174;
         --rgb-dark: 109, 125, 154;
+        --postImage: url(https://64.media.tumblr.com/f3cbeb06c988e0c6ab6af8911cfeea4a/tumblr_p2s9rxYaMm1vz2ghao1_1280.jpg);
     }
 
     &.sterling,
@@ -673,6 +739,7 @@
     &.gb-16 {
         --rgb: 207, 167, 52;
         --rgb-dark: 196, 145, 2;
+        --postImage: url(https://64.media.tumblr.com/9cd2ad95eeaefc08ccbb7f011efd5ab1/c4a88870f28cf267-27/s1280x1920/40a19c8a21ad45069a33fd4621794f5426532c1a.jpg);
     }
 
     &.thomas,
@@ -697,17 +764,21 @@
     &.gb-6 {
         --rgb: 111, 77, 77;
         --rgb-dark: 76, 33, 33;
+        --postImage: url(https://64.media.tumblr.com/60ed9e156c6076fc309080bb40fc4f89/tumblr_pehwdpjqpX1r3i2gwo5_540.gif);
     }
 
     &.viveka,
     &.viv,
     &.gb-330 {
         --rgb: 185,135,129;
+        --postImage: url(https://64.media.tumblr.com/0f6f62fa30e7e2200af6b61b4a25b4a7/dbba5b4109c080d8-c1/s1280x1920/7c94bfc621670470ee68e00be8f76a4ffe8b7ca3.gif);
     }
 
     &.william,
     &.will,
-    .totl.m-1148 & {
+    .totl.m-1148 &,
+    &.gb-657 {
         --rgb: 177, 181, 160;
+        --postImage: url(https://64.media.tumblr.com/b52ff31f1064f8029e1cc27cd7dd05b1/e24e6b7fcd6bbb2b-6f/s500x750/754dbba335753a4d861ea74365b263274575f2eb.gif);
     }
 }
