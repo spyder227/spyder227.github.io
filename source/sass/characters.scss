@@ -62,7 +62,7 @@
         --ltaccent-55: rgba(var(--rgb), 0.55);
     }
 
-    et-image::before {
+    .lux-bb et-image::before {
         content: '';
         position: absolute;
         top: 10px;
@@ -74,7 +74,7 @@
         background-image: var(--postImage, var(--defaultPostImage));
         z-index: 1;
     }
-    et-tag {
+    .lux-bb et-tag {
         order: 10;
     }
     
