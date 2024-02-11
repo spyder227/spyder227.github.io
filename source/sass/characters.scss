@@ -1,7 +1,8 @@
 .lux-track,
 .lux,
 .parent-1,
-.gb-1.parent-0 {
+.gb-1.parent-0,
+.lux-bb {
     --defaultPostImage: url(https://files.jcink.net/uploads2/godlybehaviour/GB24/forum_guidebook_min.jpg);
 
     &,
@@ -19,9 +20,9 @@
     &.gb tag-wrap,
     &.gb tag-comm,
     &.gb tag-social,
-    &.gb et-wrap,
-    &.gb et-comm,
-    &.gb et-social {
+    & et-wrap,
+    & et-comm,
+    & et-social {
         //shared
         .light & {
             --accent: rgb(var(--rgb-dark, var(--rgb)));
@@ -62,7 +63,7 @@
         --ltaccent-55: rgba(var(--rgb), 0.55);
     }
 
-    .lux-bb et-image::before {
+    et-image::before {
         content: '';
         position: absolute;
         top: 10px;
@@ -74,7 +75,7 @@
         background-image: var(--postImage, var(--defaultPostImage));
         z-index: 1;
     }
-    .lux-bb et-tag {
+    et-tag {
         order: 10;
     }
     
