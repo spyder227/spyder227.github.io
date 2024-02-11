@@ -1,6 +1,8 @@
 .lux-track,
 .lux,
 .parent-1 {
+    --defaultPostImage: url(https://files.jcink.net/uploads2/godlybehaviour/GB24/forum_guidebook_min.jpg);
+
     &,
     .light &,
     .dark & {
@@ -51,6 +53,22 @@
         --ltaccent-40: rgba(var(--rgb), 0.4);
         --ltaccent-55: rgba(var(--rgb), 0.55);
     }
+
+    et-image::before {
+        content: '';
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: calc(100% - 20px);
+        height: calc(100% - 20px);
+        background-size: cover;
+        background-position: center;
+        background-image: var(--postImage, var(--defaultPostImage));
+        z-index: 1;
+    }
+    et-tag {
+        z-index: 10;
+    }
     
     &.abigail,
     &.abby,
@@ -71,6 +89,7 @@
     &.gb-7 {
         --rgb: 136, 163, 151;
         --rgb-dark: 107, 140, 126;
+        --postImage: url(https://64.media.tumblr.com/9047d35f1ad89106c47e968ea4c7db70/31edb05a278d2403-34/s1280x1920/a4f80ba04eee73cb1a52c1c8f6b86f047b92b5f7.jpg);
     }
 
     &.ainara {

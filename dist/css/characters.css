@@ -1,3 +1,5 @@
+.lux-track, .lux, .parent-1 { --defaultPostImage: url(https://files.jcink.net/uploads2/godlybehaviour/GB24/forum_guidebook_min.jpg); }
+
 .lux-track, .light .lux-track, .dark .lux-track, .lux, .light .lux, .dark .lux, .parent-1, .light .parent-1, .dark .parent-1 { --accent: rgb(var(--rgb)); --dkAccent: rgb(var(--rgb-dark, var(--rgb))); }
 
 .totl .lux-track, .lux-track.gb tag-wrap, .lux-track.gb tag-comm, .lux-track.gb tag-social, .totl .lux, .lux.gb tag-wrap, .lux.gb tag-comm, .lux.gb tag-social, .totl .parent-1, .parent-1.gb tag-wrap, .parent-1.gb tag-comm, .parent-1.gb tag-social { --accent-20: rgba(var(--rgb), 0.2); --bg-color: var(--accent); --bg-color-transparent: var(--accent-20); --text-color: var(--accent); --border-color: var(--accent); --border-accent: var(--accent); --bg-accent: var(--accent); --bg-accent-solid: var(--accent); --bg-accent-30: var(--accent-30); --bg-accent-50: var(--accent-50); --text-accent: var(--accent); --ltaccent: rgb(var(--rgb)); --ltaccent-40: rgba(var(--rgb), 0.4); --ltaccent-55: rgba(var(--rgb), 0.55); }
@@ -10,11 +12,15 @@ body:not(.light) .totl .lux-track, body:not(.light) .lux-track.gb tag-wrap, body
 
 body:not(.light) .totl .lux-track, body:not(.light) .lux-track.gb tag-wrap, body:not(.light) .lux-track.gb tag-comm, body:not(.light) .lux-track.gb tag-social, body:not(.light) .totl .lux, body:not(.light) .lux.gb tag-wrap, body:not(.light) .lux.gb tag-comm, body:not(.light) .lux.gb tag-social, body:not(.light) .totl .parent-1, body:not(.light) .parent-1.gb tag-wrap, body:not(.light) .parent-1.gb tag-comm, body:not(.light) .parent-1.gb tag-social { --accent-30: rgba(var(--rgb), 0.3); --accent-50: rgba(var(--rgb), 0.5); --accent-90: rgba(var(--rgb), 0.8); }
 
+.lux-track et-image::before, .lux et-image::before, .parent-1 et-image::before { content: ''; position: absolute; top: 10px; left: 10px; width: calc(100% - 20px); height: calc(100% - 20px); background-size: cover; background-position: center; background-image: var(--postImage, var(--defaultPostImage)); z-index: 1; }
+
+.lux-track et-tag, .lux et-tag, .parent-1 et-tag { z-index: 10; }
+
 .lux-track.abigail, .lux-track.abby, .totl.m-1608 .lux-track, .lux-track.gb-71, .lux.abigail, .lux.abby, .totl.m-1608 .lux, .lux.gb-71, .parent-1.abigail, .parent-1.abby, .totl.m-1608 .parent-1, .parent-1.gb-71 { --rgb: 212,161,168; }
 
 .lux-track.adaline, .lux-track.addie, .totl.m-157 .lux-track, .lux.adaline, .lux.addie, .totl.m-157 .lux, .parent-1.adaline, .parent-1.addie, .totl.m-157 .parent-1 { --rgb: 167, 115, 129; --rgb-dark: 145, 80, 98; }
 
-.lux-track.aiden, .totl.m-838 .lux-track, .lux-track.gb-7, .lux.aiden, .totl.m-838 .lux, .lux.gb-7, .parent-1.aiden, .totl.m-838 .parent-1, .parent-1.gb-7 { --rgb: 136, 163, 151; --rgb-dark: 107, 140, 126; }
+.lux-track.aiden, .totl.m-838 .lux-track, .lux-track.gb-7, .lux.aiden, .totl.m-838 .lux, .lux.gb-7, .parent-1.aiden, .totl.m-838 .parent-1, .parent-1.gb-7 { --rgb: 136, 163, 151; --rgb-dark: 107, 140, 126; --postImage: url(https://64.media.tumblr.com/9047d35f1ad89106c47e968ea4c7db70/31edb05a278d2403-34/s1280x1920/a4f80ba04eee73cb1a52c1c8f6b86f047b92b5f7.jpg); }
 
 .lux-track.ainara, .lux.ainara, .parent-1.ainara { --rgb: 164, 138, 189; }
 
