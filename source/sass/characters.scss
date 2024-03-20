@@ -312,6 +312,7 @@
     &.gb-418 {
         --rgb: 115, 69, 51;
         --rgb-dark: 81, 23, 0;
+        --postImage: url(https://64.media.tumblr.com/fade9db2e45f89ff10655bdfe8bfa541/72c0954278f30be9-7c/s400x600/85fc7c4010453179ab9065ad941d8b25f08b60f7.gif);
     }
 
     &.everest,
@@ -324,6 +325,13 @@
     .totl.m-588 & {
         --rgb: 159, 120, 123;
         --rgb-dark: 136, 87, 91;
+    }
+
+    &.fiore,
+    &.fio,
+    &.gb-685 {
+        --rgb: 159, 80, 113;
+        --postImage: url(https://64.media.tumblr.com/465f38d22c2b7d06a7da5da87767e9ee/5ef0677be384507c-bd/s1280x1920/0d8cd9f0b212cfa0c073aaad1b876c5f13a6ae10.jpg);
     }
 
     &.gabriel,
