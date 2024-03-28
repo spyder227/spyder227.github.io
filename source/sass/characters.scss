@@ -63,7 +63,7 @@
         --ltaccent-55: rgba(var(--rgb), 0.55);
     }
 
-    et-image::before {
+    span:not(.notExternal) et-image::before {
         content: '';
         position: absolute;
         top: 10px;
