@@ -110,9 +110,9 @@ body:not(.light) .totl .lux-track, body:not(.light) .lux-track.gb tag-wrap, body
 
 .lux-track.griffin, .totl.m-1356 .lux-track, .lux.griffin, .totl.m-1356 .lux, .parent-1.griffin, .totl.m-1356 .parent-1, .gb-1.parent-0.griffin, .totl.m-1356 .gb-1.parent-0, .lux-bb.griffin, .totl.m-1356 .lux-bb { --rgb: 146, 158, 159; }
 
-.lux-track.hai, .lux-track.gb-732, .lux.hai, .lux.gb-732, .parent-1.hai, .parent-1.gb-732, .gb-1.parent-0.hai, .gb-1.parent-0.gb-732, .lux-bb.hai, .lux-bb.gb-732 { --rgb: 101, 108, 108; --postImage: url(https://64.media.tumblr.com/7c0298bd123de47d9879c47c363b54af/6f257d31caab1d38-5a/s1280x1920/3d8aa52ee9dda74002037d4a9b2fdfb779797506.jpg); --postImagePosition: top; }
+.lux-track.hai, .lux-track.liu, .lux-track.gb-732, .lux.hai, .lux.liu, .lux.gb-732, .parent-1.hai, .parent-1.liu, .parent-1.gb-732, .gb-1.parent-0.hai, .gb-1.parent-0.liu, .gb-1.parent-0.gb-732, .lux-bb.hai, .lux-bb.liu, .lux-bb.gb-732 { --rgb: 101, 108, 108; --postImage: url(https://64.media.tumblr.com/7c0298bd123de47d9879c47c363b54af/6f257d31caab1d38-5a/s1280x1920/3d8aa52ee9dda74002037d4a9b2fdfb779797506.jpg); --postImagePosition: top; }
 
-.lux-track.hai .dragon, .lux-track.gb-732 .dragon, .lux.hai .dragon, .lux.gb-732 .dragon, .parent-1.hai .dragon, .parent-1.gb-732 .dragon, .gb-1.parent-0.hai .dragon, .gb-1.parent-0.gb-732 .dragon, .lux-bb.hai .dragon, .lux-bb.gb-732 .dragon { --postImage: url(https://i.pinimg.com/736x/06/87/b0/0687b061654b561b3dfe4786ce27f2d5.jpg); --postImagePosition: center; }
+.lux-track.hai .dragon, .lux-track.liu .dragon, .lux-track.gb-732 .dragon, .lux.hai .dragon, .lux.liu .dragon, .lux.gb-732 .dragon, .parent-1.hai .dragon, .parent-1.liu .dragon, .parent-1.gb-732 .dragon, .gb-1.parent-0.hai .dragon, .gb-1.parent-0.liu .dragon, .gb-1.parent-0.gb-732 .dragon, .lux-bb.hai .dragon, .lux-bb.liu .dragon, .lux-bb.gb-732 .dragon { --postImage: url(https://i.pinimg.com/736x/06/87/b0/0687b061654b561b3dfe4786ce27f2d5.jpg); --postImagePosition: center; }
 
 .lux-track.hallie, .totl.m-836 .lux-track, .lux.hallie, .totl.m-836 .lux, .parent-1.hallie, .totl.m-836 .parent-1, .gb-1.parent-0.hallie, .totl.m-836 .gb-1.parent-0, .lux-bb.hallie, .totl.m-836 .lux-bb { --rgb: 184, 144, 158; --rgb-dark: 167, 117, 134; }
 
