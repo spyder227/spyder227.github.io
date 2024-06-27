@@ -24,8 +24,7 @@
     & et-wrap,
     & et-comm,
     & et-social,
-    &.wthi tag-wrap,
-    &.wthi tag-comm {
+    &.wthi .lux-bb {
         //shared
         .light & {
             --accent: rgb(var(--rgb-dark, var(--rgb)));
@@ -78,8 +77,7 @@
         --bg-accent-50: var(--accent-50);
         --text-accent: var(--accent);
     }
-    &.wthi tag-wrap,
-    &.wthi tag-comm {
+    &.wthi .lux-bb {
         //wthi only
         --bg-accent: var(--accent);
         --bg-accent-transparent: var(--accent-60);
