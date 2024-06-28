@@ -83,7 +83,7 @@
         --bg-accent-transparent: var(--accent-60);
 
         --text-accent: var(--accent);
-        --text-on-accent: rgb(245, 245, 245);
+        --text-on-accent: var(--on-accent, rgb(245, 245, 245));
         
         --border-accent: var(--accent);
         --border-accent-transparent: var(--accent-60);
@@ -256,6 +256,7 @@
     &.wthi-45 {
         --rgb: 104,118,139;
         --rgb-dark: 67, 84, 111;
+        --on-accent: rgb(45, 45, 45);
         --postImage: url(https://64.media.tumblr.com/9ac89f48e2f61ed892fcefb1ea3537e7/tumblr_p2mleuhBzQ1vz2ghao7_250.gif);
         --wideImage: url(https://64.media.tumblr.com/edd648e1e8fd3de9aac9bbda4307ca1e/tumblr_p2mn217UQa1vz2ghao9_400.gif);
 
