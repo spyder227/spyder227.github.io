@@ -457,9 +457,11 @@
     &.harriet,
     &.harry,
     &.helen,
-    &.gb-263 {
+    &.gb-263,
+    &.wthi-49 {
         --rgb: 208,183,190;
         --postImage: url(https://64.media.tumblr.com/2ce76781ffb02920923703d0fef77be1/dc693759869c3a18-ad/s400x600/b5f65ed2788462e505e45b44e7e603db7b121b6e.gif);
+        --wideImage: url(https://64.media.tumblr.com/2ce76781ffb02920923703d0fef77be1/dc693759869c3a18-ad/s400x600/b5f65ed2788462e505e45b44e7e603db7b121b6e.gif);
 
         .unicorn {
             --postImage: url(https://i.pinimg.com/564x/08/b6/5f/08b65f43f45c642e73881fe826b51c0b.jpg);
@@ -856,10 +858,12 @@
     &.spencer,
     &.spence,
     .totl.m-862 &,
-    &.gb-45 {
+    &.gb-45,
+    &.wthi-52 {
         --rgb: 138, 151, 174;
         --rgb-dark: 109, 125, 154;
         --postImage: url(https://64.media.tumblr.com/f3cbeb06c988e0c6ab6af8911cfeea4a/tumblr_p2s9rxYaMm1vz2ghao1_1280.jpg);
+        --wideImage: url(https://64.media.tumblr.com/f3cbeb06c988e0c6ab6af8911cfeea4a/tumblr_p2s9rxYaMm1vz2ghao1_1280.jpg);
     }
 
     &.sterling,
