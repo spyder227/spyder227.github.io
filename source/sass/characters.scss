@@ -407,6 +407,13 @@
         --rgb-dark: 145, 92, 139;
     }
 
+    &.gideon,
+    &.wthi-104 {
+        --rgb: 80, 96, 120;
+        --postImage: url(https://64.media.tumblr.com/f426c98f752ec6c255442b436ecca982/926fff7a7ade6cdc-3b/s1280x1920/f7ed9534f1df2dd7d11200608083be8359b6ba3a.gif);
+        --wideImage: url(https://64.media.tumblr.com/f426c98f752ec6c255442b436ecca982/926fff7a7ade6cdc-3b/s1280x1920/f7ed9534f1df2dd7d11200608083be8359b6ba3a.gif);
+    }
+
     &.grace,
     .totl.m-1565 & {
         --rgb: 204, 176, 176;
@@ -565,6 +572,21 @@
         --rgb: 213, 181, 105;
     }
 
+    &.liam,
+    &.buck,
+    &.wthi-81 {
+        --rgb: 97, 99, 82;
+        --postImage: url(https://files.jcink.net/uploads2/wherethehellis//av-81.jpg?1723638428);
+        --wideImage: url(https://64.media.tumblr.com/67f90beba92b54311d6e19193ee0533d/f71be1b8199a8109-6d/s1280x1920/347faaabebfe59b56d1d21fbf6d92651426200cb.jpg);
+    }
+
+    &.lily,
+    &.wthi-82 {
+        --rgb: 126, 73, 52;
+        --postImage: url(https://64.media.tumblr.com/f426c98f752ec6c255442b436ecca982/926fff7a7ade6cdc-3b/s1280x1920/f7ed9534f1df2dd7d11200608083be8359b6ba3a.gif);
+        --wideImage: url(https://64.media.tumblr.com/f426c98f752ec6c255442b436ecca982/926fff7a7ade6cdc-3b/s1280x1920/f7ed9534f1df2dd7d11200608083be8359b6ba3a.gif);
+    }
+
     &.lincoln,
     &.link,
     &.gb-430 {
@@ -712,9 +734,12 @@
     }
 
     &.oliver,
-    &.oli {
+    &.oli,
+    &.wthi-103 {
         --rgb: 200, 150, 119;
         --rgb-dark: 187, 124, 86;
+        --postImage: url(https://files.jcink.net/uploads2/wherethehellis//av-103.jpg?1724872121);
+        --wideImage: url(https://64.media.tumblr.com/dc904bb1779d71597647e832c79f6f8d/tumblr_p2j6khVJAw1vz2ghao2_1280.jpg);
     }
 
     &.percy,

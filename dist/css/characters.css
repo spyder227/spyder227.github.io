@@ -108,6 +108,8 @@ body:not(.light) .totl .lux-track, body:not(.light) .lux-track.gb tag-wrap, body
 
 .lux-track.genevieve, .lux-track.gen, .totl.m-587 .lux-track, .lux.genevieve, .lux.gen, .totl.m-587 .lux, .parent-1.genevieve, .parent-1.gen, .totl.m-587 .parent-1, .gb-1.parent-0.genevieve, .gb-1.parent-0.gen, .totl.m-587 .gb-1.parent-0, .lux-bb.genevieve, .lux-bb.gen, .totl.m-587 .lux-bb, .account-1.parent-0.genevieve, .account-1.parent-0.gen, .totl.m-587 .account-1.parent-0 { --rgb: 202, 182, 200; --rgb-dark: 145, 92, 139; }
 
+.lux-track.gideon, .lux-track.wthi-104, .lux.gideon, .lux.wthi-104, .parent-1.gideon, .parent-1.wthi-104, .gb-1.parent-0.gideon, .gb-1.parent-0.wthi-104, .lux-bb.gideon, .lux-bb.wthi-104, .account-1.parent-0.gideon, .account-1.parent-0.wthi-104 { --rgb: 80, 96, 120; --postImage: url(https://64.media.tumblr.com/f426c98f752ec6c255442b436ecca982/926fff7a7ade6cdc-3b/s1280x1920/f7ed9534f1df2dd7d11200608083be8359b6ba3a.gif); --wideImage: url(https://64.media.tumblr.com/f426c98f752ec6c255442b436ecca982/926fff7a7ade6cdc-3b/s1280x1920/f7ed9534f1df2dd7d11200608083be8359b6ba3a.gif); }
+
 .lux-track.grace, .totl.m-1565 .lux-track, .lux.grace, .totl.m-1565 .lux, .parent-1.grace, .totl.m-1565 .parent-1, .gb-1.parent-0.grace, .totl.m-1565 .gb-1.parent-0, .lux-bb.grace, .totl.m-1565 .lux-bb, .account-1.parent-0.grace, .totl.m-1565 .account-1.parent-0 { --rgb: 204, 176, 176; }
 
 .lux-track.graeme, .lux.graeme, .parent-1.graeme, .gb-1.parent-0.graeme, .lux-bb.graeme, .account-1.parent-0.graeme { --rgb: 206, 174, 97; }
@@ -160,6 +162,10 @@ body:not(.light) .totl .lux-track, body:not(.light) .lux-track.gb tag-wrap, body
 
 .lux-track.lance, .totl.m-1355 .lux-track, .lux.lance, .totl.m-1355 .lux, .parent-1.lance, .totl.m-1355 .parent-1, .gb-1.parent-0.lance, .totl.m-1355 .gb-1.parent-0, .lux-bb.lance, .totl.m-1355 .lux-bb, .account-1.parent-0.lance, .totl.m-1355 .account-1.parent-0 { --rgb: 213, 181, 105; }
 
+.lux-track.liam, .lux-track.buck, .lux-track.wthi-81, .lux.liam, .lux.buck, .lux.wthi-81, .parent-1.liam, .parent-1.buck, .parent-1.wthi-81, .gb-1.parent-0.liam, .gb-1.parent-0.buck, .gb-1.parent-0.wthi-81, .lux-bb.liam, .lux-bb.buck, .lux-bb.wthi-81, .account-1.parent-0.liam, .account-1.parent-0.buck, .account-1.parent-0.wthi-81 { --rgb: 97, 99, 82; --postImage: url(https://files.jcink.net/uploads2/wherethehellis//av-81.jpg?1723638428); --wideImage: url(https://64.media.tumblr.com/67f90beba92b54311d6e19193ee0533d/f71be1b8199a8109-6d/s1280x1920/347faaabebfe59b56d1d21fbf6d92651426200cb.jpg); }
+
+.lux-track.lily, .lux-track.wthi-82, .lux.lily, .lux.wthi-82, .parent-1.lily, .parent-1.wthi-82, .gb-1.parent-0.lily, .gb-1.parent-0.wthi-82, .lux-bb.lily, .lux-bb.wthi-82, .account-1.parent-0.lily, .account-1.parent-0.wthi-82 { --rgb: 126, 73, 52; --postImage: url(https://64.media.tumblr.com/f426c98f752ec6c255442b436ecca982/926fff7a7ade6cdc-3b/s1280x1920/f7ed9534f1df2dd7d11200608083be8359b6ba3a.gif); --wideImage: url(https://64.media.tumblr.com/f426c98f752ec6c255442b436ecca982/926fff7a7ade6cdc-3b/s1280x1920/f7ed9534f1df2dd7d11200608083be8359b6ba3a.gif); }
+
 .lux-track.lincoln, .lux-track.link, .lux-track.gb-430, .lux.lincoln, .lux.link, .lux.gb-430, .parent-1.lincoln, .parent-1.link, .parent-1.gb-430, .gb-1.parent-0.lincoln, .gb-1.parent-0.link, .gb-1.parent-0.gb-430, .lux-bb.lincoln, .lux-bb.link, .lux-bb.gb-430, .account-1.parent-0.lincoln, .account-1.parent-0.link, .account-1.parent-0.gb-430 { --rgb: 81, 105, 130; --postImage: url(https://64.media.tumblr.com/75bff6e4bd2f89f8efc5ce86554ca76b/4c1713a289ca5989-90/s1280x1920/83f2f48a661e956186a9389a7eedc5233b48d40d.jpg); --postImagePosition: top; }
 
 .lux-track.lorelei, .lux-track.lore, .lux.lorelei, .lux.lore, .parent-1.lorelei, .parent-1.lore, .gb-1.parent-0.lorelei, .gb-1.parent-0.lore, .lux-bb.lorelei, .lux-bb.lore, .account-1.parent-0.lorelei, .account-1.parent-0.lore { --rgb: 191, 117, 81; }
@@ -202,7 +208,7 @@ body:not(.light) .totl .lux-track, body:not(.light) .lux-track.gb tag-wrap, body
 
 .lux-track.noah, .totl.m-314 .lux-track, .lux.noah, .totl.m-314 .lux, .parent-1.noah, .totl.m-314 .parent-1, .gb-1.parent-0.noah, .totl.m-314 .gb-1.parent-0, .lux-bb.noah, .totl.m-314 .lux-bb, .account-1.parent-0.noah, .totl.m-314 .account-1.parent-0 { --rgb: 155, 167, 142; --rgb-dark: 130, 146, 114; }
 
-.lux-track.oliver, .lux-track.oli, .lux.oliver, .lux.oli, .parent-1.oliver, .parent-1.oli, .gb-1.parent-0.oliver, .gb-1.parent-0.oli, .lux-bb.oliver, .lux-bb.oli, .account-1.parent-0.oliver, .account-1.parent-0.oli { --rgb: 200, 150, 119; --rgb-dark: 187, 124, 86; }
+.lux-track.oliver, .lux-track.oli, .lux-track.wthi-103, .lux.oliver, .lux.oli, .lux.wthi-103, .parent-1.oliver, .parent-1.oli, .parent-1.wthi-103, .gb-1.parent-0.oliver, .gb-1.parent-0.oli, .gb-1.parent-0.wthi-103, .lux-bb.oliver, .lux-bb.oli, .lux-bb.wthi-103, .account-1.parent-0.oliver, .account-1.parent-0.oli, .account-1.parent-0.wthi-103 { --rgb: 200, 150, 119; --rgb-dark: 187, 124, 86; --postImage: url(https://files.jcink.net/uploads2/wherethehellis//av-103.jpg?1724872121); --wideImage: url(https://64.media.tumblr.com/dc904bb1779d71597647e832c79f6f8d/tumblr_p2j6khVJAw1vz2ghao2_1280.jpg); }
 
 .lux-track.percy, .totl.m-482 .lux-track, .lux.percy, .totl.m-482 .lux, .parent-1.percy, .totl.m-482 .parent-1, .gb-1.parent-0.percy, .totl.m-482 .gb-1.parent-0, .lux-bb.percy, .totl.m-482 .lux-bb, .account-1.parent-0.percy, .totl.m-482 .account-1.parent-0 { --rgb: 168, 143, 128; --rgb-dark: 145, 102, 76; }
 
