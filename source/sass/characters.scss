@@ -696,6 +696,11 @@
         --on-accent: rgb(45, 45, 45);
         --postImage: url(https://64.media.tumblr.com/53a9e899bfe66e9d42f2aef0ce90c1e2/9d0622e23af270f0-9c/s1280x1920/a3899ac773d7cfcee1794ab680ffddd1dbd8dc2f.gif);
         --wideImage: url(https://64.media.tumblr.com/2b405761b946601395ff67d10951a061/9d0622e23af270f0-1d/s1280x1920/2cd372380e33bc99c49f10596cbc002a410eeadc.gif);
+
+        .raccoon {
+            --postImage: url(https://i.pinimg.com/564x/f1/82/c1/f182c1a8d3eecdaf4486c689777afb82.jpg);
+            --wideImage: url(https://i.pinimg.com/564x/f1/82/c1/f182c1a8d3eecdaf4486c689777afb82.jpg);
+        }
     }
 
     &.nayara,
