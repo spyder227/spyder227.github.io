@@ -1,0 +1,39 @@
+/*******************************
+    Global
+********************************/
+html {
+  font-size: 16px; }
+
+body {
+  font-family: var(--font--body);
+  font-size: 1rem;
+  line-height: 160%;
+  background: var(--bg--primary);
+  color: var(--text--primary); }
+  body:not(.theme--light) .mode--dark {
+    display: none; }
+  body.theme--light .mode--light {
+    display: none; }
+
+main {
+  margin-left: var(--size--menu-width);
+  padding: var(--space--lg); }
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  width: 0;
+  height: 100vh;
+  z-index: 2;
+  backdrop-filter: blur(5px);
+  transition-duration: 0.3s; }
+  .backdrop.is-active {
+    width: 100%; }
+
+[target="_blank"]::after {
+  content: '\f08e';
+  font-family: 'Font Awesome 6 Pro';
+  margin-left: var(--space--xs);
+  color: var(--accent); }

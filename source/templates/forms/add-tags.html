@@ -1,0 +1,28 @@
+<h1>Add Tags</h1>
+<form data-form="add-tags">
+    <label>
+        <b>Title</b>
+        <span><input type="text" id="title" placeholder="Tag Title" required /></span>
+    </label>
+    <label>
+        <b>Type</b>
+        <span><select required id="type">
+            <option value="">(select)</option>
+            <option value="single">Single</option>
+            <option value="multple">Multiple</option>
+        </select></span>
+    </label>
+    <div class="field-wrap fullWidth adjustable accordion sites">
+        <b>Sites</b>
+        <div class="multiselect"></div>
+    </div>
+    <div class="field-wrap fullWidth adjustable">
+        <b>Tags</b>
+        <div class="rows"></div>
+        <div class="multi-buttons" data-row-type="tag-options">
+            <button type="button" onclick="addRow(this)">+ New Row</button>
+            <button type="button" onclick="removeRow(this)">- Remove Row</button>
+        </div>
+    </div>
+    <button type="submit" class="fullWidth">Submit</button>
+</form>

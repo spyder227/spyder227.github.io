@@ -1,0 +1,158 @@
+.form {
+  background: var(--bg--tertiary);
+  border-radius: 10px;
+  padding: var(--space--lg);
+  display: grid;
+  margin: 0 auto;
+  max-width: 800px; }
+  .form form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space--lg) var(--space--md); }
+    .form form .field-wrap,
+    .form form label {
+      display: flex;
+      flex-direction: column; }
+      .form form .field-wrap b,
+      .form form label b {
+        text-transform: uppercase;
+        font-size: 0.5rem;
+        letter-spacing: 0.2em;
+        font-weight: 900; }
+      .form form .field-wrap textarea,
+      .form form .field-wrap select,
+      .form form .field-wrap input,
+      .form form label textarea,
+      .form form label select,
+      .form form label input {
+        border-radius: 3px;
+        border: 0;
+        background: var(--bg--quintenary);
+        width: 100%;
+        padding: var(--space--xs) var(--space--sm);
+        font-size: 0.875rem;
+        color: var(--text--primary);
+        height: 36px; }
+      .form form .field-wrap textarea,
+      .form form label textarea {
+        height: 100px; }
+    .form form p {
+      text-align: center; }
+      .form form p:last-of-type {
+        margin-bottom: 0; }
+    .form form > button {
+      background: var(--accent);
+      border: none;
+      color: var(--text--primary);
+      font-family: var(--font--serif);
+      font-weight: 700;
+      font-size: 1.25rem;
+      padding: var(--space--md) var(--space--lg);
+      border-radius: 3px;
+      max-width: max-content;
+      margin: 0 auto;
+      line-height: 100%;
+      cursor: pointer;
+      color: var(--text--on-accent);
+      transition-duration: 0.3s; }
+      .form form > button:hover {
+        background: var(--accent--light); }
+    .form form .adjustable button {
+      background: var(--accent);
+      border: none;
+      color: var(--text--primary);
+      font-weight: 700;
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: var(--space--sm) var(--space--md);
+      border-radius: 3px;
+      max-width: max-content;
+      margin: 0 auto;
+      line-height: 100%;
+      cursor: pointer;
+      color: var(--text--on-accent);
+      transition-duration: 0.3s; }
+      .form form .adjustable button:hover {
+        background: var(--accent--light); }
+
+.toggle {
+  width: 40px;
+  height: 20px;
+  background: var(--bg--quintenary);
+  border-radius: 10px;
+  padding: 3px;
+  cursor: pointer;
+  transition-duration: 0.3s; }
+  .toggle::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    height: 14px;
+    width: 14px;
+    background: var(--text--primary);
+    display: block;
+    border-radius: 50%;
+    transition-duration: 0.3s; }
+  .toggle input {
+    display: none; }
+  .toggle:has(input:checked) {
+    justify-content: flex-end;
+    background: var(--accent); }
+    .toggle:has(input:checked)::before {
+      left: calc(100% - 17px);
+      background: var(--text--on-accent); }
+
+.rows {
+  display: grid;
+  gap: var(--space--md); }
+  .rows:not(:empty) {
+    margin-bottom: var(--space--md); }
+  .rows blockquote:not(:only-child) {
+    display: none; }
+
+.row.links, .row.ships, .row.characters, .row.features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space--md); }
+
+.multitoggle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space--lg); }
+
+.multiselect {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space--md); }
+  .multiselect label {
+    flex-direction: row !important;
+    align-items: center;
+    gap: var(--space--xs);
+    cursor: pointer; }
+    .multiselect label > span {
+      display: block;
+      width: 20px;
+      height: 20px;
+      background: var(--bg--quintenary);
+      padding: 3px;
+      border-radius: 3px; }
+      .multiselect label > span:has([type="radio"]) {
+        border-radius: 50%; }
+        .multiselect label > span:has([type="radio"])::before {
+          border-radius: 50%; }
+      .multiselect label > span::before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 2px;
+        background: var(--text--primary);
+        opacity: 0; }
+      .multiselect label > span:has(input:checked)::before {
+        opacity: 1; }
+      .multiselect label > span input {
+        display: none; }
+    .multiselect label:hover > span::before {
+      opacity: 0.5; }

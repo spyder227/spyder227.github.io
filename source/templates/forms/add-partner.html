@@ -1,0 +1,26 @@
+<h1>Add Partner</h1>
+<form data-form="add-partner">
+    <label class="fullWidth">
+        <b>Alias</b>
+        <span><input type="text" id="title" placeholder="Alias" required /></span>
+    </label>
+    <label>
+        <b>Site</b>
+        <span><select required id="site" required>
+            <option value="">(select)</option>
+        </select></span>
+    </label>
+    <label>
+        <b>ID</b>
+        <span><input type="text" id="id" placeholder="00" required /></span>
+    </label>
+    <div class="field-wrap fullWidth adjustable">
+        <b>Characters</b>
+        <div class="rows"></div>
+        <div class="multi-buttons" data-row-type="characters">
+            <button type="button" onclick="addRow(this)">+ New Row</button>
+            <button type="button" onclick="removeRow(this)">- Remove Row</button>
+        </div>
+    </div>
+    <button type="submit" class="fullWidth">Submit</button>
+</form>

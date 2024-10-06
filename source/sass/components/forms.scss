@@ -1,0 +1,217 @@
+.form {
+    background: var(--bg--tertiary);
+    border-radius: 10px;
+    padding: var(--space--lg);
+    display: grid;
+    margin: 0 auto;
+    max-width: 800px;
+
+    form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space--lg) var(--space--md);
+
+        .field-wrap,
+        label {
+            display: flex;
+            flex-direction: column;
+
+            b {
+                text-transform: uppercase;
+                font-size: 0.5rem;
+                letter-spacing: 0.2em;
+                font-weight: 900;
+            }
+
+            textarea,
+            select,
+            input {
+                border-radius: 3px;
+                border: 0;
+                background: var(--bg--quintenary);
+                width: 100%;
+                padding: var(--space--xs) var(--space--sm);
+                font-size: 0.875rem;
+                color: var(--text--primary);
+                height: 36px;
+            }
+
+            textarea {
+                height: 100px;
+            }
+        }
+
+        p {
+            text-align: center;
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+
+        & > button {
+            background: var(--accent);
+            border: none;
+            color: var(--text--primary);
+            font-family: var(--font--serif);
+            font-weight: 700;
+            font-size: 1.25rem;
+            padding: var(--space--md) var(--space--lg);
+            border-radius: 3px;
+            max-width: max-content;
+            margin: 0 auto;
+            line-height: 100%;
+            cursor: pointer;
+            color: var(--text--on-accent);
+            transition-duration: 0.3s;
+
+            &:hover {
+                background: var(--accent--light)
+            }
+        }
+
+        .adjustable button {
+            background: var(--accent);
+            border: none;
+            color: var(--text--primary);
+            font-weight: 700;
+            font-size: 0.5rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: var(--space--sm) var(--space--md);
+            border-radius: 3px;
+            max-width: max-content;
+            margin: 0 auto;
+            line-height: 100%;
+            cursor: pointer;
+            color: var(--text--on-accent);
+            transition-duration: 0.3s;
+
+            &:hover {
+                background: var(--accent--light)
+            }
+        }
+    }
+}
+.toggle {
+    width: 40px;
+    height: 20px;
+    background: var(--bg--quintenary);
+    border-radius: 10px;
+    padding: 3px;
+    cursor: pointer;
+    transition-duration: 0.3s;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        height: 14px;
+        width: 14px;
+        background: var(--text--primary);
+        display: block;
+        border-radius: 50%;
+        transition-duration: 0.3s;
+    }
+
+    input {
+        display: none;
+    }
+
+    &:has(input:checked) {
+        justify-content: flex-end;
+        background: var(--accent);
+
+        &::before {
+            left: calc(100% - 17px);
+            background: var(--text--on-accent);
+        }
+    }
+}
+.rows {
+    display: grid;
+    gap: var(--space--md);
+
+    &:not(:empty) {
+        margin-bottom: var(--space--md);
+    }
+
+    blockquote {
+        &:not(:only-child) {
+            display: none;
+        }
+    }
+}
+.row {
+    &.links,
+    &.ships,
+    &.characters,
+    &.features {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space--md);
+    }
+}
+.multitoggle {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space--lg);
+}
+.multiselect {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space--md);
+
+    label {
+        flex-direction: row !important;
+        align-items: center;
+        gap: var(--space--xs);
+        cursor: pointer;
+
+        & > span {
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: var(--bg--quintenary);
+            padding: 3px;
+            border-radius: 3px;
+
+            &:has([type="radio"]) {
+                border-radius: 50%;
+
+                &::before {
+                    border-radius: 50%;
+                }
+            }
+
+            &::before {
+                content: '';
+                display: block;
+                width: 100%;
+                height: 100%;
+                border-radius: 2px;
+                background: var(--text--primary);
+                opacity: 0;
+            }
+
+            &:has(input:checked) {
+                &::before {
+                    opacity: 1;
+                }
+            }
+
+            input {
+                display: none;
+            }
+        }
+
+        &:hover {
+            & > span {
+                &::before {
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+}

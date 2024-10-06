@@ -1,0 +1,8 @@
+@import '../global/mixins.scss';
+
+/*******************************
+    Utilities
+********************************/
+.fullWidth {
+    grid-column: 1 / -1;
+}

@@ -1,0 +1,52 @@
+<h1>Add Character</h1>
+<form data-form="add-character">
+    <label class="fullWidth">
+        <b>Character</b>
+        <span><input type="text" id="title" placeholder="Account Name" required /></span>
+    </label>
+    <label>
+        <b>Site</b>
+        <span><select required id="site" required>
+            <option value="">(select)</option>
+        </select></span>
+    </label>
+    <label>
+        <b>Profile ID</b>
+        <span><input type="text" id="id" placeholder="00" required /></span>
+    </label>
+    <label class="fullWidth">
+        <b>Vibes</b>
+        <span><textarea type="text" id="vibes" placeholder="(Optional)"></textarea></span>
+    </label>
+    <div class="field-wrap fullWidth adjustable">
+        <b>Links</b>
+        <div class="rows"></div>
+        <div class="multi-buttons" data-row-type="links">
+            <button type="button" onclick="addRow(this)">+ New Row</button>
+            <button type="button" onclick="removeRow(this)">- Remove Row</button>
+        </div>
+    </div>
+    <div class="field-wrap fullWidth adjustable">
+        <b>Relationships</b>
+        <div class="rows"></div>
+        <div class="multi-buttons" data-row-type="ships">
+            <button type="button" onclick="addRow(this)">+ New Row</button>
+            <button type="button" onclick="removeRow(this)">- Remove Row</button>
+        </div>
+    </div>
+    <div class="field-wrap fullWidth adjustable accordion tags">
+        <b>Tags</b>
+        <div class="clip-tags"></div>
+    </div>
+    <div class="multitoggle fullWidth">
+        <label>
+            <b>Active?</b>
+            <span class="toggle"><input type="checkbox" id="active" checked /></span>
+        </label>
+        <label>
+            <b>Immortal?</b>
+            <span class="toggle"><input type="checkbox" id="immortal" /></span>
+        </label>
+    </div>
+    <button type="submit" class="fullWidth">Submit</button>
+</form>

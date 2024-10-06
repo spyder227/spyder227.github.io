@@ -2,15 +2,21 @@
 <html>
     <head>
         @@include('../source/templates/head.html', {
-            "prefix": "../dist",
-            "siteTitle": "Lux | Site Tracker",
-            "stylesheetName": "newStyles.css"
+            "prefix": "./dist",
+            "siteTitle": "Lux | Site Tracker"
         })
     </head>
     <body>
         @@include('../source/templates/nav.html', {
-            "prefix": ".."
+            "prefix": "."
         })
-        <section>Index content</section>
+        <main>
+            <section class="content">
+                <p>Intro content</p>
+            </section>
+        </main>
+        @@include('../source/templates/foot.html', {
+            "prefix": "./dist"
+        })
     </body>
 </html>

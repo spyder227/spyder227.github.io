@@ -1,0 +1,28 @@
+<h1>Add Site</h1>
+<form data-form="add-site">
+    <label>
+        <b>Site</b>
+        <span><input type="text" id="title" placeholder="Full name" required /></span>
+    </label>
+    <label>
+        <b>Desired ID</b>
+        <span><input type="text" id="id" placeholder="Must be unique" required /></span>
+    </label>
+    <label>
+        <b>URL</b>
+        <span><input type="text" id="url" placeholder="https://" required /></span>
+    </label>
+    <label>
+        <b>Application Type</b>
+        <span><select required id="directory">
+            <option value="">(select)</option>
+            <option value="?showuser=">Profile</option>
+            <option value="?showtopic=">Topic</option>
+        </select></span>
+    </label>
+    <label>
+        <b>Active?</b>
+        <span class="toggle"><input type="checkbox" id="active" /></span>
+    </label>
+    <button type="submit" class="fullWidth">Submit</button>
+</form>
