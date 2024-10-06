@@ -259,6 +259,26 @@ function sendAjax(form, data, successMessage) {
         }
     });
 }
+function sendAjaxSync(data) {
+    $.ajax({
+        url: `https://script.google.com/macros/s/${deployID}/exec`,   
+        data: data,
+        method: "POST",
+        type: "POST",
+        dataType: "json", 
+        async: false,
+        success: function () {
+            console.log('success');
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('error');
+            console.log(`Whoops! The sheet connection didn't quite work. Please refresh the page and try again! If this persists, please open the console (ctrl + shift + J) and send Lux a screenshot of what's there.`);
+        },
+        complete: function () {
+            console.log('thread complete');
+        }
+    });
+}
 function fixMc(str) {
     return (""+str).replace(/Mc(.)/g, function(m, m1) {
         return 'Mc' + m1.toUpperCase();
@@ -717,4 +737,61 @@ function submitThread(form) {
     };
 
     sendAjax(form, data, successMessage);
+}
+
+function portThreads() {
+    const oldSheetID = `1KDKs6Kh7dXd9V3Vgcw9ipLPiaDsUqiyRPNGYw7wFnsQ`;
+    fetch(`https://opensheet.elk.sh/${oldSheetID}/Threads`)
+    .then((response) => response.json())
+    .then((data) => {
+        let newData = data.map(item => {
+            let siteID;
+            switch(item.Site.toLowerCase().trim()) {
+                case `godly behaviour`:
+                    siteID = `gb`;
+                    break;
+                case `turn on the light`:
+                    siteID = `totl`;
+                    break;
+                case `where the hell is`:
+                    siteID = `wthi`;
+                    break;
+                default:
+                    siteID = item.Site.trim().toLowerCase();
+                    break;
+            }
+            let newFeatured = [];
+            let oldFeatured = item.Featuring.split('+').map(item => JSON.parse(item)).map(item => ({name: item.character, id: item.id}));
+            let oldPartners = item.Partner.split('+').map(item => JSON.parse(item)).map(item => ({writer: item.partner, writerId: item.id}));
+            oldFeatured.forEach((item, i) => {
+                newFeatured.push({...item, ...oldPartners[i]});
+            });
+            
+            return ({
+                SubmissionType: 'add-thread',
+                Site: item.Site.trim().toLowerCase(),
+                SiteID: siteID,
+                Status: item.Status.trim().toLowerCase() === 'start' ? 'planned' : item.Status.trim().toLowerCase(),
+                Title: item.Title.trim().toLowerCase(),
+                Character: JSON.stringify({
+                    name: item.Character.split('#')[0].trim().toLowerCase(),
+                    id: item.Character.split('#')[1].trim(),
+                }),
+                Featuring: JSON.stringify(newFeatured),
+                ThreadID: item.ThreadID.trim(),
+                Type: item.Type.trim().toLowerCase(),
+                Description: item.Snippet ? item.Snippet.trim() : '',
+                Tags: item.Tags ? JSON.stringify(item.Tags.split(' ')) : '',
+                ICDate: item.ICDate,
+                LastUpdated: item.LastUpdated,
+            });
+        });
+
+        newData.forEach(item => {
+            sendAjaxSync(item);
+        });
+
+    }).then(() => {
+	    console.log('All threads completed!');
+    });
 }
