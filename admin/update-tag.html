@@ -86,72 +86,28 @@
 </nav>
         <main>
             <section class="form">
-                <h1>Add Thread</h1>
-<form data-form="add-thread">
+                <h1>Edit Tags</h1>
+<form data-form="edit-tags">
     <label class="fullWidth">
-        <b>Title</b>
-        <span><input type="text" id="title" placeholder="Thread title" required /></span>
-    </label>
-    <label>
-        <b>Site</b>
-        <span><select required id="site" required>
+        <b>Tag Title</b>
+        <span><select id="title" required>
             <option value="">(select)</option>
         </select></span>
     </label>
-    <label>
-        <b>Character</b>
-        <span><select required id="character" required>
-            <option value="">(select)</option>
-        </select></span>
-    </label>
-    <div class="field-wrap fullWidth adjustable">
-        <b>Featuring</b>
+    <div class="field-wrap fullWidth adjustable accordion sites hidden ifFound">
+        <b>Add Sites</b>
+        <div class="multiselect"></div>
+    </div>
+    <div class="field-wrap fullWidth adjustable hidden ifFound">
+        <b>Add Tags</b>
         <div class="rows"></div>
-        <div class="multi-buttons" data-row-type="featuring">
+        <div class="multi-buttons" data-row-type="tag-options">
             <button type="button" onclick="addRow(this)">+ New Row</button>
             <button type="button" onclick="removeRow(this)">- Remove Row</button>
         </div>
     </div>
-    <label>
-        <b>Thread ID</b>
-        <span><input type="text" id="id" placeholder="00" required /></span>
-    </label>
-    <label>
-        <b>IC Date</b>
-        <span><input type="date" id="date" /></span>
-    </label>
-    <label>
-        <b>Status</b>
-        <span><select required id="status" required>
-            <option value="">(select)</option>
-            <option value="mine">Mine</option>
-            <option value="theirs">Theirs</option>
-            <option value="planned">Planned</option>
-            <option value="complete">Complete</option>
-        </select></span>
-    </label>
-    <label>
-        <b>Type</b>
-        <span><select required id="type" required>
-            <option value="">(select)</option>
-            <option value="thread">Thread</option>
-            <option value="comm">Comm</option>
-            <option value="event">Event</option>
-            <option value="social">Social Media</option>
-            <option value="oneshot">One-shot</option>
-        </select></span>
-    </label>
-    <label class="fullWidth">
-        <b>Description</b>
-        <span><input type="text" id="description" placeholder="(Optional)" /></span>
-    </label>
-    <div class="field-wrap fullWidth adjustable tags">
-        <b>Tags</b>
-        <div class="multiselect"></div>
-    </div>
     <button type="submit" class="fullWidth">Submit</button>
 </form>
-<!--<button onClick="portThreads()">Port Threads from Old Tracker</button>-->
             </section>
         </main>
         <!--Scripts-->

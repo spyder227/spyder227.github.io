@@ -1,0 +1,24 @@
+<h1>Edit Partner</h1>
+<form data-form="edit-partner">
+    <label>
+        <b>Site</b>
+        <span><select required id="site">
+            <option value="">(select)</option>
+        </select></span>
+    </label>
+    <label>
+        <b>Alias</b>
+        <span><select required id="partner">
+            <option value="">(select)</option>
+        </select></span>
+    </label>
+    <div class="field-wrap fullWidth adjustable">
+        <b>Add Characters</b>
+        <div class="rows"></div>
+        <div class="multi-buttons" data-row-type="characters">
+            <button type="button" onclick="addRow(this)">+ New Row</button>
+            <button type="button" onclick="removeRow(this)">- Remove Row</button>
+        </div>
+    </div>
+    <button type="submit" class="fullWidth">Submit</button>
+</form>

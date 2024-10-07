@@ -1,0 +1,22 @@
+<h1>Edit Tags</h1>
+<form data-form="edit-tags">
+    <label class="fullWidth">
+        <b>Tag Title</b>
+        <span><select id="title" required>
+            <option value="">(select)</option>
+        </select></span>
+    </label>
+    <div class="field-wrap fullWidth adjustable accordion sites hidden ifFound">
+        <b>Add Sites</b>
+        <div class="multiselect"></div>
+    </div>
+    <div class="field-wrap fullWidth adjustable hidden ifFound">
+        <b>Add Tags</b>
+        <div class="rows"></div>
+        <div class="multi-buttons" data-row-type="tag-options">
+            <button type="button" onclick="addRow(this)">+ New Row</button>
+            <button type="button" onclick="removeRow(this)">- Remove Row</button>
+        </div>
+    </div>
+    <button type="submit" class="fullWidth">Submit</button>
+</form>

@@ -12,15 +12,26 @@
         gap: var(--space--lg) var(--space--md);
 
         .field-wrap,
-        label {
+        & > label {
             display: flex;
             flex-direction: column;
 
-            b {
-                text-transform: uppercase;
-                font-size: 0.5rem;
-                letter-spacing: 0.2em;
+            & > b {
+                text-transform: capitalize;
+                font-size: 1.25rem;
                 font-weight: 900;
+                font-family: var(--font--serif);
+                border-bottom: 1px solid var(--bg--quintenary);
+                margin-bottom: var(--space--sm);
+            }
+
+            label {
+                b {
+                    text-transform: uppercase;
+                    font-size: 0.5rem;
+                    letter-spacing: 0.2em;
+                    font-weight: 900;
+                }
             }
 
             textarea,
@@ -147,7 +158,8 @@
     &.links,
     &.ships,
     &.characters,
-    &.features {
+    &.features,
+    &.change-ships {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: var(--space--md);
@@ -164,6 +176,7 @@
     gap: var(--space--md);
 
     label {
+        display: flex;
         flex-direction: row !important;
         align-items: center;
         gap: var(--space--xs);
@@ -214,4 +227,7 @@
             }
         }
     }
+}
+.hidden {
+    display: none !important;
 }

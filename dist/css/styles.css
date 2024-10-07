@@ -328,7 +328,7 @@ section.links {
     grid-template-columns: 1fr 1fr;
     gap: var(--space--lg) var(--space--md); }
     .form form .field-wrap,
-    .form form label {
+    .form form > label {
       display: -webkit-box;
       display: -webkit-flex;
       display: -ms-flexbox;
@@ -338,8 +338,16 @@ section.links {
       -webkit-flex-direction: column;
           -ms-flex-direction: column;
               flex-direction: column; }
-      .form form .field-wrap b,
-      .form form label b {
+      .form form .field-wrap > b,
+      .form form > label > b {
+        text-transform: capitalize;
+        font-size: 1.25rem;
+        font-weight: 900;
+        font-family: var(--font--serif);
+        border-bottom: 1px solid var(--bg--quintenary);
+        margin-bottom: var(--space--sm); }
+      .form form .field-wrap label b,
+      .form form > label label b {
         text-transform: uppercase;
         font-size: 0.5rem;
         letter-spacing: 0.2em;
@@ -347,9 +355,9 @@ section.links {
       .form form .field-wrap textarea,
       .form form .field-wrap select,
       .form form .field-wrap input,
-      .form form label textarea,
-      .form form label select,
-      .form form label input {
+      .form form > label textarea,
+      .form form > label select,
+      .form form > label input {
         border-radius: 3px;
         border: 0;
         background: var(--bg--quintenary);
@@ -359,7 +367,7 @@ section.links {
         color: var(--text--primary);
         height: 36px; }
       .form form .field-wrap textarea,
-      .form form label textarea {
+      .form form > label textarea {
         height: 100px; }
     .form form p {
       text-align: center; }
@@ -449,7 +457,7 @@ section.links {
   .rows blockquote:not(:only-child) {
     display: none; }
 
-.row.links, .row.ships, .row.characters, .row.features {
+.row.links, .row.ships, .row.characters, .row.features, .row.change-ships {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr;
@@ -476,6 +484,10 @@ section.links {
           flex-wrap: wrap;
   gap: var(--space--md); }
   .multiselect label {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
     -webkit-box-orient: horizontal !important;
     -webkit-box-direction: normal !important;
     -webkit-flex-direction: row !important;
@@ -512,3 +524,6 @@ section.links {
         display: none; }
     .multiselect label:hover > span::before {
       opacity: 0.5; }
+
+.hidden {
+  display: none !important; }

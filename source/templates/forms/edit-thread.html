@@ -1,0 +1,67 @@
+<h1>Edit Thread</h1>
+<form data-form="edit-thread">
+    <label>
+        <b>Current Title</b>
+        <span><input type="text" id="title" placeholder="Thread title" required /></span>
+    </label>
+    <label>
+        <b>Site</b>
+        <span><select required id="site">
+            <option value="">(select)</option>
+        </select></span>
+    </label>
+    <div class="field-wrap fullWidth adjustable accordion updates">
+        <b>Updates</b>
+        <div class="multiselect">
+            <label>
+                <span><input type="checkbox" class="editOption" value="title" data-if-class="ifTitle" /></span>
+                <b>Change Title</b>
+            </label>
+            <label>
+                <span><input type="checkbox" class="editOption" value="id" data-if-class="ifID" /></span>
+                <b>Change ID</b>
+            </label>
+            <label>
+                <span><input type="checkbox" class="editOption" value="date" data-if-class="ifDate" /></span>
+                <b>Change IC Date</b>
+            </label>
+            <label>
+                <span><input type="checkbox" class="editOption" value="description" data-if-class="ifDescription" /></span>
+                <b>Change Description</b>
+            </label>
+            <label>
+                <span><input type="checkbox" class="editOption" value="addThreadTags" data-if-class="ifAddTags" /></span>
+                <b>Add Tags</b>
+            </label>
+            <label>
+                <span><input type="checkbox" class="editOption" value="removeThreadTags" data-if-class="ifRemoveTags" /></span>
+                <b>Remove Tags</b>
+            </label>
+        </div>
+    </div>
+    <label class="fullWidth hidden ifTitle">
+        <b>New Title</b>
+        <span><input type="text" id="newTitle" placeholder="New title" /></span>
+    </label>
+    <label class="fullWidth hidden ifID">
+        <b>Thread ID</b>
+        <span><input type="text" id="id" placeholder="00" /></span>
+    </label>
+    <label class="fullWidth hidden ifDate">
+        <b>IC Date</b>
+        <span><input type="date" id="date" /></span>
+    </label>
+    <label class="fullWidth hidden ifDescription">
+        <b>Description</b>
+        <span><input type="text" id="description" placeholder="Description text" /></span>
+    </label>
+    <div class="field-wrap fullWidth adjustable tags addition hidden ifAddTags">
+        <b>Add Tags</b>
+        <div class="multiselect"><p>Select a thread and site first.</p></div>
+    </div>
+    <div class="field-wrap fullWidth adjustable tags removal hidden ifRemoveTags">
+        <b>Remove Tags</b>
+        <div class="multiselect"><p>Select a thread and site first.</p></div>
+    </div>
+    <button type="submit" class="fullWidth">Submit</button>
+</form>

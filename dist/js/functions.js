@@ -52,64 +52,6 @@ function initMenus() {
         });
     });
 }
-function initSiteSelect(el) {
-    fetch(`https://opensheet.elk.sh/${sheetID}/Sites`)
-    .then((response) => response.json())
-    .then((data) => {
-        data.sort((a, b) => {
-            if(a.Site < b.Site) {
-                return -1;
-            } else if (a.Site > b.Site) {
-                return 1;
-            } else {
-                return 0;
-            }
-        });
-
-        data.forEach(site => {
-            el.insertAdjacentHTML('beforeend', `<option value="${site.ID}">${capitalize(site.Site, [' ', '-'])}</option>`)
-        });
-    });
-}
-function initPartnerSelect(el, type = 'initial') {
-    fetch(`https://opensheet.elk.sh/${sheetID}/Partners`)
-    .then((response) => response.json())
-    .then((data) => {
-        let site = el.closest('form').querySelector('#site').options[el.closest('form').querySelector('#site').selectedIndex].innerText.trim().toLowerCase();
-        let partners = data.filter(item => item.Site === site);
-        
-        el.closest('form').querySelectorAll('select#partner').forEach(select => {
-            select.addEventListener('change', e => {
-                initShipSelect(e.currentTarget);
-            });
-            if(select.options.length < 2 || type === 'refresh') {
-                select.closest('.row').querySelector('#character').innerHTML = `<option value="">(select)</option>`;
-                let html = `<option value="">(select)</option>`;
-                partners.forEach(partner => {
-                    html += `<option value="${partner.WriterID}">${capitalize(partner.Writer)}</option>`;
-                });
-                select.innerHTML = html;
-            }
-        });
-    });
-}
-function initShipSelect(e) {
-    fetch(`https://opensheet.elk.sh/${sheetID}/Partners`)
-    .then((response) => response.json())
-    .then((data) => {
-        let html = `<option value="">(select)</option>`;
-        let site = e.closest('form').querySelector('#site').options[e.closest('form').querySelector('#site').selectedIndex].innerText.trim().toLowerCase();
-        let partnerId = e.options[e.selectedIndex].value;
-        let characterList = JSON.parse(data.filter(el => el.Site === site && el.WriterID === partnerId)[0].Characters);
-        let characterSelects = e.closest('.row').querySelectorAll('#character');
-        characterList.forEach(character => {
-            html += `<option value="${character.id}">${capitalize(character.name)}</option>`;
-        });
-        characterSelects.forEach(select => {
-            select.innerHTML = html;
-        });
-    });
-}
 function initAccordion(target = '.accordion') {
     document.querySelectorAll(target).forEach(accordion => {
         let triggers = accordion.querySelectorAll(':scope > .accordion--trigger');
@@ -137,6 +79,70 @@ function initAccordion(target = '.accordion') {
             });
         })
     })
+}
+
+/***** FORM INITS *****/
+function initSiteSelect(el) {
+    fetch(`https://opensheet.elk.sh/${sheetID}/Sites`)
+    .then((response) => response.json())
+    .then((data) => {
+        data.sort((a, b) => {
+            if(a.Site < b.Site) {
+                return -1;
+            } else if (a.Site > b.Site) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+
+        data.forEach(site => {
+            el.insertAdjacentHTML('beforeend', `<option value="${site.ID}">${capitalize(site.Site, [' ', '-'])}</option>`)
+        });
+    });
+}
+function initPartnerSelect(el, type = 'initial', siteField = '#site') {
+    fetch(`https://opensheet.elk.sh/${sheetID}/Partners`)
+    .then((response) => response.json())
+    .then((data) => {
+        let site = el.closest('form').querySelector(siteField).options[el.closest('form').querySelector(siteField).selectedIndex].innerText.trim().toLowerCase();
+        let partners = data.filter(item => item.Site === site);
+        
+        el.closest('form').querySelectorAll('select#partner').forEach(select => {
+            if(el.closest('form').dataset.form !== 'edit-partner') {
+                select.addEventListener('change', e => {
+                    initShipSelect(e.currentTarget, siteField);
+                });
+            }
+            if(select.options.length < 2 || type === 'refresh') {
+                if(el.closest('form').dataset.form !== 'edit-partner') {
+                    select.closest('.row').querySelector('#character').innerHTML = `<option value="">(select)</option>`;
+                }
+                let html = `<option value="">(select)</option>`;
+                partners.forEach(partner => {
+                    html += `<option value="${partner.WriterID}">${capitalize(partner.Writer)}</option>`;
+                });
+                select.innerHTML = html;
+            }
+        });
+    });
+}
+function initShipSelect(e, siteField) {
+    fetch(`https://opensheet.elk.sh/${sheetID}/Partners`)
+    .then((response) => response.json())
+    .then((data) => {
+        let html = `<option value="">(select)</option>`;
+        let site = e.closest('form').querySelector(siteField).options[e.closest('form').querySelector(siteField).selectedIndex].innerText.trim().toLowerCase();
+        let partnerId = e.options[e.selectedIndex].value;
+        let characterList = JSON.parse(data.filter(el => el.Site === site && el.WriterID === partnerId)[0].Characters);
+        let characterSelects = e.closest('.row').querySelectorAll('#character');
+        characterList.forEach(character => {
+            html += `<option value="${character.id}">${capitalize(character.name)}</option>`;
+        });
+        characterSelects.forEach(select => {
+            select.innerHTML = html;
+        });
+    });
 }
 function initTags(el, site) {
     fetch(`https://opensheet.elk.sh/${sheetID}/Tagging`)
@@ -216,6 +222,230 @@ function initCharacterSelect(el) {
         });
         el.closest('form').querySelector('#character').innerHTML = html;
     });
+}
+function initTagSelect(el) {
+    fetch(`https://opensheet.elk.sh/${sheetID}/Tagging`)
+    .then((response) => response.json())
+    .then((data) => {
+        data.sort((a, b) => {
+            if(a.Tag < b.Tag) {
+                return -1;
+            } else if (a.Tag > b.Tag) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+
+        data.forEach(tag => {
+            el.insertAdjacentHTML('beforeend', `<option value="${tag.Tag}" data-sites="${JSON.parse(tag.Sites).join(', ')}">${capitalize(tag.Tag, [' ', '-'])} - ${capitalize(JSON.parse(tag.Sites).join(', '), [' ', '-'])}</option>`);
+        });
+    });
+}
+function adjustTagSites(el) {
+    let existing = el.options[el.selectedIndex].dataset.sites.split(', ');
+    el.closest('form').querySelectorAll(`.sites .multiselect label`).forEach(label => label.classList.remove('hidden'));
+    existing.forEach(site => {
+        if(el.closest('form').querySelector(`input[value="${site}"]`)) {
+            el.closest('form').querySelector(`input[value="${site}"]`).closest('label').classList.add('hidden');
+        }
+    });
+}
+function initCharacterSelect(el) {
+    fetch(`https://opensheet.elk.sh/${sheetID}/Characters`)
+    .then((response) => response.json())
+    .then((data) => {
+        data.sort((a, b) => {
+            if(a.Character < b.Character) {
+                return -1;
+            } else if (a.Character > b.Character) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+
+        data.forEach(character => {
+            el.insertAdjacentHTML('beforeend', `<option value="${character.Character}">${capitalize(character.Character)}</option>`)
+        });
+    });
+}
+function initAutoPopulate(el) {
+    //remove links
+    let form = el.closest('form');
+    let characterExists = form.querySelector('#character').options[form.querySelector('#character').selectedIndex].value !== '';
+    let siteExists = form.querySelector('#characterSite').options[form.querySelector('#characterSite').selectedIndex].value !== '';
+    if(characterExists) {
+        if((siteExists && el.value !== 'removeLinks') || (!siteExists && el.value === 'removeLinks')) {
+            switch(el.value) {
+                case 'removeLinks':
+                    initRemoveLinks(el);
+                    if(!siteExists) {
+                        form.querySelectorAll('.clip-multi-warning').forEach(item => item.innerHTML = `<p>Please select both a character and a site.</p>`);
+                    }
+                    break;
+                case 'changeShip':
+                    initChangeShips(el);
+                    break;
+                case 'removeShip':
+                    initRemoveShips(el);
+                    break;
+                case 'removeTags':
+                    initRemoveTags(el);
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            form.querySelectorAll('.clip-multi-warning').forEach(item => item.innerHTML = `<p>Please select both a character and a site.</p>`);
+        }
+    } else {
+        form.querySelectorAll('.clip-character-warning').forEach(item => item.innerHTML = `<p>Please select a character.</p>`);
+        form.querySelectorAll('.clip-multi-warning').forEach(item => item.innerHTML = `<p>Please select both a character and a site.</p>`);
+    }
+}
+function initRemoveLinks(el) {
+    fetch(`https://opensheet.elk.sh/${sheetID}/Characters`)
+    .then((response) => response.json())
+    .then((data) => {
+        let character = el.closest('form').querySelector('#character');
+        let existing = data.filter(item => item.Character === character.options[character.selectedIndex].value.trim().toLowerCase())[0];
+        let links = JSON.parse(existing.Links);
+        let html = `<div class="multiselect">`;
+        links.forEach(link => {
+            html += `<label>
+                <span><input type="checkbox" class="removeLink" value="${link.url}" /></span>
+                <b>${link.title}</b>
+            </label>`;
+        });
+        html += `</div>`;
+
+        el.closest('form').querySelector('.clip-remove-links').innerHTML = html;
+    });
+}
+function initChangeShips(el) {
+    fetch(`https://opensheet.elk.sh/${sheetID}/Characters`)
+    .then((response) => response.json())
+    .then((data) => {
+        let character = el.closest('form').querySelector('#character');
+        let site = el.closest('form').querySelector('#characterSite');
+        let existing = data.filter(item => item.Character === character.options[character.selectedIndex].value.trim().toLowerCase())[0];
+        let ships = JSON.parse(existing.Ships).filter(item => item.site === site.options[site.selectedIndex].innerText.trim().toLowerCase())[0].characters;
+        let html = `<div class="change-ships row">`;
+        ships.forEach(ship => {
+            html += `<label class="ship">
+                <b>${ship.character}, played by ${ship.writer} (${ship.relationship})</b>
+                <span><select required id="type" data-character="${ship.character}" data-writer="${ship.writer}">
+                    <option value="">(select)</option>
+                    <option value="antagonistic">Antagonistic</option>
+                    <option value="familial">Familial</option>
+                    <option value="found family">Found Family</option>
+                    <option value="platonic">Platonic</option>
+                    <option value="professional">Professional</option>
+                    <option value="romantic">Romantic</option>
+                    <option value="other">Other</option>
+                </select></span>
+            </label>`;
+        });
+        html += `</div>`;
+
+        el.closest('form').querySelector('.clip-change-ships').innerHTML = html;
+    });
+}
+function initRemoveShips(el) {
+    fetch(`https://opensheet.elk.sh/${sheetID}/Characters`)
+    .then((response) => response.json())
+    .then((data) => {
+        let character = el.closest('form').querySelector('#character');
+        let site = el.closest('form').querySelector('#characterSite');
+        let existing = data.filter(item => item.Character === character.options[character.selectedIndex].value.trim().toLowerCase())[0];
+        let ships = JSON.parse(existing.Ships).filter(item => item.site === site.options[site.selectedIndex].innerText.trim().toLowerCase())[0].characters;
+        let html = `<div class="multiselect">`;
+        ships.forEach(ship => {
+            html += `<label>
+                <span><input type="checkbox" class="removeShip" value="${ship.character}" data-writer="${ship.writer}" data-ship="${ship.relationship}" /></span>
+                <b>${ship.character}, played by ${ship.writer} (${ship.relationship})</b>
+            </label>`;
+        });
+        html += `</div>`;
+
+        el.closest('form').querySelector('.clip-remove-ships').innerHTML = html;
+    });
+}
+function initRemoveTags(el) {
+    fetch(`https://opensheet.elk.sh/${sheetID}/Characters`)
+    .then((response) => response.json())
+    .then((data) => {
+        let character = el.closest('form').querySelector('#character');
+        let site = el.closest('form').querySelector('#characterSite');
+        let existing = data.filter(item => item.Character === character.options[character.selectedIndex].value.trim().toLowerCase())[0];
+        let tags = JSON.parse(existing.Tags).filter(item => item.site === site.options[site.selectedIndex].innerText.trim().toLowerCase())[0].tags;
+        console.log(tags);
+        let html = `<div class="remove-tags">`;
+        for(set in tags) {
+            html += `<div class="accordion--trigger">${tags[set].type}</div>
+                <div class="accordion--content">
+                    <div class="multiselect">
+                        ${tags[set].tags.map(item => {
+                            return `<label>
+                                <span><input type="checkbox" class="tag removeTag" name="removeTag" value="${item}" data-type="${tags[set].type}" /></span>
+                                <b>${item}</b>
+                            </label>`;
+                        }).join('')}
+                    </div>
+                </div>`;
+        }
+        html += `</div>`;
+
+        el.closest('form').querySelector('.clip-remove-tags').innerHTML = html;
+    }).then(() => {
+        initAccordion('.accordion .remove-tags');
+    });
+}
+function initCharacterSites(character) {
+    fetch(`https://opensheet.elk.sh/${sheetID}/Characters`)
+    .then((response) => response.json())
+    .then((data) => {
+        let existing = data.filter(item => item.Character === character.options[character.selectedIndex].value.trim().toLowerCase())[0];
+        let sites = JSON.parse(existing.Sites);
+        let html = `<option value="">(select)</option>`;
+        sites.forEach(site => {
+            html += `<option value="${site.id}">${capitalize(site.site, [' ', '-'])}`;
+        });
+        character.closest('form').querySelector('#characterSite').innerHTML = html;
+    });
+}
+function initThreadTags(addTo, existingTags = [], removeTags = false) {
+    let html = ``;
+    if(existingTags.length > 0) {
+        existingTags.forEach(tag => {
+            if(removeTags) {
+                let displayTags = threadTags.filter(item => item !== tag);
+                displayTags.forEach(tag => {
+                    html += `<label>
+                        <span><input type="checkbox" class="tagAddition" name="tagging" value="${tag}" /></span>
+                        <b>${tag}</b>
+                    </label>`;
+                });
+            } else {
+                let displayTags = threadTags.filter(item => item === tag);
+                displayTags.forEach(tag => {
+                    html += `<label>
+                        <span><input type="checkbox" class="tagRemoval" name="tagging" value="${tag}" /></span>
+                        <b>${tag}</b>
+                    </label>`;
+                });
+            }
+        });
+    } else {
+        threadTags.forEach(tag => {
+            html += `<label>
+                <span><input type="checkbox" class="threadTag" name="tagging" value="${tag}" /></span>
+                <b>${tag}</b>
+            </label>`;
+        });
+    }
+    addTo.innerHTML = html;
 }
 
 /***** UTILITY *****/
@@ -406,6 +636,9 @@ function addRow(e) {
     } else if(e.closest('.multi-buttons').dataset.rowType === 'featuring') {
         e.closest('.adjustable').querySelector('.rows').insertAdjacentHTML('beforeend', formatFeatureRow(e));
         initPartnerSelect(e);
+    } else if(e.closest('.multi-buttons').dataset.rowType === 'add-ships') {
+        e.closest('.adjustable').querySelector('.rows').insertAdjacentHTML('beforeend', formatShipsRow(e));
+        initPartnerSelect(e, 'initial', '#characterSite');
     }
 }
 function removeRow(e) {
@@ -425,10 +658,6 @@ function formatLinksRow() {
     </div>`;
 }
 function formatShipsRow(e) {
-    let site = e.closest('form').querySelector('#site').options[e.closest('form').querySelector('#site').selectedIndex].value;
-    if(site === '') {
-        //return `<blockquote>Please select a site first.</blockquote>`;
-    }
     return `<div class="row ships">
         <label>
             <b>Played By</b>
@@ -497,6 +726,20 @@ function formatFeatureRow(e) {
         </label>
     </div>`;
 }
+function handleTitleChange(currentTitle, site) {
+    fetch(`https://opensheet.elk.sh/${sheetID}/Threads`)
+    .then((response) => response.json())
+    .then((data) => {
+        let existing = data.filter(item => item.Title === currentTitle && item.Site === site)[0];
+        if(existing) {
+            initThreadTags(document.querySelector('[data-form="edit-thread"] .tags.addition .multiselect'), JSON.parse(existing.Tags), true);
+            initThreadTags(document.querySelector('[data-form="edit-thread"] .tags.removal .multiselect'), JSON.parse(existing.Tags));
+        } else {
+            document.querySelector('[data-form="edit-thread"] .tags.addition .multiselect').innerHTML = `<p>This thread/site combination doesn't exist!</p>`;
+            document.querySelector('[data-form="edit-thread"] .tags.removal .multiselect').innerHTML = `<p>This thread/site combination doesn't exist!</p>`;
+        }
+    });
+}
 
 /***** FORM SUBMISSIONS *****/
 function submitSite(form) {
@@ -522,7 +765,6 @@ function submitTags(form) {
     let type = form.querySelector('#type').options[form.querySelector('#type').selectedIndex].value;
     let tags = Array.from(form.querySelectorAll('.tag-options input')).map(item => item.value.toLowerCase().trim());
     let sites = Array.from(form.querySelectorAll('[name="site"]:checked')).map(item => item.value.toLowerCase().trim());
-    console.log(sites);
 
     let data = {
         SubmissionType: 'add-tags',
@@ -738,7 +980,280 @@ function submitThread(form) {
 
     sendAjax(form, data, successMessage);
 }
+function updateTags(form) {
+    let title = form.querySelector('#title').options[form.querySelector('#title').selectedIndex].value.trim().toLowerCase();
+    let newSites = Array.from(form.querySelectorAll('.sites .multiselect input:checked')).map(item => item.value);
+    let newTags = Array.from(form.querySelectorAll('.tag-options input')).map(item => item.value.toLowerCase().trim());
 
+    fetch(`https://opensheet.elk.sh/${sheetID}/Tagging`)
+    .then((response) => response.json())
+    .then((data) => {
+        let existing = data.filter(item => item.Tag === title)[0];
+        if(newSites.length > 0) {
+            let combined = [...JSON.parse(existing.Sites), ...newSites];
+            existing.Sites = JSON.stringify(combined);
+        }
+        if(newTags.length > 0) {
+            let combined = [...JSON.parse(existing.Set), ...newTags];
+            existing.Set = JSON.stringify(combined);
+        }
+        existing.SubmissionType = 'edit-tags';
+
+        sendAjax(form, existing, successMessage);
+    });
+}
+function updatePartner(form) {
+    let site = form.querySelector('#site').options[form.querySelector('#site').selectedIndex].innerText.trim().toLowerCase();
+    let partner = form.querySelector('#partner').options[form.querySelector('#partner').selectedIndex].value.trim().toLowerCase();
+    let characters = form.querySelectorAll('#charName');
+    let characterList = [];
+
+    characters.forEach(character => {
+        let name = character.value.trim().toLowerCase();
+        let id = character.closest('.row').querySelector('#charId').value.trim();
+        characterList.push({
+            name: name,
+            id: id,
+        });
+    });
+
+    fetch(`https://opensheet.elk.sh/${sheetID}/Partners`)
+    .then((response) => response.json())
+    .then((data) => {
+        let existing = data.filter(item => item.Site === site && item.WriterID === partner)[0];
+        if(characterList.length > 0) {
+            let combined = [...JSON.parse(existing.Characters), ...characterList];
+            existing.Characters = JSON.stringify(combined);
+        }
+        existing.SubmissionType = 'edit-partner';
+        sendAjax(form, existing, successMessage);
+    });
+}
+function updateCharacter(form) {
+    fetch(`https://opensheet.elk.sh/${sheetID}/Characters`)
+    .then((response) => response.json())
+    .then((data) => {
+        let siteField = form.querySelector('#characterSite');
+        let site = siteField.options[siteField.selectedIndex].value !== '' ? siteField.options[siteField.selectedIndex].innerText.trim().toLowerCase() : null;
+        let character = form.querySelector('#character').options[form.querySelector('#character').selectedIndex].value.trim().toLowerCase();
+        let selected = Array.from(form.querySelectorAll('.updates input:checked')).map(item => item.value);
+        let existing = data.filter(item => item.Character === character)[0];
+        
+        //change vibes
+        if(selected.includes('vibes')) {
+            existing.Vibes = form.querySelector('#vibes').value.trim();
+        }
+    
+        //add links
+        if(selected.includes('addLinks')) {
+            let links = form.querySelectorAll('#linkTitle');
+            let linkList = [];
+            links.forEach(link => {
+                let title = link.value.trim().toLowerCase();
+                let url = link.closest('.row').querySelector('#linkURL').value.trim();
+                linkList.push({
+                    title: title,
+                    url: url,
+                });
+            });
+            existing.Links = JSON.stringify([...JSON.parse(existing.Links), ...linkList]);
+        }
+
+        //add ships
+        if(selected.includes('addShip')) {
+            let relationships = form.querySelectorAll('.ships #partner');
+            let shipList = [];
+            relationships.forEach(ship => {
+                let writer = ship.options[ship.selectedIndex].innerText.trim().toLowerCase();
+                let character = ship.closest('.row').querySelector('#character').options[ship.closest('.row').querySelector('#character').selectedIndex].innerText.trim().toLowerCase();
+                let type = ship.closest('.row').querySelector('#type').options[ship.closest('.row').querySelector('#type').selectedIndex].innerText.trim().toLowerCase();
+                shipList.push({
+                    writer: writer,
+                    character: character,
+                    relationship: type,
+                });
+            });
+            let existingShips = JSON.parse(existing.Ships);
+            for(instance in existingShips) {
+                if(existingShips[instance].site === site) {
+                    existingShips[instance].characters = [...existingShips[instance].characters, ...shipList];
+                }
+            }
+            existing.Ships = JSON.stringify(existingShips);
+        }
+
+        //add tags
+        if(selected.includes('addTags')) {
+            let siteTags = form.querySelectorAll('input.tag:checked');
+            let tagList = {};
+            let tagArray = [];
+            let replacingTags = [];
+            siteTags.forEach(tag => {
+                if(tag.type === 'radio') {
+                    replacingTags.push(tag.name);
+                }
+                if(tagList[tag.name]) {
+                    tagList[tag.name].push(tag.value);
+                } else {
+                    tagList[tag.name] = [tag.value];
+                }
+            });
+            for(tagType in tagList) {
+                tagArray.push({
+                    type: tagType,
+                    tags: tagList[tagType],
+                });
+            }
+
+            let existingTags = JSON.parse(existing.Tags);
+            for(instance in existingTags) {
+                if(existingTags[instance].site === site) {
+                    console.log(existingTags[instance].tags);
+                    for(set in existingTags[instance].tags) {
+                        for(newSet in tagArray) {
+                            if(existingTags[instance].tags[set].type === tagArray[newSet].type) {
+                                if(replacingTags.includes(tagArray[newSet].type)) {
+                                    existingTags[instance].tags[set].tags = tagArray[newSet].tags;
+                                } else {
+                                    existingTags[instance].tags[set].tags = [...existingTags[instance].tags[set].tags, ...tagArray[newSet].tags];
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            existing.Tags = JSON.stringify(existingTags);
+        }
+
+        //remove links
+        if(selected.includes('removeLinks')) {
+            let remove = Array.from(form.querySelectorAll('.removeLink:checked')).map(item => ({
+                title: item.closest('label').querySelector('b').innerText.trim().toLowerCase(),
+                url: item.value,
+            }));
+            let existingLinks = JSON.parse(existing.Links);
+            existingLinks.forEach(link => {
+                remove.forEach(removeLink => {
+                    if(link.title === removeLink.title && link.url === removeLink.url) {
+                        link.title = 'remove';
+                        link.url = 'remove';
+                    }
+                })
+            });
+            existingLinks = existingLinks.filter(item => item.title !== 'remove' && item.url !== 'remove');
+            
+            existing.Links = JSON.stringify(existingLinks);
+        }
+
+        //remove ships
+        if(selected.includes('removeShip')) {
+            let remove = Array.from(form.querySelectorAll('.removeShip:checked')).map(item => ({
+                writer: item.dataset.writer,
+                character: item.value,
+                relationship: item.dataset.ship,
+            }));
+            let existingShips = JSON.parse(existing.Ships);
+            for(instance in existingShips) {
+                if(existingShips[instance].site === site) {
+                    existingShips[instance].characters.forEach(ship => {
+                        remove.forEach(removeShip => {
+                            if(ship.character === removeShip.character && ship.writer === removeShip.writer && ship.relationship === removeShip.relationship) {
+                                ship.character = 'remove';
+                                ship.writer = 'remove';
+                                ship.relationship = 'remove';
+                            }
+                        });
+                    });
+                    existingShips[instance].characters = existingShips[instance].characters.filter(item => item.character !== 'remove' && item.writer !== 'remove' && item.relationship !== 'remove');
+                }
+            }
+            existing.Ships = JSON.stringify(existingShips);
+        }
+
+        //remove tags
+        if(selected.includes('removeTags')) {
+            let remove = Array.from(form.querySelectorAll('.removeTag:checked')).map(item => ({
+                type: item.dataset.type,
+                tag: item.value,
+            }));
+            let existingTags = JSON.parse(existing.Tags);
+            for(instance in existingTags) {
+                if(existingTags[instance].site === site) {
+                    for(set in existingTags[instance].tags) {
+                        remove.forEach(tag => {
+                            if(tag.type === existingTags[instance].tags[set].type) {
+                                existingTags[instance].tags[set].tags = existingTags[instance].tags[set].tags.filter(item => item !== tag.tag);
+                            }
+                        })
+                    }
+                }
+            }
+            existing.Tags = JSON.stringify(existingTags);
+        }
+
+        existing.SubmissionType = 'edit-character';
+    
+        sendAjax(form, existing, successMessage);
+    });
+}
+function updateThread(form) {
+    fetch(`https://opensheet.elk.sh/${sheetID}/Threads`)
+    .then((response) => response.json())
+    .then((data) => {
+        let currentTitle = form.querySelector('#title').value.trim().toLowerCase();
+        let site = form.querySelector('#site').options[form.querySelector('#site').selectedIndex].innerText.trim().toLowerCase();
+        let existing = data.filter(item => item.Title === currentTitle && item.Site === site)[0];
+        let selected = Array.from(form.querySelectorAll('.updates input:checked')).map(item => item.value);
+        console.log('existing:');
+        console.log(existing);
+        console.log('working:');
+
+        //title
+        if(selected.includes('title')) {
+            existing.NewTitle = form.querySelector('#newTitle').value.trim().toLowerCase();
+        } else {
+            existing.NewTitle = currentTitle;
+        }
+
+        //id
+        if(selected.includes('id')) {
+            existing.ThreadID = form.querySelector('#id').value.trim();
+        }
+
+        //date
+        if(selected.includes('date')) {
+            existing.ICDate = form.querySelector('#date').value;
+        }
+
+        //description
+        if(selected.includes('description')) {
+            existing.Description = form.querySelector('#description').value;
+        }
+
+        //add tags
+        if(selected.includes('addThreadTags')) {
+            let addedTags = Array.from(form.querySelectorAll('.tagAddition:checked')).map(item => item.value);
+            let newTags = [...JSON.parse(existing.Tags), ...addedTags];
+            existing.Tags = JSON.stringify(newTags);
+        }
+
+        //remove tags
+        if(selected.includes('removeThreadTags')) {
+            let removedTags = Array.from(form.querySelectorAll('.tagRemoval:checked')).map(item => item.value);
+            let existingTags = JSON.parse(existing.Tags);
+            removedTags.forEach(tag => {
+                existingTags = existingTags.filter(item => item !== tag);
+            })
+            existing.Tags = JSON.stringify(existingTags);
+        }
+
+        existing.SubmissionType = 'edit-thread';
+        sendAjax(form, existing, successMessage);
+    });
+}
+
+/***** TRANSFER ONLY *****/
 function portThreads() {
     const oldSheetID = `1KDKs6Kh7dXd9V3Vgcw9ipLPiaDsUqiyRPNGYw7wFnsQ`;
     fetch(`https://opensheet.elk.sh/${oldSheetID}/Threads`)

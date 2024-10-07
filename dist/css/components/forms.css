@@ -10,11 +10,19 @@
     grid-template-columns: 1fr 1fr;
     gap: var(--space--lg) var(--space--md); }
     .form form .field-wrap,
-    .form form label {
+    .form form > label {
       display: flex;
       flex-direction: column; }
-      .form form .field-wrap b,
-      .form form label b {
+      .form form .field-wrap > b,
+      .form form > label > b {
+        text-transform: capitalize;
+        font-size: 1.25rem;
+        font-weight: 900;
+        font-family: var(--font--serif);
+        border-bottom: 1px solid var(--bg--quintenary);
+        margin-bottom: var(--space--sm); }
+      .form form .field-wrap label b,
+      .form form > label label b {
         text-transform: uppercase;
         font-size: 0.5rem;
         letter-spacing: 0.2em;
@@ -22,9 +30,9 @@
       .form form .field-wrap textarea,
       .form form .field-wrap select,
       .form form .field-wrap input,
-      .form form label textarea,
-      .form form label select,
-      .form form label input {
+      .form form > label textarea,
+      .form form > label select,
+      .form form > label input {
         border-radius: 3px;
         border: 0;
         background: var(--bg--quintenary);
@@ -34,7 +42,7 @@
         color: var(--text--primary);
         height: 36px; }
       .form form .field-wrap textarea,
-      .form form label textarea {
+      .form form > label textarea {
         height: 100px; }
     .form form p {
       text-align: center; }
@@ -112,7 +120,7 @@
   .rows blockquote:not(:only-child) {
     display: none; }
 
-.row.links, .row.ships, .row.characters, .row.features {
+.row.links, .row.ships, .row.characters, .row.features, .row.change-ships {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space--md); }
@@ -127,6 +135,7 @@
   flex-wrap: wrap;
   gap: var(--space--md); }
   .multiselect label {
+    display: flex;
     flex-direction: row !important;
     align-items: center;
     gap: var(--space--xs);
@@ -156,3 +165,6 @@
         display: none; }
     .multiselect label:hover > span::before {
       opacity: 0.5; }
+
+.hidden {
+  display: none !important; }
