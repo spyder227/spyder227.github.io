@@ -1255,7 +1255,6 @@ function updateThread(form) {
 
 /***** TRANSFER ONLY *****/
 function portThreads() {
-    const oldSheetID = `1KDKs6Kh7dXd9V3Vgcw9ipLPiaDsUqiyRPNGYw7wFnsQ`;
     fetch(`https://opensheet.elk.sh/${oldSheetID}/Threads`)
     .then((response) => response.json())
     .then((data) => {

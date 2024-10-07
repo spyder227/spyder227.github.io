@@ -324,9 +324,11 @@ section.links {
   .form form {
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
     gap: var(--space--lg) var(--space--md); }
+    @media (min-width: 1025px) {
+      .form form {
+        -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr; } }
     .form form .field-wrap,
     .form form > label {
       display: -webkit-box;
@@ -460,9 +462,11 @@ section.links {
 .row.links, .row.ships, .row.characters, .row.features, .row.change-ships {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
   gap: var(--space--md); }
+  @media (min-width: 1025px) {
+    .row.links, .row.ships, .row.characters, .row.features, .row.change-ships {
+      -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr; } }
 
 .multitoggle {
   display: -webkit-box;
