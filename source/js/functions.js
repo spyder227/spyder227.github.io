@@ -1646,7 +1646,7 @@ function changeStatus(e) {
             Site: e.dataset.site,
             Character: e.dataset.character,
             Status: 'theirs'
-        }, thread, threadDeploy);
+        }, thread);
     } else if(e.dataset.status === 'theirs') {
         e.dataset.status = 'mine';
         let thread = e.parentNode.parentNode.parentNode;
@@ -1686,14 +1686,18 @@ function markArchived(e) {
 }
 function formatThread(thread) {
     console.log(thread);
-    let partnerClasses = ``, featuringClasses = ``;
+    let partnerClasses = ``, featuringClasses = ``, featuringText = ``, partnersText = ``;
     thread.featuring.forEach((featured, i) => {
         if(i > 0) {
             partnerClasses += ` `;
             featuringClasses += ` `;
+            featuringText += `, `;
+            partnersText += `, `;
         }
         partnerClasses += `partner--${featured.writer}`;
-        featuringClasses += `featured--${featured.name.split(' ')[0]}-${featured.name.split(' ')[1][0]}`;
+        featuringClasses += `featured--${featured.name.split(' ')[0]}-${featured.name.split(' ')[1] ? featured.name.split(' ')[1][0] : ''}`;
+        featuringText += `<a href="${thread.site.URL}/${thread.site.Directory}${featured.id}">${featured.name}</a>`;
+        partnersText += `<a href="${thread.site.URL}/${thread.site.Directory}${featured.writerId}">${featured.writer}</a>`;
     });
     let extraTags = thread.tags !== '' ? JSON.parse(thread.tags).join(' ') : '';
 
@@ -1711,17 +1715,15 @@ function formatThread(thread) {
     return `<div class="thread lux-track grid-item grid-item ${thread.character.name.split(' ')[0]} ${partnerClasses} ${featuringClasses} status--${thread.status} type--${thread.type} delay--${getDelay(thread.update)} ${extraTags}">
         <div class="thread--wrap">
             <div class="thread--main">
-                <a href="${thread.site.URL}/?showtopic=${thread.id}&view=getnewpost" target="_blank" class="thread--title">${thread.title}</a>
-                <div class="thread--info">
-                    <span>Writing as <a class="thread--character" href="${thread.site.URL}/?showuser=${thread.character.id}">${thread.character.name}</a></span>
-                    <span class="thread--feature">ft. </span>
-                    <span class="thread--partners">Writing with </span>
-                </div>
-                <div class="thread--info">
-                    <span class="thread--ic-date">Set <span>${thread.icDate}</span></span>
+                <a href="${thread.site.URL}/?showtopic=${thread.id}&view=getnewpost" target="_blank" class="thread--title">${capitalize(thread.title, [' ', '-'])}</a>
+                <div class="thread--dates">
+                    <span class="thread--ic-date">Set <span>${thread.date}</span></span>
                     <span class="thread--last-post">Last Active <span>${thread.updated}</span></span>
                 </div>
-                ${thread.description && thread.description !== '' ? `<div class="thread--info"><p>${thread.description}</p></div>` : ''}
+                <span class="bigger">Writing as <a class="thread--character" href="${thread.site.URL}/${thread.site.Directory}${thread.character.id}">${thread.character.name}</a></span>
+                <span class="thread--feature">ft. ${featuringText}</span>
+                <span class="thread--partners italic">Writing with ${partnersText}</span>
+                ${thread.description && thread.description !== '' ? `<p>${thread.description}</p>` : ''}
             </div>
             <div class="thread--buttons">${buttons}</div>
         </div>

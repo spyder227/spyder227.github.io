@@ -122,11 +122,85 @@
         opacity: 0.5; }
       .threads--filter-group label.is-checked span::before {
         opacity: 1; }
-  .threads--content {
-    background: var(--bg--tertiary);
-    border-radius: 10px;
-    padding: var(--space--lg); }
 
 .thread {
   width: 100%;
-  margin-bottom: var(--space--md); }
+  margin-bottom: var(--space--sm);
+  background: var(--bg--tertiary);
+  border-radius: 10px;
+  padding: var(--space--lg); }
+  .thread.status--mine {
+    background: rgba(var(--rgb), 0.25); }
+  .thread--wrap {
+    display: grid;
+    grid-template-columns: auto 30px;
+    gap: var(--space--xs);
+    align-items: center; }
+  .thread--main {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    line-height: 160%;
+    border-right: 1px solid var(--accent); }
+    .thread--main > a {
+      font-family: var(--font--serif);
+      font-size: 20px;
+      text-transform: none;
+      letter-spacing: 0;
+      line-height: 120%; }
+      .thread--main > a::after {
+        display: none; }
+    .thread--main > span.bigger {
+      text-transform: uppercase;
+      font-weight: 900;
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      line-height: 160%; }
+    .thread--main > span.italic {
+      font-style: italic;
+      opacity: 0.8;
+      letter-spacing: 0.1em; }
+  .thread--dates {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: var(--space--xs);
+    margin-bottom: var(--space--xs); }
+  .thread--buttons {
+    padding-left: var(--space--sm); }
+    .thread--buttons .icon {
+      font-size: 12px;
+      width: 30px;
+      height: 30px;
+      border: 0;
+      background: none;
+      color: var(--text--primary);
+      font-family: 'Font Awesome 6 Pro';
+      text-align: center; }
+      .thread--buttons .icon[title="thread"]::before {
+        content: '\f15c'; }
+      .thread--buttons .icon[title="comm"]::before {
+        content: '\f3ce'; }
+      .thread--buttons .icon[title="event"]::before {
+        content: '\f133'; }
+      .thread--buttons .icon[title="social"]::before {
+        content: '\f075'; }
+      .thread--buttons .icon[title="oneshot"]::before {
+        content: '\e32e'; }
+    .thread--buttons button {
+      font-size: 12px;
+      width: 30px;
+      height: 30px;
+      border: 0;
+      background: none;
+      color: var(--text--primary);
+      cursor: pointer; }
+      .thread--buttons button:hover {
+        background: rgba(var(--rgb), 0.25);
+        border-radius: 2px; }
+      .thread--buttons button:not(.is-updating) .fa-spinner,
+      .thread--buttons button.is-updating i:not(.fa-spinner) {
+        display: none; }

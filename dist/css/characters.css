@@ -7,20 +7,31 @@
   --defaultPostImage: url(https://files.jcink.net/uploads2/godlybehaviour/GB24/forum_guidebook_min.jpg); }
   .lux-track,
   .dark .lux-track,
+  .theme--dark .lux-track,
   .lux,
   .dark
+  .lux,
+  .theme--dark
   .lux,
   .parent-1,
   .dark
+  .parent-1,
+  .theme--dark
   .parent-1,
   .gb-1.parent-0,
   .dark
+  .gb-1.parent-0,
+  .theme--dark
   .gb-1.parent-0,
   .lux-bb,
   .dark
+  .lux-bb,
+  .theme--dark
   .lux-bb,
   .account-1.parent-0,
   .dark
+  .account-1.parent-0,
+  .theme--dark
   .account-1.parent-0 {
     --accent: rgb(var(--rgb));
     --dkAccent: rgb(var(--rgb-dark, var(--rgb))); }
