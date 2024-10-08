@@ -7,8 +7,12 @@
     width: var(--size--menu-width);
     height: 100vh;
     background: var(--bg--secondary);
-    padding: var(--space--md);
+    padding: var(--space--sm);
     z-index: 4;
+
+    @include mq-up(sm) {
+        padding: var(--space--md);
+    }
 
     &--inner {
         display: grid;
@@ -20,7 +24,7 @@
             flex-direction: column;
             justify-content: center;
             gap: var(--space--sm);
-            width: 100%;
+            width: calc(var(--size--menu-width) - (2 * var(--space--sm)));
             aspect-ratio: 1 / 1;
             color: var(--text--primary);
             font-size: 0.5rem;
@@ -35,6 +39,10 @@
             border: none;
             cursor: pointer;
 
+            @include mq-up(sm) {
+                width: calc(var(--size--menu-width) - (2 * var(--space--md)));
+            }
+
             i {
                 font-size: 1rem;
             }
@@ -43,6 +51,14 @@
             &.is-open {
                 background: var(--accent);
                 color: var(--text--on-accent);
+            }
+
+            span {
+                display: none;
+
+                @include mq-up(sm) {
+                    display: block;
+                }
             }
         }
     }

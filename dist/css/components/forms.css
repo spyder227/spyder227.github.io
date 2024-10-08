@@ -8,7 +8,7 @@
   .form form {
     display: grid;
     gap: var(--space--lg) var(--space--md); }
-    @media (min-width: 1025px) {
+    @media (min-width: 769px) {
       .form form {
         grid-template-columns: 1fr 1fr; } }
     .form form .field-wrap,
@@ -125,7 +125,7 @@
 .row.links, .row.ships, .row.characters, .row.features, .row.change-ships {
   display: grid;
   gap: var(--space--md); }
-  @media (min-width: 1025px) {
+  @media (min-width: 769px) {
     .row.links, .row.ships, .row.characters, .row.features, .row.change-ships {
       grid-template-columns: 1fr 1fr; } }
 

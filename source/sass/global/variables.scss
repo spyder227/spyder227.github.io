@@ -1,9 +1,16 @@
+@import '../global/mixins.scss';
+
 /*******************************
     Variables
 ********************************/
 :root {
-    --size--menu-width: 100px;
-    --size--submenu-width: 300px;
+    --size--menu-width: 60px;
+    --size--submenu-width: 200px;
+
+    @include mq-up(sm) {
+        --size--menu-width: 100px;
+        --size--submenu-width: 300px;
+    }
 
     --space--xs: 5px;
     --space--sm: 10px;

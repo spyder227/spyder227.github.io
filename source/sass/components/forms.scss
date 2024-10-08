@@ -12,7 +12,7 @@
         display: grid;
         gap: var(--space--lg) var(--space--md);
 
-        @include mq-up(md) {
+        @include mq-up(sm) {
             grid-template-columns: 1fr 1fr;
         }
 
@@ -168,7 +168,7 @@
         display: grid;
         gap: var(--space--md);
 
-        @include mq-up(md) {
+        @include mq-up(sm) {
             grid-template-columns: 1fr 1fr;
         }
     }

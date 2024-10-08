@@ -5,8 +5,11 @@
   width: var(--size--menu-width);
   height: 100vh;
   background: var(--bg--secondary);
-  padding: var(--space--md);
+  padding: var(--space--sm);
   z-index: 4; }
+  @media (min-width: 769px) {
+    .nav {
+      padding: var(--space--md); } }
   .nav--inner {
     display: grid;
     gap: var(--space--xs); }
@@ -16,7 +19,7 @@
       flex-direction: column;
       justify-content: center;
       gap: var(--space--sm);
-      width: 100%;
+      width: calc(var(--size--menu-width) - (2 * var(--space--sm)));
       aspect-ratio: 1 / 1;
       color: var(--text--primary);
       font-size: 0.5rem;
@@ -30,6 +33,10 @@
       transition-duration: 0.3s;
       border: none;
       cursor: pointer; }
+      @media (min-width: 769px) {
+        .nav--inner button,
+        .nav--inner a {
+          width: calc(var(--size--menu-width) - (2 * var(--space--md))); } }
       .nav--inner button i,
       .nav--inner a i {
         font-size: 1rem; }
@@ -38,6 +45,13 @@
       .nav--inner a.is-open {
         background: var(--accent);
         color: var(--text--on-accent); }
+      .nav--inner button span,
+      .nav--inner a span {
+        display: none; }
+        @media (min-width: 769px) {
+          .nav--inner button span,
+          .nav--inner a span {
+            display: block; } }
 
 .subnav {
   position: fixed;

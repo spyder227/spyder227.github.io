@@ -2,8 +2,8 @@
     Variables
 ********************************/
 :root {
-  --size--menu-width: 100px;
-  --size--submenu-width: 300px;
+  --size--menu-width: 60px;
+  --size--submenu-width: 200px;
   --space--xs: 5px;
   --space--sm: 10px;
   --space--md: 15px;
@@ -22,6 +22,10 @@
   --bg--quintenary: #747474;
   --text--primary: #e7e7e7;
   --text--on-accent: #e7e7e7; }
+  @media (min-width: 769px) {
+    :root {
+      --size--menu-width: 100px;
+      --size--submenu-width: 300px; } }
 
 body.theme--light {
   --bg--primary: #dedddd;
