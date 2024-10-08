@@ -37,14 +37,26 @@ main {
     top: 0;
     left: 0;
     background: rgba(0, 0, 0, 0.6);
-    width: 0;
-    height: 100vh;
     z-index: 2;
     backdrop-filter: blur(5px);
     transition-duration: 0.3s;
 
-    &.is-active {
+    &.horizontal {
+        width: 0;
+        height: 100vh;
+        
+        &.is-active {
+            width: 100%;
+        }
+    }
+
+    &.vertical {
+        height: 0;
         width: 100%;
+
+        &.is-active {
+            height: 100vh;
+        }
     }
 }
 

@@ -1,9 +1,13 @@
 setTheme();
 initMenus();
 
-document.querySelector('.backdrop').addEventListener('click', () => {
-    document.querySelectorAll('[data-menu]').forEach(el => el.classList.remove('is-open'));
-    document.querySelector('.backdrop').classList.remove('is-active');
+document.querySelectorAll('.backdrop').forEach(overlay => {
+    overlay.addEventListener('click', () => {
+        console.log('clicked');
+        document.querySelectorAll('[data-menu]').forEach(el => el.classList.remove('is-open'));
+        document.querySelectorAll('.threads--filter').forEach(el => el.classList.remove('is-active'));
+        document.querySelectorAll('.backdrop').forEach(backdrop => backdrop.classList.remove('is-active'));
+    });
 });
 
 document.querySelectorAll('form').forEach(form => {

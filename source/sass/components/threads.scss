@@ -6,7 +6,8 @@
         top: 0;
         z-index: 2;
         background: var(--bg--primary);
-        padding: var(--space--lg) 0 var(--space--md);
+        padding: var(--space--md) var(--space--lg) var(--space--xs);
+        margin: 0 calc(-1 * var(--space--lg));
     }
 
     &--sorting {
@@ -102,7 +103,7 @@
         position: absolute;
         top: calc(100% + var(--space--xs));
         left: 0;
-        width: 100%;
+        width: 200px;
         background: var(--bg--quaternary);
         padding: var(--space--sm);
         border-radius: 10px;
@@ -115,6 +116,7 @@
         overflow: auto;
         display: flex;
         flex-direction: column;
+        gap: var(--space--xs);
 
         label {
             display: flex;
@@ -122,6 +124,7 @@
             align-items: center;
             gap: var(--space--xs);
             cursor: pointer;
+            line-height: 0;
             
             input {
                 display: none;
@@ -141,6 +144,7 @@
                 background: var(--bg--quintenary);
                 padding: 3px;
                 border-radius: 3px;
+                line-height: 160%;
 
                 &::before {
                     content: '';
@@ -166,13 +170,18 @@
             }
         }
     }
+
+    &--content {
+        max-width: 900px;
+        margin: 0 auto;
+    }
 }
 .thread {
     width: 100%;
     margin-bottom: var(--space--sm);
     background: var(--bg--tertiary);
     border-radius: 10px;
-    padding: var(--space--lg);
+    padding: var(--space--md) var(--space--lg);
 
     &.status--mine {
         background: rgba(var(--rgb), 0.25);

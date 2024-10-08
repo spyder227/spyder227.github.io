@@ -27,7 +27,8 @@
 <script type='text/javascript' src='../dist/js/settings.js'></script>
     </head>
     <body>
-        <div class="backdrop"></div>
+        <div class="backdrop horizontal"></div>
+<div class="backdrop vertical"></div>
 <nav class="nav">
     <div class="nav--inner">
         <a href="../index.html">
@@ -67,7 +68,9 @@
     </div>
 </nav>
 <nav class="subnav" data-menu="threads">
-    <div class="subnav--inner"></div>
+    <div class="subnav--inner">
+        <a href="../threads/index.html">View All</a>
+    </div>
 </nav>
 <nav class="subnav" data-menu="admin">
     <div class="subnav--inner">
@@ -174,6 +177,8 @@
                 </div>
             </div>
         </div>
+        <!--Site-->
+        
     </div>
 </div>
 <div class="threads--content">
@@ -201,7 +206,7 @@
         fetch(`https://opensheet.elk.sh/${sheetID}/Sites`)
         .then((response) => response.json())
         .then((siteData) => {
-            let siteObject = siteName !== 'null' ? siteData.filter(item => item.Site === siteName) : siteData;
+            let siteObject = siteName !== 'all' ? siteData.filter(item => item.Site === siteName) : siteData;
             let threads = prepThreads(threadData, siteName);
             populateThreads(threads, siteObject);
 

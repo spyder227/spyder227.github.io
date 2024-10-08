@@ -22,7 +22,6 @@ function setTheme() {
                 break;
         }
     } else {
-        console.log('no theme');
         document.querySelector('body').classList.add('theme--dark');
         document.querySelector('body').classList.remove('theme--light');
         localStorage.setItem('theme', 'dark');
@@ -33,7 +32,11 @@ function initMenus() {
     .then((response) => response.json())
     .then((data) => {
         data.sort((a, b) => {
-            if(a.Site < b.Site) {
+            if(a.Status === 'active' && b.Status === 'inactive') {
+                return -1;
+            } else if (b.Status === 'active' && a.Status === 'inactive') {
+                return 1;
+            } else if(a.Site < b.Site) {
                 return -1;
             } else if (a.Site > b.Site) {
                 return 1;
@@ -42,13 +45,29 @@ function initMenus() {
             }
         });
 
-        data.forEach(site => {
-            document.querySelector('.subnav[data-menu="sites"] .subnav--inner')
-                .insertAdjacentHTML('beforeend', `<a href="${site.URL}" target="_blank">${site.Site}</a>`);
-            document.querySelector('.subnav[data-menu="characters"] .subnav--inner')
-                .insertAdjacentHTML('beforeend', `<a href="../characters/${site.ID}.html">${site.Site}</a>`);
-            document.querySelector('.subnav[data-menu="threads"] .subnav--inner')
-                .insertAdjacentHTML('beforeend', `<a href="../threads/${site.ID}.html">${site.Site}</a>`);
+        data.forEach((site, i) => {
+            if(i === 0) {
+                document.querySelector('.subnav[data-menu="sites"] .subnav--inner')
+                    .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="${site.URL}" target="_blank" class="${site.Status}">${site.Site}</a>`);
+                document.querySelector('.subnav[data-menu="characters"] .subnav--inner')
+                    .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="../characters/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
+                document.querySelector('.subnav[data-menu="threads"] .subnav--inner')
+                    .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="../threads/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
+            } else if(site.Status !== data[i - 1].Status) {
+                document.querySelector('.subnav[data-menu="sites"] .subnav--inner')
+                    .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="${site.URL}" target="_blank" class="${site.Status}">${site.Site}</a>`);
+                document.querySelector('.subnav[data-menu="characters"] .subnav--inner')
+                    .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="../characters/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
+                document.querySelector('.subnav[data-menu="threads"] .subnav--inner')
+                    .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="../threads/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
+            } else {
+                document.querySelector('.subnav[data-menu="sites"] .subnav--inner')
+                    .insertAdjacentHTML('beforeend', `<a href="${site.URL}" target="_blank" class="${site.Status}">${site.Site}</a>`);
+                document.querySelector('.subnav[data-menu="characters"] .subnav--inner')
+                    .insertAdjacentHTML('beforeend', `<a href="../characters/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
+                document.querySelector('.subnav[data-menu="threads"] .subnav--inner')
+                    .insertAdjacentHTML('beforeend', `<a href="../threads/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
+            }
         });
     });
 }
@@ -380,7 +399,7 @@ function initRemoveTags(el) {
         let site = el.closest('form').querySelector('#characterSite');
         let existing = data.filter(item => item.Character === character.options[character.selectedIndex].value.trim().toLowerCase())[0];
         let tags = JSON.parse(existing.Tags).filter(item => item.site === site.options[site.selectedIndex].innerText.trim().toLowerCase())[0].tags;
-        console.log(tags);
+
         let html = `<div class="remove-tags">`;
         for(set in tags) {
             html += `<div class="accordion--trigger">${tags[set].type}</div>
@@ -451,11 +470,12 @@ function initThreadTags(addTo, existingTags = [], removeTags = false) {
 /***** UTILITY *****/
 function openSubmenu(e) {
     let menu = e.dataset.menu;
+    document.querySelector('.backdrop.vertical').classList.remove('is-active');
     if(e.classList.contains('is-open')) {
         document.querySelectorAll('[data-menu]').forEach(el => el.classList.remove('is-open'));
-        document.querySelector('.backdrop').classList.remove('is-active');
+        document.querySelector('.backdrop.horizontal').classList.remove('is-active');
     } else {
-        document.querySelector('.backdrop').classList.add('is-active');
+        document.querySelector('.backdrop.horizontal').classList.add('is-active');
         document.querySelectorAll('[data-menu]').forEach(el => el.classList.remove('is-open'));
         document.querySelectorAll(`[data-menu="${menu}"]`).forEach(el => el.classList.add('is-open'));
     }
@@ -1108,7 +1128,6 @@ function updateCharacter(form) {
             let existingTags = JSON.parse(existing.Tags);
             for(instance in existingTags) {
                 if(existingTags[instance].site === site) {
-                    console.log(existingTags[instance].tags);
                     for(set in existingTags[instance].tags) {
                         for(newSet in tagArray) {
                             if(existingTags[instance].tags[set].type === tagArray[newSet].type) {
@@ -1205,9 +1224,6 @@ function updateThread(form) {
         let site = form.querySelector('#site').options[form.querySelector('#site').selectedIndex].innerText.trim().toLowerCase();
         let existing = data.filter(item => item.Title === currentTitle && item.Site === site)[0];
         let selected = Array.from(form.querySelectorAll('.updates input:checked')).map(item => item.value);
-        console.log('existing:');
-        console.log(existing);
-        console.log('working:');
 
         //title
         if(selected.includes('title')) {
@@ -1312,7 +1328,20 @@ function portThreads() {
 
 /***** THREAD TRACKING FUNCTIONS *****/
 function openFilters(e) {
-    e.closest('.threads--filter').classList.toggle('is-active');
+    document.querySelector('.backdrop.horizontal').classList.remove('is-active');
+
+    if(e.closest('.threads--filter').classList.contains('is-active')) {
+        document.querySelectorAll('.threads--filter').forEach(filter => filter.classList.remove('is-active'));
+    } else {
+        document.querySelectorAll('.threads--filter').forEach(filter => filter.classList.remove('is-active'));
+        e.closest('.threads--filter').classList.add('is-active');
+    }
+    
+    if(document.querySelector('.threads--filter.is-active')) {
+        document.querySelector('.backdrop.vertical').classList.add('is-active');
+    } else {
+        document.querySelector('.backdrop.vertical').classList.remove('is-active');
+    }
 }
 function debounce(fn, threshold) {
     var timeout;
@@ -1485,8 +1514,8 @@ function initIsotope() {
         });
     });
 }
-function prepThreads(data, site = null) {
-    let threads = site ? data.filter(item => item.Site.trim().toLowerCase() === site && item.Status.trim().toLowerCase() !== 'archived') : data.filter(item => item.Status.trim().toLowerCase() !== 'archived');
+function prepThreads(data, site) {
+    let threads = site !== 'all' ? data.filter(item => item.Site.trim().toLowerCase() === site && item.Status.trim().toLowerCase() !== 'archived') : data.filter(item => item.Status.trim().toLowerCase() !== 'archived');
     threads.sort((a, b) => {
         let aStatus = a.Status.toLowerCase() === 'complete' ? 1 : 0;
         let bStatus = b.Status.toLowerCase() === 'complete' ? 1 : 0;
@@ -1550,7 +1579,7 @@ function populateThreads(array, siteObject) {
             id: array[i].ThreadID,
             title: array[i].Title,
             type: array[i].Type,
-            site: siteObject[0],
+            site: siteObject.length === 1 ? siteObject[0] : siteObject.filter(item => item.Site === array[i].Site)[0],
         }
         html += formatThread(thread);
     }
@@ -1577,6 +1606,11 @@ function populateThreads(array, siteObject) {
     threadTags.forEach(tag => {
         document.querySelector('.filter--tags').insertAdjacentHTML('beforeend', `<label><span><input type="checkbox" value=".tag--${tag}"/></span><b>${tag}</b></label>`);
     });
+    if(siteObject.length > 1) {
+        siteObject.forEach(site => {
+            document.querySelector('.filter--sites').insertAdjacentHTML('beforeend', `<label><span><input type="checkbox" value=".site--${site.ID}"/></span><b>${site.Site}</b></label>`);
+        });
+    }
 }
 function getDelay(date) {
     let elapsed = (new Date() - Date.parse(date)) / (1000*60*60*24);
@@ -1597,7 +1631,6 @@ function getDelay(date) {
     return delayClass;
 }
 function sendThreadAjax(data, thread, form = null, complete = null) {
-    console.log('send ajax');
     $.ajax({
         url: `https://script.google.com/macros/s/${deployID}/exec`,   
         data: data,
@@ -1685,7 +1718,6 @@ function markArchived(e) {
     }, thread, null, 'archived');
 }
 function formatThread(thread) {
-    console.log(thread);
     let partnerClasses = ``, featuringClasses = ``, featuringText = ``, partnersText = ``;
     thread.featuring.forEach((featured, i) => {
         if(i > 0) {
@@ -1712,7 +1744,7 @@ function formatThread(thread) {
         buttons = `<div class="icon" title="${thread.type}"></div>`;
     }
 
-    return `<div class="thread lux-track grid-item grid-item ${thread.character.name.split(' ')[0]} ${partnerClasses} ${featuringClasses} status--${thread.status} type--${thread.type} delay--${getDelay(thread.update)} ${extraTags}">
+    return `<div class="thread lux-track grid-item grid-item ${thread.character.name.split(' ')[0]} ${partnerClasses} ${featuringClasses} status--${thread.status} type--${thread.type} delay--${getDelay(thread.update)} ${extraTags} site--${thread.site.ID}">
         <div class="thread--wrap">
             <div class="thread--main">
                 <a href="${thread.site.URL}/?showtopic=${thread.id}&view=getnewpost" target="_blank" class="thread--title">${capitalize(thread.title, [' ', '-'])}</a>
