@@ -46,9 +46,9 @@ function initMenus() {
             document.querySelector('.subnav[data-menu="sites"] .subnav--inner')
                 .insertAdjacentHTML('beforeend', `<a href="${site.URL}" target="_blank">${site.Site}</a>`);
             document.querySelector('.subnav[data-menu="characters"] .subnav--inner')
-                .insertAdjacentHTML('beforeend', `<a href="@@prefix/characters/${site.ID}.html">${site.Site}</a>`);
+                .insertAdjacentHTML('beforeend', `<a href="../characters/${site.ID}.html">${site.Site}</a>`);
             document.querySelector('.subnav[data-menu="threads"] .subnav--inner')
-                .insertAdjacentHTML('beforeend', `<a href="@@prefix/characters/${site.ID}.html">${site.Site}</a>`);
+                .insertAdjacentHTML('beforeend', `<a href="../threads/${site.ID}.html">${site.Site}</a>`);
         });
     });
 }
@@ -1308,4 +1308,422 @@ function portThreads() {
     }).then(() => {
 	    console.log('All threads completed!');
     });
+}
+
+/***** THREAD TRACKING FUNCTIONS *****/
+function openFilters(e) {
+    e.closest('.threads--filter').classList.toggle('is-active');
+}
+function debounce(fn, threshold) {
+    var timeout;
+    return function debounced() {
+        if (timeout) {
+        clearTimeout(timeout);
+        }
+
+        function delayed() {
+        fn();
+        timeout = null;
+        }
+        setTimeout(delayed, threshold || 100);
+    };
+}
+function setCustomFilter() {
+    const hideUnless = document.querySelector('.completed-label');
+
+    //get search value
+    qsRegex = document.querySelector(typeSearch).value;
+    elements = document.querySelectorAll(gridItem);
+    
+    //add show class to all items to reset
+    elements.forEach(el => el.classList.add(visible));
+    
+    //filter by nothing
+    let searchFilter = '';
+    
+    //check each item
+    elements.forEach(el => {
+        let name = el.querySelector(blockTitle).textContent;
+        if(!name.toLowerCase().includes(qsRegex)) {
+            el.classList.remove(visible);
+            searchFilter = `.${visible}`;
+        }
+    });
+
+    let filterGroups = document.querySelectorAll(filterGroup);
+    let groups = [];
+    filterGroups.forEach(group => {
+        let filters = [];
+        group.querySelectorAll('label.is-checked input').forEach(filter => {
+            if(filter.value) {
+                filters.push(filter.value);
+            }
+        });
+        groups.push({group: group.dataset.filterGroup, selected: filters});
+    });
+
+    let filterCount = 0;
+    let comboFilters = [];
+    groups.forEach(group => {
+        // skip to next filter group if it doesn't have any values
+        if ( group.selected.length > 0 ) {
+            if ( filterCount === 0 ) {
+                // copy groups to comboFilters
+                comboFilters = group.selected;
+            } else {
+                var filterSelectors = [];
+                var groupCombo = comboFilters;
+                // merge filter Groups
+                for (var k = 0; k < group.selected.length; k++) {
+                    for (var j = 0; j < groupCombo.length; j++) {
+                        //accommodate weirdness with object vs not
+                        if(groupCombo[j].selected) {
+                            if(groupCombo[j].selected != group.selected[k]) {
+                                filterSelectors.push( groupCombo[j].selected + group.selected[k] );
+                            }
+                        } else if (!groupCombo[j].selected && group.selected[k]) {
+                            if(groupCombo[j] != group.selected[k]) {
+                                filterSelectors.push( groupCombo[j] + group.selected[k] );
+                            }
+                        }
+                    }
+                }
+                // apply filter selectors to combo filters for next group
+                comboFilters = filterSelectors;
+            }
+            filterCount++;
+        }
+    });
+    
+    //set filter to blank
+    let filter = [];
+    //check if it's only search
+    if(qsRegex.length > 0 && comboFilters.length === 0) {
+        filter = [`.${visible}`];
+    }
+    //check if it's only checkboxes
+    else if(qsRegex.length === 0 && comboFilters.length > 0) {
+        let combos = comboFilters.join(',').split(',');
+        filter = [...combos];
+    }
+    //check if it's both
+    else if (qsRegex.length > 0 && comboFilters.length > 0) {
+        let dualFilters = comboFilters.map(filter => filter + `.${visible}`);
+        filter = [...dualFilters];
+    }
+
+    //join array into string
+    if(hideUnless && hideUnless.classList.contains('is-checked')) {
+        filter = filter.join(', ');
+    } else {
+        filter = filter.map(item => `${item}${defaultShow}`);
+        if(filter.length === 0) {
+            filter = [defaultShow];
+        }
+        filter = filter.join(', ');
+    }
+    
+    //render isotope
+    $container.isotope({
+        filter: filter
+    });
+}
+function initIsotope() {
+    //use value of input select to filter
+    let checkboxes = document.querySelectorAll(filterOptions);
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', e => {
+            if(e.currentTarget.classList.contains('all')) {
+                e.currentTarget.checked = true;
+                e.currentTarget.parentElement.parentElement.classList.add('is-checked');
+                e.currentTarget.parentElement.parentElement.parentElement.querySelectorAll('input:not(.all)').forEach(input => {
+                    input.checked = false;
+                    input.parentElement.parentElement.classList.remove('is-checked');
+                });
+            } else {
+                if(e.currentTarget.parentElement.parentElement.classList.contains('is-checked')) {
+                    e.currentTarget.checked = false;
+                    e.currentTarget.parentElement.parentElement.classList.remove('is-checked');
+                } else {
+                    e.currentTarget.checked = true;
+                    e.currentTarget.parentElement.parentElement.classList.add('is-checked');
+                    e.currentTarget.parentElement.parentElement.parentElement.querySelector('input.all').checked = false;
+                    e.currentTarget.parentElement.parentElement.parentElement.querySelector('input.all').parentElement.parentElement.classList.remove('is-checked');
+                }
+            }
+            let labels = e.currentTarget.parentElement.parentElement.parentElement.querySelectorAll('label');
+            let checked = 0;
+            labels.forEach(label => {
+                if(label.classList.contains('is-checked')) {
+                    checked++;
+                }
+            });
+            if(checked === 0) {
+                e.currentTarget.parentElement.parentElement.parentElement.querySelector('input.all').checked = true;
+                e.currentTarget.parentElement.parentElement.parentElement.querySelector('input.all').parentElement.parentElement.classList.add('is-checked');
+            }
+            //set filters
+            setCustomFilter();
+        });
+    });
+
+    // use value of search field to filter
+    document.querySelector(typeSearch).addEventListener('keyup', e => {
+        setCustomFilter();
+    });
+
+    // bind sort button click
+    let sortButtons = document.querySelectorAll(sorts);
+    sortButtons.forEach(button => {
+        button.addEventListener('click', e => {
+            let sortValue = e.currentTarget.dataset.sort;
+            $container.isotope({ sortBy: sortValue });
+            sortButtons.forEach(button => {
+                button.classList.remove('is-checked');
+            });
+            e.currentTarget.classList.add('is-checked');
+        });
+    });
+}
+function prepThreads(data, site = null) {
+    let threads = site ? data.filter(item => item.Site.trim().toLowerCase() === site && item.Status.trim().toLowerCase() !== 'archived') : data.filter(item => item.Status.trim().toLowerCase() !== 'archived');
+    threads.sort((a, b) => {
+        let aStatus = a.Status.toLowerCase() === 'complete' ? 1 : 0;
+        let bStatus = b.Status.toLowerCase() === 'complete' ? 1 : 0;
+        if(JSON.parse(a.Character).name < JSON.parse(b.Character).name) {
+            return -1;
+        } else if (JSON.parse(a.Character).name > JSON.parse(b.Character).name) {
+            return 1;
+        } else if(aStatus < bStatus) {
+            return -1;
+        } else if (aStatus > bStatus) {
+            return 1;
+        } else if(new Date(a.ICDate) < new Date(b.ICDate)) {
+            return -1;
+        } else if (new Date(a.ICDate) > new Date(b.ICDate)) {
+            return 1;
+        } else if(new Date(a.LastUpdate) < new Date(b.LastUpdate)) {
+            return -1;
+        } else if (new Date(a.LastUpdate) > new Date(b.LastUpdate)) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+    return threads;
+}
+function populateThreads(array, siteObject) {
+    let html = ``;
+    let characters = [], partners = [], featuring = [];
+
+    for (let i = 0; i < array.length; i++) {
+        //Make Character Array
+        let character = JSON.parse(array[i].Character).name;
+        if(jQuery.inArray(character, characters) == -1 && character != '' && array[i].Status.toLowerCase() !== 'complete') {
+            characters.push(character);
+        }
+
+        let partnerObjects = JSON.parse(array[i].Featuring).map(item => item.writer);
+        partnerObjects.forEach(partner => {
+            if(jQuery.inArray(partner, partners) == -1 && partner != '' && array[i].Status.toLowerCase() !== 'complete') {
+                partners.push(partner);
+            }
+        });
+
+        let featureObjects = JSON.parse(array[i].Featuring).map(item => item.name);
+        if(featureObjects) {
+            featureObjects.forEach(featured => {
+                if(jQuery.inArray(featured, featuring) == -1 && featured != '' && array[i].Status.toLowerCase() !== 'complete') {
+                    featuring.push(featured);
+                }
+            });
+        }
+        
+        let thread = {
+            character: JSON.parse(array[i].Character),
+            description: array[i].description,
+            featuring: JSON.parse(array[i].Featuring),
+            date: array[i].ICDate,
+            updated: array[i].LastUpdated,
+            status: array[i].Status,
+            tags: array[i].Tags,
+            id: array[i].ThreadID,
+            title: array[i].Title,
+            type: array[i].Type,
+            site: siteObject[0],
+        }
+        html += formatThread(thread);
+    }
+    document.querySelector('#threads--rows').insertAdjacentHTML('beforeend', html);
+
+    //sort appendable filters
+    characters.sort();
+    partners.sort();
+    featuring.sort();
+
+    //Append filters
+    characters.forEach(character => {
+        document.querySelector('.filter--characters').insertAdjacentHTML('beforeend', `<label><span><input type="checkbox" value=".${character.split(' ')[0].toLowerCase()}"/></span><b>${character.split(' ')[0].toLowerCase()} ${character.split(' ')[1][0].toLowerCase()}.</b></label>`);
+    });
+    partners.forEach(partner => {
+        document.querySelector('.filter--partners').insertAdjacentHTML('beforeend', `<label><span><input type="checkbox" value=".partner--${partner.replaceAll(' ', '').toLowerCase().trim()}"/></span><b>${partner}</b></label>`);
+    });
+    featuring.forEach(featured => {
+        let featuredArray = featured.toLowerCase().trim().split(' ');
+        let featuredClass = featuredArray.length > 1 ? `${featuredArray[0]}-${featuredArray[1][0]}` : featuredArray[0];
+        let featuredName = featuredArray.length > 1 ? `${featuredArray[0]} ${featuredArray[1][0]}.` : featuredArray[0];
+        document.querySelector('.filter--featuring').insertAdjacentHTML('beforeend', `<label><span><input type="checkbox" value=".featured--${featuredClass}"/></span><b>${featuredName}</b></label>`);
+    });
+    threadTags.forEach(tag => {
+        document.querySelector('.filter--tags').insertAdjacentHTML('beforeend', `<label><span><input type="checkbox" value=".tag--${tag}"/></span><b>${tag}</b></label>`);
+    });
+}
+function getDelay(date) {
+    let elapsed = (new Date() - Date.parse(date)) / (1000*60*60*24);
+    let delayClass;
+    if(elapsed > 365) {
+        delayClass = 'year';
+    } else if (elapsed > 180) {
+        delayClass = 'half';
+    } else if (elapsed > 90) {
+        delayClass = 'quarter';
+    } else if (elapsed > 30) {
+        delayClass = 'month';
+    } else if (elapsed > 7) {
+        delayClass = 'week';
+    } else {
+        delayClass = 'okay';
+    }
+    return delayClass;
+}
+function sendThreadAjax(data, thread, form = null, complete = null) {
+    console.log('send ajax');
+    $.ajax({
+        url: `https://script.google.com/macros/s/${deployID}/exec`,   
+        data: data,
+        method: "POST",
+        type: "POST",
+        dataType: "json", 
+        success: function () {
+            console.log('success');
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('error');
+        },
+        complete: function () {
+            console.log('complete');
+            if(form) {
+                form.originalTarget.querySelector('button[type="submit"]').innerText = 'Submit';
+            } else if(complete) {
+                thread.classList.remove('status--mine');
+                thread.classList.remove('status--start');
+                thread.classList.remove('status--theirs');
+                thread.classList.remove('status--expecting');
+                thread.classList.add('status--complete');
+                thread.querySelectorAll('button').forEach(button => button.classList.remove('is-updating'));
+            } else if(data.Status === 'theirs') {
+                thread.classList.remove('status--mine');
+                thread.classList.remove('status--start');
+                thread.classList.add('status--theirs');
+                thread.querySelector('[data-status]').classList.remove('is-updating');
+            } else if(data.Status === 'mine') {
+                thread.classList.remove('status--theirs');
+                thread.classList.remove('status--expecting');
+                thread.classList.add('status--mine');
+                thread.querySelector('[data-status]').classList.remove('is-updating');
+            }
+        }
+    });
+}
+function changeStatus(e) {
+    if(e.dataset.status === 'mine' || e.dataset.status === 'planned') {
+        e.dataset.status = 'theirs';
+        let thread = e.parentNode.parentNode.parentNode;
+        e.classList.add('is-updating');
+        sendThreadAjax({
+            SubmissionType: 'thread-status',
+            ThreadID: e.dataset.id,
+            Site: e.dataset.site,
+            Character: e.dataset.character,
+            Status: 'theirs'
+        }, thread, threadDeploy);
+    } else if(e.dataset.status === 'theirs') {
+        e.dataset.status = 'mine';
+        let thread = e.parentNode.parentNode.parentNode;
+        e.classList.add('is-updating');
+        sendThreadAjax({
+            SubmissionType: 'thread-status',
+            ThreadID: e.dataset.id,
+            Site: e.dataset.site,
+            Character: e.dataset.character,
+            Status: 'mine'
+        }, thread);
+    }
+}
+function markComplete(e) {
+    e.dataset.status = 'complete';
+    let thread = e.parentNode.parentNode.parentNode;
+    e.classList.add('is-updating');
+    sendThreadAjax({
+        SubmissionType: 'thread-status',
+        ThreadID: e.dataset.id,
+        Site: e.dataset.site,
+        Character: e.dataset.character,
+        Status: 'complete'
+    }, thread, null, 'complete');
+}
+function markArchived(e) {
+    e.dataset.status = 'archived';
+    let thread = e.parentNode.parentNode.parentNode;
+    e.classList.add('is-updating');
+    sendThreadAjax({
+        SubmissionType: 'edit-thread',
+        ThreadID: e.dataset.id,
+        Site: e.dataset.site,
+        Character: e.dataset.character,
+        Status: 'archived'
+    }, thread, null, 'archived');
+}
+function formatThread(thread) {
+    console.log(thread);
+    let partnerClasses = ``, featuringClasses = ``;
+    thread.featuring.forEach((featured, i) => {
+        if(i > 0) {
+            partnerClasses += ` `;
+            featuringClasses += ` `;
+        }
+        partnerClasses += `partner--${featured.writer}`;
+        featuringClasses += `featured--${featured.name.split(' ')[0]}-${featured.name.split(' ')[1][0]}`;
+    });
+    let extraTags = thread.tags !== '' ? JSON.parse(thread.tags).join(' ') : '';
+
+    let buttons = ``;
+    if (thread.status !== 'complete' && thread.status !== 'archived') {
+        buttons = `<div class="icon" title="${thread.type}"></div><button onClick="changeStatus(this)" data-status="${thread.status}" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}' title="Change Turn"><i class="fa-regular fa-arrow-right-arrow-left"></i><i class="fa-solid fa-spinner fa-spin"></i></button>
+        <button onClick="markComplete(this)" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}' title="Mark Complete"><i class="fa-regular fa-badge-check"></i><i class="fa-solid fa-spinner fa-spin"></i></button>
+        <button onClick="markArchived(this)" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}' title="Archive"><i class="fa-regular fa-trash"></i><i class="fa-solid fa-spinner fa-spin"></i></button>`;
+    } else if (thread.status !== 'archived') {
+        buttons = `<div class="icon" title="${thread.type}"></div><button onClick="markArchived(this)" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}' title="Archive"><i class="fa-regular fa-trash"></i><i class="fa-solid fa-spinner fa-spin"></i></button>`;
+    } else {
+        buttons = `<div class="icon" title="${thread.type}"></div>`;
+    }
+
+    return `<div class="thread lux-track grid-item grid-item ${thread.character.name.split(' ')[0]} ${partnerClasses} ${featuringClasses} status--${thread.status} type--${thread.type} delay--${getDelay(thread.update)} ${extraTags}">
+        <div class="thread--wrap">
+            <div class="thread--main">
+                <a href="${thread.site.URL}/?showtopic=${thread.id}&view=getnewpost" target="_blank" class="thread--title">${thread.title}</a>
+                <div class="thread--info">
+                    <span>Writing as <a class="thread--character" href="${thread.site.URL}/?showuser=${thread.character.id}">${thread.character.name}</a></span>
+                    <span class="thread--feature">ft. </span>
+                    <span class="thread--partners">Writing with </span>
+                </div>
+                <div class="thread--info">
+                    <span class="thread--ic-date">Set <span>${thread.icDate}</span></span>
+                    <span class="thread--last-post">Last Active <span>${thread.updated}</span></span>
+                </div>
+                ${thread.description && thread.description !== '' ? `<div class="thread--info"><p>${thread.description}</p></div>` : ''}
+            </div>
+            <div class="thread--buttons">${buttons}</div>
+        </div>
+    </div>`;
 }

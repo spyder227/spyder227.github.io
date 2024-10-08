@@ -17,7 +17,8 @@
         }
 
         .field-wrap,
-        & > label {
+        & > label,
+        .multitoggle > label {
             display: flex;
             flex-direction: column;
 

@@ -12,11 +12,13 @@
       .form form {
         grid-template-columns: 1fr 1fr; } }
     .form form .field-wrap,
-    .form form > label {
+    .form form > label,
+    .form form .multitoggle > label {
       display: flex;
       flex-direction: column; }
       .form form .field-wrap > b,
-      .form form > label > b {
+      .form form > label > b,
+      .form form .multitoggle > label > b {
         text-transform: capitalize;
         font-size: 1.25rem;
         font-weight: 900;
@@ -24,7 +26,8 @@
         border-bottom: 1px solid var(--bg--quintenary);
         margin-bottom: var(--space--sm); }
       .form form .field-wrap label b,
-      .form form > label label b {
+      .form form > label label b,
+      .form form .multitoggle > label label b {
         text-transform: uppercase;
         font-size: 0.5rem;
         letter-spacing: 0.2em;
@@ -34,7 +37,10 @@
       .form form .field-wrap input,
       .form form > label textarea,
       .form form > label select,
-      .form form > label input {
+      .form form > label input,
+      .form form .multitoggle > label textarea,
+      .form form .multitoggle > label select,
+      .form form .multitoggle > label input {
         border-radius: 3px;
         border: 0;
         background: var(--bg--quintenary);
@@ -44,7 +50,8 @@
         color: var(--text--primary);
         height: 36px; }
       .form form .field-wrap textarea,
-      .form form > label textarea {
+      .form form > label textarea,
+      .form form .multitoggle > label textarea {
         height: 100px; }
     .form form p {
       text-align: center; }
