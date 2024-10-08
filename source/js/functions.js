@@ -1677,7 +1677,7 @@ function markArchived(e) {
     let thread = e.parentNode.parentNode.parentNode;
     e.classList.add('is-updating');
     sendThreadAjax({
-        SubmissionType: 'edit-thread',
+        SubmissionType: 'thread-status',
         ThreadID: e.dataset.id,
         Site: e.dataset.site,
         Character: e.dataset.character,
