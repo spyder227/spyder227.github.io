@@ -276,7 +276,7 @@ function adjustTagSites(el) {
         }
     });
 }
-function initCharacterSelect(el) {
+function initEditCharacterSelect(el) {
     fetch(`https://opensheet.elk.sh/${sheetID}/Characters`)
     .then((response) => response.json())
     .then((data) => {
@@ -1217,6 +1217,7 @@ function updateCharacter(form) {
             }
 
             let existingTags = JSON.parse(existing.Tags);
+            let notExistingTags = [];
             //add to existing
             for(instance in existingTags) {
                 if(existingTags[instance].site === site) {
@@ -1229,11 +1230,26 @@ function updateCharacter(form) {
                                 } else {
                                     existingTags[instance].tags[set].tags = [...existingTags[instance].tags[set].tags, ...tagArray[newSet].tags];
                                 }
+                            } else {
+                                if(!notExistingTags.includes(tagArray[newSet].type)) {
+                                    notExistingTags.push(tagArray[newSet].type);
+                                }
                             }
                         }
                     }
                 }
             }
+            notExistingTags.forEach(newTagType => {
+                for(instance in existingTags) {
+                    if(existingTags[instance].site === site) {
+                        for(newSet in tagArray) {
+                            if(newTagType === tagArray[newSet].type) {
+                                existingTags[instance].tags.push(tagArray[newSet])
+                            }
+                        }
+                    }
+                }
+            });
 
             existing.Tags = JSON.stringify(existingTags);
         }
