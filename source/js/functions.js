@@ -1855,7 +1855,7 @@ function formatThread(thread) {
         buttons = `<div class="icon" title="${thread.type}"></div>`;
     }
 
-    return `<div class="thread lux-track grid-item grid-item ${thread.character.name.split(' ')[0]} ${partnerClasses} ${featuringClasses} status--${thread.status} type--${thread.type} delay--${getDelay(thread.updated)} ${extraTags} site--${thread.site.ID}">
+    return `<div class="thread spy-track grid-item grid-item ${thread.character.name.split(' ')[0]} ${partnerClasses} ${featuringClasses} status--${thread.status} type--${thread.type} delay--${getDelay(thread.updated)} ${extraTags} site--${thread.site.ID}">
         <div class="thread--wrap">
             <div class="thread--main">
                 <a href="${thread.site.URL}/?showtopic=${thread.id}&view=getnewpost" target="_blank" class="thread--title">${capitalize(thread.title, [' ', '-'])}</a>
@@ -1997,7 +1997,7 @@ function formatSingleInstance(character) {
         });
     }
     
-    return `<div class="character lux-track grid-item ${tagsString} ${character.character.split(' ')[0]}">
+    return `<div class="character spy-track grid-item ${tagsString} ${character.character.split(' ')[0]}">
         <div class="character--wrap">
             <div class="character--image"><img src="${character.basics.image}" loading="lazy" /></div>
             <div class="character--main">
@@ -2082,7 +2082,7 @@ function formatMultipleInstance(character, sites) {
         </div>`;
     });
 
-    return `<div class="character lux-track grid-item ${tagsString} ${character.character.split(' ')[0]}">
+    return `<div class="character spy-track grid-item ${tagsString} ${character.character.split(' ')[0]}">
         <div class="character--wrap">
             <div class="character--image">
                 <img src="${character.basics[0].basics.image}" loading="lazy" />
