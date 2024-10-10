@@ -289,6 +289,22 @@ function initCharacterSelect(el) {
         });
     });
 }
+function initChangeBasics(el) {
+    fetch(`https://opensheet.elk.sh/${sheetID}/Characters`)
+    .then((response) => response.json())
+    .then((data) => {
+        let character = el.closest('form').querySelector('#character');
+        let site = el.closest('form').querySelector('#characterSite');
+        let existing = data.filter(item => item.Character === character.options[character.selectedIndex].value.trim().toLowerCase())[0];
+        let basics = JSON.parse(existing.Basics).filter(item => item.site === site.options[site.selectedIndex].innerText.trim().toLowerCase())[0].basics;
+        
+        el.closest('form').querySelector('#gender').setAttribute('placeholder', basics.gender);
+        el.closest('form').querySelector('#pronouns').setAttribute('placeholder', basics.pronouns);
+        el.closest('form').querySelector('#ageValue').setAttribute('placeholder', basics.age);
+        el.closest('form').querySelector('#face').setAttribute('placeholder', basics.face);
+        el.closest('form').querySelector('#image').setAttribute('placeholder', basics.image);
+    });
+}
 function initAutoPopulate(el) {
     //remove links
     let form = el.closest('form');
@@ -311,6 +327,9 @@ function initAutoPopulate(el) {
                     break;
                 case 'removeTags':
                     initRemoveTags(el);
+                    break;
+                case 'changeBasics':
+                    initChangeBasics(el);
                     break;
                 default:
                     break;
@@ -828,6 +847,13 @@ function submitCharacter(form) {
     let site = form.querySelector('#site').options[form.querySelector('#site').selectedIndex].innerText.trim().toLowerCase();
     let id = form.querySelector('#id').value.trim();
     let vibes = form.querySelector('#vibes').value.trim().toLowerCase();
+    let basicsValues = {
+        gender: form.querySelector('#gender').value.trim().toLowerCase(),
+        pronouns: form.querySelector('#pronouns').value.trim().toLowerCase(),
+        age: form.querySelector('#ageValue').value.trim().toLowerCase(),
+        face: form.querySelector('#face').value.trim().toLowerCase(),
+        image: form.querySelector('#image').value.trim(),
+    };
 
     //complex data - links
     let links = form.querySelectorAll('#linkTitle');
@@ -903,6 +929,10 @@ function submitCharacter(form) {
                 site: site,
                 tags: tagArray,
             }
+            let basics = {
+                site: site,
+                basics: basicsValues,
+            }
 
             let data = {
                 SubmissionType: 'add-character',
@@ -912,6 +942,7 @@ function submitCharacter(form) {
                 Links: JSON.stringify(linkList),
                 Ships: JSON.stringify([ships]),
                 Tags: JSON.stringify([tags]),
+                Basics: JSON.stringify([basics]),
             };
 
             return data;
@@ -930,6 +961,10 @@ function submitCharacter(form) {
                 tags: tagArray,
             }];
             let newLinks = [...JSON.parse(existing[0].Links), ...linkList]
+            let basics = [...JSON.parse(existing[0].Basics), {
+                site: site,
+                basics: basicsValues,
+            }];
 
             let data = {
                 SubmissionType: 'edit-character',
@@ -941,6 +976,7 @@ function submitCharacter(form) {
                 Links: JSON.stringify(newLinks),
                 Ships: JSON.stringify(ships),
                 Tags: JSON.stringify(tags),
+                Basics: JSON.stringify(basics),
             };
 
             return data;
@@ -1077,6 +1113,28 @@ function updateCharacter(form) {
                 });
             });
             existing.Links = JSON.stringify([...JSON.parse(existing.Links), ...linkList]);
+        }
+        
+        //change basics
+        if(selected.includes('changeBasics')) {
+            let existingBasics = JSON.parse(existing.Basics);
+            for(instance in existingBasics) {
+                if(existingBasics[instance].site === site) {
+                    console.log(existingBasics[instance].basics);
+                    let gender = form.querySelector('#gender').value.trim().toLowerCase();
+                    let pronouns = form.querySelector('#pronouns').value.trim().toLowerCase();
+                    let age = form.querySelector('#ageValue').value.trim().toLowerCase();
+                    let face = form.querySelector('#face').value.trim().toLowerCase();
+                    let image = form.querySelector('#image').value.trim();
+
+                    existingBasics[instance].basics.gender = (gender && gender !== '') ? gender : existingBasics[instance].basics.gender;
+                    existingBasics[instance].basics.pronouns = (pronouns && pronouns !== '') ? pronouns : existingBasics[instance].basics.pronouns;
+                    existingBasics[instance].basics.age = (age && age !== '') ? age : existingBasics[instance].basics.age;
+                    existingBasics[instance].basics.face = (face && face !== '') ? face : existingBasics[instance].basics.face;
+                    existingBasics[instance].basics.image = (image && image !== '') ? image : existingBasics[instance].basics.image;
+                }
+            }
+            existing.Basics = JSON.stringify(existingBasics);
         }
 
         //add ships
@@ -1326,18 +1384,18 @@ function portThreads() {
     });
 }
 
-/***** THREAD TRACKING FUNCTIONS *****/
+/***** ISOTOPE FUNCTIONS *****/
 function openFilters(e) {
     document.querySelector('.backdrop.horizontal').classList.remove('is-active');
 
-    if(e.closest('.threads--filter').classList.contains('is-active')) {
-        document.querySelectorAll('.threads--filter').forEach(filter => filter.classList.remove('is-active'));
+    if(e.closest('.filter--parent').classList.contains('is-active')) {
+        document.querySelectorAll('.filter--parent').forEach(filter => filter.classList.remove('is-active'));
     } else {
-        document.querySelectorAll('.threads--filter').forEach(filter => filter.classList.remove('is-active'));
-        e.closest('.threads--filter').classList.add('is-active');
+        document.querySelectorAll('.filter--parent').forEach(filter => filter.classList.remove('is-active'));
+        e.closest('.filter--parent').classList.add('is-active');
     }
     
-    if(document.querySelector('.threads--filter.is-active')) {
+    if(document.querySelector('.filter--parent.is-active')) {
         document.querySelector('.backdrop.vertical').classList.add('is-active');
     } else {
         document.querySelector('.backdrop.vertical').classList.remove('is-active');
@@ -1514,6 +1572,8 @@ function initIsotope() {
         });
     });
 }
+
+/***** THREAD TRACKING FUNCTIONS *****/
 function prepThreads(data, site) {
     let threads = site !== 'all' ? data.filter(item => item.Site.trim().toLowerCase() === site && item.Status.trim().toLowerCase() !== 'archived') : data.filter(item => item.Status.trim().toLowerCase() !== 'archived');
     threads.sort((a, b) => {
@@ -1758,6 +1818,236 @@ function formatThread(thread) {
                 ${thread.description && thread.description !== '' ? `<p>${thread.description}</p>` : ''}
             </div>
             <div class="thread--buttons">${buttons}</div>
+        </div>
+    </div>`;
+}
+
+/***** CHARACTER TRACKING FUNCTIONS *****/
+function cleanText(text) {
+	return text.replaceAll(' ', '').replaceAll('&amp;', '').replaceAll('&', '').replaceAll(`'`, '').replaceAll(`"`, '').replaceAll(`.`, '').replaceAll(`(`, '').replaceAll(`)`, '').replaceAll(`,`, '').replaceAll(`’`, '').replaceAll(`é`, `e`).replaceAll(`è`, `e`).replaceAll(`ê`, `e`).replaceAll(`ë`, `e`).replaceAll(`ě`, `e`).replaceAll(`ẽ`, `e`).replaceAll(`ē`, `e`).replaceAll(`ė`, `e`).replaceAll(`ę`, `e`).replaceAll(`à`, `a`).replaceAll(`á`, `a`).replaceAll(`â`, `a`).replaceAll(`ä`, `a`).replaceAll(`ǎ`, `a`).replaceAll(`æ`, `ae`).replaceAll(`ã`, `a`).replaceAll(`å`, `a`).replaceAll(`ā`, `a`).replaceAll(`í`, `i`).replaceAll(`ì`, `i`).replaceAll(`ı`, `i`).replaceAll(`î`, `i`).replaceAll(`ï`, `i`).replaceAll(`ǐ`, `i`).replaceAll(`ĭ`, `i`).replaceAll(`ī`, `i`).replaceAll(`ĩ`, `i`).replaceAll(`į`, `i`).replaceAll(`ḯ`, `i`).replaceAll(`ỉ`, `i`).replaceAll(`ó`, `o`).replaceAll(`ò`, `o`).replaceAll(`ȯ`, `o`).replaceAll(`ô`, `o`).replaceAll(`ö`, `o`).replaceAll(`ǒ`, `o`).replaceAll(`ŏ`, `o`).replaceAll(`ō`, `o`).replaceAll(`õ`, `o`).replaceAll(`ǫ`, `o`).replaceAll(`ő`, `o`).replaceAll(`ố`, `o`).replaceAll(`ồ`, `o`).replaceAll(`ø`, `o`).replaceAll(`ṓ`, `o`).replaceAll(`ṑ`, `o`).replaceAll(`ȱ`, `o`).replaceAll(`ṍ`, `o`).replaceAll(`ú`, `u`).replaceAll(`ù`, `u`).replaceAll(`û`, `u`).replaceAll(`ü`, `u`).replaceAll(`ǔ`, `u`).replaceAll(`ŭ`, `u`).replaceAll(`ū`, `u`).replaceAll(`ũ`, `u`).replaceAll(`ů`, `u`).replaceAll(`ų`, `u`).replaceAll(`ű`, `u`).replaceAll(`ʉ`, `u`).replaceAll(`ǘ`, `u`).replaceAll(`ǜ`, `u`).replaceAll(`ǚ`, `u`).replaceAll(`ṹ`, `u`).replaceAll(`ǖ`, `u`).replaceAll(`ṻ`, `u`).replaceAll(`ủ`, `u`).replaceAll(`ȕ`, `u`).replaceAll(`ȗ`, `u`).replaceAll(`ư`, `u`);
+}
+function prepTags(data, site) {
+    data.forEach((item, i) => {
+        data[i].Sites = JSON.parse(item.Sites);
+        data[i].Set = JSON.parse(item.Set);
+    });
+    let activeTags = data.filter(item => item.Sites.includes(site) || item.Sites.includes('all'));
+    let html = ``;
+
+    activeTags.forEach(set => {
+        html += `<div class="characters--filter filter--parent">
+            <button onClick="openFilters(this)">${set.Tag}</button>
+            <div class="characters--filter-dropdown">
+                <div class="characters--filter-group filter--sites" data-filter-group="${cleanText(set.Tag)}">
+                    <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>any</b></label>
+                    ${set.Set.map(item => `<label><span><input type="checkbox" value=".${cleanText(set.Tag)}--${cleanText(item)}"></span><b>${item}</b></label>`).join('')}
+                </div>
+            </div>
+        </div>`;
+    });
+    
+    document.querySelector('.characters--filters').insertAdjacentHTML('beforeend', html);
+}
+function prepCharacters(data, site) {
+    data.forEach((item, i) => {
+        data[i].Sites = JSON.parse(item.Sites);
+        data[i].Links = JSON.parse(item.Links);
+        data[i].Tags = JSON.parse(item.Tags);
+        data[i].Ships = JSON.parse(item.Ships);
+        data[i].Basics = JSON.parse(item.Basics);
+    });
+    let characters = [];
+    if(site !== 'all') {
+        data.forEach((item) => {
+            item.Sites.forEach(instance => {
+                if(instance.site === site) {
+                    characters.push(item);
+                }
+            });
+        });
+    } else {
+        characters = [...data];
+    }
+
+    characters.sort((a, b) => {
+        if(a.Character < b.Character) {
+            return -1;
+        } else if(a.Character > b.Character) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+    
+    return characters;
+}
+function populateCharacters(array, siteObject) {
+    let html = ``;
+
+    for (let i = 0; i < array.length; i++) {
+        let character = {
+            character: array[i].Character,
+            vibes: array[i].Vibes,
+            links: array[i].Links,
+        }
+        if(siteObject.length === 1) {
+            array[i].Ships.forEach(instance => {
+                if(instance.site === siteObject[0].Site) {
+                    character.ships = instance.characters;
+                }
+            });
+            array[i].Tags.forEach(instance => {
+                if(instance.site === siteObject[0].Site) {
+                    character.tags = instance.tags;
+                }
+            });
+            array[i].Sites.forEach(instance => {
+                if(instance.site === siteObject[0].Site) {
+                    character.id = instance.id;
+                    character.sites = siteObject[0];
+                }
+            });
+            array[i].Basics.forEach(instance => {
+                if(instance.site === siteObject[0].Site) {
+                    character.basics = instance.basics;
+                }
+            });
+        } else {
+            character.ships = array[i].Ships;
+            character.tags = array[i].Tags;
+            character.sites = array[i].Sites;
+            character.basics = array[i].Basics;
+            character.id = null;
+        }
+        html += formatCharacter(character, siteObject.length > 1, siteObject);
+    }
+    document.querySelector('#characters--rows').insertAdjacentHTML('beforeend', html);
+
+    if(siteObject.length > 1) {
+        siteObject.forEach(site => {
+            document.querySelector('.filter--sites').insertAdjacentHTML('beforeend', `<label><span><input type="checkbox" value=".site--${site.ID}"/></span><b>${site.Site}</b></label>`);
+        });
+    }
+}
+function formatCharacter(character, viewAll, sites) {
+    if(viewAll) {
+        return formatMultipleInstance(character, sites);
+    }
+    return formatSingleInstance(character);
+}
+function formatSingleInstance(character) {
+    let tagsString = ``;
+    for(type in character.tags) {
+        character.tags[type].tags.forEach((set, i) => {
+            tagsString += ` `;
+            if(set !== '') {
+                tagsString += `${character.tags[type].type}--${set}`;
+            }
+        });
+    }
+    
+    return `<div class="character lux-track grid-item ${tagsString} ${character.character.split(' ')[0]}">
+        <div class="character--wrap">
+            <div class="character--image"><img src="${character.basics.image}" loading="lazy" /></div>
+            <div class="character--main">
+                <a href="${character.sites.URL}/?showuser=${character.id}" target="_blank" class="character--title">${capitalize(character.character)}</a>
+                <div class="character--basics">
+                    ${character.basics.gender ? `<span>${character.basics.gender}</span>` : ''}
+                    ${character.basics.pronouns ? `<span>${character.basics.pronouns}</span>` : ''}
+                    ${character.basics.age ? `<span><span class="character--age">${character.basics.age}</span> years old</span>` : ''}
+                    ${character.basics.face ? `<span>${character.basics.face}</span>` : ''}
+                </div>
+                ${character.vibes ? `<span>${character.vibes}</span>` : ''}
+            </div>
+        </div>
+        <div class="character--info">
+            <div class="character--labels">
+                <div class="character--label">Links</div>
+                <div class="character--label">Relationships</div>
+            </div>
+            <div class="character--tabs">
+                <div class="character--tab">
+                    <div class="character--links">
+                        ${character.links.map(item => `<a href="${item.url}" target="_blank">${item.title}</a>`).join('')}
+                    </div>
+                </div>
+                <div class="character--tab">
+                    <div class="character--ships">
+                        ${character.ships.map(item => `<div class="character--ship"><b>${item.character}</b> &mdash; <span>Played By ${item.writer}</span> &mdash; <i>${item.relationship}</i></div>`).join('')}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>`;
+}
+function formatMultipleInstance(character, sites) {
+    let tagsString = ``;
+    character.tags.forEach(siteInstance => {
+        for(type in siteInstance.tags) {
+            siteInstance.tags[type].tags.forEach((set, i) => {
+                tagsString += ` `;
+                if(set !== '') {
+                    tagsString += `${cleanText(siteInstance.tags[type].type)}--${cleanText(set)}`;
+                }
+            });
+        }
+        let site = sites.filter(item => item.Site === siteInstance.site)[0];
+        tagsString += ` site--${site.ID}`;
+    });
+    
+    let siteLabels = ``, siteTabs = ``;
+    
+    character.sites.forEach(siteInstance => {
+        let basics = character.basics.filter(item => item.site === siteInstance.site)[0].basics;
+        let ships = character.ships.filter(item => item.site === siteInstance.site)[0].characters;
+        let site = sites.filter(item => item.Site === siteInstance.site)[0];
+        siteLabels += `<div class="character--label site--label" data-image="${basics.image}">${siteInstance.site}</div>`;
+        siteTabs += `<div class="character--tab">
+            <div class="character--basics">
+                ${basics.gender ? `<span>${basics.gender}</span>` : ''}
+                ${basics.pronouns ? `<span>${basics.pronouns}</span>` : ''}
+                ${basics.age ? `<span><span class="character--age">${basics.age}</span> years old</span>` : ''}
+                ${basics.face ? `<span>${basics.face}</span>` : ''}
+            </div>
+            <div class="character--info">
+                <div class="character--labels">
+                    <div class="character--label">Links</div>
+                    <div class="character--label">Relationships</div>
+                </div>
+                <div class="character--tabs">
+                    <div class="character--tab">
+                        <div class="character--links">
+                            <a href="${site.URL}/?showuser=${siteInstance.id}" target="_blank">View Application</a>
+                            ${character.links.map(item => `<a href="${item.url}" target="_blank">${item.title}</a>`).join('')}
+                        </div>
+                    </div>
+                    <div class="character--tab">
+                        <div class="character--ships">
+                            ${ships.map(item => `<div class="character--ship"><b>${item.character}</b> &mdash; <span>Played By ${item.writer}</span> &mdash; <i>${item.relationship}</i></div>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+    });
+
+    return `<div class="character lux-track grid-item ${tagsString} ${character.character.split(' ')[0]}">
+        <div class="character--wrap">
+            <div class="character--image">
+                <img src="${character.basics[0].basics.image}" loading="lazy" />
+            </div>
+            <div class="character--main">
+                <a class="character--title">${capitalize(character.character)}</a>
+                ${character.vibes ? `<span>${character.vibes}</span>` : ''}
+            </div>
+        </div>
+        <div class="character--info">
+            <div class="character--labels">
+                ${siteLabels}
+            </div>
+            <div class="character--tabs site--tabs">
+                ${siteTabs}
+            </div>
         </div>
     </div>`;
 }

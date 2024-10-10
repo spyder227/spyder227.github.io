@@ -111,6 +111,10 @@
                 <b>Remove Links</b>
             </label>
             <label>
+                <span><input type="checkbox" class="editOption siteSpecific" value="changeBasics" data-if-class="ifBasics" /></span>
+                <b>Change Basic Info</b>
+            </label>
+            <label>
                 <span><input type="checkbox" class="editOption siteSpecific" value="addShip" data-if-class="ifAddShip" /></span>
                 <b>Add Relationship(s)</b>
             </label>
@@ -156,6 +160,31 @@
             <option value="">Please select a character first.</option>
         </select></span>
     </label>
+    <div class="field-wrap fullWidth adjustable hidden ifBasics">
+        <b>Basic Info</b>
+        <div class="grid clip-basics">
+            <label>
+                <b>Gender</b>
+                <span><input type="text" id="gender" placeholder="Gender" /></span>
+            </label>
+            <label>
+                <b>Pronouns</b>
+                <span><input type="text" id="pronouns" placeholder="Pronouns" /></span>
+            </label>
+            <label>
+                <b>Age</b>
+                <span><input type="text" id="ageValue" placeholder="00" /></span>
+            </label>
+            <label>
+                <b>Face</b>
+                <span><input type="text" id="face" placeholder="Face" /></span>
+            </label>
+            <label class="fullWidth">
+                <b>Image URL</b>
+                <span><input type="text" id="image" placeholder="URL" /></span>
+            </label>
+        </div>
+    </div>
     <div class="field-wrap fullWidth adjustable hidden ifAddShip">
         <b>Add Relationships</b>
         <div class="rows"></div>

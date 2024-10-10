@@ -94,6 +94,7 @@ function editRows(e, sheetName, idCol, edittype, altIdCol = null) {
         sheet.getRange(editrow+1, 4).setValue(e.parameter['Links']);
         sheet.getRange(editrow+1, 5).setValue(e.parameter['Ships']);
         sheet.getRange(editrow+1, 7).setValue(e.parameter['Tags']);
+        sheet.getRange(editrow+1, 8).setValue(e.parameter['Basics']);
       });
     }
   }
@@ -116,6 +117,28 @@ function editRows(e, sheetName, idCol, edittype, altIdCol = null) {
     }
   }
 
+}
+function editSheet(e, sheetName, idCol, edittype, siteCol, charCol) {
+    // next set where we write the data - you could write to multiple/alternate destinations
+    var doc = SpreadsheetApp.openById(SCRIPT_PROP.getProperty("key"));
+    var sheet = doc.getSheetByName(sheetName);
+
+    // we'll assume header is in row 1 but you can override with header_row in GET/POST data
+    var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    var data = doc.getSheetByName(sheetName).getDataRange().getValues();
+    var editrow = -1;
+
+    if(sheetName == 'Threads' && edittype == 'thread-status') {
+      for(var i = 1; i < data.length; i++) {
+        if(data[i][idCol] == e.parameter['ThreadID'] && data[i][siteCol].toLowerCase() == e.parameter['Site'].toLowerCase() && data[i][charCol].split('#')[0].toLowerCase() == e.parameter['Character'].toLowerCase()) {
+          editrow = i;
+        }
+      }
+      if(editrow != -1) {
+        sheet.getRange(editrow+1, 3).setValue(e.parameter['Status']);
+        sheet.getRange(editrow+1, 12).setValue(new Date());
+      }
+    }
 }
 
 
@@ -146,6 +169,8 @@ function handleResponse(e) {
       editRows(e, 'Partners', 0, 'partners', 2);
     } else if(e.parameter['SubmissionType'] == 'edit-thread') {
       editRows(e, 'Threads', 0, 'threads', 3);
+    } else if(e.parameter['SubmissionType'] == 'thread-status') {
+      editSheet(e, 'Threads', 6, 'thread-status', 0, 4);
     }
 
     if (e.parameter.callback){

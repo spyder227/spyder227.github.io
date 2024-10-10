@@ -36,7 +36,7 @@
   .threads--filters {
     display: flex;
     padding: var(--space--sm);
-    gap: var(--space--sm) var(--space--md);
+    gap: var(--space--sm) var(--space--xs);
     background: var(--bg--tertiary);
     border-radius: 10px;
     margin-bottom: var(--space--sm);
@@ -51,14 +51,11 @@
       border: 0;
       color: var(--text--primary);
       border-radius: 2px;
-      line-height: 200%;
+      line-height: 100%;
       margin: 0;
-      width: 114%;
+      width: 100%;
       text-align: left;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--bg--quintenary); }
+      cursor: pointer; }
       .threads--filters button::after {
         content: '\f107';
         font-family: 'Font Awesome 6 Pro';
@@ -154,7 +151,7 @@
     letter-spacing: 0.2em;
     font-weight: 700;
     line-height: 160%;
-    border-right: 1px solid var(--accent, var(--bg--quintenary)); }
+    border-right: 1px solid var(--accent); }
     .thread--main > a {
       font-family: var(--font--serif);
       font-size: 20px;
@@ -176,7 +173,7 @@
   .thread--dates {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    border-bottom: 1px solid var(--accent, var(--bg--quintenary));
+    border-bottom: 1px solid var(--accent);
     padding-bottom: var(--space--xs);
     margin-bottom: var(--space--xs); }
   .thread--buttons {

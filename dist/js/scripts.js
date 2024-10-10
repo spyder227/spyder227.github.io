@@ -121,7 +121,7 @@ if(document.querySelector('[data-form="edit-character"]')) {
     initCharacterSelect(document.querySelector('[data-form="edit-character"] #character'));
     document.querySelectorAll('[data-form="edit-character"] select#character, [data-form="edit-character"] select#characterSite').forEach(select => {
         select.addEventListener('change', e => {
-            e.currentTarget.closest('form').querySelectorAll('input[value="removeLinks"]:checked, input[value="changeShip"]:checked, input[value="removeShip"]:checked, input[value="removeTags"]:checked').forEach(item => {
+            e.currentTarget.closest('form').querySelectorAll('input[value="removeLinks"]:checked, input[value="changeShip"]:checked, input[value="removeShip"]:checked, input[value="removeTags"]:checked, input[value="changeBasics"]:checked').forEach(item => {
                 initAutoPopulate(item);
             });
         });

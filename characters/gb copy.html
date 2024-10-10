@@ -86,79 +86,70 @@
     </div>
 </nav>
         <main>
-            <section class="form">
-                <h1>Add Character</h1>
-<form data-form="add-character">
-    <label class="fullWidth">
-        <b>Character</b>
-        <span><input type="text" id="title" placeholder="Account Name" required /></span>
-    </label>
-    <label>
-        <b>Site</b>
-        <span><select required id="site" required>
-            <option value="">(select)</option>
-        </select></span>
-    </label>
-    <label>
-        <b>Profile ID</b>
-        <span><input type="text" id="id" placeholder="00" required /></span>
-    </label>
-    <label>
-        <b>Gender</b>
-        <span><input type="text" id="gender" placeholder="Gender" required /></span>
-    </label>
-    <label>
-        <b>Pronouns</b>
-        <span><input type="text" id="pronouns" placeholder="Pronouns" required /></span>
-    </label>
-    <label>
-        <b>Age</b>
-        <span><input type="text" id="ageValue" placeholder="00" required /></span>
-    </label>
-    <label>
-        <b>Face</b>
-        <span><input type="text" id="face" placeholder="Face" required /></span>
-    </label>
-    <label class="fullWidth">
-        <b>Image URL</b>
-        <span><input type="text" id="image" placeholder="URL" required /></span>
-    </label>
-    <label class="fullWidth">
-        <b>Vibes</b>
-        <span><textarea type="text" id="vibes" placeholder="(Optional)"></textarea></span>
-    </label>
-    <div class="field-wrap fullWidth adjustable">
-        <b>Links</b>
-        <div class="rows"></div>
-        <div class="multi-buttons" data-row-type="links">
-            <button type="button" onclick="addRow(this)">+ New Row</button>
-            <button type="button" onclick="removeRow(this)">- Remove Row</button>
+            <section class="characters">
+                <div class="characters--header">
+    <div class="characters--sorting">
+        <input id="quicksearch" class="forminput memberlist-namesearch" type="text" size="25" name="name" value="" placeholder="Filter by name...">
+        <div class="characters--sort-buttons" data-type="flex">
+            <!--<button type="button" class="characters--sort is-checked" data-sort="character">Character (A -> Z)</button>
+            <button type="button" class="characters--sort" data-sort="title">Title (A -> Z)</button>
+            <button type="button" class="characters--sort" data-sort="icdate">IC Date (Asc)</button>
+            <button type="button" class="characters--sort" data-sort="lastpost">Last Post (Desc)</button>-->
         </div>
     </div>
-    <div class="field-wrap fullWidth adjustable">
-        <b>Relationships</b>
-        <div class="rows"></div>
-        <div class="multi-buttons" data-row-type="ships">
-            <button type="button" onclick="addRow(this)">+ New Row</button>
-            <button type="button" onclick="removeRow(this)">- Remove Row</button>
-        </div>
+    <div class="characters--filters">
+        Filters
+        <!--Site-->
+        
     </div>
-    <div class="field-wrap fullWidth adjustable accordion tags">
-        <b>Tags</b>
-        <div class="clip-tags"></div>
-    </div>
-    <div class="multitoggle fullWidth">
-        <label>
-            <b>Active?</b>
-            <span class="toggle"><input type="checkbox" id="active" checked /></span>
-        </label>
-        <label>
-            <b>Immortal?</b>
-            <span class="toggle"><input type="checkbox" id="immortal" /></span>
-        </label>
-    </div>
-    <button type="submit" class="fullWidth">Submit</button>
-</form>
+</div>
+<div class="characters--content">
+    <div id="characters--rows"></div>
+</div>
+
+<script>
+    //set overall variables
+    let siteName = 'godly behaviour';
+    const typeSearch = `#quicksearch`;
+    const blockTitle = `.character--title`;
+    const visible = `is-visible`;
+    const filterGroup = `.characters--filter-group`;
+    const filterOptions = `.characters--filter-group input`;
+    const sorts = `.characters--sorting button`;
+    const gridItem = `.grid-item`;
+    const defaultShow = `:not(.status--complete)`;
+
+    //set class variables
+    let $container = $('#characters--rows');
+
+    fetch(`https://opensheet.elk.sh/${sheetID}/Characters`)
+    .then((response) => response.json())
+    .then((characterData) => {
+        fetch(`https://opensheet.elk.sh/${sheetID}/Sites`)
+        .then((response) => response.json())
+        .then((siteData) => {
+            let siteObject = siteName !== 'all' ? siteData.filter(item => item.Site === siteName) : siteData;
+            let characters = prepCharacters(characterData, siteName);
+            //populateThreads(threads, siteObject);
+
+            //initialize isotope
+            // quick search regex
+            let qsRegex;
+            let elements = document.querySelectorAll(gridItem);
+
+            // init Isotope
+            $container.isotope({
+                itemSelector: gridItem,
+                percentPosition: true,
+                filter: defaultShow,
+            });
+            setTimeout(function() {
+                $container.isotope('layout');
+            }, 300);
+            initIsotope();
+        });
+    });
+</script>
             </section>
         </main>
         <!--Scripts-->
