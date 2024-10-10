@@ -15,8 +15,9 @@
     gap: var(--space--xs); }
     .nav--inner button,
     .nav--inner a {
-      display: flex;
-      flex-direction: column;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
       justify-content: center;
       gap: var(--space--sm);
       width: calc(var(--size--menu-width) - (2 * var(--space--sm)));
@@ -29,7 +30,7 @@
       text-align: center;
       background: var(--bg--primary);
       border-radius: 5px;
-      line-height: 100%;
+      line-height: 200%;
       transition-duration: 0.3s;
       border: none;
       cursor: pointer; }
