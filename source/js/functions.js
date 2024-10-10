@@ -53,6 +53,8 @@ function initMenus() {
                     .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="../characters/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
                 document.querySelector('.subnav[data-menu="threads"] .subnav--inner')
                     .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="../threads/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
+                document.querySelector('.subnav[data-menu="stats"] .subnav--inner')
+                    .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="../stats/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
             } else if(site.Status !== data[i - 1].Status) {
                 document.querySelector('.subnav[data-menu="sites"] .subnav--inner')
                     .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="${site.URL}" target="_blank" class="${site.Status}">${site.Site}</a>`);
@@ -60,6 +62,8 @@ function initMenus() {
                     .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="../characters/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
                 document.querySelector('.subnav[data-menu="threads"] .subnav--inner')
                     .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="../threads/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
+                document.querySelector('.subnav[data-menu="stats"] .subnav--inner')
+                    .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="../stats/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
             } else {
                 document.querySelector('.subnav[data-menu="sites"] .subnav--inner')
                     .insertAdjacentHTML('beforeend', `<a href="${site.URL}" target="_blank" class="${site.Status}">${site.Site}</a>`);
@@ -67,6 +71,8 @@ function initMenus() {
                     .insertAdjacentHTML('beforeend', `<a href="../characters/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
                 document.querySelector('.subnav[data-menu="threads"] .subnav--inner')
                     .insertAdjacentHTML('beforeend', `<a href="../threads/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
+                document.querySelector('.subnav[data-menu="stats"] .subnav--inner')
+                    .insertAdjacentHTML('beforeend', `<a href="../stats/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
             }
         });
     });
@@ -296,13 +302,15 @@ function initChangeBasics(el) {
         let character = el.closest('form').querySelector('#character');
         let site = el.closest('form').querySelector('#characterSite');
         let existing = data.filter(item => item.Character === character.options[character.selectedIndex].value.trim().toLowerCase())[0];
-        let basics = JSON.parse(existing.Basics).filter(item => item.site === site.options[site.selectedIndex].innerText.trim().toLowerCase())[0].basics;
-        
-        el.closest('form').querySelector('#gender').setAttribute('placeholder', basics.gender);
-        el.closest('form').querySelector('#pronouns').setAttribute('placeholder', basics.pronouns);
-        el.closest('form').querySelector('#ageValue').setAttribute('placeholder', basics.age);
-        el.closest('form').querySelector('#face').setAttribute('placeholder', basics.face);
-        el.closest('form').querySelector('#image').setAttribute('placeholder', basics.image);
+
+        if(existing.Basics && existing.Basics !== '') {
+            let basics = JSON.parse(existing.Basics).filter(item => item.site === site.options[site.selectedIndex].innerText.trim().toLowerCase())[0].basics;
+            el.closest('form').querySelector('#gender').setAttribute('placeholder', basics.gender);
+            el.closest('form').querySelector('#pronouns').setAttribute('placeholder', basics.pronouns);
+            el.closest('form').querySelector('#ageValue').setAttribute('placeholder', basics.age);
+            el.closest('form').querySelector('#face').setAttribute('placeholder', basics.face);
+            el.closest('form').querySelector('#image').setAttribute('placeholder', basics.image);
+        }
     });
 }
 function initAutoPopulate(el) {
@@ -1117,24 +1125,36 @@ function updateCharacter(form) {
         
         //change basics
         if(selected.includes('changeBasics')) {
-            let existingBasics = JSON.parse(existing.Basics);
-            for(instance in existingBasics) {
-                if(existingBasics[instance].site === site) {
-                    console.log(existingBasics[instance].basics);
-                    let gender = form.querySelector('#gender').value.trim().toLowerCase();
-                    let pronouns = form.querySelector('#pronouns').value.trim().toLowerCase();
-                    let age = form.querySelector('#ageValue').value.trim().toLowerCase();
-                    let face = form.querySelector('#face').value.trim().toLowerCase();
-                    let image = form.querySelector('#image').value.trim();
-
-                    existingBasics[instance].basics.gender = (gender && gender !== '') ? gender : existingBasics[instance].basics.gender;
-                    existingBasics[instance].basics.pronouns = (pronouns && pronouns !== '') ? pronouns : existingBasics[instance].basics.pronouns;
-                    existingBasics[instance].basics.age = (age && age !== '') ? age : existingBasics[instance].basics.age;
-                    existingBasics[instance].basics.face = (face && face !== '') ? face : existingBasics[instance].basics.face;
-                    existingBasics[instance].basics.image = (image && image !== '') ? image : existingBasics[instance].basics.image;
+            if(existing.Basics && existing.Basics !== '') {
+                let existingBasics = JSON.parse(existing.Basics);
+                for(instance in existingBasics) {
+                    if(existingBasics[instance].site === site) {
+                        let gender = form.querySelector('#gender').value.trim().toLowerCase();
+                        let pronouns = form.querySelector('#pronouns').value.trim().toLowerCase();
+                        let age = form.querySelector('#ageValue').value.trim().toLowerCase();
+                        let face = form.querySelector('#face').value.trim().toLowerCase();
+                        let image = form.querySelector('#image').value.trim();
+    
+                        existingBasics[instance].basics.gender = (gender && gender !== '') ? gender : existingBasics[instance].basics.gender;
+                        existingBasics[instance].basics.pronouns = (pronouns && pronouns !== '') ? pronouns : existingBasics[instance].basics.pronouns;
+                        existingBasics[instance].basics.age = (age && age !== '') ? age : existingBasics[instance].basics.age;
+                        existingBasics[instance].basics.face = (face && face !== '') ? face : existingBasics[instance].basics.face;
+                        existingBasics[instance].basics.image = (image && image !== '') ? image : existingBasics[instance].basics.image;
+                    }
                 }
+                existing.Basics = JSON.stringify(existingBasics);
+            } else {
+                existing.Basics = JSON.stringify([{
+                    site: site,
+                    basics: {
+                        gender: form.querySelector('#gender').value.trim().toLowerCase(),
+                        pronouns: form.querySelector('#pronouns').value.trim().toLowerCase(),
+                        age: form.querySelector('#ageValue').value.trim().toLowerCase(),
+                        face: form.querySelector('#face').value.trim().toLowerCase(),
+                        image: form.querySelector('#image').value.trim(),
+                    }
+                }]);
             }
-            existing.Basics = JSON.stringify(existingBasics);
         }
 
         //add ships
@@ -1182,6 +1202,8 @@ function updateCharacter(form) {
                     tags: tagList[tagType],
                 });
             }
+
+            console.log(replacingTags);
 
             let existingTags = JSON.parse(existing.Tags);
             for(instance in existingTags) {

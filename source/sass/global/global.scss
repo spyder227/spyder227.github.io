@@ -29,7 +29,11 @@ body {
 
 main {
     margin-left: var(--size--menu-width);
-    padding: var(--space--lg);
+    padding: var(--space--lg) var(--space--xs);
+
+    @include mq-up(xs) {
+        padding: var(--space--lg);
+    }
 }
 
 .backdrop {

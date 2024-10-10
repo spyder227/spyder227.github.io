@@ -11,6 +11,12 @@
     @media (min-width: 769px) {
       .form form {
         grid-template-columns: 1fr 1fr; } }
+    .form form .grid {
+      display: grid;
+      gap: var(--space--md); }
+      @media (min-width: 769px) {
+        .form form .grid {
+          grid-template-columns: 1fr 1fr; } }
     .form form .field-wrap,
     .form form > label,
     .form form .multitoggle > label {

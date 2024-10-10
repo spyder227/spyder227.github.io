@@ -248,7 +248,10 @@
   .gb-1.parent-0 et-tag,
   .lux-bb et-tag,
   .account-1.parent-0 et-tag {
-    order: 10; }
+    -webkit-box-ordinal-group: 11;
+    -webkit-order: 10;
+        -ms-flex-order: 10;
+            order: 10; }
   .lux-track.wthi tag-wrap tag-image::before,
   .lux-track.wthi tag-wrap lux-image::before,
   .lux-track.wthi tag-comm tag-image::before,

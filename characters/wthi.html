@@ -103,19 +103,13 @@
             <button type="button" class="threads--sort is-checked" data-sort="characterAsc">Character (A -> Z)</button>
             <button type="button" class="threads--sort" data-sort="characterDesc">Character (Z -> A)</button>
             
+                <button type="button" class="threads--sort" data-sort="ageAsc">Age (Asc)</button>
+                <button type="button" class="threads--sort" data-sort="ageDesc">Age (Desc)</button>
+            
         </div>
     </div>
     <div class="characters--filters">
         <!--Site-->
-        
-            <div class="characters--filter filter--parent">
-                <button onClick="openFilters(this)">Site</button>
-                <div class="characters--filter-dropdown">
-                    <div class="characters--filter-group filter--sites" data-filter-group="site">
-                        <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>any</b></label>
-                    </div>
-                </div>
-            </div>
         
     </div>
 </div>
@@ -125,7 +119,7 @@
 
 <script>
     //set overall variables
-    let siteName = 'all';
+    let siteName = 'where the hell is';
     const typeSearch = `#quicksearch`;
     const blockTitle = `.character--title`;
     const visible = `is-visible`;

@@ -17,7 +17,10 @@ body {
 
 main {
   margin-left: var(--size--menu-width);
-  padding: var(--space--lg); }
+  padding: var(--space--lg) var(--space--xs); }
+  @media (min-width: 601px) {
+    main {
+      padding: var(--space--lg); } }
 
 .backdrop {
   position: fixed;

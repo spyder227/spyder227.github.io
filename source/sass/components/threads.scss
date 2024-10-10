@@ -1,3 +1,5 @@
+@import '../global/mixins.scss';
+
 .threads {
     margin-top: calc(-1 * var(--space--lg));
 
@@ -184,7 +186,11 @@
     margin-bottom: var(--space--sm);
     background: var(--bg--tertiary);
     border-radius: 10px;
-    padding: var(--space--md) var(--space--lg);
+    padding: var(--space--md);
+
+    @include mq-up(xs) {
+        padding: var(--space--md) var(--space--lg);
+    }
 
     &.status--mine {
         background: rgba(var(--rgb), 0.25);
@@ -192,9 +198,12 @@
 
     &--wrap {
         display: grid;
-        grid-template-columns: auto 30px;
         gap: var(--space--xs);
         align-items: center;
+
+        @include mq-up(xs) {
+            grid-template-columns: auto 30px;
+        }
     }
 
     &--main {
@@ -205,7 +214,10 @@
         letter-spacing: 0.2em;
         font-weight: 700;
         line-height: 160%;
-        border-right: 1px solid var(--accent, var(--bg--quintenary));
+
+        @include mq-up(xs) {
+            border-right: 1px solid var(--accent, var(--bg--quintenary));
+        }
 
         & > a {
             font-family: var(--font--serif);
@@ -214,12 +226,20 @@
             letter-spacing: 0;
             line-height: 120%;
 
+            @include mq-up(xs) {
+                padding-right: var(--space--md);
+            }
+
             &::after {
                 display: none;
             }
         }
 
         & > span {
+            @include mq-up(xs) {
+                padding-right: var(--space--md);
+            }
+
             &.bigger {
                 text-transform: uppercase;
                 font-weight: 900;
@@ -237,14 +257,30 @@
 
     &--dates {
         display: grid;
-        grid-template-columns: 1fr 1fr;
         border-bottom: 1px solid var(--accent, var(--bg--quintenary));
         padding-bottom: var(--space--xs);
         margin-bottom: var(--space--xs);
+
+        @include mq-up(sm) {
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        @include mq-up(xs) {
+            padding-right: var(--space--md);
+        }
     }
 
     &--buttons {
         padding-left: var(--space--sm);
+
+        @include mq-down(xs) {
+            border-top: 1px solid var(--accent, var(--bg--quintenary));
+            width: 100%;
+            display: flex;
+            padding-left: 0;
+            padding-top: var(--space--sm);
+            justify-content: end;
+        }
 
         .icon {
             font-size: 12px;

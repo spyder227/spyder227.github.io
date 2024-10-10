@@ -136,9 +136,9 @@
 .character {
   width: 100%;
   margin-bottom: var(--space--sm);
-  background: var(--bg--tertiary);
   border-radius: 10px;
-  padding: var(--space--md); }
+  padding: var(--space--md);
+  background: rgba(var(--rgb), 0.15); }
   .character--wrap {
     display: grid;
     grid-template-columns: 80px auto;
@@ -229,8 +229,13 @@
     transition-duration: 0.3s; }
   .character--links {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     gap: var(--space--sm); }
+    @media (min-width: 601px) {
+      .character--links {
+        grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1025px) {
+      .character--links {
+        grid-template-columns: repeat(3, 1fr); } }
     .character--links a {
       display: flex;
       border: 1px solid rgba(var(--rgb), 0.25);
@@ -248,8 +253,10 @@
         background: rgba(var(--rgb), 0.25); }
   .character--ships {
     display: grid;
-    gap: var(--space--sm);
-    grid-template-columns: repeat(2, 1fr); }
+    gap: var(--space--sm); }
+    @media (min-width: 1025px) {
+      .character--ships {
+        grid-template-columns: repeat(2, 1fr); } }
   .character--ship {
     border: 1px solid var(--bg--quintenary);
     font-size: 0.5em;

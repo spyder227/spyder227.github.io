@@ -138,14 +138,19 @@
   margin-bottom: var(--space--sm);
   background: var(--bg--tertiary);
   border-radius: 10px;
-  padding: var(--space--md) var(--space--lg); }
+  padding: var(--space--md); }
+  @media (min-width: 601px) {
+    .thread {
+      padding: var(--space--md) var(--space--lg); } }
   .thread.status--mine {
     background: rgba(var(--rgb), 0.25); }
   .thread--wrap {
     display: grid;
-    grid-template-columns: auto 30px;
     gap: var(--space--xs);
     align-items: center; }
+    @media (min-width: 601px) {
+      .thread--wrap {
+        grid-template-columns: auto 30px; } }
   .thread--main {
     display: flex;
     flex-direction: column;
@@ -153,16 +158,24 @@
     text-transform: uppercase;
     letter-spacing: 0.2em;
     font-weight: 700;
-    line-height: 160%;
-    border-right: 1px solid var(--accent, var(--bg--quintenary)); }
+    line-height: 160%; }
+    @media (min-width: 601px) {
+      .thread--main {
+        border-right: 1px solid var(--accent, var(--bg--quintenary)); } }
     .thread--main > a {
       font-family: var(--font--serif);
       font-size: 20px;
       text-transform: none;
       letter-spacing: 0;
       line-height: 120%; }
+      @media (min-width: 601px) {
+        .thread--main > a {
+          padding-right: var(--space--md); } }
       .thread--main > a::after {
         display: none; }
+    @media (min-width: 601px) {
+      .thread--main > span {
+        padding-right: var(--space--md); } }
     .thread--main > span.bigger {
       text-transform: uppercase;
       font-weight: 900;
@@ -175,12 +188,25 @@
       letter-spacing: 0.1em; }
   .thread--dates {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     border-bottom: 1px solid var(--accent, var(--bg--quintenary));
     padding-bottom: var(--space--xs);
     margin-bottom: var(--space--xs); }
+    @media (min-width: 769px) {
+      .thread--dates {
+        grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 601px) {
+      .thread--dates {
+        padding-right: var(--space--md); } }
   .thread--buttons {
     padding-left: var(--space--sm); }
+    @media (max-width: 600px) {
+      .thread--buttons {
+        border-top: 1px solid var(--accent, var(--bg--quintenary));
+        width: 100%;
+        display: flex;
+        padding-left: 0;
+        padding-top: var(--space--sm);
+        justify-content: end; } }
     .thread--buttons .icon {
       font-size: 12px;
       width: 30px;
