@@ -304,12 +304,14 @@ function initChangeBasics(el) {
         let existing = data.filter(item => item.Character === character.options[character.selectedIndex].value.trim().toLowerCase())[0];
 
         if(existing.Basics && existing.Basics !== '') {
-            let basics = JSON.parse(existing.Basics).filter(item => item.site === site.options[site.selectedIndex].innerText.trim().toLowerCase())[0].basics;
-            el.closest('form').querySelector('#gender').setAttribute('placeholder', basics.gender);
-            el.closest('form').querySelector('#pronouns').setAttribute('placeholder', basics.pronouns);
-            el.closest('form').querySelector('#ageValue').setAttribute('placeholder', basics.age);
-            el.closest('form').querySelector('#face').setAttribute('placeholder', basics.face);
-            el.closest('form').querySelector('#image').setAttribute('placeholder', basics.image);
+            let basics = JSON.parse(existing.Basics).filter(item => item.site === site.options[site.selectedIndex].innerText.trim().toLowerCase());
+            if(basics[0]) {
+                el.closest('form').querySelector('#gender').setAttribute('placeholder', basics[0].basics.gender);
+                el.closest('form').querySelector('#pronouns').setAttribute('placeholder', basics[0].basics.pronouns);
+                el.closest('form').querySelector('#ageValue').setAttribute('placeholder', basics[0].basics.age);
+                el.closest('form').querySelector('#face').setAttribute('placeholder', basics[0].basics.face);
+                el.closest('form').querySelector('#image').setAttribute('placeholder', basics[0].basics.image);
+            }
         }
     });
 }
@@ -1140,6 +1142,17 @@ function updateCharacter(form) {
                         existingBasics[instance].basics.age = (age && age !== '') ? age : existingBasics[instance].basics.age;
                         existingBasics[instance].basics.face = (face && face !== '') ? face : existingBasics[instance].basics.face;
                         existingBasics[instance].basics.image = (image && image !== '') ? image : existingBasics[instance].basics.image;
+                    } else {
+                        existingBasics.push({
+                            site: site,
+                            basics: {
+                                gender: form.querySelector('#gender').value.trim().toLowerCase(),
+                                pronouns: form.querySelector('#pronouns').value.trim().toLowerCase(),
+                                age: form.querySelector('#ageValue').value.trim().toLowerCase(),
+                                face: form.querySelector('#face').value.trim().toLowerCase(),
+                                image: form.querySelector('#image').value.trim(),
+                            }
+                        });
                     }
                 }
                 existing.Basics = JSON.stringify(existingBasics);
@@ -1203,13 +1216,13 @@ function updateCharacter(form) {
                 });
             }
 
-            console.log(replacingTags);
-
             let existingTags = JSON.parse(existing.Tags);
+            //add to existing
             for(instance in existingTags) {
                 if(existingTags[instance].site === site) {
                     for(set in existingTags[instance].tags) {
                         for(newSet in tagArray) {
+
                             if(existingTags[instance].tags[set].type === tagArray[newSet].type) {
                                 if(replacingTags.includes(tagArray[newSet].type)) {
                                     existingTags[instance].tags[set].tags = tagArray[newSet].tags;
@@ -1813,7 +1826,7 @@ function formatThread(thread) {
         featuringText += `<a href="${thread.site.URL}/${thread.site.Directory}${featured.id}">${featured.name}</a>`;
         partnersText += `<a href="${thread.site.URL}/${thread.site.Directory}${featured.writerId}">${featured.writer}</a>`;
     });
-    let extraTags = thread.tags !== '' ? JSON.parse(thread.tags).join(' ') : '';
+    let extraTags = thread.tags !== '' ? JSON.parse(thread.tags).map(item => `tag--${item}`).join(' ') : '';
 
     let buttons = ``;
     if (thread.status !== 'complete' && thread.status !== 'archived') {
@@ -1826,7 +1839,7 @@ function formatThread(thread) {
         buttons = `<div class="icon" title="${thread.type}"></div>`;
     }
 
-    return `<div class="thread lux-track grid-item grid-item ${thread.character.name.split(' ')[0]} ${partnerClasses} ${featuringClasses} status--${thread.status} type--${thread.type} delay--${getDelay(thread.update)} ${extraTags} site--${thread.site.ID}">
+    return `<div class="thread lux-track grid-item grid-item ${thread.character.name.split(' ')[0]} ${partnerClasses} ${featuringClasses} status--${thread.status} type--${thread.type} delay--${getDelay(thread.updated)} ${extraTags} site--${thread.site.ID}">
         <div class="thread--wrap">
             <div class="thread--main">
                 <a href="${thread.site.URL}/?showtopic=${thread.id}&view=getnewpost" target="_blank" class="thread--title">${capitalize(thread.title, [' ', '-'])}</a>
