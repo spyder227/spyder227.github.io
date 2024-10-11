@@ -1758,7 +1758,7 @@ function getDetailedDelay(date) {
     } else if (elapsed > 7) {
         delayClass = '> One Week';
     } else {
-        delayClass = '< One Week>';
+        delayClass = '< One Week';
     }
     return delayClass;
 }
