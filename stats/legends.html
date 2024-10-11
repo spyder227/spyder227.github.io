@@ -78,6 +78,7 @@
 <nav class="subnav" data-menu="stats">
     <div class="subnav--inner">
         <a href="../stats/index.html">View Combined</a>
+        <a href="../stats/status.html">Status Comparison</a>
     </div>
 </nav>
 <nav class="subnav" data-menu="admin">
@@ -95,7 +96,7 @@
 </nav>
         <main>
             <section class="charts">
-                <div class="charts--top">
+                <div class="charts--triple">
     <div class="charts--threads charts--number"></div>
     <div class="charts--completed charts--number"></div>
     <div class="charts--characters charts--number"></div>
@@ -114,7 +115,7 @@
         </div>
     
 </div>
-<div class="charts--middle">
+<div class="charts--double">
     <div class="charts--thread-type charts--breakdown">
         <h2>Overall Threads - Type</h2>
         <canvas id="type"></canvas>
@@ -124,13 +125,13 @@
         <canvas id="status"></canvas>
     </div>
 </div>
-<div class="charts--bottom">
+<div class="charts--single">
     <div class="charts--thread-partners charts--breakdown">
         <h2>Overall Threads - Partners</h2>
         <canvas id="partners"></canvas>
     </div>
 </div>
-<div class="charts--middle">
+<div class="charts--double">
     <div class="charts--ic-status charts--breakdown">
         <h2>Active Threads - Status</h2>
         <canvas id="icStatus"></canvas>
@@ -139,8 +140,6 @@
         <h2>Active Threads - Reply Date</h2>
         <canvas id="icReplies"></canvas>
     </div>
-</div>
-<div class="charts--middle">
     <div class="charts--comm-status charts--breakdown">
         <h2>Comm Threads - Status</h2>
         <canvas id="commStatus"></canvas>
@@ -155,9 +154,6 @@
 <script>
     //set overall variables
     let siteName = 'legends';
-
-    //set class variables
-    let $container = $('.charts');
 
     fetch(`https://opensheet.elk.sh/${sheetID}/Characters`)
     .then((response) => response.json())

@@ -24,6 +24,7 @@
 
 <!--Settings-->
 <script type='text/javascript' src='../dist/js/settings.js'></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <body>
         <div class="backdrop horizontal"></div>
@@ -78,7 +79,7 @@
 <nav class="subnav" data-menu="stats">
     <div class="subnav--inner">
         <a href="../stats/index.html">View Combined</a>
-        <a href="../stats/status.html">Status Comparison</a>
+        <a href="../stats/status.html">Status</a>
     </div>
 </nav>
 <nav class="subnav" data-menu="admin">
@@ -95,31 +96,9 @@
     </div>
 </nav>
         <main>
-            <section class="form">
-                <h1>Edit Partner</h1>
-<form data-form="edit-partner">
-    <label>
-        <b>Site</b>
-        <span><select required id="site">
-            <option value="">(select)</option>
-        </select></span>
-    </label>
-    <label>
-        <b>Alias</b>
-        <span><select required id="partner">
-            <option value="">(select)</option>
-        </select></span>
-    </label>
-    <div class="field-wrap fullWidth adjustable">
-        <b>Add Characters</b>
-        <div class="rows"></div>
-        <div class="multi-buttons" data-row-type="characters">
-            <button type="button" onclick="addRow(this)">+ New Row</button>
-            <button type="button" onclick="removeRow(this)">- Remove Row</button>
-        </div>
-    </div>
-    <button type="submit" class="fullWidth">Submit</button>
-</form>
+            <section class="charts">
+                <div class="charts--middle">
+                </div>
             </section>
         </main>
         <!--Scripts-->

@@ -1361,45 +1361,45 @@ section.links {
       opacity: 0.8;
       letter-spacing: 0.1em; }
 
-.charts--top {
+.charts--triple {
   display: -ms-grid;
   display: grid;
   gap: var(--space--lg);
   max-width: 1000px;
   margin: 0 auto var(--space--lg); }
   @media (min-width: 769px) {
-    .charts--top {
+    .charts--triple {
       -ms-grid-columns: (calc((100% / 2) - ((var(--space--lg) * 1) / 2)))[2];
       grid-template-columns: repeat(2, calc((100% / 2) - ((var(--space--lg) * 1) / 2))); } }
   @media (min-width: 1025px) {
-    .charts--top {
+    .charts--triple {
       -ms-grid-columns: (calc((100% / 3) - ((var(--space--lg) * 2) / 3)))[3];
       grid-template-columns: repeat(3, calc((100% / 3) - ((var(--space--lg) * 2) / 3))); } }
-  .charts--top > div {
+  .charts--triple > div {
     background: var(--bg--tertiary);
     border-radius: 10px;
     padding: var(--space--lg); }
 
-.charts--middle {
+.charts--double {
   display: -ms-grid;
   display: grid;
   gap: var(--space--lg);
   max-width: 1000px;
   margin: 0 auto var(--space--lg); }
   @media (min-width: 769px) {
-    .charts--middle {
+    .charts--double {
       -ms-grid-columns: (calc((100% / 2) - ((var(--space--lg) * 1) / 2)))[2];
       grid-template-columns: repeat(2, calc((100% / 2) - ((var(--space--lg) * 1) / 2))); } }
-  .charts--middle > div {
+  .charts--double > div {
     background: var(--bg--tertiary);
     border-radius: 10px;
     padding: var(--space--lg); }
 
-.charts--bottom {
+.charts--single {
   gap: var(--space--lg);
   max-width: 1000px;
   margin: 0 auto var(--space--lg); }
-  .charts--bottom > div {
+  .charts--single > div {
     background: var(--bg--tertiary);
     border-radius: 10px;
     padding: var(--space--lg); }
