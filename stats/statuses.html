@@ -24,6 +24,8 @@
 
 <!--Settings-->
 <script type='text/javascript' src='../dist/js/settings.js'></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>let statusChart = {};</script>
     </head>
     <body>
         <div class="backdrop horizontal"></div>
@@ -97,35 +99,107 @@
     </div>
 </nav>
         <main>
-            <section class="form">
-                <h1>Add Tags</h1>
-<form data-form="add-tags">
-    <label>
-        <b>Title</b>
-        <span><input type="text" id="title" placeholder="Tag Title" required /></span>
-    </label>
-    <label>
-        <b>Type</b>
-        <span><select required id="type">
-            <option value="">(select)</option>
-            <option value="single">Single</option>
-            <option value="multple">Multiple</option>
-        </select></span>
-    </label>
-    <div class="field-wrap fullWidth adjustable accordion sites">
-        <b>Sites</b>
-        <div class="multiselect"></div>
-    </div>
-    <div class="field-wrap fullWidth adjustable">
-        <b>Tags</b>
-        <div class="rows"></div>
-        <div class="multi-buttons" data-row-type="tag-options">
-            <button type="button" onclick="addRow(this)">+ New Row</button>
-            <button type="button" onclick="removeRow(this)">- Remove Row</button>
-        </div>
-    </div>
-    <button type="submit" class="fullWidth">Submit</button>
-</form>
+            <section class="charts">
+                <div class="charts--double">
+                    <div class="charts--thread-status charts--breakdown">
+    <h2>godly behaviour</h2>
+    <canvas id="gb"></canvas>
+</div>
+<script>
+    fetch(`https://opensheet.elk.sh/${sheetID}/Threads`)
+    .then((response) => response.json())
+    .then((threadData) => {
+        fetch(`https://opensheet.elk.sh/${sheetID}/Sites`)
+        .then((response) => response.json())
+        .then((siteData) => {
+            //set overall variables
+            let siteName = 'godly behaviour';
+            let siteObject = siteName !== 'all' ? siteData.filter(item => item.Site === siteName) : siteData;
+            let threadStats = createThreadStats(threadData, siteObject);
+
+            /*Thread Status*/
+            new Chart(document.getElementById('gb'), {
+                type: 'pie',
+                data: {
+                    labels: threadStats[0].status.tags.map(item => item.toUpperCase()),
+                    datasets: [{
+                        data: threadStats[0].status.totals,
+                        backgroundColor: chartColors,
+                        borderWidth: 0
+                    }]
+                },
+                options: chartOptions
+            });
+        });
+    });
+</script>
+                    <div class="charts--thread-status charts--breakdown">
+    <h2>where the hell is</h2>
+    <canvas id="wthi"></canvas>
+</div>
+<script>
+    fetch(`https://opensheet.elk.sh/${sheetID}/Threads`)
+    .then((response) => response.json())
+    .then((threadData) => {
+        fetch(`https://opensheet.elk.sh/${sheetID}/Sites`)
+        .then((response) => response.json())
+        .then((siteData) => {
+            //set overall variables
+            let siteName = 'where the hell is';
+            let siteObject = siteName !== 'all' ? siteData.filter(item => item.Site === siteName) : siteData;
+            let threadStats = createThreadStats(threadData, siteObject);
+
+            /*Thread Status*/
+            new Chart(document.getElementById('wthi'), {
+                type: 'pie',
+                data: {
+                    labels: threadStats[0].status.tags.map(item => item.toUpperCase()),
+                    datasets: [{
+                        data: threadStats[0].status.totals,
+                        backgroundColor: chartColors,
+                        borderWidth: 0
+                    }]
+                },
+                options: chartOptions
+            });
+        });
+    });
+</script>
+                </div>
+                <div class="charts--single" style="max-width: 500px;">
+                    <div class="charts--thread-status charts--breakdown">
+    <h2>all</h2>
+    <canvas id="all"></canvas>
+</div>
+<script>
+    fetch(`https://opensheet.elk.sh/${sheetID}/Threads`)
+    .then((response) => response.json())
+    .then((threadData) => {
+        fetch(`https://opensheet.elk.sh/${sheetID}/Sites`)
+        .then((response) => response.json())
+        .then((siteData) => {
+            //set overall variables
+            let siteName = 'all';
+            let siteObject = siteName !== 'all' ? siteData.filter(item => item.Site === siteName) : siteData;
+            let threadStats = createThreadStats(threadData, siteObject);
+
+            /*Thread Status*/
+            new Chart(document.getElementById('all'), {
+                type: 'pie',
+                data: {
+                    labels: threadStats[0].status.tags.map(item => item.toUpperCase()),
+                    datasets: [{
+                        data: threadStats[0].status.totals,
+                        backgroundColor: chartColors,
+                        borderWidth: 0
+                    }]
+                },
+                options: chartOptions
+            });
+        });
+    });
+</script>
+                </div>
             </section>
         </main>
         <!--Scripts-->

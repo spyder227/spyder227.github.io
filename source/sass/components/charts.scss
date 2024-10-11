@@ -1,7 +1,7 @@
 @import '../global/mixins.scss';
 
 .charts {
-    &--top {
+    &--triple {
         display: grid;
         gap: var(--space--lg);
         max-width: 1000px;
@@ -21,7 +21,7 @@
             padding: var(--space--lg);
         }
     }
-    &--middle {
+    &--double {
         display: grid;
         gap: var(--space--lg);
         max-width: 1000px;
@@ -37,7 +37,7 @@
             padding: var(--space--lg);
         }
     }
-    &--bottom {
+    &--single {
         gap: var(--space--lg);
         max-width: 1000px;
         margin: 0 auto var(--space--lg);
