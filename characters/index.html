@@ -21,7 +21,6 @@
 <script type='text/javascript' src='https://files.jcink.net/html/jquery-1.7.2.min.js'></script>
 <script type='text/javascript' src='https://files.jcink.net/html/jquery.cookie-1.3.1.js'></script> 
 <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 <!--Settings-->
 <script type='text/javascript' src='../dist/js/settings.js'></script>
@@ -96,27 +95,30 @@
 </nav>
         <main>
             <section class="characters">
-                <div class="characters--header">
-    <div class="characters--sorting">
-        <input id="quicksearch" class="forminput memberlist-namesearch" type="text" size="25" name="name" value="" placeholder="Filter by name...">
-        <div class="characters--sort-buttons" data-type="flex">
-            <button type="button" class="threads--sort is-checked" data-sort="characterAsc">Character (A -> Z)</button>
-            <button type="button" class="threads--sort" data-sort="characterDesc">Character (Z -> A)</button>
-            
+                <div class="characters--header filters--wrap">
+    <button onClick="toggleFilters(this)" class="mobileOnly">View Filters</button>
+    <div class="filters--collapsible">
+        <div class="characters--sorting">
+            <input id="quicksearch" class="forminput memberlist-namesearch" type="text" size="25" name="name" value="" placeholder="Filter by name...">
+            <div class="characters--sort-buttons" data-type="flex">
+                <button type="button" class="threads--sort is-checked" data-sort="characterAsc">Character (A -> Z)</button>
+                <button type="button" class="threads--sort" data-sort="characterDesc">Character (Z -> A)</button>
+                
+            </div>
         </div>
-    </div>
-    <div class="characters--filters">
-        <!--Site-->
-        
-            <div class="characters--filter filter--parent">
-                <button onClick="openFilters(this)">Site</button>
-                <div class="characters--filter-dropdown">
-                    <div class="characters--filter-group filter--sites" data-filter-group="site">
-                        <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>any</b></label>
+        <div class="characters--filters">
+            <!--Site-->
+            
+                <div class="characters--filter filter--parent">
+                    <button onClick="openFilters(this)">Site</button>
+                    <div class="characters--filter-dropdown">
+                        <div class="characters--filter-group filter--sites" data-filter-group="site">
+                            <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>any</b></label>
+                        </div>
                     </div>
                 </div>
-            </div>
-        
+            
+        </div>
     </div>
 </div>
 <div class="characters--content">

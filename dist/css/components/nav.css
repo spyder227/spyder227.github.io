@@ -40,7 +40,11 @@
           width: calc(var(--size--menu-width) - (2 * var(--space--md))); } }
       .nav--inner button i,
       .nav--inner a i {
-        font-size: 1rem; }
+        font-size: 0.8rem; }
+        @media (min-width: 601px) {
+          .nav--inner button i,
+          .nav--inner a i {
+            font-size: 1rem; } }
       .nav--inner button:hover, .nav--inner button.is-open,
       .nav--inner a:hover,
       .nav--inner a.is-open {
@@ -59,7 +63,7 @@
   top: 0;
   left: calc(-1 * var(--size--submenu-width));
   width: var(--size--submenu-width);
-  background: #363636;
+  background: var(--bg--quaternary);
   z-index: 3;
   height: 100vh;
   padding: var(--space--md);

@@ -4,8 +4,13 @@
     Variables
 ********************************/
 :root {
-    --size--menu-width: 60px;
+    --size--menu-width: 50px;
     --size--submenu-width: 200px;
+
+    @include mq-up(xs) {
+        --size--menu-width: 60px;
+        --size--submenu-width: 300px;
+    }
 
     @include mq-up(sm) {
         --size--menu-width: 100px;
@@ -40,7 +45,8 @@ body.theme--light {
     --bg--primary: #dedddd;
     --bg--secondary: #c7c7c7;
     --bg--tertiary: #f1f1f1;
-    --bg--quintenary: #dadada;
+    --bg--quaternary: #d1d1d1;
+    --bg--quintenary: #e2e2e2;
     
     --text--primary: #767676;
 }

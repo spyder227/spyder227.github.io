@@ -2,7 +2,7 @@
     Variables
 ********************************/
 :root {
-  --size--menu-width: 60px;
+  --size--menu-width: 50px;
   --size--submenu-width: 200px;
   --space--xs: 5px;
   --space--sm: 10px;
@@ -22,6 +22,10 @@
   --bg--quintenary: #747474;
   --text--primary: #e7e7e7;
   --text--on-accent: #e7e7e7; }
+  @media (min-width: 601px) {
+    :root {
+      --size--menu-width: 60px;
+      --size--submenu-width: 300px; } }
   @media (min-width: 769px) {
     :root {
       --size--menu-width: 100px;
@@ -31,5 +35,6 @@ body.theme--light {
   --bg--primary: #dedddd;
   --bg--secondary: #c7c7c7;
   --bg--tertiary: #f1f1f1;
-  --bg--quintenary: #dadada;
+  --bg--quaternary: #d1d1d1;
+  --bg--quintenary: #e2e2e2;
   --text--primary: #767676; }
