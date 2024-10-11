@@ -1,7 +1,9 @@
 @import '../global/mixins.scss';
 
 .characters {
-    margin-top: calc(-1 * var(--space--lg));
+    &:not(.row) {
+        margin-top: calc(-1 * var(--space--lg));
+    }
 
     &--header {
         position: sticky;
