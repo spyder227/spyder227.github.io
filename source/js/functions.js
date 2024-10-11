@@ -132,6 +132,16 @@ function initPartnerSelect(el, type = 'initial', siteField = '#site') {
     .then((data) => {
         let site = el.closest('form').querySelector(siteField).options[el.closest('form').querySelector(siteField).selectedIndex].innerText.trim().toLowerCase();
         let partners = data.filter(item => item.Site === site);
+
+        partners.sort((a, b) => {
+            if(a.Writer < b.Writer) {
+                return -1;
+            } else if(a.Writer > b.Writer) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
         
         el.closest('form').querySelectorAll('select#partner').forEach(select => {
             if(el.closest('form').dataset.form !== 'edit-partner') {
@@ -161,6 +171,17 @@ function initShipSelect(e, siteField) {
         let partnerId = e.options[e.selectedIndex].value;
         let characterList = JSON.parse(data.filter(el => el.Site === site && el.WriterID === partnerId)[0].Characters);
         let characterSelects = e.closest('.row').querySelectorAll('#character');
+
+        characterList.sort((a, b) => {
+            if(a.name < b.name) {
+                return -1;
+            } else if(a.name > b.name) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+
         characterList.forEach(character => {
             html += `<option value="${character.id}">${capitalize(character.name)}</option>`;
         });
@@ -329,9 +350,6 @@ function initAutoPopulate(el) {
                         form.querySelectorAll('.clip-multi-warning').forEach(item => item.innerHTML = `<p>Please select both a character and a site.</p>`);
                     }
                     break;
-                case 'changeShip':
-                    initChangeShips(el);
-                    break;
                 case 'removeShip':
                     initRemoveShips(el);
                     break;
@@ -369,35 +387,6 @@ function initRemoveLinks(el) {
         html += `</div>`;
 
         el.closest('form').querySelector('.clip-remove-links').innerHTML = html;
-    });
-}
-function initChangeShips(el) {
-    fetch(`https://opensheet.elk.sh/${sheetID}/Characters`)
-    .then((response) => response.json())
-    .then((data) => {
-        let character = el.closest('form').querySelector('#character');
-        let site = el.closest('form').querySelector('#characterSite');
-        let existing = data.filter(item => item.Character === character.options[character.selectedIndex].value.trim().toLowerCase())[0];
-        let ships = JSON.parse(existing.Ships).filter(item => item.site === site.options[site.selectedIndex].innerText.trim().toLowerCase())[0].characters;
-        let html = `<div class="change-ships row">`;
-        ships.forEach(ship => {
-            html += `<label class="ship">
-                <b>${ship.character}, played by ${ship.writer} (${ship.relationship})</b>
-                <span><select required id="type" data-character="${ship.character}" data-writer="${ship.writer}">
-                    <option value="">(select)</option>
-                    <option value="antagonistic">Antagonistic</option>
-                    <option value="familial">Familial</option>
-                    <option value="found family">Found Family</option>
-                    <option value="platonic">Platonic</option>
-                    <option value="professional">Professional</option>
-                    <option value="romantic">Romantic</option>
-                    <option value="other">Other</option>
-                </select></span>
-            </label>`;
-        });
-        html += `</div>`;
-
-        el.closest('form').querySelector('.clip-change-ships').innerHTML = html;
     });
 }
 function initRemoveShips(el) {
@@ -457,6 +446,17 @@ function initCharacterSites(character) {
         let existing = data.filter(item => item.Character === character.options[character.selectedIndex].value.trim().toLowerCase())[0];
         let sites = JSON.parse(existing.Sites);
         let html = `<option value="">(select)</option>`;
+
+        sites.sort((a, b) => {
+            if(a.site < b.site) {
+                return -1;
+            } else if(a.site > b.site) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+
         sites.forEach(site => {
             html += `<option value="${site.id}">${capitalize(site.site, [' ', '-'])}`;
         });
@@ -757,9 +757,7 @@ function formatCharacterRow() {
 }
 function formatFeatureRow(e) {
     let site = e.closest('form').querySelector('#site').options[e.closest('form').querySelector('#site').selectedIndex].value;
-    if(site === '') {
-        //return `<blockquote>Please select a site first.</blockquote>`;
-    }
+
     return `<div class="row features">
         <label>
             <b>Played By</b>
@@ -2017,6 +2015,24 @@ function formatSingleInstance(character) {
             }
         });
     }
+
+    character.ships.sort((a, b) => {
+        if(a.character < b.character) {
+            return -1;
+        } else if(a.character > b.character) {
+            return 1;
+        } else if(a.writer < b.writer) {
+            return -1;
+        } else if(a.writer > b.writer) {
+            return 1;
+        } else if(a.relationship < b.relationship) {
+            return -1;
+        } else if(a.relationship > b.relationship) {
+            return 1;
+        } else {
+            return 0
+        }
+    })
     
     return `<div class="character spy-track grid-item ${tagsString} ${character.character.split(' ')[0]}">
         <div class="character--wrap">
