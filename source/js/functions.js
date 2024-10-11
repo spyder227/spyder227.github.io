@@ -1623,6 +1623,9 @@ function initIsotope() {
         });
     });
 }
+function toggleFilters(e) {
+    e.closest('.filters--wrap').querySelector('.filters--collapsible').classList.toggle('is-open');
+}
 
 /***** THREAD TRACKING FUNCTIONS *****/
 function prepThreads(data, site) {
@@ -1738,6 +1741,24 @@ function getDelay(date) {
         delayClass = 'week';
     } else {
         delayClass = 'okay';
+    }
+    return delayClass;
+}
+function getDetailedDelay(date) {
+    let elapsed = (new Date() - Date.parse(date)) / (1000*60*60*24);
+    let delayClass;
+    if(elapsed > 365) {
+        delayClass = '> A Year';
+    } else if (elapsed > 180) {
+        delayClass = '> Six Months';
+    } else if (elapsed > 90) {
+        delayClass = '> Three Months';
+    } else if (elapsed > 30) {
+        delayClass = '> One Month';
+    } else if (elapsed > 7) {
+        delayClass = '> One Week';
+    } else {
+        delayClass = '< One Week>';
     }
     return delayClass;
 }
@@ -2101,4 +2122,155 @@ function formatMultipleInstance(character, sites) {
             </div>
         </div>
     </div>`;
+}
+
+/***** STATS AND CHARTS FUNCTIONS *****/
+function createCharacterStats(data, site) {
+    let siteName, characters;
+    let stats = {
+        genders: {
+            tags: [],
+            totals: []
+        },
+        pronouns: {
+            tags: [],
+            totals: []
+        },
+        ages: {
+            tags: [],
+            totals: []
+        },
+        total: 0,
+    }
+
+    if(site.length === 1) {
+        siteName = site[0].Site;
+        characters = data.map(item => JSON.parse(item.Basics).filter(instance => instance.site === siteName)[0] ? JSON.parse(item.Basics).filter(instance => instance.site === siteName)[0].basics : 'remove').filter(item => item !== 'remove');
+
+        stats.total = characters.length;
+
+        characters.map(item => item.age = groupAges(item.age));
+    
+        characters.forEach(character => {
+            countStats(stats.genders, character.gender);
+            countStats(stats.pronouns, character.pronouns);
+            countStats(stats.ages, character.age);
+        });
+    } else {
+        stats.total = data.length;
+    }
+
+    return stats;
+}
+function createThreadStats(data, site) {
+    let siteName, threads;
+    if(site.length === 1) {
+        siteName = site[0].Site;
+        threads = data.filter(item => item.Site === siteName);
+    } else {
+        threads = data;
+    }
+    let activeThreads = threads.filter(item => item.Status !== 'complete' && item.Status !== 'archived');
+    let icThreads = activeThreads.filter(item => item.Type === 'thread');
+    let commThreads = activeThreads.filter(item => item.Type === 'comm');
+
+    icThreads.forEach(item => {
+        item.Delay = getDetailedDelay(item.ICDate);
+    });
+    commThreads.forEach(item => {
+        item.Delay = getDetailedDelay(item.ICDate);
+    });
+
+    let threadPartners = activeThreads.map(thread => JSON.parse(thread.Featuring));
+    let partnerNames = [];
+    threadPartners.forEach(thread => {
+        thread.forEach(threadPartner => {
+            partnerNames.push(threadPartner.writer);
+        });
+    });
+
+    let stats = {
+        type: {
+            tags: [],
+            totals: []
+        },
+        status: {
+            tags: [],
+            totals: []
+        },
+        partners: {
+            tags: [],
+            totals: [],
+        },
+        active: threads.filter(item => item.Status !== 'complete' && item.Status !== 'archived').length,
+        completed: threads.filter(item => item.Status === 'complete').length,
+    };
+
+    let icStats = {
+        status: {
+            tags: [],
+            totals: []
+        },
+        replies: {
+            tags: [],
+            totals: []
+        },
+    }
+    let commStats = {
+        status: {
+            tags: [],
+            totals: []
+        },
+        replies: {
+            tags: [],
+            totals: []
+        },
+    }
+
+    activeThreads.forEach(thread => {
+        countStats(stats.type, thread.Type);
+        countStats(stats.status, thread.Status);
+    });
+
+    partnerNames.forEach(partner => {
+        countStats(stats.partners, partner);
+    });
+
+    icThreads.forEach(thread => {
+        countStats(icStats.status, thread.Status);
+        countStats(icStats.replies, thread.Delay);
+    });
+
+    commThreads.forEach(thread => {
+        countStats(commStats.status, thread.Status);
+        countStats(commStats.replies, thread.Delay);
+    });
+
+    return [stats, icStats, commStats];
+}
+function countStats(stats, type) {
+    if(stats.tags.includes(type)) {
+        let index = stats.tags.indexOf(type);
+        stats.totals[index] += 1;
+    } else {
+        stats.tags.push(type);
+        stats.totals.push(1);
+    }
+}
+function groupAges(age) {
+    if(age < 20) {
+        return 'Under 20';
+    } else if(age < 30) {
+        return '20s';
+    } else if(age < 40) {
+        return '30s';
+    } else if(age < 40) {
+        return '30s';
+    } else if(age < 50) {
+        return '40s';
+    } else if(age >= 50 && age <100) {
+        return '50+';
+    } else {
+        return 'Non-Human Aging';
+    }
 }

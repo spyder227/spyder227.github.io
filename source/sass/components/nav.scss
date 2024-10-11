@@ -44,7 +44,11 @@
             }
 
             i {
-                font-size: 1rem;
+                font-size: 0.8rem;
+
+                @include mq-up(xs) {
+                    font-size: 1rem;
+                }
             }
 
             &:hover,
@@ -68,7 +72,7 @@
     top: 0;
     left: calc(-1 * var(--size--submenu-width));
     width: var(--size--submenu-width);
-    background: #363636;
+    background: var(--bg--quaternary);
     z-index: 3;
     height: 100vh;
     padding: var(--space--md);

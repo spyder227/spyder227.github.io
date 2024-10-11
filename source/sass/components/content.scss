@@ -70,3 +70,30 @@ section.links {
         }
     }
 }
+
+.mobileOnly {
+    display: block;
+
+    @include mq-up(xs) {
+        display: none;
+    }
+}
+
+.filters--collapsible {
+    display: none;
+    position: absolute;
+    background: var(--bg--primary);
+    padding: var(--space--xs);
+    top: 100%;
+    left: 0;
+
+    &.is-open {
+        display: block;
+        z-index: 2;
+    }
+
+    @include mq-up(xs) {
+        display: block;
+        position: relative;
+    }
+}

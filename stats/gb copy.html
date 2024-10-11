@@ -21,6 +21,7 @@
 <script type='text/javascript' src='https://files.jcink.net/html/jquery-1.7.2.min.js'></script>
 <script type='text/javascript' src='https://files.jcink.net/html/jquery.cookie-1.3.1.js'></script> 
 <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 <!--Settings-->
 <script type='text/javascript' src='../dist/js/settings.js'></script>
@@ -94,79 +95,32 @@
     </div>
 </nav>
         <main>
-            <section class="form">
-                <h1>Add Character</h1>
-<form data-form="add-character">
-    <label class="fullWidth">
-        <b>Character</b>
-        <span><input type="text" id="title" placeholder="Account Name" required /></span>
-    </label>
-    <label>
-        <b>Site</b>
-        <span><select required id="site" required>
-            <option value="">(select)</option>
-        </select></span>
-    </label>
-    <label>
-        <b>Profile ID</b>
-        <span><input type="text" id="id" placeholder="00" required /></span>
-    </label>
-    <label>
-        <b>Gender</b>
-        <span><input type="text" id="gender" placeholder="Gender" required /></span>
-    </label>
-    <label>
-        <b>Pronouns</b>
-        <span><input type="text" id="pronouns" placeholder="Pronouns" required /></span>
-    </label>
-    <label>
-        <b>Age</b>
-        <span><input type="text" id="ageValue" placeholder="00" required /></span>
-    </label>
-    <label>
-        <b>Face</b>
-        <span><input type="text" id="face" placeholder="Face" required /></span>
-    </label>
-    <label class="fullWidth">
-        <b>Image URL</b>
-        <span><input type="text" id="image" placeholder="URL" required /></span>
-    </label>
-    <label class="fullWidth">
-        <b>Vibes</b>
-        <span><textarea type="text" id="vibes" placeholder="(Optional)"></textarea></span>
-    </label>
-    <div class="field-wrap fullWidth adjustable">
-        <b>Links</b>
-        <div class="rows"></div>
-        <div class="multi-buttons" data-row-type="links">
-            <button type="button" onclick="addRow(this)">+ New Row</button>
-            <button type="button" onclick="removeRow(this)">- Remove Row</button>
-        </div>
-    </div>
-    <div class="field-wrap fullWidth adjustable">
-        <b>Relationships</b>
-        <div class="rows"></div>
-        <div class="multi-buttons" data-row-type="ships">
-            <button type="button" onclick="addRow(this)">+ New Row</button>
-            <button type="button" onclick="removeRow(this)">- Remove Row</button>
-        </div>
-    </div>
-    <div class="field-wrap fullWidth adjustable accordion tags">
-        <b>Tags</b>
-        <div class="clip-tags"></div>
-    </div>
-    <div class="multitoggle fullWidth">
-        <label>
-            <b>Active?</b>
-            <span class="toggle"><input type="checkbox" id="active" checked /></span>
-        </label>
-        <label>
-            <b>Immortal?</b>
-            <span class="toggle"><input type="checkbox" id="immortal" /></span>
-        </label>
-    </div>
-    <button type="submit" class="fullWidth">Submit</button>
-</form>
+            <section class="charts">
+                
+<script src="@@prefix/js/charts.js"></script>
+<script>
+    //set overall variables
+    let siteName = 'godly behaviour';
+
+    //set class variables
+    let $container = $('.charts');
+
+    fetch(`https://opensheet.elk.sh/${sheetID}/Characters`)
+    .then((response) => response.json())
+    .then((characterData) => {
+        fetch(`https://opensheet.elk.sh/${sheetID}/Threads`)
+        .then((response) => response.json())
+        .then((threadData) => {
+            fetch(`https://opensheet.elk.sh/${sheetID}/Sites`)
+            .then((response) => response.json())
+            .then((siteData) => {
+                let siteObject = siteName !== 'all' ? siteData.filter(item => item.Site === siteName) : siteData;
+                let characterStats = createCharacterStats(characterData, siteObject);
+                let threads = prepThreads(threadData, siteName);
+            });
+        });
+    });
+</script>
             </section>
         </main>
         <!--Scripts-->

@@ -1,0 +1,92 @@
+@import '../global/mixins.scss';
+
+.charts {
+    &--top {
+        display: grid;
+        gap: var(--space--lg);
+        max-width: 1000px;
+        margin: 0 auto var(--space--lg);
+
+        @include mq-up(sm) {
+            grid-template-columns: repeat(2, calc((100% / 2) - ((var(--space--lg) * 1) / 2)));
+        }
+
+        @include mq-up(md) {
+            grid-template-columns: repeat(3, calc((100% / 3) - ((var(--space--lg) * 2) / 3)));
+        }
+
+        & > div {
+            background: var(--bg--tertiary);
+            border-radius: 10px;
+            padding: var(--space--lg);
+        }
+    }
+    &--middle {
+        display: grid;
+        gap: var(--space--lg);
+        max-width: 1000px;
+        margin: 0 auto var(--space--lg);
+
+        @include mq-up(sm) {
+            grid-template-columns: repeat(2, calc((100% / 2) - ((var(--space--lg) * 1) / 2)));
+        }
+
+        & > div {
+            background: var(--bg--tertiary);
+            border-radius: 10px;
+            padding: var(--space--lg);
+        }
+    }
+    &--bottom {
+        gap: var(--space--lg);
+        max-width: 1000px;
+        margin: 0 auto var(--space--lg);
+
+        & > div {
+            background: var(--bg--tertiary);
+            border-radius: 10px;
+            padding: var(--space--lg);
+        }
+    }
+
+    &--number {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        font-size: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-weight: 700;
+        justify-content: center;
+        align-items: center;
+
+
+        &:last-child:nth-of-type(2n+1) {
+            @include mq-up(sm) {
+                grid-column: 1 / -1;
+            }
+            @include mq-up(md) {
+                grid-column: auto;
+            }
+        }
+
+        b {
+            font-family: var(--font--serif);
+            font-size: 48px;
+            line-height: 100%;
+            font-weight: 700;
+            letter-spacing: 0;
+        }
+    }
+
+    &--breakdown {
+        h2 {
+            margin: 0 0 var(--space--md);
+            font-size: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 900;
+            text-align: center;
+        }
+    }
+}

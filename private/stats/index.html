@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        @@include('../../source/templates/head.html', {
+            "prefix": "../dist",
+            "siteTitle": "Lux | Site Tracker"
+        })
+    </head>
+    <body>
+        @@include('../../source/templates/nav.html', {
+            "prefix": ".."
+        })
+        <main>
+            <section class="charts">
+                @@include('../../source/templates/charts.html', {
+                    "sitename": "all"
+                })
+            </section>
+        </main>
+        @@include('../../source/templates/foot.html', {
+            "prefix": "../dist"
+        })
+    </body>
+</html>

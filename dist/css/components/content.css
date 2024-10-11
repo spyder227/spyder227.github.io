@@ -50,3 +50,24 @@ section.links {
   padding-bottom: var(--space--md); }
   .accordion--content.is-active {
     display: block; }
+
+.mobileOnly {
+  display: block; }
+  @media (min-width: 601px) {
+    .mobileOnly {
+      display: none; } }
+
+.filters--collapsible {
+  display: none;
+  position: absolute;
+  background: var(--bg--primary);
+  padding: var(--space--xs);
+  top: 100%;
+  left: 0; }
+  .filters--collapsible.is-open {
+    display: block;
+    z-index: 2; }
+  @media (min-width: 601px) {
+    .filters--collapsible {
+      display: block;
+      position: relative; } }

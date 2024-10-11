@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lux | Site Tracker</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--Styles-->
+<link rel="stylesheet" href="../dist/css/styles.css" />
+<link rel="stylesheet" href="../dist/css/characters.css" />
+
+<!--Fonts-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap" rel="stylesheet">
+
+<!--Icons-->
+<link href="https://dawneggleton.github.io/css/all.css" rel="stylesheet" />
+
+<!--Script Libraries-->
+<script type='text/javascript' src='https://files.jcink.net/html/jquery-1.7.2.min.js'></script>
+<script type='text/javascript' src='https://files.jcink.net/html/jquery.cookie-1.3.1.js'></script> 
+<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
+
+<!--Settings-->
+<script type='text/javascript' src='../dist/js/settings.js'></script>
+    </head>
+    <body>
+        <div class="backdrop horizontal"></div>
+<div class="backdrop vertical"></div>
+<nav class="nav">
+    <div class="nav--inner">
+        <a href="../index.html">
+            <i class="fa-light fa-house"></i>
+            <span>Home</span>
+        </a>
+        <button onClick="openSubmenu(this)" data-menu="sites">
+            <i class="fa-light fa-sitemap"></i>
+            <span>Sites</span>
+        </button>
+        <button onClick="openSubmenu(this)" data-menu="characters">
+            <i class="fa-light fa-users"></i>
+            <span>Muses</span>
+        </button>
+        <button onClick="openSubmenu(this)" data-menu="threads">
+            <i class="fa-light fa-books"></i>
+            <span>Threads</span>
+        </button>
+        <button onClick="openSubmenu(this)" data-menu="stats">
+            <i class="fa-light fa-chart-pie"></i>
+            <span>Stats</span>
+        </button>
+        <button onClick="openSubmenu(this)" data-menu="admin">
+            <i class="fa-light fa-wrench"></i>
+            <span>Admin</span>
+        </button>
+        <button class="toggle--theme" onClick="toggleTheme()">
+            <i class="fa-light fa-brightness mode--light"></i>
+            <span class="mode--light">Light</span>
+            <i class="fa-light fa-brightness-low mode--dark"></i>
+            <span class="mode--dark">Dark</span>
+        </button>
+    </div>
+</nav>
+<nav class="subnav" data-menu="sites">
+    <div class="subnav--inner"></div>
+</nav>
+<nav class="subnav" data-menu="characters">
+    <div class="subnav--inner">
+        <a href="../characters/index.html">View All</a>
+    </div>
+</nav>
+<nav class="subnav" data-menu="threads">
+    <div class="subnav--inner">
+        <a href="../threads/index.html">View All</a>
+    </div>
+</nav>
+<nav class="subnav" data-menu="stats">
+    <div class="subnav--inner">
+        <a href="../stats/index.html">View Combined</a>
+    </div>
+</nav>
+<nav class="subnav" data-menu="admin">
+    <div class="subnav--inner">
+        <a href="../admin/new-site.html">Add Site</a>
+        <a href="../admin/new-tag.html">Add Tags</a>
+        <a href="../admin/new-partner.html">Add Partner</a>
+        <a href="../admin/new-character.html">Add Character</a>
+        <a href="../admin/new-thread.html">Add Thread</a>
+        <a href="../admin/update-tag.html">Edit Tags</a>
+        <a href="../admin/update-partner.html">Edit Partner</a>
+        <a href="../admin/update-character.html">Edit Character</a>
+        <a href="../admin/update-thread.html">Edit Thread</a>
+    </div>
+</nav>
+        <main>
+            <section class="charts">
+                <div class="charts--top">
+    <div class="charts--threads charts--number"></div>
+    <div class="charts--completed charts--number"></div>
+    <div class="charts--characters charts--number"></div>
+    
+</div>
+<div class="charts--middle">
+    <div class="charts--thread-type charts--breakdown">
+        <h2>Overall Threads - Type</h2>
+        <canvas id="type"></canvas>
+    </div>
+    <div class="charts--thread-status charts--breakdown">
+        <h2>Overall Threads - Status</h2>
+        <canvas id="status"></canvas>
+    </div>
+</div>
+<div class="charts--bottom">
+    <div class="charts--thread-partners charts--breakdown">
+        <h2>Overall Threads - Partners</h2>
+        <canvas id="partners"></canvas>
+    </div>
+</div>
+<div class="charts--middle">
+    <div class="charts--ic-status charts--breakdown">
+        <h2>Active Threads - Status</h2>
+        <canvas id="icStatus"></canvas>
+    </div>
+    <div class="charts--ic-replies charts--breakdown">
+        <h2>Active Threads - Reply Date</h2>
+        <canvas id="icReplies"></canvas>
+    </div>
+</div>
+<div class="charts--middle">
+    <div class="charts--comm-status charts--breakdown">
+        <h2>Comm Threads - Status</h2>
+        <canvas id="commStatus"></canvas>
+    </div>
+    <div class="charts--comm-replies charts--breakdown">
+        <h2>Comm Threads - Reply Date</h2>
+        <canvas id="commReplies"></canvas>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="@@prefix/js/charts.js"></script>
+<script>
+    //set overall variables
+    let siteName = 'all';
+
+    //set class variables
+    let $container = $('.charts');
+
+    fetch(`https://opensheet.elk.sh/${sheetID}/Characters`)
+    .then((response) => response.json())
+    .then((characterData) => {
+        fetch(`https://opensheet.elk.sh/${sheetID}/Threads`)
+        .then((response) => response.json())
+        .then((threadData) => {
+            fetch(`https://opensheet.elk.sh/${sheetID}/Sites`)
+            .then((response) => response.json())
+            .then((siteData) => {
+                let siteObject = siteName !== 'all' ? siteData.filter(item => item.Site === siteName) : siteData;
+                let characterStats = createCharacterStats(characterData, siteObject);
+                let threadStats = createThreadStats(threadData, siteObject);
+
+                if(siteName === 'all') {
+                    document.querySelector('.charts--characters').innerHTML = `<b>${characterStats.total}</b><span>${characterStats.total === 1 ? 'Unique Character' : 'Unique Characters'}</span>`;
+                } else {
+                    document.querySelector('.charts--characters').innerHTML = `<b>${characterStats.total}</b><span>${characterStats.total === 1 ? 'Character' : 'Characters'}</span>`;
+                }
+                document.querySelector('.charts--threads').innerHTML = `<b>${threadStats[0].active}</b><span>${threadStats[0].active === 1 ? 'Active Thread' : 'Active Threads'}</span>`;
+                document.querySelector('.charts--completed').innerHTML = `<b>${threadStats[0].completed}</b><span>${threadStats[0].completed === 1 ? 'Completed Thread' : 'Completed Threads'}</span>`;
+
+                if(siteName !== 'all') {
+                    /*Genders*/
+                    const genders = document.getElementById('genders');
+                    new Chart(genders, {
+                        type: 'pie',
+                        data: {
+                            labels: characterStats.genders.tags.map(item => item.toUpperCase()),
+                            datasets: [{
+                                data: characterStats.genders.totals,
+                                backgroundColor: chartColors,
+                                borderWidth: 0
+                            }]
+                        },
+                        options: chartOptions
+                    });
+
+                    /*Pronouns*/
+                    const pronouns = document.getElementById('pronouns');
+                    new Chart(pronouns, {
+                        type: 'pie',
+                        data: {
+                            labels: characterStats.pronouns.tags.map(item => item.toUpperCase()),
+                            datasets: [{
+                                data: characterStats.pronouns.totals,
+                                backgroundColor: chartColors,
+                                borderWidth: 0
+                            }]
+                        },
+                        options: chartOptions
+                    });
+
+                    /*Ages*/
+                    const ages = document.getElementById('ages');
+                    new Chart(ages, {
+                    type: 'pie',
+                    data: {
+                        labels: characterStats.ages.tags.map(item => item.toUpperCase()),
+                        datasets: [{
+                            data: characterStats.ages.totals,
+                            backgroundColor: chartColors,
+                            borderWidth: 0
+                        }]
+                    },
+                    options: chartOptions
+                });
+                }
+
+                /*Thread Type*/
+                const type = document.getElementById('type');
+                new Chart(type, {
+                    type: 'pie',
+                    data: {
+                        labels: threadStats[0].type.tags.map(item => item.toUpperCase()),
+                        datasets: [{
+                            data: threadStats[0].type.totals,
+                            backgroundColor: chartColors,
+                            borderWidth: 0
+                        }]
+                    },
+                    options: chartOptions
+                });
+
+                /*Thread Status*/
+                const status = document.getElementById('status');
+                new Chart(status, {
+                    type: 'pie',
+                    data: {
+                        labels: threadStats[0].status.tags.map(item => item.toUpperCase()),
+                        datasets: [{
+                            data: threadStats[0].status.totals,
+                            backgroundColor: chartColors,
+                            borderWidth: 0
+                        }]
+                    },
+                    options: chartOptions
+                });
+
+                /*Partners*/
+                const partners = document.getElementById('partners');
+                new Chart(partners, {
+                    type: 'bar',
+                    data: {
+                        labels: threadStats[0].partners.tags.map(item => item.toUpperCase()),
+                        datasets: [{
+                            data: threadStats[0].partners.totals,
+                            backgroundColor: chartColors,
+                            borderWidth: 0,
+                            fontColor: '#ffffff'
+                        }]
+                    },
+                    options: noLegend
+                });
+
+                /*IC Status*/
+                const icStatus = document.getElementById('icStatus');
+                new Chart(icStatus, {
+                    type: 'pie',
+                    data: {
+                        labels: threadStats[1].status.tags.map(item => item.toUpperCase()),
+                        datasets: [{
+                            data: threadStats[1].status.totals,
+                            backgroundColor: chartColors,
+                            borderWidth: 0
+                        }]
+                    },
+                    options: chartOptions
+                });
+
+                /*IC Replies*/
+                const icReplies = document.getElementById('icReplies');
+                new Chart(icReplies, {
+                    type: 'pie',
+                    data: {
+                        labels: threadStats[1].replies.tags.map(item => item.toUpperCase()),
+                        datasets: [{
+                            data: threadStats[1].replies.totals,
+                            backgroundColor: chartColors,
+                            borderWidth: 0
+                        }]
+                    },
+                    options: chartOptions
+                });
+
+                /*Comm Status*/
+                const commStatus = document.getElementById('commStatus');
+                new Chart(commStatus, {
+                    type: 'pie',
+                    data: {
+                        labels: threadStats[2].status.tags.map(item => item.toUpperCase()),
+                        datasets: [{
+                            data: threadStats[2].status.totals,
+                            backgroundColor: chartColors,
+                            borderWidth: 0
+                        }]
+                    },
+                    options: chartOptions
+                });
+
+                /*Comm Replies*/
+                const commReplies = document.getElementById('commReplies');
+                new Chart(commReplies, {
+                    type: 'pie',
+                    data: {
+                        labels: threadStats[2].replies.tags.map(item => item.toUpperCase()),
+                        datasets: [{
+                            data: threadStats[2].replies.totals,
+                            backgroundColor: chartColors,
+                            borderWidth: 0
+                        }]
+                    },
+                    options: chartOptions
+                });
+            });
+        });
+    });
+</script>
+            </section>
+        </main>
+        <!--Scripts-->
+<script type='text/javascript' src='../dist/js/functions.js'></script>
+<script type='text/javascript' src='../dist/js/scripts.js'></script>
+    </body>
+</html>
