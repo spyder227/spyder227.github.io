@@ -2243,8 +2243,30 @@ function createThreadStats(data, site) {
         },
     }
 
-    activeThreads.forEach(thread => {
+    let typeThreads = activeThreads;
+    typeThreads.sort((a, b) => {
+        if(a.Type < b.Type) {
+            return -1;
+        } else if(a.Type > b.Type) {
+            return -1;
+        } else {
+            return 0;
+        }
+    });
+    typeThreads.forEach(thread => {
         countStats(stats.type, thread.Type);
+    });
+    let statusThreads = [...activeThreads];
+    statusThreads.sort((a, b) => {
+        if(a.Status < b.Status) {
+            return -1;
+        } else if(a.Status > b.Status) {
+            return 1;
+        } else {
+            return 0;
+        }
+    })
+    statusThreads.forEach(thread => {
         countStats(stats.status, thread.Status);
     });
 
