@@ -183,7 +183,8 @@
       font-size: 20px;
       text-transform: none;
       letter-spacing: 0;
-      line-height: 120%; }
+      line-height: 120%;
+      padding-bottom: 5px; }
       @media (min-width: 601px) {
         .thread--main > a {
           padding-right: var(--space--md); } }
@@ -197,7 +198,10 @@
       font-weight: 900;
       font-size: 0.625rem;
       letter-spacing: 0.1em;
-      line-height: 160%; }
+      line-height: 160%;
+      border-top: 1px solid var(--accent, var(--bg--quintenary));
+      padding-top: 5px;
+      margin-top: 5px; }
     .thread--main > span.italic {
       font-style: italic;
       opacity: 0.8;

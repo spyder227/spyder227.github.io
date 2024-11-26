@@ -1682,7 +1682,7 @@ function populateThreads(array, siteObject) {
         
         let thread = {
             character: JSON.parse(array[i].Character),
-            description: array[i].description,
+            description: array[i].Description,
             featuring: JSON.parse(array[i].Featuring),
             date: array[i].ICDate,
             updated: array[i].LastUpdated,
@@ -1882,10 +1882,10 @@ function formatThread(thread) {
                     <span class="thread--ic-date">Set <span>${thread.date}</span></span>
                     <span class="thread--last-post">Last Active <span>${thread.updated}</span></span>
                 </div>
+                ${thread.description && thread.description !== '' ? `<p>${thread.description}</p>` : ''}
                 <span class="bigger">Writing as <a class="thread--character" href="${thread.site.URL}/${thread.site.Directory}${thread.character.id}">${thread.character.name}</a></span>
                 <span class="thread--feature">ft. ${featuringText}</span>
                 <span class="thread--partners italic">Writing with ${partnersText}</span>
-                ${thread.description && thread.description !== '' ? `<p>${thread.description}</p>` : ''}
             </div>
             <div class="thread--buttons">${buttons}</div>
         </div>
