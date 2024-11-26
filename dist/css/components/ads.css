@@ -1,0 +1,64 @@
+h2 {
+  font-family: var(--font--serif);
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0.25em 0 0.5em;
+  padding-bottom: 0.25em;
+  margin-top: 20px;
+  letter-spacing: 1px;
+  margin-bottom: 20px; }
+
+#advertising1 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px; }
+
+#advertising1 img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
+#advertising2 {
+  padding-left: 20px;
+  padding-bottom: 20px; }
+
+#advertising2 button {
+  background: var(--bg--primary);
+  color: var(--text--primary);
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 5px;
+  padding: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px; }
+
+#advertising2 [target="_blank"]::after {
+  display: none; }
+
+#myInput {
+  background: var(--bg--primary);
+  width: 80%;
+  overflow: auto;
+  padding: 20px;
+  font-size: 12px;
+  border-radius: 10px;
+  color: var(--text--primary);
+  white-space: normal;
+  border: none;
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+#advertising1 button {
+  background: var(--bg--primary);
+  color: var(--text--primary);
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 5px; }
+
+#advertising1 button:hover,
+#advertising2 button:hover {
+  background: var(--bg--secondary);
+  cursor: pointer; }

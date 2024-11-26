@@ -18,13 +18,13 @@
             <i class="fa-light fa-books"></i>
             <span>Threads</span>
         </button>
-        <button onClick="openSubmenu(this)" data-menu="stats">
-            <i class="fa-light fa-chart-pie"></i>
-            <span>Stats</span>
-        </button>
         <button onClick="openSubmenu(this)" data-menu="admin">
             <i class="fa-light fa-wrench"></i>
             <span>Admin</span>
+        </button>
+        <button onClick="openSubmenu(this)" data-menu="ads">
+            <i class="fa-light fa-tag"></i>
+            <span>Ads</span>
         </button>
         <button class="toggle--theme" onClick="toggleTheme()">
             <i class="fa-light fa-brightness mode--light"></i>
@@ -66,5 +66,11 @@
         <a href="@@prefix/admin/update-partner.html">Edit Partner</a>
         <a href="@@prefix/admin/update-character.html">Edit Character</a>
         <a href="@@prefix/admin/update-thread.html">Edit Thread</a>
+    </div>
+</nav>
+<nav class="subnav" data-menu="ads">
+    <div class="subnav--inner">
+        <a href="@@prefix/advertising/gb.html">Godly Behaviour</a>
+        <a href="@@prefix/advertising/wthi.html">Where The Hell Is</a>
     </div>
 </nav>
