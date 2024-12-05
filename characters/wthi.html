@@ -123,6 +123,17 @@
             </div>
         </div>
         <div class="characters--filters">
+            <!--Active?-->
+                <div class="characters--filter filter--parent">
+                    <button onClick="openFilters(this)">Active?</button>
+                    <div class="characters--filter-dropdown">
+                        <div class="characters--filter-group filter--status" data-filter-group="status">
+                            <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>both</b></label>
+                            <label><span><input type="checkbox" value=".status--active"></span><b>yes</b></label>
+                            <label><span><input type="checkbox" value=".status--inactive"></span><b>no</b></label>
+                        </div>
+                    </div>
+                </div>
             <!--Site-->
             
         </div>
