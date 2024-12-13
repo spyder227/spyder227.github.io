@@ -1821,7 +1821,30 @@ function changeStatus(e) {
             Character: e.dataset.character,
             Status: 'mine'
         }, thread);
+    } else if(e.dataset.status === 'hoarded') {
+        e.dataset.status = 'theirs';
+        let thread = e.parentNode.parentNode.parentNode;
+        e.classList.add('is-updating');
+        sendThreadAjax({
+            SubmissionType: 'thread-status',
+            ThreadID: e.dataset.id,
+            Site: e.dataset.site,
+            Character: e.dataset.character,
+            Status: 'theirs'
+        }, thread);
     }
+}
+function markHoarded(e) {
+    e.dataset.status = 'hoarded';
+    let thread = e.parentNode.parentNode.parentNode;
+    e.classList.add('is-updating');
+    sendThreadAjax({
+        SubmissionType: 'thread-status',
+        ThreadID: e.dataset.id,
+        Site: e.dataset.site,
+        Character: e.dataset.character,
+        Status: 'hoarded'
+    }, thread, null, 'hoarded');
 }
 function markComplete(e) {
     e.dataset.status = 'complete';
@@ -1867,7 +1890,8 @@ function formatThread(thread) {
     if (thread.status !== 'complete' && thread.status !== 'archived') {
         buttons = `<div class="icon" title="${thread.type}"></div><button onClick="changeStatus(this)" data-status="${thread.status}" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}' title="Change Turn"><i class="fa-regular fa-arrow-right-arrow-left"></i><i class="fa-solid fa-spinner fa-spin"></i></button>
         <button onClick="markComplete(this)" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}' title="Mark Complete"><i class="fa-regular fa-badge-check"></i><i class="fa-solid fa-spinner fa-spin"></i></button>
-        <button onClick="markArchived(this)" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}' title="Archive"><i class="fa-regular fa-trash"></i><i class="fa-solid fa-spinner fa-spin"></i></button>`;
+        <button onClick="markArchived(this)" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}' title="Archive"><i class="fa-regular fa-trash"></i><i class="fa-solid fa-spinner fa-spin"></i></button>
+        <button onClick="markHoarded(this)" data-status="${thread.status}" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}' title="Hoard"><i class="fa-regular fa-floppy-disk"></i><i class="fa-solid fa-spinner fa-spin"></i></button>`;
     } else if (thread.status !== 'archived') {
         buttons = `<div class="icon" title="${thread.type}"></div><button onClick="markArchived(this)" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}' title="Archive"><i class="fa-regular fa-trash"></i><i class="fa-solid fa-spinner fa-spin"></i></button>`;
     } else {
