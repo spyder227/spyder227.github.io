@@ -148,6 +148,10 @@
   .spy-track.oliver,
   .spy.oliver {
     --rgb: 135, 196, 140; }
+  .spy-track.philippa, .spy-track.pippa,
+  .spy.philippa,
+  .spy.pippa {
+    --rgb: 138, 73, 98; }
   .spy-track.piper,
   .spy.piper {
     --rgb: 116, 161, 181; }
