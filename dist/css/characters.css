@@ -2,16 +2,22 @@
 .spy-track,
 .spy {
   --rgb: var(--rgb);
-  --dkrgb: var(--rgb-dark, var(--rgb)); }
+  --dkrgb: var(--rgb-dark, var(--rgb));
+  /* archived character */
+  /* archived character */
+  /* archived character */
+  /* archived character */
+  /* archived character */
+  /* archived character */
+  /* archived character */
+  /* archived character */
+  /* archived character */ }
   .spy-track.adeline,
   .spy.adeline {
     --rgb: 217, 132, 148; }
   .spy-track.adrian,
   .spy.adrian {
     --rgb: 196, 172, 106; }
-  .spy-track.alistair,
-  .spy.alistair {
-    --rgb: 102, 124, 182; }
   .spy-track.annabeth,
   .spy.annabeth {
     --rgb: 65, 78, 125; }
@@ -58,9 +64,6 @@
   .spy-track.dawson,
   .spy.dawson {
     --rgb: 74, 119, 85; }
-  .spy-track.dimitri,
-  .spy.dimitri {
-    --rgb: 207, 196, 97; }
   .spy-track.dixon, .spy-track.dean,
   .spy.dixon,
   .spy.dean {
@@ -96,6 +99,9 @@
   .spy-track.james,
   .spy.james {
     --rgb: 151, 93, 123; }
+  .spy-track.janus,
+  .spy.janus {
+    --rgb: 167, 167, 201; }
   .spy-track.jemma,
   .spy.jemma {
     --rgb: 61, 50, 99; }
@@ -136,9 +142,6 @@
   .spy-track.nathan,
   .spy.nathan {
     --rgb: 212, 154, 74; }
-  .spy-track.nicholas,
-  .spy.nicholas {
-    --rgb: 145, 130, 114; }
   .spy-track.nimue,
   .spy.nimue {
     --rgb: 63, 175, 176; }
@@ -158,9 +161,6 @@
   .spy-track.prudence,
   .spy.prudence {
     --rgb: 102, 88, 166; }
-  .spy-track.rafael,
-  .spy.rafael {
-    --rgb: 119, 112, 84; }
   .spy-track.raymond,
   .spy.raymond {
     --rgb: 209, 130, 203; }
