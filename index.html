@@ -152,8 +152,8 @@
 }
 </style>
                             <div class="charts--thread-status charts--breakdown">
-    <h2 class="site--names">turn on the light</h1>
-    <canvas id="totl"></canvas>
+    <h2 class="site--names">where the hell is</h1>
+    <canvas id="wthi"></canvas>
 </div>
 <script>
     fetch(`https://opensheet.elk.sh/${sheetID}/Threads`)
@@ -163,12 +163,12 @@
         .then((response) => response.json())
         .then((siteData) => {
             //set overall variables
-            let siteName = 'turn on the light';
+            let siteName = 'where the hell is';
             let siteObject = siteName !== 'all' ? siteData.filter(item => item.Site === siteName) : siteData;
             let threadStats = createThreadStats(threadData, siteObject);
 
             /*Thread Status*/
-            new Chart(document.getElementById('totl'), {
+            new Chart(document.getElementById('wthi'), {
                 type: 'pie',
                 data: {
                     labels: threadStats[0].status.tags.map(item => item.toUpperCase()),
@@ -189,8 +189,8 @@
 }
 </style>
                             <div class="charts--thread-status charts--breakdown">
-    <h2 class="site--names">where the hell is</h1>
-    <canvas id="wthi"></canvas>
+    <h2 class="site--names">turn on the light</h1>
+    <canvas id="totl"></canvas>
 </div>
 <script>
     fetch(`https://opensheet.elk.sh/${sheetID}/Threads`)
@@ -200,12 +200,12 @@
         .then((response) => response.json())
         .then((siteData) => {
             //set overall variables
-            let siteName = 'where the hell is';
+            let siteName = 'turn on the light';
             let siteObject = siteName !== 'all' ? siteData.filter(item => item.Site === siteName) : siteData;
             let threadStats = createThreadStats(threadData, siteObject);
 
             /*Thread Status*/
-            new Chart(document.getElementById('wthi'), {
+            new Chart(document.getElementById('totl'), {
                 type: 'pie',
                 data: {
                     labels: threadStats[0].status.tags.map(item => item.toUpperCase()),
