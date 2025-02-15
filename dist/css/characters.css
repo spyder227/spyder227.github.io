@@ -11,6 +11,11 @@
   /* archived character */
   /* archived character */
   /* archived character */
+  /* archived character */
+  /* archived character */
+  /* archived character */
+  /* archived character */
+  /* archived character */
   /* archived character */ }
   .spy-track.adeline,
   .spy.adeline {
@@ -54,6 +59,9 @@
   .spy-track.catherine,
   .spy.catherine {
     --rgb: 218, 94, 135; }
+  .spy-track.celeste,
+  .spy.celeste {
+    --rgb: 188, 129, 212; }
   .spy-track.connor, .spy-track.derek,
   .spy.connor,
   .spy.derek {
@@ -144,7 +152,7 @@
     --rgb: 212, 154, 74; }
   .spy-track.nicholas,
   .spy.nicholas {
-    --rgb: 145, 130, 114; }
+    --rgb: 122, 102, 81; }
   .spy-track.nimue,
   .spy.nimue {
     --rgb: 63, 175, 176; }
