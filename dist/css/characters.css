@@ -172,6 +172,9 @@
   .spy-track.prudence,
   .spy.prudence {
     --rgb: 102, 88, 166; }
+  .spy-track.rafael,
+  .spy.rafael {
+    --rgb: 120, 42, 24; }
   .spy-track.raymond,
   .spy.raymond {
     --rgb: 209, 130, 203; }
