@@ -16,6 +16,9 @@
   /* archived character */
   /* archived character */
   /* archived character */
+  /* archived character */
+  /* archived character */
+  /* archived character */
   /* archived character */ }
   .spy-track.adeline,
   .spy.adeline {
@@ -76,6 +79,9 @@
   .spy.dixon,
   .spy.dean {
     --rgb: 143, 118, 83; }
+  .spy-track.eleanor,
+  .spy.eleanor {
+    --rgb: 207, 157, 189; }
   .spy-track.emily,
   .spy.emily {
     --rgb: 194, 87, 94; }
