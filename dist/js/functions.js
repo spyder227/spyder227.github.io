@@ -331,6 +331,8 @@ function initChangeBasics(el) {
                 el.closest('form').querySelector('#pronouns').setAttribute('placeholder', basics[0].basics.pronouns);
                 el.closest('form').querySelector('#ageValue').setAttribute('placeholder', basics[0].basics.age);
                 el.closest('form').querySelector('#face').setAttribute('placeholder', basics[0].basics.face);
+                el.closest('form').querySelector('#bday').setAttribute('placeholder', basics[0].basics.birthday);
+                el.closest('form').querySelector('#astro').setAttribute('placeholder', basics[0].basics.astrology);
                 el.closest('form').querySelector('#image').setAttribute('placeholder', basics[0].basics.image);
             }
         }
@@ -860,6 +862,8 @@ function submitCharacter(form) {
         pronouns: form.querySelector('#pronouns').value.trim().toLowerCase(),
         age: form.querySelector('#ageValue').value.trim().toLowerCase(),
         face: form.querySelector('#face').value.trim().toLowerCase(),
+        birthday: form.querySelector('#bday').value.trim().toLowerCase(),
+        astrology: form.querySelector('#astro').value.trim().toLowerCase(),
         image: form.querySelector('#image').value.trim(),
     };
 
@@ -1131,14 +1135,18 @@ function updateCharacter(form) {
                     if(existingBasics[instance].site === site) {
                         let gender = form.querySelector('#gender').value.trim().toLowerCase();
                         let pronouns = form.querySelector('#pronouns').value.trim().toLowerCase();
+                        let birthday = form.querySelector('#bday').value.trim().toLowerCase();
                         let age = form.querySelector('#ageValue').value.trim().toLowerCase();
                         let face = form.querySelector('#face').value.trim().toLowerCase();
+                        let astrology = form.querySelector('#astro').value.trim().toLowerCase();
                         let image = form.querySelector('#image').value.trim();
     
                         existingBasics[instance].basics.gender = (gender && gender !== '') ? gender : existingBasics[instance].basics.gender;
                         existingBasics[instance].basics.pronouns = (pronouns && pronouns !== '') ? pronouns : existingBasics[instance].basics.pronouns;
                         existingBasics[instance].basics.age = (age && age !== '') ? age : existingBasics[instance].basics.age;
                         existingBasics[instance].basics.face = (face && face !== '') ? face : existingBasics[instance].basics.face;
+                        existingBasics[instance].basics.birthday = (birthday && birthday !== '') ? birthday : existingBasics[instance].basics.birthday;
+                        existingBasics[instance].basics.astrology = (astrology && astrology !== '') ? astrology : existingBasics[instance].basics.astrology;
                         existingBasics[instance].basics.image = (image && image !== '') ? image : existingBasics[instance].basics.image;
                     } else {
                         existingBasics.push({
@@ -1148,6 +1156,8 @@ function updateCharacter(form) {
                                 pronouns: form.querySelector('#pronouns').value.trim().toLowerCase(),
                                 age: form.querySelector('#ageValue').value.trim().toLowerCase(),
                                 face: form.querySelector('#face').value.trim().toLowerCase(),
+                                birthday: form.querySelector('#bday').value.trim().toLowerCase(),
+                                astrology: form.querySelector('#astro').value.trim().toLowerCase(),
                                 image: form.querySelector('#image').value.trim(),
                             }
                         });
@@ -1162,6 +1172,8 @@ function updateCharacter(form) {
                         pronouns: form.querySelector('#pronouns').value.trim().toLowerCase(),
                         age: form.querySelector('#ageValue').value.trim().toLowerCase(),
                         face: form.querySelector('#face').value.trim().toLowerCase(),
+                        birthday: form.querySelector('#bday').value.trim().toLowerCase(),
+                        astrology: form.querySelector('#astro').value.trim().toLowerCase(),
                         image: form.querySelector('#image').value.trim(),
                     }
                 }]);
@@ -1982,6 +1994,7 @@ function populateCharacters(array, siteObject) {
         let character = {
             character: array[i].Character,
             vibes: array[i].Vibes,
+            birthday: array[i].Birthday,
             links: array[i].Links,
         }
         if(siteObject.length === 1) {
@@ -2066,7 +2079,9 @@ function formatSingleInstance(character) {
                 <div class="character--basics">
                     ${character.basics.gender ? `<span>${character.basics.gender}</span>` : ''}
                     ${character.basics.pronouns ? `<span>${character.basics.pronouns}</span>` : ''}
+                    ${character.basics.birthday ? `<span>born ${character.basics.birthday}</span>` : ''}
                     ${character.basics.age ? `<span><span class="character--age">${character.basics.age}</span> years old</span>` : ''}
+                    ${character.basics.astrology ? `<span>${character.basics.astrology}</span>` : ''}
                     ${character.basics.face ? `<span>${character.basics.face}</span>` : ''}
                 </div>
                 ${character.vibes ? `<span>${character.vibes}</span>` : ''}
@@ -2118,7 +2133,9 @@ function formatMultipleInstance(character, sites) {
             <div class="character--basics">
                 ${basics.gender ? `<span>${basics.gender}</span>` : ''}
                 ${basics.pronouns ? `<span>${basics.pronouns}</span>` : ''}
+                ${basics.birthday ? `<span>born ${basics.birthday}</span>` : ''}
                 ${basics.age ? `<span><span class="character--age">${basics.age}</span> years old</span>` : ''}
+                ${basics.astrology ? `<span>${basics.astrology}</span>` : ''}
                 ${basics.face ? `<span>${basics.face}</span>` : ''}
             </div>
             <div class="character--info">
