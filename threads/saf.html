@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Spy | Site Tracker</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--Styles-->
+<link rel="stylesheet" href="../dist/css/styles.css" />
+<link rel="stylesheet" href="../dist/css/characters.css" />
+
+<!--Fonts-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap" rel="stylesheet">
+
+<!--Icons-->
+<link href="https://dawneggleton.github.io/css/all.css" rel="stylesheet" />
+
+<!--Script Libraries-->
+<script type='text/javascript' src='https://files.jcink.net/html/jquery-1.7.2.min.js'></script>
+<script type='text/javascript' src='https://files.jcink.net/html/jquery.cookie-1.3.1.js'></script> 
+<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
+
+<!--Settings-->
+<script type='text/javascript' src='../dist/js/settings.js'></script>
+    </head>
+    <body>
+        <div class="backdrop horizontal"></div>
+<div class="backdrop vertical"></div>
+<nav class="nav">
+    <div class="nav--inner">
+        <a href="../index.html"><button>
+            <i class="fa-light fa-house"></i>
+            <span>Home</span>
+        </button></a>
+        <button onClick="openSubmenu(this)" data-menu="sites">
+            <i class="fa-light fa-sitemap"></i>
+            <span>Sites</span>
+        </button>
+        <button onClick="openSubmenu(this)" data-menu="characters">
+            <i class="fa-light fa-users"></i>
+            <span>Muses</span>
+        </button>
+        <button onClick="openSubmenu(this)" data-menu="threads">
+            <i class="fa-light fa-books"></i>
+            <span>Threads</span>
+        </button>
+        <button onClick="openSubmenu(this)" data-menu="admin">
+            <i class="fa-light fa-wrench"></i>
+            <span>Admin</span>
+        </button>
+        <button onclick="openSubmenu(this)" data-menu="stats">
+            <i class="fa-light fa-chart-pie"></i>
+            <span>Stats</span>
+        </button>
+        <button onClick="openSubmenu(this)" data-menu="ads">
+            <i class="fa-light fa-tag"></i>
+            <span>Ads</span>
+        </button>
+        <button class="toggle--theme" onClick="toggleTheme()">
+            <i class="fa-light fa-brightness mode--light"></i>
+            <span class="mode--light">Light</span>
+            <i class="fa-light fa-brightness-low mode--dark"></i>
+            <span class="mode--dark">Dark</span>
+        </button>
+    </div>
+</nav>
+<nav class="subnav" data-menu="sites">
+    <div class="subnav--inner"></div>
+</nav>
+<nav class="subnav" data-menu="characters">
+    <div class="subnav--inner">
+        <a href="../characters/index.html">View All</a>
+    </div>
+</nav>
+<nav class="subnav" data-menu="threads">
+    <div class="subnav--inner">
+        <a href="../threads/index.html">View All</a>
+    </div>
+</nav>
+<nav class="subnav" data-menu="stats">
+    <div class="subnav--inner">
+        <a href="../stats/index.html">View Combined</a>
+    </div>
+</nav>
+<nav class="subnav" data-menu="admin">
+    <div class="subnav--inner">
+        <strong>Add</strong>
+        <a href="../admin/new-site.html">Add Site</a>
+        <a href="../admin/new-tag.html">Add Tags</a>
+        <a href="../admin/new-partner.html">Add Partner</a>
+        <a href="../admin/new-character.html">Add Character</a>
+        <a href="../admin/new-thread.html">Add Thread</a>
+        <strong>Edit</strong>
+        <a href="../admin/update-tag.html">Edit Tags</a>
+        <a href="../admin/update-partner.html">Edit Partner</a>
+        <a href="../admin/update-character.html">Edit Character</a>
+        <a href="../admin/update-thread.html">Edit Thread</a>
+    </div>
+</nav>
+<nav class="subnav" data-menu="ads">
+    <div class="subnav--inner">
+        <a href="../advertising/gb.html">Godly Behaviour</a>
+        <a href="../advertising/wthi.html">Where The Hell Is</a>
+    </div>
+</nav>
+        <main>
+            <section class="threads">
+                <div class="threads--header filters--wrap">
+    <button onClick="toggleFilters(this)" class="mobileOnly">View Filters</button>
+    <div class="filters--collapsible">
+        <div class="threads--sorting">
+            <input id="quicksearch" class="forminput memberlist-namesearch" type="text" size="25" name="name" value="" placeholder="Filter by name...">
+            <div class="threads--sort-buttons" data-type="flex">
+                <button type="button" class="threads--sort is-checked" data-sort="character">Character (A -> Z)</button>
+                <button type="button" class="threads--sort" data-sort="title">Title (A -> Z)</button>
+                <button type="button" class="threads--sort" data-sort="icdate">IC Date (Asc)</button>
+                <button type="button" class="threads--sort" data-sort="lastpost">Last Post (Desc)</button>
+            </div>
+        </div>
+        <div class="threads--filters">
+            <!--Characters-->
+            <div class="threads--filter filter--parent">
+                <button onClick="openFilters(this)">Character</button>
+                <div class="threads--filter-dropdown">
+                    <div class="threads--filter-group filter--characters" data-filter-group="character">
+                        <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>all</b></label>
+                    </div>
+                </div>
+            </div>
+            <!--Partner-->
+            <div class="threads--filter filter--parent">
+                <button onClick="openFilters(this)">Partner</button>
+                <div class="threads--filter-dropdown">
+                    <div class="threads--filter-group filter--partners" data-filter-group="partner">
+                        <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>all</b></label>
+                    </div>
+                </div>
+            </div>
+            <!--Featuring-->
+            <div class="threads--filter filter--parent">
+                <button onClick="openFilters(this)">Featuring</button>
+                <div class="threads--filter-dropdown">
+                    <div class="threads--filter-group filter--featuring" data-filter-group="featuring">
+                        <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>all</b></label>
+                    </div>
+                </div>
+            </div>
+            <!--Last Reply-->
+            <div class="threads--filter filter--parent">
+                <button onClick="openFilters(this)">Last Reply</button>
+                <div class="threads--filter-dropdown">
+                    <div class="threads--filter-group" data-filter-group="lastreply">
+                        <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>any time</b></label>
+                        <label><span><input type="checkbox" value=".delay--okay"></span><b>&lt; one week</b></label>
+                        <label><span><input type="checkbox" value=".delay--week"></span><b>&gt; one week</b></label>
+                        <label><span><input type="checkbox" value=".delay--month"></span><b>&gt; one month</b></label>
+                        <label><span><input type="checkbox" value=".delay--quarter"></span><b>&gt; three months</b></label>
+                        <label><span><input type="checkbox" value=".delay--half"></span><b>&gt; six months</b></label>
+                        <label><span><input type="checkbox" value=".delay--year"></span><b>&gt; a year</b></label>
+                    </div>
+                </div>
+            </div>
+            <!--Status-->
+            <div class="threads--filter filter--parent">
+                <button onClick="openFilters(this)">Status</button>
+                <div class="threads--filter-dropdown">
+                    <div class="threads--filter-group claim--labels" data-filter-group="status">
+                        <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>all</b></label>
+                        <label><span><input type="checkbox" value=".status--mine"></span><b>my turn</b></label>
+                        <label><span><input type="checkbox" value=".status--theirs"></span><b>their turn</b></label>
+                        <label><span><input type="checkbox" value=".status--hoarded"></span><b>hoarded</b></label>
+                        <label><span><input type="checkbox" value=".status--start"></span><b>to start</b></label>
+                        <label><span><input type="checkbox" value=".status--planned"></span><b>planned</b></label>
+                        <label class="completed-label"><span><input type="checkbox" value=".status--complete"></span><b>completed</b></label>
+                    </div>
+                </div>
+            </div>
+            <!--Type-->
+            <div class="threads--filter filter--parent">
+                <button onClick="openFilters(this)">Thread Type</button>
+                <div class="threads--filter-dropdown">
+                    <div class="threads--filter-group" data-filter-group="type">
+                        <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>all</b></label>
+                        <label><span><input type="checkbox" value=".type--thread"></span><b>thread</b></label>
+                        <label><span><input type="checkbox" value=".type--comm"></span><b>comm</b></label>
+                        <label><span><input type="checkbox" value=".type--social"></span><b>social media</b></label>
+                        <label><span><input type="checkbox" value=".type--oneshot"></span><b>oneshot</b></label>
+                        <label><span><input type="checkbox" value=".type--event"></span><b>event</b></label>
+                    </div>
+                </div>
+            </div>
+            <!--Tags-->
+            <div class="threads--filter filter--parent">
+                <button onClick="openFilters(this)">Thread Tags</button>
+                <div class="threads--filter-dropdown">
+                    <div class="threads--filter-group filter--tags" data-filter-group="tags">
+                        <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>any</b></label>
+                    </div>
+                </div>
+            </div>
+            <!--Site-->
+            
+        </div>
+    </div>
+</div>
+<div class="threads--content">
+    <div id="threads--rows"></div>
+</div>
+
+<script>
+    //set overall variables
+    let siteName = 'start a fire';
+    const typeSearch = `#quicksearch`;
+    const blockTitle = `.thread--title`;
+    const visible = `is-visible`;
+    const filterGroup = `.threads--filter-group`;
+    const filterOptions = `.threads--filter-group input`;
+    const sorts = `.threads--sorting button`;
+    const gridItem = `.grid-item`;
+    const defaultShow = `:not(.status--complete)`;
+
+    //set class variables
+    let $container = $('#threads--rows');
+
+    fetch(`https://opensheet.elk.sh/${sheetID}/Threads`)
+    .then((response) => response.json())
+    .then((threadData) => {
+        fetch(`https://opensheet.elk.sh/${sheetID}/Sites`)
+        .then((response) => response.json())
+        .then((siteData) => {
+            let siteObject = siteName !== 'all' ? siteData.filter(item => item.Site === siteName) : siteData;
+            let threads = prepThreads(threadData, siteName);
+            populateThreads(threads, siteObject);
+
+            //initialize isotope
+            // quick search regex
+            let qsRegex;
+            let elements = document.querySelectorAll(gridItem);
+
+            // init Isotope
+            $container.isotope({
+                itemSelector: gridItem,
+                percentPosition: true,
+                filter: defaultShow,
+                getSortData: {
+                    character: '.thread--character',
+                    title: '.thread--title',
+                    icdate: function ($elem) {
+                        return Date.parse($elem.querySelector('.thread--ic-date span').innerText);
+                    },
+                    lastpost: function ($elem) {
+                        return Date.parse($elem.querySelector('.thread--last-post span').innerText);
+                    },
+                },
+                sortAscending: {
+                    character: true,
+                    title: true,
+                    icdate: false,
+                    lastpost: true,
+                }
+            });
+            setTimeout(function() {
+                $container.isotope('layout');
+            }, 300);
+            initIsotope();
+        });
+    });
+</script>
+            </section>
+        </main>
+        <!--Scripts-->
+<script type='text/javascript' src='../dist/js/functions.js'></script>
+<script type='text/javascript' src='../dist/js/scripts.js'></script>
+    </body>
+</html>
