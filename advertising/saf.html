@@ -105,75 +105,61 @@
     </div>
 </nav>
         <main>
-            <section class="form">
-                <h1>Add Thread</h1>
-<form data-form="add-thread">
-    <label class="fullWidth">
-        <b>Title</b>
-        <span><input type="text" id="title" placeholder="Thread title" required /></span>
-    </label>
-    <label>
-        <b>Site</b>
-        <span><select required id="site" required>
-            <option value="">(select)</option>
-        </select></span>
-    </label>
-    <label>
-        <b>Character</b>
-        <span><select required id="character" required>
-            <option value="">(select)</option>
-        </select></span>
-    </label>
-    <div class="field-wrap fullWidth adjustable">
-        <b>Featuring</b>
-        <div class="rows"></div>
-        <div class="multi-buttons" data-row-type="featuring">
-            <button type="button" onclick="addRow(this)">+ New Row</button>
-            <button type="button" onclick="removeRow(this)">- Remove Row</button>
-        </div>
-    </div>
-    <label>
-        <b>Thread ID</b>
-        <span><input type="text" id="id" placeholder="00" required /></span>
-    </label>
-    <label>
-        <b>IC Date</b>
-        <span><input type="date" id="date" /></span>
-    </label>
-    <label>
-        <b>Status</b>
-        <span><select required id="status" required>
-            <option value="">(select)</option>
-            <option value="mine">Mine</option>
-            <option value="theirs">Theirs</option>
-            <option value="planned">Planned</option>
-            <option value="complete">Complete</option>
-        </select></span>
-    </label>
-    <label>
-        <b>Type</b>
-        <span><select required id="type" required>
-            <option value="">(select)</option>
-            <option value="thread">Thread</option>
-            <option value="comm">Comm</option>
-            <option value="event">Event</option>
-            <option value="social">Social Media</option>
-            <option value="oneshot">One-shot</option>
-        </select></span>
-    </label>
-    <label class="fullWidth">
-        <b>Description</b>
-        <span><input type="text" id="description" placeholder="(Optional)" /></span>
-    </label>
-    <div class="field-wrap fullWidth adjustable tags">
-        <b>Tags</b>
-        <div class="multiselect"></div>
-    </div>
-    <button type="submit" class="fullWidth">Submit</button>
-</form>
-<!--<button onClick="portThreads()">Port Threads from Old Tracker</button>-->
+            <section class="content">
+                <p>
+                    <h1>Godly Behaviour - Advertising</h1>
+                        <section id="advertising1">
+                            <img src="https://i.imgur.com/IbeuEz5.png">
+                            <input type="text" value="[align=center][img]https://i.imgur.com/IbeuEz5.png[/img][url=https://startafire.jcink.net/index.php]HOME[/url] - [url=https://startafire.jcink.net/?act=Pages&kid=guidebook]GUIDEBOOK[/url] - [url=https://startafire.jcink.net/?showforum=9]REQUESTS[/url] - [url=https://startafire.jcink.net/?showforum=42]ADVERTISE[/url] - [url=https://discord.gg/h8hV25Kgkd]DISCORD[/url][/align]" id="myInput"></input>
+                            <button onclick="myFunction()">Copy</button>
+                        </section>
+                    <h2>Forum Advertising</h2>
+                        <section id="advertising2">
+                            <a href="https://moonlightresources.jcink.net/index.php?showtopic=xxx" target="_blank"><button>
+                                Moonlight
+                            </button></a>
+                            <a href="https://roleplayroundtable.jcink.net/index.php?showtopic=xxx" target="_blank"><button>
+                                RP Roundtable
+                            </button></a>
+                        </section>
+                    <h2>Tumblr Advertising</h2>
+                    <section id="advertising2">
+                        <a href="https://rpings.tumblr.com/submit" target="_blank"><button>
+                            RPings
+                        </button></a>
+                        <a href="https://allthingsroleplay.tumblr.com/submit" target="_blank"><button>
+                            All Things Roleplay
+                        </button></a>
+                        <a href="https://jcinktinder.tumblr.com/submit" target="_blank"><button>
+                            Jcink Tinder
+                        </button></a>
+                        <a href="https://therpdirectory.tumblr.com/submit" target="_blank"><button>
+                            The RP Directory
+                        </button></a>
+                        <a href="https://rpadverts.tumblr.com/submit" target="_blank"><button>
+                            RP Adverts
+                        </button></a>
+                        <a href="https://rpgadverts.tumblr.com/submit" target="_blank"><button>
+                            RPG Adverts
+                        </button></a>
+                    </section>
+                </p>
             </section>
         </main>
+
+        <script>
+            function myFunction() {
+            // Get the text field
+            var copyText = document.getElementById("myInput");
+
+            // Select the text field
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // For mobile devices
+
+            // Copy the text inside the text field
+            navigator.clipboard.writeText(copyText.value);
+            }
+        </script>
         <!--Scripts-->
 <script type='text/javascript' src='../dist/js/functions.js'></script>
 <script type='text/javascript' src='../dist/js/scripts.js'></script>
