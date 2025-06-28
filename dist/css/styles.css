@@ -1394,8 +1394,10 @@ section.links {
     padding: var(--space--lg); }
 
 .charts--single {
+  display: -ms-grid;
+  display: grid;
   gap: var(--space--lg);
-  max-width: 1000px;
+  max-width: 400px;
   margin: 0 auto var(--space--lg); }
   .charts--single > div {
     background: var(--bg--tertiary);
