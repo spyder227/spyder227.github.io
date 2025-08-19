@@ -1462,10 +1462,26 @@ h2 {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 400px; }
+  max-width: 900px; }
 
 #advertising1 img {
+  width: 400px;
   display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
+.adsimage {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto; }
+
+.adscode {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   margin-left: auto;
   margin-right: auto; }
 
@@ -1489,9 +1505,9 @@ h2 {
 
 #myInput {
   background: var(--bg--primary);
-  width: 80%;
   overflow: auto;
   padding: 20px;
+  width: 400px;
   font-size: 12px;
   border-radius: 10px;
   color: var(--text--primary);
