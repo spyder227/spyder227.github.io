@@ -11,6 +11,17 @@
             </div>
         </div>
         <div class="threads--filters">
+            <!--Site-->
+            @@if (sitename === 'all') {
+                <div class="threads--filter filter--parent">
+                    <button onClick="openFilters(this)">Site</button>
+                    <div class="threads--filter-dropdown">
+                        <div class="threads--filter-group filter--sites" data-filter-group="site">
+                            <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>any</b></label>
+                        </div>
+                    </div>
+                </div>
+            }
             <!--Characters-->
             <div class="threads--filter filter--parent">
                 <button onClick="openFilters(this)">Character</button>
@@ -91,22 +102,11 @@
                     </div>
                 </div>
             </div>
-            <!--Site-->
-            @@if (sitename === 'all') {
-                <div class="threads--filter filter--parent">
-                    <button onClick="openFilters(this)">Site</button>
-                    <div class="threads--filter-dropdown">
-                        <div class="threads--filter-group filter--sites" data-filter-group="site">
-                            <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>any</b></label>
-                        </div>
-                    </div>
-                </div>
-            }
         </div>
     </div>
 </div>
 <div class="threads--content">
-    <div id="threads--rows"></div>
+        <div id="threads--rows"></div>
 </div>
 
 <script>
