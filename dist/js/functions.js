@@ -1638,8 +1638,12 @@ function toggleFilters(e) {
 }
 
 /***** THREAD TRACKING FUNCTIONS *****/
-function prepThreads(data, site) {
+function prepThreads(data, site, sites) {
     let threads = site !== 'all' ? data.filter(item => item.Site.trim().toLowerCase() === site && item.Status.trim().toLowerCase() !== 'archived') : data.filter(item => item.Status.trim().toLowerCase() !== 'archived');
+    if(site === 'all') {
+        let activeSites = sites.filter(item => item.Status === 'active').map(item => item.Site);
+        threads = threads.filter(item => activeSites.includes(item.Site));
+    }
     threads.sort((a, b) => {
         let aStatus = a.Status.toLowerCase() === 'complete' ? 1 : 0;
         let bStatus = b.Status.toLowerCase() === 'complete' ? 1 : 0;
@@ -1731,6 +1735,7 @@ function populateThreads(array, siteObject) {
         document.querySelector('.filter--tags').insertAdjacentHTML('beforeend', `<label><span><input type="checkbox" value=".tag--${tag}"/></span><b>${tag}</b></label>`);
     });
     if(siteObject.length > 1) {
+        siteObject = siteObject.filter(item => item.Status === 'active');
         siteObject.forEach(site => {
             document.querySelector('.filter--sites').insertAdjacentHTML('beforeend', `<label><span><input type="checkbox" value=".site--${site.ID}"/></span><b>${site.Site}</b></label>`);
         });
@@ -2182,7 +2187,7 @@ function formatMultipleInstance(character, sites) {
 }
 
 /***** STATS AND CHARTS FUNCTIONS *****/
-function createCharacterStats(data, site) {
+function createCharacterStats(data, site, sites) {
     let siteName, characters;
     let stats = {
         genders: {
@@ -2214,12 +2219,24 @@ function createCharacterStats(data, site) {
             countStats(stats.ages, character.age);
         });
     } else {
-        stats.total = data.length;
+        let activeSites = sites.filter(item => item.Status === 'active').map(item => item.Site);
+        characters = data.map(item => ({...item, Basics: JSON.parse(item.Basics)}));
+        let activeCount = 0;
+        characters.forEach(character => {
+            let sites = character.Basics.map(item => item.site);
+            sites.forEach(item => {
+                if(activeSites.includes(item)) {
+                    activeCount++;
+                }
+            })
+        });
+
+        stats.total = activeCount;
     }
 
     return stats;
 }
-function createThreadStats(data, site) {
+function createThreadStats(data, site, sites) {
     let siteName, threads;
     if(site.length === 1) {
         siteName = site[0].Site;
@@ -2228,8 +2245,16 @@ function createThreadStats(data, site) {
         threads = data;
     }
     let activeThreads = threads.filter(item => item.Status !== 'complete' && item.Status !== 'archived');
+    let completedThreads = threads.filter(item => item.Status === 'complete');
     let icThreads = activeThreads.filter(item => item.Type === 'thread');
     let commThreads = activeThreads.filter(item => item.Type === 'comm');
+    if(siteID === 'all') {
+        let activeSites = sites.filter(item => item.Status === 'active').map(item => item.Site);
+        activeThreads = activeThreads.filter(item => activeSites.includes(item.Site));
+        completedThreads = completedThreads.filter(item => activeSites.includes(item.Site));
+        icThreads = icThreads.filter(item => activeSites.includes(item.Site));
+        commThreads = commThreads.filter(item => activeSites.includes(item.Site));
+    }
 
     icThreads.forEach(item => {
         item.Delay = getDetailedDelay(item.ICDate);
@@ -2259,8 +2284,8 @@ function createThreadStats(data, site) {
             tags: [],
             totals: [],
         },
-        active: threads.filter(item => item.Status !== 'complete' && item.Status !== 'archived').length,
-        completed: threads.filter(item => item.Status === 'complete').length,
+        active: activeThreads.length,
+        completed: completedThreads.length,
     };
 
     let icStats = {

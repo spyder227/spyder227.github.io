@@ -131,7 +131,7 @@
         .then((response) => response.json())
         .then((siteData) => {
             let siteObject = siteName !== 'all' ? siteData.filter(item => item.Site === siteName) : siteData;
-            let threads = prepThreads(threadData, siteName);
+            let threads = prepThreads(threadData, siteName, siteData);
             populateThreads(threads, siteObject);
 
             //initialize isotope

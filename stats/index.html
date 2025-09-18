@@ -162,8 +162,8 @@
             .then((response) => response.json())
             .then((siteData) => {
                 let siteObject = siteName !== 'all' ? siteData.filter(item => item.Site === siteName) : siteData;
-                let characterStats = createCharacterStats(characterData, siteObject);
-                let threadStats = createThreadStats(threadData, siteObject);
+                let characterStats = createCharacterStats(characterData, siteObject, siteData);
+                let threadStats = createThreadStats(threadData, siteObject, siteName, siteData);
 
                 if(siteName === 'all') {
                     document.querySelector('.charts--characters').innerHTML = `<b>${characterStats.total}</b><span>${characterStats.total === 1 ? 'Unique Character' : 'Unique Characters'}</span>`;
