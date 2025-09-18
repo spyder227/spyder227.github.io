@@ -2236,7 +2236,7 @@ function createCharacterStats(data, site, sites) {
 
     return stats;
 }
-function createThreadStats(data, site, sites) {
+function createThreadStats(data, site, siteID, sites) {
     let siteName, threads;
     if(site.length === 1) {
         siteName = site[0].Site;
