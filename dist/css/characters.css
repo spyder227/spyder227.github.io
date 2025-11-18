@@ -10,7 +10,6 @@
   /* archived character */
   /* archived character */
   /* archived character */
-  /* archived character */
   /* archived character */ }
   .spy-track.adeline,
   .spy.adeline {
@@ -151,8 +150,9 @@
   .spy-track.nimue,
   .spy.nimue {
     --rgb: 63, 175, 176; }
-  .spy-track.nox,
-  .spy.nox {
+  .spy-track.nox, .spy-track.dionysus,
+  .spy.nox,
+  .spy.dionysus {
     --rgb: 128, 80, 128; }
   .spy-track.oliver,
   .spy.oliver {
