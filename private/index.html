@@ -17,7 +17,11 @@
                 <p>
                     <h1>Spyder's Site Tracker</h1>
                     <section class="charts">
-                        <div class="charts--double">
+                        <div class="charts--triple">
+                            @@include('../source/templates/status.html', {
+                                "sitename": "idols & ichor",
+                                "siteID": "ichor"
+                            })
                             @@include('../source/templates/status.html', {
                                 "sitename": "start a fire",
                                 "siteID": "saf"
