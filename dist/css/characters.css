@@ -8,8 +8,6 @@
   /* archived character */
   /* archived character */
   /* archived character */
-  /* archived character */
-  /* archived character */
   /* archived character */ }
   .spy-track.adeline,
   .spy.adeline {
@@ -85,9 +83,6 @@
   .spy-track.hazel,
   .spy.hazel {
     --rgb: 111, 138, 109; }
-  .spy-track.henrich,
-  .spy.henrich {
-    --rgb: 88, 88, 88; }
   .spy-track.isaac,
   .spy.isaac {
     --rgb: 130, 151, 179; }
@@ -164,6 +159,9 @@
   .spy-track.piper,
   .spy.piper {
     --rgb: 116, 161, 181; }
+  .spy-track.proserpina,
+  .spy.proserpina {
+    --rgb: 126, 103, 145; }
   .spy-track.prudence,
   .spy.prudence {
     --rgb: 102, 88, 166; }
@@ -175,7 +173,7 @@
     --rgb: 209, 130, 203; }
   .spy-track.reicher,
   .spy.reicher {
-    --rgb: 128, 80, 77; }
+    --rgb: 88, 88, 88; }
   .spy-track.rowan,
   .spy.rowan {
     --rgb: 176, 117, 49; }
@@ -208,9 +206,6 @@
   .spy-track.theodore,
   .spy.theodore {
     --rgb: 126, 191, 171; }
-  .spy-track.theodosia,
-  .spy.theodosia {
-    --rgb: 126, 103, 145; }
   .spy-track.tobias,
   .spy.tobias {
     --rgb: 163, 108, 85; }
