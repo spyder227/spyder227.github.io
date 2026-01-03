@@ -196,7 +196,7 @@
     }
 
     &--content {
-        max-width: 900px;
+        max-width: 1000px;
         margin: 0 auto;
     }
 }
@@ -204,164 +204,161 @@
     width: 100%;
     margin-bottom: var(--space--sm);
     background: var(--bg--tertiary);
-    border-radius: 10px;
-    padding: var(--space--md);
+    border-left: 5px solid var(--bg--quintenary);
 
-    @include mq-up(xs) {
-        padding: var(--space--md) var(--space--lg);
+    &:has(.status--mine),
+    &:has([data-status="mine"]) {
+        border-left: 5px solid var(--bg-accent);
     }
 
-    &.status--mine {
-        background: rgba(var(--rgb), 0.25);
+    &.status--complete {
+        opacity: 0.25;
+        transition-duration: 0.3s;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    a {
+        color: var(--text-secondary);
     }
 
     &--wrap {
-        display: grid;
-        gap: var(--space--xs);
-        align-items: center;
+        &:has(.thread--right) {
+            display: grid;
+            gap: var(--space--md);
 
-        @include mq-up(xs) {
-            grid-template-columns: auto 30px;
+            @include mq-up(md) {
+                grid-template-columns: auto 300px;
+            }
         }
     }
 
     &--main {
-        display: flex;
-        flex-direction: column;
-        font-size: 0.5rem;
-        text-transform: uppercase;
-        letter-spacing: 0.2em;
-        font-weight: 700;
-        line-height: 160%;
+        display: grid;
+        padding: var(--space--md) var(--space--md) 0;
 
         @include mq-up(xs) {
-            border-right: 1px solid var(--accent, var(--bg--quintenary));
+            padding: var(--space--md) var(--space--lg) 0;
         }
 
-        & > a {
-            font-family: var(--font--serif);
-            font-size: 20px;
-            text-transform: none;
-            letter-spacing: 0;
-            line-height: 120%;
-            padding-bottom:5px;
-
-            @include mq-up(xs) {
-                padding-right: var(--space--md);
-            }
-
-            &::after {
-                display: none;
-            }
+        @include mq-up(md) {
+            padding: var(--space--md) var(--space--lg);
         }
 
         & > span {
-            @include mq-up(xs) {
-                padding-right: var(--space--md);
-            }
+            font-size: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            line-height: 200%;
 
             &.bigger {
-                text-transform: uppercase;
+                font-size: 9px;
+            }
+
+            a {
                 font-weight: 900;
-                font-size: 0.625rem;
-                letter-spacing: 0.1em;
-                line-height: 160%;
-                border-top: 1px solid var(--accent, var(--bg--quintenary));
-                padding-top:5px;
-                margin-top:5px;
             }
-            &.italic {
-                font-style: italic;
-                opacity: 0.8;
-                letter-spacing: 0.1em;
-            }
+        }
+    }
+
+    &--title {
+        display: flex;
+        gap: 15px;
+        font-family: var(--font--serif);
+        font-weight: 900;
+        font-size: 24px;
+        margin: 10px 0;
+
+        a::after {
+            display: none;
         }
     }
 
     &--dates {
-        display: grid;
-        border-bottom: 1px solid var(--accent, var(--bg--quintenary));
-        padding-bottom: var(--space--xs);
-        margin-bottom: var(--space--xs);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        font-size: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        line-height: 200%;
+    }
 
-        @include mq-up(sm) {
-            grid-template-columns: 1fr 1fr;
+    &--right {
+        position: relative;
+        font-size: 12px;
+        line-height: 180%;
+        text-align: justify;
+        padding: 0 var(--space--md);
+
+        @include mq-up(md) {
+            padding: 0;
         }
-        
-        @include mq-up(xs) {
-            padding-right: var(--space--md);
+
+        &-inner {
+            width: 100%;
+            height: 100%;
+            max-height: 100px;
+            padding: var(--space--sm) var(--space--md);
+            border-top: 1px solid var(--bg--quintenary);
+
+            @include mq-up(md) {
+                position: absolute;
+                top: var(--space--md);
+                left: var(--space--md);
+                height: calc(100% - (2 * var(--space--md)));
+                width: calc(100% - var(--space--md));
+                max-height: none;
+                border-left: 1px solid var(--bg--quintenary);
+                border-top: none;
+            }
+
+            .scroll {
+                height: 100%;
+                overflow: auto;
+                padding-right: var(--space--md);
+                scrollbar-width: thin;
+                scrollbar-color: var(--bg--primary) transparent;
+            }
         }
     }
 
     &--buttons {
-        padding-left: var(--space--sm);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-top: 15px;
 
-        @include mq-down(xs) {
-            border-top: 1px solid var(--accent, var(--bg--quintenary));
-            width: 100%;
-            display: flex;
-            padding-left: 0;
-            padding-top: var(--space--sm);
-            justify-content: end;
-        }
-
-        .icon {
-            font-size: 12px;
-            width: 30px;
-            height: 30px;
-            border: 0;
+        & > button {
+            border: 1px solid var(--bg--quintenary);
             background: none;
+            border-radius: 5px;
             color: var(--text--primary);
-            font-family: 'Font Awesome 6 Pro';
-            text-align: center;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 10px 20px;
+            line-height: 100%;
+            transition: 0.3s ease-in-out;
 
-            &[title="thread"] {
-                &::before {
-                    content: '\f15c';
+            &:not([disabled]) {
+                cursor: pointer;
+
+                &:hover {
+                    border-color: var(--bg-accent);
+                    background: var(--bg-accent);
+                    color: var(--text-secondary);
                 }
             }
 
-            &[title="comm"] {
-                &::before {
-                    content: '\f3ce';
-                }
+            &.is-updating {
+                opacity: 0.5;
             }
 
-            &[title="event"] {
-                &::before {
-                    content: '\f133';
-                }
-            }
-
-            &[title="social"] {
-                &::before {
-                    content: '\f075';
-                }
-            }
-
-            &[title="oneshot"] {
-                &::before {
-                    content: '\e32e';
-                }
-            }
-        }
-
-        button {
-            font-size: 12px;
-            width: 30px;
-            height: 30px;
-            border: 0;
-            background: none;
-            color: var(--text--primary);
-            cursor: pointer;
-
-            &:hover {
-                background: rgba(var(--rgb), 0.25);
-                border-radius: 2px;
-            }
-
-            &:not(.is-updating) .fa-spinner,
-            &.is-updating i:not(.fa-spinner) {
+            &:not(.is-updating) .loading,
+            &.is-updating .not-loading {
                 display: none;
             }
         }

@@ -69,8 +69,11 @@ p:last-child {
   --space--xl: 60px;
   --font--body: 'Nunito Sans', sans-serif;
   --font--serif: 'Playfair', serif;
-  --accent: #63817c;
-  --accent-rgb: 99, 129, 124;
+  --accent: rgb(86, 167, 163);
+  --bg-accent: rgb(86, 167, 163);
+  --text-accent: rgb(107, 199, 194);
+  --accent-rgb: 97, 143, 141;
+  --rgb: 97, 143, 141;
   --accent--light: #6e8b86;
   --accent-rgb--light: 110, 139, 134;
   --bg--primary: #414141;
@@ -79,6 +82,7 @@ p:last-child {
   --bg--quaternary: #363636;
   --bg--quintenary: #747474;
   --text--primary: #e7e7e7;
+  --text--secondary: #f8f8f8;
   --text--on-accent: #e7e7e7; }
   @media (min-width: 601px) {
     :root {
@@ -806,139 +810,139 @@ section.links {
       .threads--filter-group label.is-checked span::before {
         opacity: 1; }
   .threads--content {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto; }
 
 .thread {
   width: 100%;
   margin-bottom: var(--space--sm);
   background: var(--bg--tertiary);
-  border-radius: 10px;
-  padding: var(--space--md); }
-  @media (min-width: 601px) {
-    .thread {
-      padding: var(--space--md) var(--space--lg); } }
-  .thread.status--mine {
-    background: rgba(var(--rgb), 0.25); }
-  .thread--wrap {
+  border-left: 5px solid var(--bg--quintenary); }
+  .thread:has(.status--mine), .thread:has([data-status="mine"]) {
+    border-left: 5px solid var(--bg-accent); }
+  .thread.status--complete {
+    opacity: 0.25;
+    -webkit-transition-duration: 0.3s;
+            transition-duration: 0.3s; }
+    .thread.status--complete:hover {
+      opacity: 1; }
+  .thread a {
+    color: var(--text-secondary); }
+  .thread--wrap:has(.thread--right) {
     display: -ms-grid;
     display: grid;
-    gap: var(--space--xs);
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center; }
-    @media (min-width: 601px) {
-      .thread--wrap {
-        -ms-grid-columns: auto 30px;
-        grid-template-columns: auto 30px; } }
+    gap: var(--space--md); }
+    @media (min-width: 1025px) {
+      .thread--wrap:has(.thread--right) {
+        -ms-grid-columns: auto 300px;
+        grid-template-columns: auto 300px; } }
   .thread--main {
+    display: -ms-grid;
+    display: grid;
+    padding: var(--space--md) var(--space--md) 0; }
+    @media (min-width: 601px) {
+      .thread--main {
+        padding: var(--space--md) var(--space--lg) 0; } }
+    @media (min-width: 1025px) {
+      .thread--main {
+        padding: var(--space--md) var(--space--lg); } }
+    .thread--main > span {
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      line-height: 200%; }
+      .thread--main > span.bigger {
+        font-size: 9px; }
+      .thread--main > span a {
+        font-weight: 900; }
+  .thread--title {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    font-size: 0.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    font-weight: 700;
-    line-height: 160%; }
-    @media (min-width: 601px) {
-      .thread--main {
-        border-right: 1px solid var(--accent, var(--bg--quintenary)); } }
-    .thread--main > a {
-      font-family: var(--font--serif);
-      font-size: 20px;
-      text-transform: none;
-      letter-spacing: 0;
-      line-height: 120%;
-      padding-bottom: 5px; }
-      @media (min-width: 601px) {
-        .thread--main > a {
-          padding-right: var(--space--md); } }
-      .thread--main > a::after {
-        display: none; }
-    @media (min-width: 601px) {
-      .thread--main > span {
-        padding-right: var(--space--md); } }
-    .thread--main > span.bigger {
-      text-transform: uppercase;
-      font-weight: 900;
-      font-size: 0.625rem;
-      letter-spacing: 0.1em;
-      line-height: 160%;
-      border-top: 1px solid var(--accent, var(--bg--quintenary));
-      padding-top: 5px;
-      margin-top: 5px; }
-    .thread--main > span.italic {
-      font-style: italic;
-      opacity: 0.8;
-      letter-spacing: 0.1em; }
+    gap: 15px;
+    font-family: var(--font--serif);
+    font-weight: 900;
+    font-size: 24px;
+    margin: 10px 0; }
+    .thread--title a::after {
+      display: none; }
   .thread--dates {
-    display: -ms-grid;
-    display: grid;
-    border-bottom: 1px solid var(--accent, var(--bg--quintenary));
-    padding-bottom: var(--space--xs);
-    margin-bottom: var(--space--xs); }
-    @media (min-width: 769px) {
-      .thread--dates {
-        -ms-grid-columns: 1fr 1fr;
-        grid-template-columns: 1fr 1fr; } }
-    @media (min-width: 601px) {
-      .thread--dates {
-        padding-right: var(--space--md); } }
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    gap: 30px;
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    line-height: 200%; }
+  .thread--right {
+    position: relative;
+    font-size: 12px;
+    line-height: 180%;
+    text-align: justify;
+    padding: 0 var(--space--md); }
+    @media (min-width: 1025px) {
+      .thread--right {
+        padding: 0; } }
+    .thread--right-inner {
+      width: 100%;
+      height: 100%;
+      max-height: 100px;
+      padding: var(--space--sm) var(--space--md);
+      border-top: 1px solid var(--bg--quintenary); }
+      @media (min-width: 1025px) {
+        .thread--right-inner {
+          position: absolute;
+          top: var(--space--md);
+          left: var(--space--md);
+          height: calc(100% - (2 * var(--space--md)));
+          width: calc(100% - var(--space--md));
+          max-height: none;
+          border-left: 1px solid var(--bg--quintenary);
+          border-top: none; } }
+      .thread--right-inner .scroll {
+        height: 100%;
+        overflow: auto;
+        padding-right: var(--space--md);
+        scrollbar-width: thin;
+        scrollbar-color: var(--bg--primary) transparent; }
   .thread--buttons {
-    padding-left: var(--space--sm); }
-    @media (max-width: 600px) {
-      .thread--buttons {
-        border-top: 1px solid var(--accent, var(--bg--quintenary));
-        width: 100%;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        padding-left: 0;
-        padding-top: var(--space--sm);
-        -webkit-box-pack: end;
-        -webkit-justify-content: end;
-            -ms-flex-pack: end;
-                justify-content: end; } }
-    .thread--buttons .icon {
-      font-size: 12px;
-      width: 30px;
-      height: 30px;
-      border: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 15px; }
+    .thread--buttons > button {
+      border: 1px solid var(--bg--quintenary);
       background: none;
+      border-radius: 5px;
       color: var(--text--primary);
-      font-family: 'Font Awesome 6 Pro';
-      text-align: center; }
-      .thread--buttons .icon[title="thread"]::before {
-        content: '\f15c'; }
-      .thread--buttons .icon[title="comm"]::before {
-        content: '\f3ce'; }
-      .thread--buttons .icon[title="event"]::before {
-        content: '\f133'; }
-      .thread--buttons .icon[title="social"]::before {
-        content: '\f075'; }
-      .thread--buttons .icon[title="oneshot"]::before {
-        content: '\e32e'; }
-    .thread--buttons button {
-      font-size: 12px;
-      width: 30px;
-      height: 30px;
-      border: 0;
-      background: none;
-      color: var(--text--primary);
-      cursor: pointer; }
-      .thread--buttons button:hover {
-        background: rgba(var(--rgb), 0.25);
-        border-radius: 2px; }
-      .thread--buttons button:not(.is-updating) .fa-spinner,
-      .thread--buttons button.is-updating i:not(.fa-spinner) {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 10px 20px;
+      line-height: 100%;
+      -webkit-transition: 0.3s ease-in-out;
+      transition: 0.3s ease-in-out; }
+      .thread--buttons > button:not([disabled]) {
+        cursor: pointer; }
+        .thread--buttons > button:not([disabled]):hover {
+          border-color: var(--bg-accent);
+          background: var(--bg-accent);
+          color: var(--text-secondary); }
+      .thread--buttons > button.is-updating {
+        opacity: 0.5; }
+      .thread--buttons > button:not(.is-updating) .loading,
+      .thread--buttons > button.is-updating .not-loading {
         display: none; }
 
 .characters:not(.row) {

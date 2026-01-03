@@ -26,8 +26,11 @@
     --font--body: 'Nunito Sans', sans-serif;
     --font--serif: 'Playfair', serif;
 
-    --accent: #63817c;
-    --accent-rgb: 99, 129, 124;
+    --accent: rgb(86, 167, 163);
+    --bg-accent: rgb(86, 167, 163);
+    --text-accent: rgb(107, 199, 194);
+    --accent-rgb: 97, 143, 141;
+    --rgb: 97, 143, 141;
     --accent--light: #6e8b86;
     --accent-rgb--light: 110, 139, 134;
 
@@ -38,6 +41,7 @@
     --bg--quintenary: #747474;
 
     --text--primary: #e7e7e7;
+    --text--secondary: #f8f8f8;
     --text--on-accent: #e7e7e7;
 }
 
