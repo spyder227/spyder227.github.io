@@ -209,6 +209,11 @@
     &:has(.status--mine),
     &:has([data-status="mine"]) {
         border-left: 5px solid var(--bg-accent);
+        background: var(--spy-accent);
+        
+        .thread--buttons button {
+            border: 1px solid var(--spy-border);
+        };
     }
 
     &.status--complete {

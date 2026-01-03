@@ -155,7 +155,10 @@
   background: var(--bg--tertiary);
   border-left: 5px solid var(--bg--quintenary); }
   .thread:has(.status--mine), .thread:has([data-status="mine"]) {
-    border-left: 5px solid var(--bg-accent); }
+    border-left: 5px solid var(--bg-accent);
+    background: var(--spy-accent); }
+    .thread:has(.status--mine) .thread--buttons button, .thread:has([data-status="mine"]) .thread--buttons button {
+      border: 1px solid var(--spy-border); }
   .thread.status--complete {
     opacity: 0.25;
     transition-duration: 0.3s; }

@@ -71,6 +71,8 @@ p:last-child {
   --font--serif: 'Playfair', serif;
   --accent: rgb(86, 167, 163);
   --bg-accent: rgb(86, 167, 163);
+  --spy-accent: rgb(69, 117, 115);
+  --spy-border: rgb(176, 176, 176);
   --text-accent: rgb(107, 199, 194);
   --accent-rgb: 97, 143, 141;
   --rgb: 97, 143, 141;
@@ -99,6 +101,7 @@ body.theme--light {
   --bg--tertiary: #f1f1f1;
   --bg--quaternary: #d1d1d1;
   --bg--quintenary: #e2e2e2;
+  --spy-accent: rgb(187, 212, 212);
   --text--primary: #767676; }
 
 /*******************************
@@ -819,7 +822,10 @@ section.links {
   background: var(--bg--tertiary);
   border-left: 5px solid var(--bg--quintenary); }
   .thread:has(.status--mine), .thread:has([data-status="mine"]) {
-    border-left: 5px solid var(--bg-accent); }
+    border-left: 5px solid var(--bg-accent);
+    background: var(--spy-accent); }
+    .thread:has(.status--mine) .thread--buttons button, .thread:has([data-status="mine"]) .thread--buttons button {
+      border: 1px solid var(--spy-border); }
   .thread.status--complete {
     opacity: 0.25;
     -webkit-transition-duration: 0.3s;
