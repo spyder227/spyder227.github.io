@@ -1924,12 +1924,12 @@ function formatThread(thread) {
             <span class="not-loading">Change Turn</span>
             <span class="loading">Updating...</span>
         </button>
-        <button onClick="markComplete(this)" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}'>
-            <span class="not-loading">Mark Complete</span>
-            <span class="loading">Updating...</span>
-        </button>
         <button onClick="markHoarded(this)" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}'>
             <span class="not-loading">Hoard Reply</span>
+            <span class="loading">Updating...</span>
+        </button>
+        <button onClick="markComplete(this)" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}'>
+            <span class="not-loading">Mark Complete</span>
             <span class="loading">Updating...</span>
         </button>`;
 
