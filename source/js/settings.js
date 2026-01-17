@@ -3,7 +3,7 @@ const sheetID = `1HGxrc3juJYQpNCYSfjxSSUjVUVC7ddT6h0rA3REP0qY`;
 const oldSheetID = `xxx`;
 let successMessage = `<p class="fullWidth">Submission successful!</p>
 <button onclick="location.reload();" type="button" class="fullWidth submit">Back to form</button>`;
-const threadTags = ["vital","rapidfire","platonic","romantic","antagonistic","coworkers","notlux"];
+const threadTags = ["vital","rapidfire","platonic","romantic","antagonistic","coworkers","familial","notlux"];
 const chartColors = [
     '#6c90c7', //blue
     '#699e9c', //teal
