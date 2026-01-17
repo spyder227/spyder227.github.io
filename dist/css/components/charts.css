@@ -1,40 +1,42 @@
 .charts--triple {
   display: grid;
-  gap: var(--space--lg);
-  max-width: 1000px;
-  margin: 0 auto var(--space--lg); }
-  @media (min-width: 769px) {
-    .charts--triple {
-      grid-template-columns: repeat(2, calc((100% / 2) - ((var(--space--lg) * 1) / 2))); } }
+  grid-template-columns: 100%;
+  gap: var(--space--sm);
+  margin: 0 auto var(--space--sm); }
+  @media (min-width: 601px) {
+    .charts--triple:not(:has(.charts--number)) {
+      grid-template-columns: repeat(2, calc((100% / 2) - ((var(--space--sm) * 1) / 2))); }
+    .charts--triple:has(.charts--number) {
+      grid-template-columns: repeat(3, calc((100% / 3) - ((var(--space--sm) * 2) / 3))); } }
   @media (min-width: 1025px) {
     .charts--triple {
-      grid-template-columns: repeat(3, calc((100% / 3) - ((var(--space--lg) * 2) / 3))); } }
+      grid-template-columns: repeat(3, calc((100% / 3) - ((var(--space--sm) * 2) / 3))) !important; } }
   .charts--triple > div {
     background: var(--bg--tertiary);
-    border-radius: 10px;
+    border: var(--border--primary);
     padding: var(--space--lg); }
 
 .charts--double {
   display: grid;
-  gap: var(--space--lg);
-  max-width: 1000px;
-  margin: 0 auto var(--space--lg); }
+  grid-template-columns: 100%;
+  gap: var(--space--sm);
+  margin: 0 auto var(--space--sm); }
   @media (min-width: 769px) {
     .charts--double {
-      grid-template-columns: repeat(2, calc((100% / 2) - ((var(--space--lg) * 1) / 2))); } }
+      grid-template-columns: repeat(2, calc((100% / 2) - ((var(--space--sm) * 1) / 2))); } }
   .charts--double > div {
     background: var(--bg--tertiary);
-    border-radius: 10px;
+    border: var(--border--primary);
     padding: var(--space--lg); }
 
 .charts--single {
   display: grid;
-  gap: var(--space--lg);
-  max-width: 400px;
-  margin: 0 auto var(--space--lg); }
+  grid-template-columns: 100%;
+  gap: var(--space--sm);
+  margin: 0 auto var(--space--sm); }
   .charts--single > div {
     background: var(--bg--tertiary);
-    border-radius: 10px;
+    border: var(--border--primary);
     padding: var(--space--lg); }
 
 .charts--number {
@@ -47,12 +49,6 @@
   font-weight: 700;
   justify-content: center;
   align-items: center; }
-  @media (min-width: 769px) {
-    .charts--number:last-child:nth-of-type(2n+1) {
-      grid-column: 1 / -1; } }
-  @media (min-width: 1025px) {
-    .charts--number:last-child:nth-of-type(2n+1) {
-      grid-column: auto; } }
   .charts--number b {
     font-family: var(--font--serif);
     font-size: 48px;

@@ -45,7 +45,7 @@ section.links {
         
         &::after {
             content: '\f107';
-            font-family: 'Font Awesome 6 Pro';
+            font-family: 'Font Awesome 7 Pro';
             font-weight: 700;
             margin-left: var(--space--sm);
             top: -0.1em;
@@ -82,18 +82,25 @@ section.links {
 .filters--collapsible {
     display: none;
     position: absolute;
-    background: var(--bg--primary);
-    padding: var(--space--xs);
     top: 100%;
     left: 0;
+    height: 100%;
 
     &.is-open {
         display: block;
         z-index: 2;
+
+        @include mq-down(xs) {
+            width: 100%;
+            height: calc(100vh - 61px);
+            background: var(--bg--quaternary);
+            padding: var(--space--md);
+        }
     }
 
     @include mq-up(xs) {
         display: block;
         position: relative;
+        top: auto;
     }
 }

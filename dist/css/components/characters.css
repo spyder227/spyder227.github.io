@@ -81,7 +81,7 @@
     border-bottom: 1px solid var(--bg--quintenary); }
     .characters--filters button::after {
       content: '\f107';
-      font-family: 'Font Awesome 6 Pro';
+      font-family: 'Font Awesome 7 Pro';
       font-weight: 700;
       margin-left: var(--space--sm);
       top: -0.1em;
@@ -228,7 +228,7 @@
     cursor: pointer; }
     .character--label::after {
       content: '\f107';
-      font-family: 'Font Awesome 6 Pro';
+      font-family: 'Font Awesome 7 Pro';
       font-weight: 700;
       margin-left: var(--space--sm);
       top: -0.1em;

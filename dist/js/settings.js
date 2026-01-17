@@ -3,5 +3,72 @@ const sheetID = `1HGxrc3juJYQpNCYSfjxSSUjVUVC7ddT6h0rA3REP0qY`;
 const oldSheetID = `xxx`;
 let successMessage = `<p class="fullWidth">Submission successful!</p>
 <button onclick="location.reload();" type="button" class="fullWidth submit">Back to form</button>`;
-const threadTags = ["vital","rapidfire","fluff","angst","meetcute","notlux"];
-const chartColors = ['#74b381', '#408f8f', '#816e8f', '#a39450', '#a15a6f', '#c9986e', '#b6aa79', '#ba7878'];
+const threadTags = ["vital","rapidfire","platonic","romantic","antagonistic","coworkers","notlux"];
+const chartColors = [
+    '#6c90c7', //blue
+    '#699e9c', //teal
+    '#c283ac', //pink
+    '#b483c2', //purple
+    '#afa073', //yellow
+    '#a9826b', //orange
+    '#799e6c', //green
+    '#b66363' //red
+];
+
+const datasetOptions = {
+    backgroundColor: chartColors,
+    borderWidth: 5,
+    borderColor: '#3e3e3e'
+};
+
+const chartOptions = {
+    type: 'doughnut',
+    options: {
+        cutout: '35%',
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    color: localStorage.getItem('theme') === 'light' ? '#767676' : '#e7e7e7',
+                    font: {
+                        family: 'Nunito Sans, sans-serif',
+                        size: '9',
+                        weight: 'bold'
+                    }
+                }
+            }
+        }
+    }
+};
+
+const noLegend = {
+    scales: {
+        x: {
+            ticks: {
+                color: localStorage.getItem('theme') === 'light' ? '#767676' : '#e7e7e7',
+                font: {
+                    family: 'Nunito Sans, sans-serif',
+                    size: '8',
+                    weight: 'bold'
+                }
+            }
+        },
+        y: {
+            ticks: {
+                color: localStorage.getItem('theme') === 'light' ? '#767676' : '#e7e7e7',
+                font: {
+                    family: 'Nunito Sans, sans-serif',
+                    size: '8',
+                    weight: 'bold'
+                }
+            }
+        },
+    },
+    responsive: true,
+    plugins: {
+        legend: {
+            display: false,
+        }
+    }
+};

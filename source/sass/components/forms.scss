@@ -2,7 +2,7 @@
 
 .form {
     background: var(--bg--tertiary);
-    border-radius: 10px;
+    border: var(--border--primary);
     padding: var(--space--lg);
     display: grid;
     margin: 0 auto;
@@ -36,7 +36,7 @@
                 font-size: 1.25rem;
                 font-weight: 900;
                 font-family: var(--font--serif);
-                border-bottom: 1px solid var(--bg--quintenary);
+                border-bottom: var(--border--secondary);
                 margin-bottom: var(--space--sm);
             }
 
@@ -52,14 +52,19 @@
             textarea,
             select,
             input {
-                border-radius: 3px;
                 border: 0;
-                background: var(--bg--quintenary);
+                border-left: var(--border--secondary);
+                background: var(--bg--primary);
                 width: 100%;
                 padding: var(--space--xs) var(--space--sm);
                 font-size: 0.875rem;
                 color: var(--text--primary);
                 height: 36px;
+                outline: none;
+
+                &:focus {
+                    border-left-color: var(--accent);
+                }
             }
 
             textarea {
@@ -76,14 +81,14 @@
         }
 
         & > button {
-            background: var(--accent);
-            border: none;
+            background: none;
+            border: var(--border--secondary);
             color: var(--text--primary);
             font-family: var(--font--serif);
             font-weight: 700;
             font-size: 1.25rem;
             padding: var(--space--md) var(--space--lg);
-            border-radius: 3px;
+            border-radius: var(--radius--standard);
             max-width: max-content;
             margin: 0 auto;
             line-height: 100%;
@@ -92,20 +97,22 @@
             transition-duration: 0.3s;
 
             &:hover {
-                background: var(--accent--light)
+                background: var(--accent);
+                border-color: var(--accent);
+                color: var(--text--secondary);
             }
         }
 
         .adjustable button {
-            background: var(--accent);
-            border: none;
+            background: none;
+            border: var(--border--secondary);
             color: var(--text--primary);
             font-weight: 700;
             font-size: 0.5rem;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             padding: var(--space--sm) var(--space--md);
-            border-radius: 3px;
+            border-radius: var(--radius--standard);
             max-width: max-content;
             margin: 0 auto;
             line-height: 100%;
@@ -114,15 +121,18 @@
             transition-duration: 0.3s;
 
             &:hover {
-                background: var(--accent--light)
+                background: var(--accent);
+                border-color: var(--accent);
+                color: var(--text--secondary);
             }
         }
     }
 }
+
 .toggle {
     width: 40px;
     height: 20px;
-    background: var(--bg--quintenary);
+    background: var(--bg--quaternary);
     border-radius: 10px;
     padding: 3px;
     cursor: pointer;
@@ -204,7 +214,7 @@
             display: block;
             width: 20px;
             height: 20px;
-            background: var(--bg--quintenary);
+            background: var(--bg--quaternary);
             padding: 3px;
             border-radius: 3px;
 

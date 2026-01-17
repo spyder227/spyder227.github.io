@@ -15,6 +15,7 @@
 
 <!--Icons-->
 <link href="https://dawneggleton.github.io/css/all.css" rel="stylesheet" />
+<link href="https://dawneggleton.github.io/css/all-fa7.min.css" rel="stylesheet" />
 
 <!--Script Libraries-->
 <script type='text/javascript' src='https://files.jcink.net/html/jquery-1.7.2.min.js'></script>
@@ -30,39 +31,39 @@
 <nav class="nav">
     <div class="nav--inner">
         <a href="../index.html"><button>
-            <i class="fa-light fa-house"></i>
+            <i class="fa-solid fa-house"></i>
             <span>Home</span>
         </button></a>
         <button onClick="openSubmenu(this)" data-menu="sites">
-            <i class="fa-light fa-sitemap"></i>
+            <i class="fa-solid fa-sitemap"></i>
             <span>Sites</span>
         </button>
         <button onClick="openSubmenu(this)" data-menu="characters">
-            <i class="fa-light fa-users"></i>
+            <i class="fa-solid fa-users"></i>
             <span>Muses</span>
         </button>
         <button onClick="openSubmenu(this)" data-menu="threads">
-            <i class="fa-light fa-books"></i>
+            <i class="fa-solid fa-books"></i>
             <span>Threads</span>
         </button>
         <button onClick="openSubmenu(this)" data-menu="admin">
-            <i class="fa-light fa-wrench"></i>
+            <i class="fa-solid fa-wrench"></i>
             <span>Admin</span>
         </button>
         <button onclick="openSubmenu(this)" data-menu="stats">
-            <i class="fa-light fa-chart-pie"></i>
+            <i class="fa-solid fa-chart-pie"></i>
             <span>Stats</span>
         </button>
         <button onClick="openSubmenu(this)" data-menu="ads">
-            <i class="fa-light fa-tag"></i>
+            <i class="fa-solid fa-tag"></i>
             <span>Ads</span>
         </button>
-        <button class="toggle--theme" onClick="toggleTheme()">
-            <i class="fa-light fa-brightness mode--light"></i>
+        <!-- <button class="toggle--theme" onClick="toggleTheme()">
+            <i class="fa-solid fa-brightness mode--light"></i>
             <span class="mode--light">Light</span>
-            <i class="fa-light fa-brightness-low mode--dark"></i>
+            <i class="fa-solid fa-brightness-low mode--dark"></i>
             <span class="mode--dark">Dark</span>
-        </button>
+        </button> -->
     </div>
 </nav>
 <nav class="subnav" data-menu="sites">
@@ -109,6 +110,8 @@
     <div class="charts--threads charts--number"></div>
     <div class="charts--completed charts--number"></div>
     <div class="charts--characters charts--number"></div>
+</div>
+<div class="charts--triple">
     
         <div class="charts--character-genders charts--breakdown">
             <h2>Genders</h2>
@@ -123,40 +126,35 @@
             <canvas id="ages"></canvas>
         </div>
     
-</div>
-<div class="charts--double">
     <div class="charts--thread-type charts--breakdown">
         <h2>Overall Threads - Type</h2>
         <canvas id="type"></canvas>
     </div>
+    <div class="charts--ic-replies charts--breakdown">
+        <h2>Active Threads - Reply Date</h2>
+        <canvas id="icReplies"></canvas>
+    </div>
+    <div class="charts--comm-replies charts--breakdown">
+        <h2>Comm Threads - Reply Date</h2>
+        <canvas id="commReplies"></canvas>
+    </div>
     <div class="charts--thread-status charts--breakdown">
         <h2>Overall Threads - Status</h2>
         <canvas id="status"></canvas>
+    </div>
+    <div class="charts--ic-status charts--breakdown">
+        <h2>Active Threads - Status</h2>
+        <canvas id="icStatus"></canvas>
+    </div>
+    <div class="charts--comm-status charts--breakdown">
+        <h2>Comm Threads - Status</h2>
+        <canvas id="commStatus"></canvas>
     </div>
 </div>
 <div class="charts--single">
     <div class="charts--thread-partners charts--breakdown">
         <h2>Overall Threads - Partners</h2>
         <canvas id="partners"></canvas>
-    </div>
-</div>
-<div class="charts--double">
-    <div class="charts--ic-status charts--breakdown">
-        <h2>Active Threads - Status</h2>
-        <canvas id="icStatus"></canvas>
-    </div>
-    <div class="charts--ic-replies charts--breakdown">
-        <h2>Active Threads - Reply Date</h2>
-        <canvas id="icReplies"></canvas>
-    </div>
-    <div class="charts--comm-status charts--breakdown">
-        <h2>Comm Threads - Status</h2>
-        <canvas id="commStatus"></canvas>
-    </div>
-    <div class="charts--comm-replies charts--breakdown">
-        <h2>Comm Threads - Reply Date</h2>
-        <canvas id="commReplies"></canvas>
-    </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="@@prefix/js/charts.js"></script>
@@ -189,77 +187,67 @@
                     /*Genders*/
                     const genders = document.getElementById('genders');
                     new Chart(genders, {
-                        type: 'pie',
+                        ...chartOptions,
                         data: {
                             labels: characterStats.genders.tags.map(item => item.toUpperCase()),
                             datasets: [{
                                 data: characterStats.genders.totals,
-                                backgroundColor: chartColors,
-                                borderWidth: 0
+                                ...datasetOptions
                             }]
                         },
-                        options: chartOptions
                     });
 
                     /*Pronouns*/
                     const pronouns = document.getElementById('pronouns');
                     new Chart(pronouns, {
-                        type: 'pie',
+                        ...chartOptions,
                         data: {
                             labels: characterStats.pronouns.tags.map(item => item.toUpperCase()),
                             datasets: [{
                                 data: characterStats.pronouns.totals,
-                                backgroundColor: chartColors,
-                                borderWidth: 0
+                                ...datasetOptions
                             }]
                         },
-                        options: chartOptions
                     });
 
                     /*Ages*/
                     const ages = document.getElementById('ages');
                     new Chart(ages, {
-                    type: 'pie',
+                    ...chartOptions,
                     data: {
                         labels: characterStats.ages.tags.map(item => item.toUpperCase()),
                         datasets: [{
                             data: characterStats.ages.totals,
-                            backgroundColor: chartColors,
-                            borderWidth: 0
+                            ...datasetOptions
                         }]
                     },
-                    options: chartOptions
                 });
                 }
 
                 /*Thread Type*/
                 const type = document.getElementById('type');
                 new Chart(type, {
-                    type: 'pie',
+                    ...chartOptions,
                     data: {
                         labels: threadStats[0].type.tags.map(item => item.toUpperCase()),
                         datasets: [{
                             data: threadStats[0].type.totals,
-                            backgroundColor: chartColors,
-                            borderWidth: 0
+                            ...datasetOptions
                         }]
                     },
-                    options: chartOptions
                 });
 
                 /*Thread Status*/
                 const status = document.getElementById('status');
                 new Chart(status, {
-                    type: 'pie',
+                    ...chartOptions,
                     data: {
                         labels: threadStats[0].status.tags.map(item => item.toUpperCase()),
                         datasets: [{
                             data: threadStats[0].status.totals,
-                            backgroundColor: chartColors,
-                            borderWidth: 0
+                            ...datasetOptions
                         }]
                     },
-                    options: chartOptions
                 });
 
                 /*Partners*/
@@ -281,61 +269,53 @@
                 /*IC Status*/
                 const icStatus = document.getElementById('icStatus');
                 new Chart(icStatus, {
-                    type: 'pie',
+                    ...chartOptions,
                     data: {
                         labels: threadStats[1].status.tags.map(item => item.toUpperCase()),
                         datasets: [{
                             data: threadStats[1].status.totals,
-                            backgroundColor: chartColors,
-                            borderWidth: 0
+                            ...datasetOptions
                         }]
                     },
-                    options: chartOptions
                 });
 
                 /*IC Replies*/
                 const icReplies = document.getElementById('icReplies');
                 new Chart(icReplies, {
-                    type: 'pie',
+                    ...chartOptions,
                     data: {
                         labels: threadStats[1].replies.tags.map(item => item.toUpperCase()),
                         datasets: [{
                             data: threadStats[1].replies.totals,
-                            backgroundColor: chartColors,
-                            borderWidth: 0
+                            ...datasetOptions
                         }]
                     },
-                    options: chartOptions
                 });
 
                 /*Comm Status*/
                 const commStatus = document.getElementById('commStatus');
                 new Chart(commStatus, {
-                    type: 'pie',
+                    ...chartOptions,
                     data: {
                         labels: threadStats[2].status.tags.map(item => item.toUpperCase()),
                         datasets: [{
                             data: threadStats[2].status.totals,
-                            backgroundColor: chartColors,
-                            borderWidth: 0
+                            ...datasetOptions
                         }]
                     },
-                    options: chartOptions
                 });
 
                 /*Comm Replies*/
                 const commReplies = document.getElementById('commReplies');
                 new Chart(commReplies, {
-                    type: 'pie',
+                    ...chartOptions,
                     data: {
                         labels: threadStats[2].replies.tags.map(item => item.toUpperCase()),
                         datasets: [{
                             data: threadStats[2].replies.totals,
-                            backgroundColor: chartColors,
-                            borderWidth: 0
+                            ...datasetOptions
                         }]
                     },
-                    options: chartOptions
                 });
             });
         });

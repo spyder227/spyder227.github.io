@@ -6,15 +6,23 @@
 :root {
     --size--menu-width: 50px;
     --size--submenu-width: 200px;
+    --size--filters-width: 200px;
 
     @include mq-up(xs) {
         --size--menu-width: 60px;
         --size--submenu-width: 300px;
+        --size--filters-width: 225px;
     }
 
     @include mq-up(sm) {
         --size--menu-width: 100px;
         --size--submenu-width: 300px;
+    }
+
+    @include mq-up(md) {
+        --size--menu-width: 100px;
+        --size--submenu-width: 300px;
+        --size--filters-width: 275px;
     }
 
     --space--xs: 5px;
@@ -26,25 +34,31 @@
     --font--body: 'Nunito Sans', sans-serif;
     --font--serif: 'Playfair', serif;
 
-    --accent: rgb(86, 167, 163);
-    --bg-accent: rgb(86, 167, 163);
+    --radius--standard: 5px;
+
+    --accent: rgb(105, 158, 156);
+    --bg-accent: rgb(105, 158, 156); //rgb(86, 167, 163);
+    --text-accent: rgb(105, 158, 156); //rgb(107, 199, 194);
+    --accent-rgb: 105, 158, 156; //97, 143, 141;
+    --rgb: 105, 158, 156; //97, 143, 141;
     --spy-accent: rgb(69, 117, 115);
     --spy-border: rgb(176, 176, 176);
-    --text-accent: rgb(107, 199, 194);
-    --accent-rgb: 97, 143, 141;
-    --rgb: 97, 143, 141;
     --accent--light: #6e8b86;
     --accent-rgb--light: 110, 139, 134;
 
-    --bg--primary: #414141;
-    --bg--secondary: #2b2b2b;
-    --bg--tertiary: #5a5a5a;
-    --bg--quaternary: #363636;
-    --bg--quintenary: #747474;
+    --bg--primary: rgb(52, 52, 52);
+    --bg--secondary: rgb(36, 36, 36);
+    --bg--tertiary: rgb(62, 62, 62);
+    --bg--quaternary: rgb(42, 42, 42);
+    --bg--quintenary: rgb(24, 24, 24);
 
-    --text--primary: #e7e7e7;
+    --border--primary: 1px solid rgb(80, 80, 80);
+    --border--thick: 5px solid rgb(80, 80, 80);
+    --border--secondary: 1px solid rgb(95, 95, 95);
+
+    --text--primary: #d3d3d3;
     --text--secondary: #f8f8f8;
-    --text--on-accent: #e7e7e7;
+    --text--on-accent: #f8f8f8;
 }
 
 body.theme--light {

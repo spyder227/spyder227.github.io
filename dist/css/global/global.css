@@ -16,11 +16,12 @@ body {
     display: none; }
 
 main {
-  margin-left: var(--size--menu-width);
-  padding: var(--space--lg) var(--space--xs); }
-  @media (min-width: 601px) {
-    main {
-      padding: var(--space--lg); } }
+  margin-left: var(--size--menu-width); }
+  main:not(:has(.threads)) {
+    padding: var(--space--lg) var(--space--xs); }
+    @media (min-width: 601px) {
+      main:not(:has(.threads)) {
+        padding: var(--space--lg); } }
 
 .backdrop {
   position: fixed;
@@ -43,6 +44,6 @@ main {
 
 [target="_blank"]::after {
   content: '\f08e';
-  font-family: 'Font Awesome 6 Pro';
+  font-family: 'Font Awesome 7 Pro';
   margin-left: var(--space--xs);
   color: var(--accent); }

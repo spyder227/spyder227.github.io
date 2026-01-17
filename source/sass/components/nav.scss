@@ -7,16 +7,21 @@
     width: var(--size--menu-width);
     height: 100vh;
     background: var(--bg--secondary);
-    padding: var(--space--sm);
+    padding: 0 var(--space--xs);
     z-index: 4;
+    border-right: var(--border--primary);
 
-    @include mq-up(sm) {
-        padding: var(--space--md);
+    @include mq-up(xs) {
+        padding: 0 var(--space--sm);
     }
 
     &--inner {
         display: grid;
-        gap: var(--space--xs);
+        grid-template-columns: 100%;
+
+        a {
+            padding: 0px!important;
+        }
 
         button,
         a {
@@ -24,28 +29,30 @@
             margin-left: auto;
             margin-right: auto;
             justify-content: center;
+            align-items: center;
             gap: var(--space--sm);
-            width: calc(var(--size--menu-width) - (2 * var(--space--sm)));
-            aspect-ratio: 1 / 1;
+            padding: 20px 0;
+            width: 100%;
             color: var(--text--primary);
             font-size: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 0.2em;
             font-weight: 900;
             text-align: center;
-            background: var(--bg--primary);
-            border-radius: 5px;
             line-height: 200%;
             transition-duration: 0.3s;
             border: none;
             cursor: pointer;
-
-            @include mq-up(sm) {
-                width: calc(var(--size--menu-width) - (2 * var(--space--md)));
+            background: transparent;
+            
+            &:not(:last-child) {
+                border-bottom: var(--border--primary);
             }
 
             i {
+                color: var(--text-accent);
                 font-size: 0.8rem;
+                transition: 0.3s ease-in-out;
 
                 @include mq-up(xs) {
                     font-size: 1rem;
@@ -56,6 +63,9 @@
             &.is-open {
                 background: var(--accent);
                 color: var(--text--on-accent);
+                i {
+                    color: var(--text--primary);
+                }
             }
 
             span {
@@ -102,16 +112,17 @@
 
         a {
             background: var(--bg--primary);
-            border-radius: 3px;
+            border-left: var(--border--primary);
             padding: var(--space--xs) var(--space--sm);
             color: var(--text--primary);
             font-size: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 0.2em;
+            transition: 0.3s ease-in-out;
 
             &:hover {
-                background: var(--accent);
-                color: var(--text--on-accent);
+                border-color: var(--accent);
+                color: var(--text--secondary);
             }
         }
     }

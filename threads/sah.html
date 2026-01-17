@@ -15,6 +15,7 @@
 
 <!--Icons-->
 <link href="https://dawneggleton.github.io/css/all.css" rel="stylesheet" />
+<link href="https://dawneggleton.github.io/css/all-fa7.min.css" rel="stylesheet" />
 
 <!--Script Libraries-->
 <script type='text/javascript' src='https://files.jcink.net/html/jquery-1.7.2.min.js'></script>
@@ -30,39 +31,39 @@
 <nav class="nav">
     <div class="nav--inner">
         <a href="../index.html"><button>
-            <i class="fa-light fa-house"></i>
+            <i class="fa-solid fa-house"></i>
             <span>Home</span>
         </button></a>
         <button onClick="openSubmenu(this)" data-menu="sites">
-            <i class="fa-light fa-sitemap"></i>
+            <i class="fa-solid fa-sitemap"></i>
             <span>Sites</span>
         </button>
         <button onClick="openSubmenu(this)" data-menu="characters">
-            <i class="fa-light fa-users"></i>
+            <i class="fa-solid fa-users"></i>
             <span>Muses</span>
         </button>
         <button onClick="openSubmenu(this)" data-menu="threads">
-            <i class="fa-light fa-books"></i>
+            <i class="fa-solid fa-books"></i>
             <span>Threads</span>
         </button>
         <button onClick="openSubmenu(this)" data-menu="admin">
-            <i class="fa-light fa-wrench"></i>
+            <i class="fa-solid fa-wrench"></i>
             <span>Admin</span>
         </button>
         <button onclick="openSubmenu(this)" data-menu="stats">
-            <i class="fa-light fa-chart-pie"></i>
+            <i class="fa-solid fa-chart-pie"></i>
             <span>Stats</span>
         </button>
         <button onClick="openSubmenu(this)" data-menu="ads">
-            <i class="fa-light fa-tag"></i>
+            <i class="fa-solid fa-tag"></i>
             <span>Ads</span>
         </button>
-        <button class="toggle--theme" onClick="toggleTheme()">
-            <i class="fa-light fa-brightness mode--light"></i>
+        <!-- <button class="toggle--theme" onClick="toggleTheme()">
+            <i class="fa-solid fa-brightness mode--light"></i>
             <span class="mode--light">Light</span>
-            <i class="fa-light fa-brightness-low mode--dark"></i>
+            <i class="fa-solid fa-brightness-low mode--dark"></i>
             <span class="mode--dark">Dark</span>
-        </button>
+        </button> -->
     </div>
 </nav>
 <nav class="subnav" data-menu="sites">
@@ -108,97 +109,100 @@
                 <div class="threads--header filters--wrap">
     <button onClick="toggleFilters(this)" class="mobileOnly">View Filters</button>
     <div class="filters--collapsible">
-        <div class="threads--sorting">
-            <input id="quicksearch" class="forminput memberlist-namesearch" type="text" size="25" name="name" value="" placeholder="Filter by name...">
-            <div class="threads--sort-buttons" data-type="flex">
-                <button type="button" class="threads--sort is-checked" data-sort="character">Character (A -> Z)</button>
-                <button type="button" class="threads--sort" data-sort="title">Title (A -> Z)</button>
-                <button type="button" class="threads--sort" data-sort="icdate">IC Date (Asc)</button>
-                <button type="button" class="threads--sort" data-sort="lastpost">Last Post (Desc)</button>
-            </div>
-        </div>
         <div class="threads--filters">
-            <!--Site-->
-            
-            <!--Characters-->
-            <div class="threads--filter filter--parent">
-                <button onClick="openFilters(this)">Character</button>
-                <div class="threads--filter-dropdown">
-                    <div class="threads--filter-group filter--characters" data-filter-group="character">
-                        <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>all</b></label>
+            <div class="threads--filters-inner">
+                <input id="quicksearch" class="forminput memberlist-namesearch" type="text" size="25" name="name" value="" placeholder="Filter by name...">
+                <!--Sorting-->
+                <div class="threads--filter filter--parent">
+                    <button onClick="openFilters(this)">Sort</button>
+                    <div class="threads--filter-dropdown threads--sorting">
+                        <button type="button" class="threads--sort is-checked" data-sort="character">Character (A -> Z)</button>
+                        <button type="button" class="threads--sort" data-sort="title">Title (A -> Z)</button>
+                        <button type="button" class="threads--sort" data-sort="icdate">IC Date (Asc)</button>
+                        <button type="button" class="threads--sort" data-sort="lastpost">Last Post (Desc)</button>
                     </div>
                 </div>
-            </div>
-            <!--Partner-->
-            <div class="threads--filter filter--parent">
-                <button onClick="openFilters(this)">Partner</button>
-                <div class="threads--filter-dropdown">
-                    <div class="threads--filter-group filter--partners" data-filter-group="partner">
-                        <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>all</b></label>
+                <!--Characters-->
+                <div class="threads--filter filter--parent">
+                    <button onClick="openFilters(this)">Character</button>
+                    <div class="threads--filter-dropdown">
+                        <div class="threads--filter-group filter--characters" data-filter-group="character">
+                            <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>all</b></label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!--Featuring-->
-            <div class="threads--filter filter--parent">
-                <button onClick="openFilters(this)">Featuring</button>
-                <div class="threads--filter-dropdown">
-                    <div class="threads--filter-group filter--featuring" data-filter-group="featuring">
-                        <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>all</b></label>
+                <!--Partner-->
+                <div class="threads--filter filter--parent">
+                    <button onClick="openFilters(this)">Partner</button>
+                    <div class="threads--filter-dropdown">
+                        <div class="threads--filter-group filter--partners" data-filter-group="partner">
+                            <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>all</b></label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!--Last Reply-->
-            <div class="threads--filter filter--parent">
-                <button onClick="openFilters(this)">Last Reply</button>
-                <div class="threads--filter-dropdown">
-                    <div class="threads--filter-group" data-filter-group="lastreply">
-                        <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>any time</b></label>
-                        <label><span><input type="checkbox" value=".delay--okay"></span><b>&lt; one week</b></label>
-                        <label><span><input type="checkbox" value=".delay--week"></span><b>&gt; one week</b></label>
-                        <label><span><input type="checkbox" value=".delay--month"></span><b>&gt; one month</b></label>
-                        <label><span><input type="checkbox" value=".delay--quarter"></span><b>&gt; three months</b></label>
-                        <label><span><input type="checkbox" value=".delay--half"></span><b>&gt; six months</b></label>
-                        <label><span><input type="checkbox" value=".delay--year"></span><b>&gt; a year</b></label>
+                <!--Featuring-->
+                <div class="threads--filter filter--parent">
+                    <button onClick="openFilters(this)">Featuring</button>
+                    <div class="threads--filter-dropdown">
+                        <div class="threads--filter-group filter--featuring" data-filter-group="featuring">
+                            <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>all</b></label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!--Status-->
-            <div class="threads--filter filter--parent">
-                <button onClick="openFilters(this)">Status</button>
-                <div class="threads--filter-dropdown">
-                    <div class="threads--filter-group claim--labels" data-filter-group="status">
-                        <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>all</b></label>
-                        <label><span><input type="checkbox" value=".status--mine"></span><b>my turn</b></label>
-                        <label><span><input type="checkbox" value=".status--theirs"></span><b>their turn</b></label>
-                        <label><span><input type="checkbox" value=".status--hoarded"></span><b>hoarded</b></label>
-                        <label><span><input type="checkbox" value=".status--start"></span><b>to start</b></label>
-                        <label><span><input type="checkbox" value=".status--planned"></span><b>planned</b></label>
-                        <label class="completed-label"><span><input type="checkbox" value=".status--complete"></span><b>completed</b></label>
+                <!--Last Reply-->
+                <div class="threads--filter filter--parent">
+                    <button onClick="openFilters(this)">Last Reply</button>
+                    <div class="threads--filter-dropdown">
+                        <div class="threads--filter-group" data-filter-group="lastreply">
+                            <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>any time</b></label>
+                            <label><span><input type="checkbox" value=".delay--okay"></span><b>&lt; one week</b></label>
+                            <label><span><input type="checkbox" value=".delay--week"></span><b>&gt; one week</b></label>
+                            <label><span><input type="checkbox" value=".delay--month"></span><b>&gt; one month</b></label>
+                            <label><span><input type="checkbox" value=".delay--quarter"></span><b>&gt; three months</b></label>
+                            <label><span><input type="checkbox" value=".delay--half"></span><b>&gt; six months</b></label>
+                            <label><span><input type="checkbox" value=".delay--year"></span><b>&gt; a year</b></label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!--Type-->
-            <div class="threads--filter filter--parent">
-                <button onClick="openFilters(this)">Thread Type</button>
-                <div class="threads--filter-dropdown">
-                    <div class="threads--filter-group" data-filter-group="type">
-                        <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>all</b></label>
-                        <label><span><input type="checkbox" value=".type--thread"></span><b>thread</b></label>
-                        <label><span><input type="checkbox" value=".type--comm"></span><b>comm</b></label>
-                        <label><span><input type="checkbox" value=".type--social"></span><b>social media</b></label>
-                        <label><span><input type="checkbox" value=".type--oneshot"></span><b>oneshot</b></label>
-                        <label><span><input type="checkbox" value=".type--event"></span><b>event</b></label>
+                <!--Status-->
+                <div class="threads--filter filter--parent">
+                    <button onClick="openFilters(this)">Status</button>
+                    <div class="threads--filter-dropdown">
+                        <div class="threads--filter-group claim--labels" data-filter-group="status">
+                            <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>all</b></label>
+                            <label><span><input type="checkbox" value=".status--mine"></span><b>my turn</b></label>
+                            <label><span><input type="checkbox" value=".status--theirs"></span><b>their turn</b></label>
+                            <label><span><input type="checkbox" value=".status--start"></span><b>to start</b></label>
+                            <label><span><input type="checkbox" value=".status--planned"></span><b>planned</b></label>
+                            <label class="completed-label"><span><input type="checkbox" value=".status--complete"></span><b>completed</b></label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!--Tags-->
-            <div class="threads--filter filter--parent">
-                <button onClick="openFilters(this)">Thread Tags</button>
-                <div class="threads--filter-dropdown">
-                    <div class="threads--filter-group filter--tags" data-filter-group="tags">
-                        <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>any</b></label>
+                <!--Type-->
+                <div class="threads--filter filter--parent">
+                    <button onClick="openFilters(this)">Thread Type</button>
+                    <div class="threads--filter-dropdown">
+                        <div class="threads--filter-group" data-filter-group="type">
+                            <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>all</b></label>
+                            <label><span><input type="checkbox" value=".type--thread"></span><b>thread</b></label>
+                            <label><span><input type="checkbox" value=".type--comm"></span><b>comm</b></label>
+                            <label><span><input type="checkbox" value=".type--social"></span><b>social media</b></label>
+                            <label><span><input type="checkbox" value=".type--oneshot"></span><b>oneshot</b></label>
+                            <label><span><input type="checkbox" value=".type--event"></span><b>event</b></label>
+                        </div>
                     </div>
                 </div>
+                <!--Tags-->
+                <div class="threads--filter filter--parent">
+                    <button onClick="openFilters(this)">Thread Tags</button>
+                    <div class="threads--filter-dropdown">
+                        <div class="threads--filter-group filter--tags" data-filter-group="tags">
+                            <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>any</b></label>
+                        </div>
+                    </div>
+                </div>
+                <!--Site-->
+                
             </div>
         </div>
     </div>

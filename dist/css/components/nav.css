@@ -5,42 +5,46 @@
   width: var(--size--menu-width);
   height: 100vh;
   background: var(--bg--secondary);
-  padding: var(--space--sm);
-  z-index: 4; }
-  @media (min-width: 769px) {
+  padding: 0 var(--space--xs);
+  z-index: 4;
+  border-right: var(--border--primary); }
+  @media (min-width: 601px) {
     .nav {
-      padding: var(--space--md); } }
+      padding: 0 var(--space--sm); } }
   .nav--inner {
     display: grid;
-    gap: var(--space--xs); }
+    grid-template-columns: 100%; }
+    .nav--inner a {
+      padding: 0px !important; }
     .nav--inner button,
     .nav--inner a {
       display: block;
       margin-left: auto;
       margin-right: auto;
       justify-content: center;
+      align-items: center;
       gap: var(--space--sm);
-      width: calc(var(--size--menu-width) - (2 * var(--space--sm)));
-      aspect-ratio: 1 / 1;
+      padding: 20px 0;
+      width: 100%;
       color: var(--text--primary);
       font-size: 0.5rem;
       text-transform: uppercase;
       letter-spacing: 0.2em;
       font-weight: 900;
       text-align: center;
-      background: var(--bg--primary);
-      border-radius: 5px;
       line-height: 200%;
       transition-duration: 0.3s;
       border: none;
-      cursor: pointer; }
-      @media (min-width: 769px) {
-        .nav--inner button,
-        .nav--inner a {
-          width: calc(var(--size--menu-width) - (2 * var(--space--md))); } }
+      cursor: pointer;
+      background: transparent; }
+      .nav--inner button:not(:last-child),
+      .nav--inner a:not(:last-child) {
+        border-bottom: var(--border--primary); }
       .nav--inner button i,
       .nav--inner a i {
-        font-size: 0.8rem; }
+        color: var(--text-accent);
+        font-size: 0.8rem;
+        transition: 0.3s ease-in-out; }
         @media (min-width: 601px) {
           .nav--inner button i,
           .nav--inner a i {
@@ -50,6 +54,10 @@
       .nav--inner a.is-open {
         background: var(--accent);
         color: var(--text--on-accent); }
+        .nav--inner button:hover i, .nav--inner button.is-open i,
+        .nav--inner a:hover i,
+        .nav--inner a.is-open i {
+          color: var(--text--primary); }
       .nav--inner button span,
       .nav--inner a span {
         display: none; }
@@ -86,12 +94,13 @@
       margin: var(--space--md) 0 0; }
     .subnav--inner a {
       background: var(--bg--primary);
-      border-radius: 3px;
+      border-left: var(--border--primary);
       padding: var(--space--xs) var(--space--sm);
       color: var(--text--primary);
       font-size: 0.5rem;
       text-transform: uppercase;
-      letter-spacing: 0.2em; }
+      letter-spacing: 0.2em;
+      transition: 0.3s ease-in-out; }
       .subnav--inner a:hover {
-        background: var(--accent);
-        color: var(--text--on-accent); }
+        border-color: var(--accent);
+        color: var(--text--secondary); }

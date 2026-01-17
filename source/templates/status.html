@@ -16,16 +16,14 @@
 
             /*Thread Status*/
             new Chart(document.getElementById('@@siteID'), {
-                type: 'pie',
+                ...chartOptions,
                 data: {
                     labels: threadStats[0].status.tags.map(item => item.toUpperCase()),
                     datasets: [{
                         data: threadStats[0].status.totals,
-                        backgroundColor: chartColors,
-                        borderWidth: 0
+                        ...datasetOptions
                     }]
                 },
-                options: chartOptions
             });
         });
     });

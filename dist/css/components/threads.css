@@ -1,161 +1,193 @@
 .threads {
-  margin-top: calc(-1 * var(--space--lg)); }
+  display: grid; }
+  @media (min-width: 601px) {
+    .threads {
+      grid-template-columns: var(--size--filters-width) calc(100% - var(--size--filters-width)); } }
   .threads--header {
     position: sticky;
     top: 0;
+    background: var(--bg--quaternary);
     z-index: 2;
-    background: var(--bg--primary);
-    padding: var(--space--md) var(--space--xs) var(--space--xs);
-    margin: 0 calc(-1 * var(--space--xs)); }
+    border-right: var(--border--primary);
+    padding: var(--space--md);
+    height: 61px; }
     @media (min-width: 601px) {
       .threads--header {
-        margin: 0 calc(-1 * var(--space--lg));
-        padding: var(--space--md) var(--space--lg) var(--space--xs); } }
-    .threads--header button {
-      border: none;
-      background: var(--bg--secondary);
-      color: var(--text--primary);
-      border-radius: 2px;
+        height: 100vh;
+        padding: var(--space--md) 0 var(--space--md) var(--space--md); } }
+    .threads--header > button {
+      background: none;
+      border: var(--border--primary);
+      border-radius: var(--radius--standard);
+      font-size: 9px;
       text-transform: uppercase;
-      font-size: 0.5rem;
-      letter-spacing: 0.2em;
+      color: var(--text--primary);
+      letter-spacing: 0.1em;
       font-weight: 700;
       padding: var(--space--xs) var(--space--lg);
       margin: 0 0 var(--space--sm);
-      cursor: pointer; }
-  .threads--sorting {
-    display: flex;
-    flex-wrap: wrap;
-    padding: var(--space--sm);
-    gap: var(--space--xs);
-    background: var(--bg--tertiary);
-    border-radius: 10px;
-    margin-bottom: var(--space--sm); }
-    .threads--sorting input,
-    .threads--sorting button {
-      font-size: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      font-weight: 700;
-      padding: var(--space--xs) var(--space--sm);
-      background: var(--bg--quintenary);
-      border: 0;
-      color: var(--text--primary);
-      border-radius: 2px;
-      height: 1.5rem;
       line-height: 100%;
-      margin: 0; }
-  .threads--sort-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space--xs); }
-  .threads--filters {
-    display: flex;
-    padding: var(--space--sm);
-    gap: var(--space--sm) var(--space--md);
-    background: var(--bg--tertiary);
-    border-radius: 10px;
-    margin-bottom: var(--space--sm);
-    flex-wrap: wrap; }
-    .threads--filters button {
-      font-size: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      font-weight: 700;
-      padding: 0 var(--space--sm);
-      background: none;
-      border: 0;
-      color: var(--text--primary);
-      border-radius: 2px;
-      line-height: 200%;
-      margin: 0;
-      width: 114%;
-      text-align: left;
+      padding: var(--space--sm);
       cursor: pointer;
+      transition: 0.3s ease-in-out; }
+      .threads--header > button:hover {
+        background: var(--accent);
+        color: var(--text--secondary); }
+  .threads--filters {
+    height: 100%; }
+    .threads--filters-inner {
+      height: 100%;
+      overflow: auto;
       display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--bg--quintenary); }
-      .threads--filters button::after {
-        content: '\f107';
-        font-family: 'Font Awesome 6 Pro';
-        font-weight: 700;
-        margin-left: var(--space--sm);
-        top: -0.1em;
-        position: relative;
-        transform: rotate(0deg);
-        transition-duration: 0.3s;
-        display: inline-block; }
-  .threads--filter {
-    width: 150px;
-    flex: 0 0 150px;
-    display: flex;
-    align-items: center;
-    height: 1rem; }
-    .threads--filter.is-active button::after {
-      transform: rotate(180deg); }
-    .threads--filter.is-active .threads--filter-dropdown {
-      display: block; }
+      flex-direction: column;
+      gap: var(--space--xs);
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent) transparent;
+      padding-right: var(--space--md); }
+      .threads--filters-inner > input {
+        width: 100%;
+        background: var(--bg--primary);
+        border: none;
+        border-left: var(--border--primary);
+        padding: var(--space--xs) var(--space--sm);
+        color: var(--text--primary);
+        font-size: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        transition: 0.3s ease-in-out;
+        outline: none; }
+        .threads--filters-inner > input:focus {
+          border-color: var(--accent);
+          color: var(--text--secondary); }
+      .threads--filters-inner .filter--parent > button {
+        width: 100%;
+        background: var(--bg--primary);
+        border: none;
+        border-left: var(--border--primary);
+        padding: var(--space--xs) var(--space--sm);
+        color: var(--text--primary);
+        font-size: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        transition: 0.3s ease-in-out;
+        outline: none;
+        cursor: pointer;
+        text-align: left; }
+      .threads--filters-inner .filter--parent.is-active > button {
+        border-color: var(--accent);
+        color: var(--text--secondary); }
+      .threads--filters-inner .filter--parent.is-active .threads--filter-dropdown {
+        display: block; }
+      .threads--filters-inner .filter--parent.is-active .threads--sorting {
+        display: flex; }
+      .threads--filters-inner > strong {
+        text-transform: uppercase;
+        font-weight: 900;
+        font-size: 0.625rem;
+        letter-spacing: 0.1em;
+        line-height: 160%;
+        margin: var(--space--md) 0 0; }
+      .threads--filters-inner a {
+        background: var(--bg--primary);
+        border-left: var(--border--primary);
+        padding: var(--space--xs) var(--space--sm);
+        color: var(--text--primary);
+        font-size: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        transition: 0.3s ease-in-out; }
+        .threads--filters-inner a:hover {
+          border-color: var(--accent);
+          color: var(--text--secondary); }
   .threads--filter-dropdown {
-    position: absolute;
-    top: calc(100% + var(--space--xs));
-    left: 0;
-    width: 200px;
-    background: var(--bg--quaternary);
-    padding: var(--space--sm);
-    border-radius: 10px;
-    z-index: 2;
     display: none; }
   .threads--filter-group {
-    max-height: 150px;
-    overflow: auto;
     display: flex;
     flex-direction: column;
-    gap: var(--space--xs); }
+    gap: var(--space--sm);
+    padding: var(--space--sm); }
     .threads--filter-group label {
       display: flex;
-      flex-direction: row !important;
       align-items: center;
-      gap: var(--space--xs);
-      cursor: pointer;
-      line-height: 0; }
-      .threads--filter-group label input {
-        display: none; }
-      .threads--filter-group label b {
-        text-transform: uppercase;
-        font-size: 0.5rem;
-        letter-spacing: 0.2em;
-        font-weight: 900; }
-      .threads--filter-group label span {
-        display: block;
+      gap: var(--space--sm);
+      line-height: 100%;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text--primary);
+      transition: 0.3s ease-in-out;
+      cursor: pointer; }
+      .threads--filter-group label:hover {
+        color: var(--text--secondary); }
+      .threads--filter-group label > span {
         width: 20px;
         height: 20px;
-        background: var(--bg--quintenary);
-        padding: 3px;
-        border-radius: 3px;
-        line-height: 160%; }
-        .threads--filter-group label span::before {
-          content: '';
-          display: block;
-          width: 100%;
-          height: 100%;
-          border-radius: 2px;
-          background: var(--text--primary);
-          opacity: 0; }
-      .threads--filter-group label:hover span::before {
-        opacity: 0.5; }
-      .threads--filter-group label.is-checked span::before {
+        border: var(--border--primary);
+        border-radius: var(--radius--standard);
+        transition: 0.3s ease-in-out;
         opacity: 1; }
+        .threads--filter-group label > span input {
+          display: none; }
+      .threads--filter-group label:not(.is-checked):hover > span {
+        border-color: var(--accent);
+        background: var(--accent);
+        opacity: 0.5; }
+      .threads--filter-group label.is-checked {
+        color: var(--text--secondary); }
+        .threads--filter-group label.is-checked > span {
+          border-color: var(--accent);
+          background: var(--accent); }
+  .threads--sorting {
+    flex-direction: column;
+    gap: var(--space--sm);
+    padding: var(--space--sm); }
+    .threads--sorting button {
+      display: flex;
+      align-items: center;
+      gap: var(--space--sm);
+      line-height: 100%;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text--primary);
+      transition: 0.3s ease-in-out;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-weight: 700; }
+      .threads--sorting button:hover {
+        color: var(--text--secondary); }
+      .threads--sorting button::before {
+        content: '';
+        width: 20px;
+        height: 20px;
+        border: var(--border--primary);
+        border-radius: var(--radius--standard);
+        transition: 0.3s ease-in-out;
+        opacity: 1; }
+      .threads--sorting button:not(.is-checked):hover::before {
+        border-color: var(--accent);
+        background: var(--accent);
+        opacity: 0.5; }
+      .threads--sorting button.is-checked {
+        color: var(--text--secondary); }
+        .threads--sorting button.is-checked::before {
+          border-color: var(--accent);
+          background: var(--accent); }
   .threads--content {
-    max-width: 1000px;
-    margin: 0 auto; }
+    max-width: 100%;
+    padding: var(--space--md); }
+    @media (min-width: 601px) {
+      .threads--content {
+        padding: var(--space--lg); } }
 
 .thread {
   width: 100%;
   margin-bottom: var(--space--sm);
   background: var(--bg--tertiary);
-  border-left: 5px solid var(--bg--quintenary); }
+  border-left: var(--border--thick); }
   .thread:has(.status--mine), .thread:has([data-status="mine"]) {
-    border-left: 5px solid var(--bg-accent);
+    border-color: var(--bg-accent);
     background: var(--spy-accent); }
     .thread:has(.status--mine) .thread--buttons button, .thread:has([data-status="mine"]) .thread--buttons button {
       border: 1px solid var(--spy-border); }
@@ -202,7 +234,7 @@
   .thread--dates {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: var(--space--xs) var(--space--lg);
     font-size: 8px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -221,7 +253,7 @@
       height: 100%;
       max-height: 100px;
       padding: var(--space--sm) var(--space--md);
-      border-top: 1px solid var(--bg--quintenary); }
+      border-top: var(--border--primary); }
       @media (min-width: 1025px) {
         .thread--right-inner {
           position: absolute;
@@ -244,9 +276,9 @@
     gap: 5px;
     margin-top: 15px; }
     .thread--buttons > button {
-      border: 1px solid var(--bg--quintenary);
+      border: var(--border--primary);
       background: none;
-      border-radius: 5px;
+      border-radius: var(--radius--standard);
       color: var(--text--primary);
       font-size: 10px;
       text-transform: uppercase;
@@ -259,7 +291,7 @@
         .thread--buttons > button:not([disabled]):hover {
           border-color: var(--bg-accent);
           background: var(--bg-accent);
-          color: var(--text-secondary); }
+          color: var(--text--secondary); }
       .thread--buttons > button.is-updating {
         opacity: 0.5; }
       .thread--buttons > button:not(.is-updating) .loading,
