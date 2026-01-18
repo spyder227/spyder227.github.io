@@ -85,7 +85,9 @@ const relationshipOptions = `<option value="">(select)</option>
         <option value="adopted parent">Adopted Parent</option>
         <option value="adopted sibling">Adopted Sibling</option>
         <option value="adopted sibling">Adopted Child</option>
-        <option value="foster sibling">Foster Child</option>
+        <option value="foster child">Foster Child</option>
+        <option value="foster sibling">Foster Sibling</option>
+        <option value="foster parent">Foster Parent</option>
     </optgroup>
     <optgroup label="Extended Family">
         <option value="ancestor">Ancestor</option>
@@ -108,6 +110,8 @@ const relationshipOptions = `<option value="">(select)</option>
         <option value="found family">Found Family</option>
         <option value="best friend">Best Friend</option>
         <option value="friend">Friend</option>
+        <option value="roommate">Roommate</option>
+        <option value="neighbour">Neighbour</option>
     </optgroup>
     <optgroup label="Professional">
         <option value="business partner">Business Partner</option>
@@ -124,6 +128,7 @@ const relationshipOptions = `<option value="">(select)</option>
         <option value="rival">Rival</option>
         <option value="annoyance">Annoyance</option>
         <option value="dislikes">Dislikes</option>
+        <option value="estranged">Estranged</option>
     </optgroup>
     <optgroup label="Miscellaneous">
         <option value="aquaintance">Aquaintance</option>
