@@ -164,7 +164,9 @@ function initPartnerSelect(el, type = 'initial', siteField = '#site', hasNPC = f
                         }
                     });
                 } else {
-                    select.closest('.row').querySelector('.ifPlayed').classList.remove('hidden');
+                    if(select.closest('.row').querySelector('.ifPlayed')) {
+                        select.closest('.row').querySelector('.ifPlayed').classList.remove('hidden');
+                    }
                     select.addEventListener('change', e => {
                         initShipSelect(e.currentTarget, siteField);
                     });
