@@ -914,22 +914,6 @@ function submitCharacter(form) {
         });
     });
 
-    //complex data - relationships
-    let relationships = form.querySelectorAll('.ships #partner');
-    let shipList = [];
-    relationships.forEach(ship => {
-        let writer = ship.options[ship.selectedIndex].innerText.trim().toLowerCase();
-        let character = writer === 'npc'
-                                ? ship.closest('.row').querySelector('.npcname').value.trim().toLowerCase()
-                                : ship.closest('.row').querySelector('#character').options[ship.closest('.row').querySelector('#character').selectedIndex].innerText.trim().toLowerCase();
-        let type = ship.closest('.row').querySelector('#type').options[ship.closest('.row').querySelector('#type').selectedIndex].innerText.trim().toLowerCase();
-        shipList.push({
-            writer: writer,
-            character: character,
-            relationship: type,
-        });
-    });
-
     //complex data - tags
     let siteTags = form.querySelectorAll('input.tag:checked');
     let tagList = {};
@@ -1232,7 +1216,9 @@ function updateCharacter(form) {
             let shipList = [];
             relationships.forEach(ship => {
                 let writer = ship.options[ship.selectedIndex].innerText.trim().toLowerCase();
-                let character = ship.closest('.row').querySelector('#character').options[ship.closest('.row').querySelector('#character').selectedIndex].innerText.trim().toLowerCase();
+                let character = writer === 'npc'
+                                ? ship.closest('.row').querySelector('.npcname').value.trim().toLowerCase()
+                                : ship.closest('.row').querySelector('#character').options[ship.closest('.row').querySelector('#character').selectedIndex].innerText.trim().toLowerCase();
                 let type = ship.closest('.row').querySelector('#type').options[ship.closest('.row').querySelector('#type').selectedIndex].innerText.trim().toLowerCase();
                 shipList.push({
                     writer: writer,
@@ -1988,6 +1974,10 @@ function formatThread(thread) {
                 <span class="loading">Updating...</span>
             </button>`;
         }
+    }
+
+    for(ship in combinedShips) {
+        shipHTML += `<li><b>${ship}</b><i>${combinedShips[ship].writer === 'npc' ? combinedShips[ship].writer : `played by ${combinedShips[ship].writer}`}</i><i>${combinedShips[ship].relationship}</i></li>`
     }
 
     return `<div class="thread spy-track grid-item grid-item ${thread.character.name.split(' ')[0]} ${partnerClasses} ${featuringClasses} status--${thread.status} type--${thread.type} delay--${getDelay(thread.updated)} ${extraTags} site--${thread.site.ID}">
