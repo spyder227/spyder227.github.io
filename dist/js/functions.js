@@ -359,7 +359,7 @@ function initChangeBasics(el) {
                 el.closest('form').querySelector('#face').setAttribute('placeholder', basics[0].basics.face);
                 el.closest('form').querySelector('#image').setAttribute('placeholder', basics[0].basics.image);
                 el.closest('form').querySelector('#birthday').setAttribute('placeholder', basics[0].basics.birthday);
-                el.closest('form').querySelector('#zodiac').setAttribute('placeholder', basics[0].basics.zodiac);
+                el.closest('form').querySelector('#zodiac').setAttribute('placeholder', basics[0].basics.astrology);
                 el.closest('form').querySelector('.imagePreview img').setAttribute('src', basics[0].basics.image);
             }
         }
@@ -1185,7 +1185,7 @@ function updateCharacter(form) {
                         let face = form.querySelector('#face').value.trim().toLowerCase();
                         let image = form.querySelector('#image').value.trim();
                         let birthday = form.querySelector('#birthday').value.trim();
-                        let zodiac = form.querySelector('#zodiac').value.trim();
+                        let astrology = form.querySelector('#zodiac').value.trim();
                         let extras = Array.from(form.querySelectorAll('.row.extra-info'));
                         let formattedExtras = {};
                         extras.forEach(extra => {
@@ -1199,7 +1199,7 @@ function updateCharacter(form) {
                         existingBasics[instance].basics.age = (age && age !== '') ? age : existingBasics[instance].basics.age;
                         existingBasics[instance].basics.face = (face && face !== '') ? face : existingBasics[instance].basics.face;
                         existingBasics[instance].basics.birthday = (birthday && birthday !== '') ? birthday : existingBasics[instance].basics.birthday;
-                        existingBasics[instance].basics.zodiac = (zodiac && zodiac !== '') ? zodiac : existingBasics[instance].basics.zodiac;
+                        existingBasics[instance].basics.astrology = (astrology && astrology !== '') ? astrology : existingBasics[instance].basics.astrology;
                         existingBasics[instance].basics.image = (image && image !== '') ? image : existingBasics[instance].basics.image;
                         if(Object.keys(formattedExtras).length > 0) {
                             existingBasics[instance].extras = {...existingBasics[instance].extras, ...formattedExtras};
@@ -1224,7 +1224,7 @@ function updateCharacter(form) {
                         age: form.querySelector('#ageValue').value.trim().toLowerCase(),
                         face: form.querySelector('#face').value.trim().toLowerCase(),
                         birthday: form.querySelector('#birthday').value.trim().toLowerCase(),
-                        zodiac: form.querySelector('#zodiac').value.trim().toLowerCase(),
+                        astrology: form.querySelector('#zodiac').value.trim().toLowerCase(),
                         image: form.querySelector('#image').value.trim(),
                     },
                     extras: formattedExtras
@@ -2329,7 +2329,7 @@ function formatMultipleInstance(character, sites) {
                             <li><b>Age</b><span>${basics.age} years old</span></li>
                             <li><b>Face</b><span>${basics.face}</span></li>
                             <li><b>Birthday</b><span>${basics.birthday}</span></li>
-                            <li><b>Zodiac</b><span>${basics.zodiac}</span></li>
+                            <li><b>Zodiac</b><span>${basics.astrology}</span></li>
                             ${extrasHTML}
                         </ul>
                     </div>
