@@ -45,34 +45,40 @@ function initMenus() {
             }
         });
 
+        
+
         data.forEach((site, i) => {
+            let prefix = `..`;
+            if (document.querySelector('body').classList.contains('index')) {
+                prefix = '.';
+            }
             if(i === 0) {
                 document.querySelector('.subnav[data-menu="sites"] .subnav--inner')
                     .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="${site.URL}" target="_blank" class="${site.Status}">${site.Site}</a>`);
                 document.querySelector('.subnav[data-menu="characters"] .subnav--inner')
-                    .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="../characters/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
+                    .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="${prefix}/characters/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
                 document.querySelector('.subnav[data-menu="threads"] .subnav--inner')
-                    .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="../threads/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
+                    .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="${prefix}/threads/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
                 document.querySelector('.subnav[data-menu="stats"] .subnav--inner')
-                    .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="../stats/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
+                    .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="${prefix}/stats/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
             } else if(site.Status !== data[i - 1].Status) {
                 document.querySelector('.subnav[data-menu="sites"] .subnav--inner')
                     .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="${site.URL}" target="_blank" class="${site.Status}">${site.Site}</a>`);
                 document.querySelector('.subnav[data-menu="characters"] .subnav--inner')
-                    .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="../characters/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
+                    .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="${prefix}/characters/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
                 document.querySelector('.subnav[data-menu="threads"] .subnav--inner')
-                    .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="../threads/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
+                    .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="${prefix}/threads/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
                 document.querySelector('.subnav[data-menu="stats"] .subnav--inner')
-                    .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="../stats/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
+                    .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="${prefix}/stats/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
             } else {
                 document.querySelector('.subnav[data-menu="sites"] .subnav--inner')
                     .insertAdjacentHTML('beforeend', `<a href="${site.URL}" target="_blank" class="${site.Status}">${site.Site}</a>`);
                 document.querySelector('.subnav[data-menu="characters"] .subnav--inner')
-                    .insertAdjacentHTML('beforeend', `<a href="../characters/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
+                    .insertAdjacentHTML('beforeend', `<a href="${prefix}/characters/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
                 document.querySelector('.subnav[data-menu="threads"] .subnav--inner')
-                    .insertAdjacentHTML('beforeend', `<a href="../threads/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
+                    .insertAdjacentHTML('beforeend', `<a href="${prefix}/threads/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
                 document.querySelector('.subnav[data-menu="stats"] .subnav--inner')
-                    .insertAdjacentHTML('beforeend', `<a href="../stats/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
+                    .insertAdjacentHTML('beforeend', `<a href="${prefix}/stats/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
             }
         });
     });
@@ -349,8 +355,6 @@ function initChangeBasics(el) {
                 el.closest('form').querySelector('#pronouns').setAttribute('placeholder', basics[0].basics.pronouns);
                 el.closest('form').querySelector('#ageValue').setAttribute('placeholder', basics[0].basics.age);
                 el.closest('form').querySelector('#face').setAttribute('placeholder', basics[0].basics.face);
-                el.closest('form').querySelector('#bday').setAttribute('placeholder', basics[0].basics.birthday);
-                el.closest('form').querySelector('#astro').setAttribute('placeholder', basics[0].basics.astrology);
                 el.closest('form').querySelector('#image').setAttribute('placeholder', basics[0].basics.image);
             }
         }
@@ -712,6 +716,10 @@ function addRow(e) {
         e.closest('.adjustable').querySelector('.rows').insertAdjacentHTML('beforeend', formatInfoRow(e));
     }
 }
+function removeRow(e) {
+    let rows = e.closest('.adjustable').querySelectorAll('.row');
+    rows[rows.length - 1].remove();
+}
 function formatInfoRow() {
     return `<div class="row extra-info">
         <label>
@@ -723,10 +731,6 @@ function formatInfoRow() {
             <span><input type="text" class="content" placeholder="Content" required /></span>
         </label>
     </div>`;
-}
-function removeRow(e) {
-    let rows = e.closest('.adjustable').querySelectorAll('.row');
-    rows[rows.length - 1].remove();
 }
 function formatLinksRow() {
     return `<div class="row links">
@@ -862,7 +866,7 @@ function submitPartner(form) {
         let name = character.value.trim().toLowerCase();
         let id = character.closest('.row').querySelector('#charId').value.trim();
         characterList.push({
-            name: name,
+            name: name.replaceAll(`'`, `&apos;`),
             id: id,
         });
     });
@@ -888,8 +892,6 @@ function submitCharacter(form) {
         pronouns: form.querySelector('#pronouns').value.trim().toLowerCase(),
         age: form.querySelector('#ageValue').value.trim().toLowerCase(),
         face: form.querySelector('#face').value.trim().toLowerCase(),
-        birthday: form.querySelector('#bday').value.trim().toLowerCase(),
-        astrology: form.querySelector('#astro').value.trim().toLowerCase(),
         image: form.querySelector('#image').value.trim(),
     };
 
@@ -911,6 +913,20 @@ function submitCharacter(form) {
         linkList.push({
             title: title,
             url: url,
+        });
+    });
+
+    //complex data - relationships
+    let relationships = form.querySelectorAll('.ships #partner');
+    let shipList = [];
+    relationships.forEach(ship => {
+        let writer = ship.options[ship.selectedIndex].innerText.trim().toLowerCase();
+        let character = ship.closest('.row').querySelector('#character').options[ship.closest('.row').querySelector('#character').selectedIndex].innerText.trim().toLowerCase();
+        let type = ship.closest('.row').querySelector('#type').options[ship.closest('.row').querySelector('#type').selectedIndex].innerText.trim().toLowerCase();
+        shipList.push({
+            writer: writer,
+            character: character,
+            relationship: type,
         });
     });
 
@@ -1043,7 +1059,7 @@ function submitThread(form) {
     let featuring = [];
     featuredRows.forEach(row => {
         featuring.push({
-            name: row.querySelector('#character').options[row.querySelector('#character').selectedIndex].innerText.trim().toLowerCase(),
+            name: row.querySelector('#character').options[row.querySelector('#character').selectedIndex].innerText.trim().toLowerCase().replaceAll(`'`, `&apos;`),
             id: row.querySelector('#character').options[row.querySelector('#character').selectedIndex].value.trim(),
             writer: row.querySelector('#partner').options[row.querySelector('#partner').selectedIndex].innerText.trim().toLowerCase(),
             writerId: row.querySelector('#partner').options[row.querySelector('#partner').selectedIndex].value.trim(),
@@ -1057,7 +1073,7 @@ function submitThread(form) {
         Status: status,
         Title: title,
         Character: JSON.stringify({
-            name: character.innerText.trim().toLowerCase(),
+            name: character.innerText.trim().toLowerCase().replaceAll(`'`, `&apos;`),
             id: character.value.trim().toLowerCase(),
         }),
         Featuring: JSON.stringify(featuring),
@@ -1103,7 +1119,7 @@ function updatePartner(form) {
         let name = character.value.trim().toLowerCase();
         let id = character.closest('.row').querySelector('#charId').value.trim();
         characterList.push({
-            name: name,
+            name: name.replaceAll(`'`, `&apos;`),
             id: id,
         });
     });
@@ -1158,10 +1174,8 @@ function updateCharacter(form) {
                     if(existingBasics[instance].site === site) {
                         let gender = form.querySelector('#gender').value.trim().toLowerCase();
                         let pronouns = form.querySelector('#pronouns').value.trim().toLowerCase();
-                        let birthday = form.querySelector('#bday').value.trim().toLowerCase();
                         let age = form.querySelector('#ageValue').value.trim().toLowerCase();
                         let face = form.querySelector('#face').value.trim().toLowerCase();
-                        let astrology = form.querySelector('#astro').value.trim().toLowerCase();
                         let image = form.querySelector('#image').value.trim();
                         let extras = Array.from(form.querySelectorAll('.row.extra-info'));
                         let formattedExtras = {};
@@ -1175,11 +1189,8 @@ function updateCharacter(form) {
                         existingBasics[instance].basics.pronouns = (pronouns && pronouns !== '') ? pronouns : existingBasics[instance].basics.pronouns;
                         existingBasics[instance].basics.age = (age && age !== '') ? age : existingBasics[instance].basics.age;
                         existingBasics[instance].basics.face = (face && face !== '') ? face : existingBasics[instance].basics.face;
-                        existingBasics[instance].basics.birthday = (birthday && birthday !== '') ? birthday : existingBasics[instance].basics.birthday;
-                        existingBasics[instance].basics.astrology = (astrology && astrology !== '') ? astrology : existingBasics[instance].basics.astrology;
                         existingBasics[instance].basics.image = (image && image !== '') ? image : existingBasics[instance].basics.image;
-
-                    if(Object.keys(formattedExtras).length > 0) {
+                        if(Object.keys(formattedExtras).length > 0) {
                             existingBasics[instance].extras = formattedExtras;
                         }
                     }
@@ -1201,8 +1212,6 @@ function updateCharacter(form) {
                         pronouns: form.querySelector('#pronouns').value.trim().toLowerCase(),
                         age: form.querySelector('#ageValue').value.trim().toLowerCase(),
                         face: form.querySelector('#face').value.trim().toLowerCase(),
-                        birthday: form.querySelector('#bday').value.trim().toLowerCase(),
-                        astrology: form.querySelector('#astro').value.trim().toLowerCase(),
                         image: form.querySelector('#image').value.trim(),
                     },
                     extras: formattedExtras
@@ -1675,10 +1684,12 @@ function toggleFilters(e) {
 /***** THREAD TRACKING FUNCTIONS *****/
 function prepThreads(data, site, sites) {
     let threads = site !== 'all' ? data.filter(item => item.Site.trim().toLowerCase() === site && item.Status.trim().toLowerCase() !== 'archived') : data.filter(item => item.Status.trim().toLowerCase() !== 'archived');
+
     if(site === 'all') {
         let activeSites = sites.filter(item => item.Status === 'active').map(item => item.Site);
         threads = threads.filter(item => activeSites.includes(item.Site));
     }
+
     threads.sort((a, b) => {
         let aStatus = a.Status.toLowerCase() === 'complete' ? 1 : 0;
         let bStatus = b.Status.toLowerCase() === 'complete' ? 1 : 0;
@@ -1748,6 +1759,11 @@ function populateThreads(array, siteObject) {
     }
     document.querySelector('#threads--rows').insertAdjacentHTML('beforeend', html);
 
+    //standardize
+    characters = characters.map(item => item.toLowerCase());
+    partners = partners.map(item => item.toLowerCase());
+    featuring = featuring.map(item => item.toLowerCase());
+
     //sort appendable filters
     characters.sort();
     partners.sort();
@@ -1755,7 +1771,9 @@ function populateThreads(array, siteObject) {
 
     //Append filters
     characters.forEach(character => {
-        document.querySelector('.filter--characters').insertAdjacentHTML('beforeend', `<label><span><input type="checkbox" value=".${character.split(' ')[0].toLowerCase()}"/></span><b>${character.split(' ')[0].toLowerCase()} ${character.split(' ')[1][0].toLowerCase()}.</b></label>`);
+        let characterNameArr = character.split(' ');
+        let characterName = characterNameArr.length > 1 ? `${character.split(' ')[0].toLowerCase()} ${character.split(' ')[1][0].toLowerCase()}` : character.toLowerCase();
+        document.querySelector('.filter--characters').insertAdjacentHTML('beforeend', `<label><span><input type="checkbox" value=".${character.split(' ')[0].toLowerCase()}"/></span><b>${characterName}.</b></label>`);
     });
     partners.forEach(partner => {
         document.querySelector('.filter--partners').insertAdjacentHTML('beforeend', `<label><span><input type="checkbox" value=".partner--${partner.replaceAll(' ', '').toLowerCase().trim()}"/></span><b>${partner}</b></label>`);
@@ -1869,7 +1887,7 @@ function changeStatus(e) {
             SubmissionType: 'thread-status',
             ThreadID: e.dataset.id,
             Site: e.dataset.site,
-            Character: e.dataset.character,
+            Character: e.dataset.character.replaceAll(`'`, `&apos;`),
             Status: 'theirs'
         }, thread);
     } else if(e.dataset.status === 'theirs') {
@@ -1881,7 +1899,7 @@ function changeStatus(e) {
             SubmissionType: 'thread-status',
             ThreadID: e.dataset.id,
             Site: e.dataset.site,
-            Character: e.dataset.character,
+            Character: e.dataset.character.replaceAll(`'`, `&apos;`),
             Status: 'mine'
         }, thread);
     } else if(e.dataset.status === 'hoarded') {
@@ -1920,7 +1938,7 @@ function markComplete(e) {
         SubmissionType: 'thread-status',
         ThreadID: e.dataset.id,
         Site: e.dataset.site,
-        Character: e.dataset.character,
+        Character: e.dataset.character.replaceAll(`'`, `&apos;`),
         Status: 'complete'
     }, thread, null, 'complete');
 }
@@ -1933,7 +1951,7 @@ function markArchived(e) {
         SubmissionType: 'thread-status',
         ThreadID: e.dataset.id,
         Site: e.dataset.site,
-        Character: e.dataset.character,
+        Character: e.dataset.character.replaceAll(`'`, `&apos;`),
         Status: 'archived'
     }, thread, null, 'archived');
 }
@@ -1956,7 +1974,7 @@ function formatThread(thread) {
     let buttons = ``;
     if (thread.status !== 'complete' && thread.status !== 'archived') {
         buttons = `<button onClick="changeStatus(this)" data-status="${thread.status}" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}'>
-            <span class="not-loading">Change Turn</span>
+            <span class="not-loading">Update Status</span>
             <span class="loading">Updating...</span>
         </button>
         <button onClick="markHoarded(this)" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}'>
@@ -1974,10 +1992,6 @@ function formatThread(thread) {
                 <span class="loading">Updating...</span>
             </button>`;
         }
-    }
-
-    for(ship in combinedShips) {
-        shipHTML += `<li><b>${ship}</b><i>${combinedShips[ship].writer === 'npc' ? combinedShips[ship].writer : `played by ${combinedShips[ship].writer}`}</i><i>${combinedShips[ship].relationship}</i></li>`
     }
 
     return `<div class="thread spy-track grid-item grid-item ${thread.character.name.split(' ')[0]} ${partnerClasses} ${featuringClasses} status--${thread.status} type--${thread.type} delay--${getDelay(thread.updated)} ${extraTags} site--${thread.site.ID}">
@@ -2067,7 +2081,6 @@ function populateCharacters(array, siteObject) {
         let character = {
             character: array[i].Character,
             vibes: array[i].Vibes,
-            birthday: array[i].Birthday,
             links: array[i].Links,
         }
         if(siteObject.length === 1) {
@@ -2115,7 +2128,7 @@ function formatCharacter(character, viewAll, sites) {
     }
     return formatSingleInstance(character);
 }
-function formatSingleInstance(character) {
+function formatSingleInstance(character, sites) {
     let tagsString = ``;
     for(type in character.tags) {
         character.tags[type].tags.forEach((set, i) => {
@@ -2157,7 +2170,7 @@ function formatSingleInstance(character) {
         }
     });
     for(ship in combinedShips) {
-        shipHTML += `<li><b>${ship}</b><i>played by ${combinedShips[ship].writer}</i><i>${combinedShips[ship].relationship}</i></li>`
+        shipHTML += `<li><b>${ship}</b><i>${combinedShips[ship].writer === 'npc' ? combinedShips[ship].writer : `played by ${combinedShips[ship].writer}`}</i><i>${combinedShips[ship].relationship}</i></li>`
     }
     
     return `<div class="character spy-track grid-item has-modal ${tagsString} ${character.character.split(' ')[0]}">
@@ -2169,8 +2182,6 @@ function formatSingleInstance(character) {
                     ${character.basics.pronouns ? `<span>${character.basics.pronouns}</span>` : ''}
                     ${character.basics.age ? `<span><span class="character--age">${character.basics.age}</span> years old</span>` : ''}
                     ${character.basics.face ? `<span>${character.basics.face}</span>` : ''}
-                    ${character.basics.birthday ? `<span>${character.basics.birthday}</span>` : ''}
-                    ${character.basics.astrology ? `<span>${character.basics.astrology}</span>` : ''}
                 </div>
                 <div class="character--title">
                     <a href="${character.sites.URL}/${character.sites.Directory}${character.id}" target="_blank">${capitalize(character.character)}</a>
@@ -2193,7 +2204,6 @@ function formatSingleInstance(character) {
         </div>
     </div>`;
 }
-
 function openModal(e) {
     let type = e.dataset.type;
     let site = e.dataset.site;
@@ -2204,6 +2214,8 @@ function openModal(e) {
     })
 }
 function switchSite(e) {
+    e.closest('.character--info').querySelectorAll('button').forEach(button => button.classList.remove('is-active'));
+    e.classList.add('is-active');
     let site = e.dataset.site;
     let wrap = e.closest('.character--wrap');
     wrap.dataset.site = site;
@@ -2216,7 +2228,6 @@ function switchSite(e) {
         }
     });
 }
-
 function formatMultipleInstance(character, sites) {
     let tagsString = ``;
     character.tags.forEach(siteInstance => {
@@ -2254,6 +2265,7 @@ function formatMultipleInstance(character, sites) {
             <button onclick="openModal(this)" data-type="links" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}">links</button>`;
         siteProfiles += `<a href="${site.URL}/${site.Directory}${charSite.id}" target="_blank" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}">${capitalize(character.character)}</a>`;
 
+        
         let extrasHTML = ``;
         for(item in extras) {
             extrasHTML += `<li><b>${item}</b><span>${extras[item]}</span></li>`;
@@ -2321,9 +2333,8 @@ function formatMultipleInstance(character, sites) {
                     ${siteLabels}
                 </div>
                 <div class="character--title">
-                    <a href="${character.sites.URL}/${character.sites.Directory}${character.id}" target="_blank">${capitalize(character.character)}</a>
                     ${siteProfiles}
-                    </div>
+                </div>
                 <div class="character--info">
                     ${siteModalButtons}
                 </div>
@@ -2392,10 +2403,12 @@ function createThreadStats(data, site, siteID, sites) {
     } else {
         threads = data;
     }
+    
     let activeThreads = threads.filter(item => item.Status !== 'complete' && item.Status !== 'archived');
     let completedThreads = threads.filter(item => item.Status === 'complete');
     let icThreads = activeThreads.filter(item => item.Type === 'thread');
     let commThreads = activeThreads.filter(item => item.Type === 'comm');
+    
     if(siteID === 'all') {
         let activeSites = sites.filter(item => item.Status === 'active').map(item => item.Site);
         activeThreads = activeThreads.filter(item => activeSites.includes(item.Site));
@@ -2415,7 +2428,7 @@ function createThreadStats(data, site, siteID, sites) {
     let partnerNames = [];
     threadPartners.forEach(thread => {
         thread.forEach(threadPartner => {
-            partnerNames.push(threadPartner.writer);
+            partnerNames.push(threadPartner.writer.trim().toLowerCase());
         });
     });
 
@@ -2457,19 +2470,7 @@ function createThreadStats(data, site, siteID, sites) {
         },
     }
 
-    let typeThreads = activeThreads;
-    typeThreads.sort((a, b) => {
-        if(a.Type < b.Type) {
-            return -1;
-        } else if(a.Type > b.Type) {
-            return -1;
-        } else {
-            return 0;
-        }
-    });
-    typeThreads.forEach(thread => {
-        countStats(stats.type, thread.Type);
-    });
+    //keep all these separate for correct sorting... even if it's an absolute pain
     let statusThreads = [...activeThreads];
     statusThreads.sort((a, b) => {
         if(a.Status < b.Status) {
@@ -2479,22 +2480,83 @@ function createThreadStats(data, site, siteID, sites) {
         } else {
             return 0;
         }
-    })
+    });
     statusThreads.forEach(thread => {
         countStats(stats.status, thread.Status);
     });
 
+    let typeThreads = [...activeThreads];
+    typeThreads.sort((a, b) => {
+        if(a.Type < b.Type) {
+            return -1;
+        } else if(a.Type > b.Type) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+    typeThreads.forEach(thread => {
+        countStats(stats.type, thread.Type);
+    });
+
+    partnerNames.sort();
     partnerNames.forEach(partner => {
         countStats(stats.partners, partner);
     });
 
-    icThreads.forEach(thread => {
+    let icStatusThreads = [...icThreads];
+    icStatusThreads.sort((a, b) => {
+        if(a.Status < b.Status) {
+            return -1;
+        } else if(a.Status > b.Status) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+    icStatusThreads.forEach(thread => {
         countStats(icStats.status, thread.Status);
+    });
+
+    let icDelayThreads = [...icThreads];
+    icDelayThreads.sort((a, b) => {
+        if(new Date(a.ICDate) > new Date(b.ICDate)) {
+            return -1;
+        } else if(new Date(a.ICDate) < new Date(b.ICDate)) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+    icDelayThreads.forEach(thread => {
         countStats(icStats.replies, thread.Delay);
     });
 
-    commThreads.forEach(thread => {
+    let commStatusThreads = [...commThreads];
+    commStatusThreads.sort((a, b) => {
+        if(a.Status < b.Status) {
+            return -1;
+        } else if(a.Status > b.Status) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+    commStatusThreads.forEach(thread => {
         countStats(commStats.status, thread.Status);
+    });
+
+    let commDelayThreads = [...commThreads];
+    commDelayThreads.sort((a, b) => {
+        if(new Date(a.ICDate) > new Date(b.ICDate)) {
+            return -1;
+        } else if(new Date(a.ICDate) < new Date(b.ICDate)) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+    commDelayThreads.forEach(thread => {
         countStats(commStats.replies, thread.Delay);
     });
 
