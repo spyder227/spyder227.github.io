@@ -2259,8 +2259,9 @@ function formatMultipleInstance(character, sites) {
         let extras = character.basics.filter(item => item.site === siteInstance.site)[0].extras;
         let ships = character.ships.filter(item => item.site === siteInstance.site)[0].characters;
         let site = sites.filter(item => item.Site === siteInstance.site)[0];
+
         siteImages += `<img src="${basics.image}" loading="lazy" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}" />`;
-        siteLabels += `<button onclick="switchSite(this)" data-site="${site.Site}">${site.Site}</button>`;
+        siteLabels += `<button onclick="switchSite(this)" data-site="${site.Site}" class="${i === 0 ? 'is-active' : ''}">${site.Site}</button>`;
         siteModalButtons += `<button onclick="openModal(this)" data-type="info" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}">info</button>
             <button onclick="openModal(this)" data-type="ships" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}">relationships</button>
             <button onclick="openModal(this)" data-type="links" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}">links</button>`;
@@ -2268,6 +2269,22 @@ function formatMultipleInstance(character, sites) {
         let extrasHTML = ``;
         for(item in extras) {
             extrasHTML += `<li><b>${item}</b><span>${extras[item]}</span></li>`;
+        }
+
+        let shipNames = [], combinedShips = {}, shipHTML = ``;
+        ships.forEach(ship => {
+            if(shipNames.includes(ship.character)) {
+                combinedShips[ship.character].relationship += `, ${ship.relationship}`;
+            } else {
+                shipNames.push(ship.character);
+                combinedShips[ship.character] = {
+                    relationship: ship.relationship,
+                    writer: ship.writer,
+                }
+            }
+        });
+        for(ship in combinedShips) {
+            shipHTML += `<li><b>${ship}</b><i>${combinedShips[ship].writer === 'npc' ? combinedShips[ship].writer : `played by ${combinedShips[ship].writer}`}</i><i>${combinedShips[ship].relationship}</i></li>`
         }
 
         siteModals += `<div class="character--modal" data-type="info" data-site="${site.Site}">
@@ -2290,12 +2307,12 @@ function formatMultipleInstance(character, sites) {
                     <div class="character--modal-inner-scroll">
                         <ul>
                             ${ships.length === 0 ? `<li class="fullWidth">No relationships registered with the tracker.</li>` : ``}
-                            ${ships.map(item => `<li><b>${item.character}</b><span>played by ${item.writer}</span><span>${item.relationship}</span></li>`).join('')}
+                            ${shipHTML}
                         </ul>
                     </div>
                 </div>
             </div>
-        <div class="character--modal" data-type="links" data-site="${site.Site}">
+            <div class="character--modal" data-type="links" data-site="${site.Site}">
                 <div class="character--modal-inner">
                     <div class="character--modal-inner-scroll">
                         <ul>
@@ -2305,8 +2322,8 @@ function formatMultipleInstance(character, sites) {
                 </div>
             </div>`;
     });
-
-    return `<div class="character spy-track grid-item ${tagsString} ${character.character.split(' ')[0]} has-modal">
+    
+    return `<div class="character lux-track grid-item ${tagsString} ${character.character.split(' ')[0]} has-modal">
         <div class="character--wrap" data-site="${character.sites[0].site}">
             <div class="character--image">
                 ${siteImages}
