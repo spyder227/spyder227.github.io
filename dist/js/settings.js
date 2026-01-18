@@ -119,6 +119,7 @@ const relationshipOptions = `<option value="">(select)</option>
         <option value="manager">Manager</option>
         <option value="employee">Employee</option>
         <option value="co-worker">Co-worker</option>
+        <option value="mentor">Mentor</option>
     </optgroup>
     <optgroup label="Antagonistic">
         <option value="ex-spouse">Ex-spouse</option>
