@@ -78,6 +78,7 @@ const relationshipOptions = `<option value="">(select)</option>
         <option value="parent">Parent</option>
         <option value="sibling">Sibling</option>
         <option value="child">Child</option>
+        <option value="half-sibling">Half-sibling</option>
         <option value="step-parent">Step-parent</option>
         <option value="step-sibling">Step-sibling</option>
         <option value="step-child">Step-child</option>
@@ -127,5 +128,6 @@ const relationshipOptions = `<option value="">(select)</option>
     <optgroup label="Miscellaneous">
         <option value="aquaintance">Aquaintance</option>
         <option value="deceased">Deceased</option>
+        <option value="pet">Pet</option>
         <option value="other">Other</option>
     </optgroup>`;
