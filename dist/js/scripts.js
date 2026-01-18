@@ -117,6 +117,15 @@ document.querySelectorAll('.accordion.updates input[value="removeLinks"], .accor
         initAutoPopulate(e.currentTarget);
     });
 });
+if(document.querySelector('[data-form="add-character"]')) {
+    let imageURLField = document.querySelector('[data-form="add-character"] .imagePreview input');
+    if(imageURLField.value !== '') {
+        imageURLField.closest('.imagePreview').querySelector('img').setAttribute('src', imageURLField.value);
+    }
+    imageURLField.addEventListener('change', e => {
+        e.currentTarget.closest('.imagePreview').querySelector('img').setAttribute('src', e.currentTarget.value);
+    })
+}
 if(document.querySelector('[data-form="edit-character"]')) {
     initEditCharacterSelect(document.querySelector('[data-form="edit-character"] #character'));
     document.querySelectorAll('[data-form="edit-character"] select#character, [data-form="edit-character"] select#characterSite').forEach(select => {
@@ -148,6 +157,13 @@ if(document.querySelector('[data-form="edit-character"]')) {
             el.closest('form').querySelectorAll('.ifSiteSpecific option[value=""]').forEach(item => item.innerText = `Please select a character first.`);
         }
     });
+    let imageURLField = document.querySelector('[data-form="edit-character"] .imagePreview input');
+    if(imageURLField.value !== '') {
+        imageURLField.closest('.imagePreview').querySelector('img').setAttribute('src', imageURLField.value);
+    }
+    imageURLField.addEventListener('change', e => {
+        e.currentTarget.closest('.imagePreview').querySelector('img').setAttribute('src', e.currentTarget.value);
+    })
 }
 if(document.querySelector('[data-form="add-thread"]')) {
     initThreadTags(document.querySelector('[data-form="add-thread"] .tags .multiselect'));

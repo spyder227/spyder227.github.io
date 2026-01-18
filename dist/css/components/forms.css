@@ -19,11 +19,13 @@
           grid-template-columns: 1fr 1fr; } }
     .form form .field-wrap,
     .form form > label,
+    .form form > label.imagePreview > div,
     .form form .multitoggle > label {
       display: flex;
       flex-direction: column; }
       .form form .field-wrap > b,
       .form form > label > b,
+      .form form > label.imagePreview > div > b,
       .form form .multitoggle > label > b {
         text-transform: capitalize;
         font-size: 1.25rem;
@@ -33,6 +35,7 @@
         margin-bottom: var(--space--sm); }
       .form form .field-wrap label b,
       .form form > label label b,
+      .form form > label.imagePreview > div label b,
       .form form .multitoggle > label label b {
         text-transform: uppercase;
         font-size: 0.5rem;
@@ -44,6 +47,9 @@
       .form form > label textarea,
       .form form > label select,
       .form form > label input,
+      .form form > label.imagePreview > div textarea,
+      .form form > label.imagePreview > div select,
+      .form form > label.imagePreview > div input,
       .form form .multitoggle > label textarea,
       .form form .multitoggle > label select,
       .form form .multitoggle > label input {
@@ -62,12 +68,16 @@
         .form form > label textarea:focus,
         .form form > label select:focus,
         .form form > label input:focus,
+        .form form > label.imagePreview > div textarea:focus,
+        .form form > label.imagePreview > div select:focus,
+        .form form > label.imagePreview > div input:focus,
         .form form .multitoggle > label textarea:focus,
         .form form .multitoggle > label select:focus,
         .form form .multitoggle > label input:focus {
           border-left-color: var(--accent); }
       .form form .field-wrap textarea,
       .form form > label textarea,
+      .form form > label.imagePreview > div textarea,
       .form form .multitoggle > label textarea {
         height: 100px; }
     .form form p {
@@ -199,6 +209,24 @@
       display: none; }
   .multiselect:hover > span::before {
     opacity: 0.5; }
+
+.imagePreview {
+  display: flex;
+  align-items: end;
+  gap: var(--space--md);
+  flex-direction: row !important; }
+  .imagePreview img {
+    display: none;
+    width: 80px;
+    aspect-ratio: 1 / 1;
+    flex: 0 0 80px; }
+    .imagePreview img[src=""] {
+      display: none; }
+    @media (min-width: 481px) {
+      .imagePreview img {
+        display: initial; } }
+  .imagePreview > div {
+    width: 100%; }
 
 .hidden {
   display: none !important; }

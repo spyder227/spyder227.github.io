@@ -437,6 +437,7 @@ section.links {
           grid-template-columns: 1fr 1fr; } }
     .form form .field-wrap,
     .form form > label,
+    .form form > label.imagePreview > div,
     .form form .multitoggle > label {
       display: -webkit-box;
       display: -webkit-flex;
@@ -449,6 +450,7 @@ section.links {
               flex-direction: column; }
       .form form .field-wrap > b,
       .form form > label > b,
+      .form form > label.imagePreview > div > b,
       .form form .multitoggle > label > b {
         text-transform: capitalize;
         font-size: 1.25rem;
@@ -458,6 +460,7 @@ section.links {
         margin-bottom: var(--space--sm); }
       .form form .field-wrap label b,
       .form form > label label b,
+      .form form > label.imagePreview > div label b,
       .form form .multitoggle > label label b {
         text-transform: uppercase;
         font-size: 0.5rem;
@@ -469,6 +472,9 @@ section.links {
       .form form > label textarea,
       .form form > label select,
       .form form > label input,
+      .form form > label.imagePreview > div textarea,
+      .form form > label.imagePreview > div select,
+      .form form > label.imagePreview > div input,
       .form form .multitoggle > label textarea,
       .form form .multitoggle > label select,
       .form form .multitoggle > label input {
@@ -487,12 +493,16 @@ section.links {
         .form form > label textarea:focus,
         .form form > label select:focus,
         .form form > label input:focus,
+        .form form > label.imagePreview > div textarea:focus,
+        .form form > label.imagePreview > div select:focus,
+        .form form > label.imagePreview > div input:focus,
         .form form .multitoggle > label textarea:focus,
         .form form .multitoggle > label select:focus,
         .form form .multitoggle > label input:focus {
           border-left-color: var(--accent); }
       .form form .field-wrap textarea,
       .form form > label textarea,
+      .form form > label.imagePreview > div textarea,
       .form form .multitoggle > label textarea {
         height: 100px; }
     .form form p {
@@ -660,6 +670,37 @@ section.links {
       display: none; }
   .multiselect:hover > span::before {
     opacity: 0.5; }
+
+.imagePreview {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+  -webkit-align-items: end;
+      -ms-flex-align: end;
+          align-items: end;
+  gap: var(--space--md);
+  -webkit-box-orient: horizontal !important;
+  -webkit-box-direction: normal !important;
+  -webkit-flex-direction: row !important;
+      -ms-flex-direction: row !important;
+          flex-direction: row !important; }
+  .imagePreview img {
+    display: none;
+    width: 80px;
+    aspect-ratio: 1 / 1;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 80px;
+        -ms-flex: 0 0 80px;
+            flex: 0 0 80px; }
+    .imagePreview img[src=""] {
+      display: none; }
+    @media (min-width: 481px) {
+      .imagePreview img {
+        display: initial; } }
+  .imagePreview > div {
+    width: 100%; }
 
 .hidden {
   display: none !important; }

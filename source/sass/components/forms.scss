@@ -27,6 +27,7 @@
 
         .field-wrap,
         & > label,
+        & > label.imagePreview > div,
         .multitoggle > label {
             display: flex;
             flex-direction: column;
@@ -263,6 +264,32 @@
             }
         }
     }
+
+    .imagePreview {
+    display: flex;
+    align-items: end;
+    gap: var(--space--md);
+    flex-direction: row !important;
+
+    img {
+        display: none;
+        width: 80px;
+        aspect-ratio: 1 / 1;
+        flex: 0 0 80px;
+
+        &[src=""] {
+            display: none;
+        }
+
+        @include mq-up(xxs) {
+            display: initial;
+        }
+    }
+
+    & > div {
+        width: 100%;
+    }
+}
 
 .hidden {
     display: none !important;
