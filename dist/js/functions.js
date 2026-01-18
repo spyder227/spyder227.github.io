@@ -2169,10 +2169,6 @@ function formatSingleInstance(character) {
     for(ship in combinedShips) {
         shipHTML += `<li><b>${ship}</b><i>played by ${combinedShips[ship].writer}</i><i>${combinedShips[ship].relationship}</i></li>`
     }
-
-    for(ship in combinedShips) {
-        shipHTML += `<li><b>${ship}</b><i>played by ${combinedShips[ship].writer}</i><i>${combinedShips[ship].relationship}</i></li>`
-    }
     
     return `<div class="character spy-track grid-item has-modal ${tagsString} ${character.character.split(' ')[0]}">
         <div class="character--wrap">
