@@ -1191,7 +1191,7 @@ function updateCharacter(form) {
                         existingBasics[instance].basics.face = (face && face !== '') ? face : existingBasics[instance].basics.face;
                         existingBasics[instance].basics.image = (image && image !== '') ? image : existingBasics[instance].basics.image;
                         if(Object.keys(formattedExtras).length > 0) {
-                            existingBasics[instance].extras = formattedExtras;
+                            existingBasics[instance].extras = {...existingBasics[instance].extras, ...formattedExtras};
                         }
                     }
                 }
