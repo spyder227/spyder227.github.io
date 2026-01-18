@@ -2245,6 +2245,8 @@ function formatMultipleInstance(character, sites) {
                             <li><b>Pronouns</b><span>${basics.pronouns}</span></li>
                             <li><b>Age</b><span>${basics.age} years old</span></li>
                             <li><b>Face</b><span>${basics.face}</span></li>
+                            <li><b>Birthday</b><span>${basics.birthday}</span></li>
+                            <li><b>Zodiac</b><span>${basics.astrology}</span></li>
                             ${extrasHTML}
                         </ul>
                     </div>
