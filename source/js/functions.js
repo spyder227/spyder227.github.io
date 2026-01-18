@@ -690,7 +690,21 @@ function addRow(e) {
     } else if(e.closest('.multi-buttons').dataset.rowType === 'add-ships') {
         e.closest('.adjustable').querySelector('.rows').insertAdjacentHTML('beforeend', formatShipsRow(e));
         initPartnerSelect(e, 'initial', '#characterSite');
+    } else if(e.closest('.multi-buttons').dataset.rowType === 'add-info') {
+        e.closest('.adjustable').querySelector('.rows').insertAdjacentHTML('beforeend', formatInfoRow(e));
     }
+}
+function formatInfoRow() {
+    return `<div class="row extra-info">
+        <label>
+            <b>Variable Title</b>
+            <span><input type="text" class="title" placeholder="Title" required /></span>
+        </label>
+        <label>
+            <b>Variable Content</b>
+            <span><input type="text" class="content" placeholder="Content" required /></span>
+        </label>
+    </div>`;
 }
 function removeRow(e) {
     let rows = e.closest('.adjustable').querySelectorAll('.row');
@@ -867,6 +881,15 @@ function submitCharacter(form) {
         image: form.querySelector('#image').value.trim(),
     };
 
+    //complex data - extras
+    let extras = Array.from(form.querySelectorAll('.row.extra-info'));
+    let formattedExtras = {};
+    extras.forEach(extra => {
+        let title = extra.querySelector('.title').value.toLowerCase().trim();
+        let content = extra.querySelector('.content').value.trim();
+        formattedExtras[title] = content;
+    });
+
     //complex data - links
     let links = form.querySelectorAll('#linkTitle');
     let linkList = [];
@@ -944,6 +967,7 @@ function submitCharacter(form) {
             let basics = {
                 site: site,
                 basics: basicsValues,
+                extras: formattedExtras,
             }
 
             let data = {
@@ -976,6 +1000,7 @@ function submitCharacter(form) {
             let basics = [...JSON.parse(existing[0].Basics), {
                 site: site,
                 basics: basicsValues,
+                extras: formattedExtras,
             }];
 
             let data = {
@@ -1140,6 +1165,13 @@ function updateCharacter(form) {
                         let face = form.querySelector('#face').value.trim().toLowerCase();
                         let astrology = form.querySelector('#astro').value.trim().toLowerCase();
                         let image = form.querySelector('#image').value.trim();
+                        let extras = Array.from(form.querySelectorAll('.row.extra-info'));
+                        let formattedExtras = {};
+                        extras.forEach(extra => {
+                            let title = extra.querySelector('.title').value.toLowerCase().trim();
+                            let content = extra.querySelector('.content').value.trim();
+                            formattedExtras[title] = content;
+                        });
     
                         existingBasics[instance].basics.gender = (gender && gender !== '') ? gender : existingBasics[instance].basics.gender;
                         existingBasics[instance].basics.pronouns = (pronouns && pronouns !== '') ? pronouns : existingBasics[instance].basics.pronouns;
@@ -1148,23 +1180,22 @@ function updateCharacter(form) {
                         existingBasics[instance].basics.birthday = (birthday && birthday !== '') ? birthday : existingBasics[instance].basics.birthday;
                         existingBasics[instance].basics.astrology = (astrology && astrology !== '') ? astrology : existingBasics[instance].basics.astrology;
                         existingBasics[instance].basics.image = (image && image !== '') ? image : existingBasics[instance].basics.image;
-                    } else {
-                        existingBasics.push({
-                            site: site,
-                            basics: {
-                                gender: form.querySelector('#gender').value.trim().toLowerCase(),
-                                pronouns: form.querySelector('#pronouns').value.trim().toLowerCase(),
-                                age: form.querySelector('#ageValue').value.trim().toLowerCase(),
-                                face: form.querySelector('#face').value.trim().toLowerCase(),
-                                birthday: form.querySelector('#bday').value.trim().toLowerCase(),
-                                astrology: form.querySelector('#astro').value.trim().toLowerCase(),
-                                image: form.querySelector('#image').value.trim(),
-                            }
-                        });
+
+                    if(Object.keys(formattedExtras).length > 0) {
+                            existingBasics[instance].extras = formattedExtras;
+                        }
                     }
                 }
                 existing.Basics = JSON.stringify(existingBasics);
             } else {
+                let extras = Array.from(form.querySelectorAll('.row.extra-info'));
+                let formattedExtras = {};
+                extras.forEach(extra => {
+                    let title = extra.querySelector('.title').value.toLowerCase().trim();
+                    let content = extra.querySelector('.content').value.trim();
+                    formattedExtras[title] = content;
+                });
+
                 existing.Basics = JSON.stringify([{
                     site: site,
                     basics: {
@@ -1175,7 +1206,8 @@ function updateCharacter(form) {
                         birthday: form.querySelector('#bday').value.trim().toLowerCase(),
                         astrology: form.querySelector('#astro').value.trim().toLowerCase(),
                         image: form.querySelector('#image').value.trim(),
-                    }
+                    },
+                    extras: formattedExtras
                 }]);
             }
         }
@@ -1989,7 +2021,7 @@ function prepTags(data, site) {
         </div>`;
     });
     
-    document.querySelector('.characters--filters').insertAdjacentHTML('beforeend', html);
+    document.querySelector('.characters--filters-inner').insertAdjacentHTML('beforeend', html);
 }
 function prepCharacters(data, site) {
     data.forEach((item, i) => {
@@ -2108,12 +2140,12 @@ function formatSingleInstance(character) {
         }
     })
     
-    return `<div class="character spy-track grid-item ${tagsString} ${character.character.split(' ')[0]}">
+    return `<div class="character spy-track grid-item has-modal ${tagsString} ${character.character.split(' ')[0]}">
         <div class="character--wrap">
             <div class="character--image"><img src="${character.basics.image}" loading="lazy" /></div>
             <div class="character--main">
                 <a href="${character.sites.URL}/?showuser=${character.id}" target="_blank" class="character--title">${capitalize(character.character)}</a>
-                <div class="character--basics">
+                <div class="character--info">
                     ${character.basics.gender ? `<span>${character.basics.gender}</span>` : ''}
                     ${character.basics.pronouns ? `<span>${character.basics.pronouns}</span>` : ''}
                     ${character.basics.birthday ? `<span>born ${character.basics.birthday}</span>` : ''}
@@ -2121,29 +2153,51 @@ function formatSingleInstance(character) {
                     ${character.basics.astrology ? `<span>${character.basics.astrology}</span>` : ''}
                     ${character.basics.face ? `<span>${character.basics.face}</span>` : ''}
                 </div>
-                ${character.vibes ? `<span>${character.vibes}</span>` : ''}
-            </div>
-        </div>
-        <div class="character--info">
-            <div class="character--labels">
-                <div class="character--label">Links</div>
-                <div class="character--label">Relationships</div>
-            </div>
-            <div class="character--tabs">
-                <div class="character--tab">
-                    <div class="character--links">
-                        ${character.links.map(item => `<a href="${item.url}" target="_blank">${item.title}</a>`).join('')}
-                    </div>
+                <div class="character--title">
+                    <a href="${character.sites.URL}/${character.sites.Directory}${character.id}" target="_blank">${capitalize(character.character)}</a>
                 </div>
-                <div class="character--tab">
-                    <div class="character--ships">
-                        ${character.ships.map(item => `<div class="character--ship"><b>${item.character}</b> &mdash; <span>Played By ${item.writer}</span> &mdash; <i>${item.relationship}</i></div>`).join('')}
-                    </div>
+                <div class="character--info">
+                    ${character.ships.length > 0 ? `<button onclick="openModal(this)" data-type="ships">relationships</button>` : ``}
+                    ${character.links.map(item => `<a href="${item.url}" target="_blank">${item.title}</a>`).join('')}
+                </div>
+            </div>
+            ${character.vibes && character.vibes !== '' ? `<div class="character--right"><div class="thread--right-inner"><div class="scroll"><p>${character.vibes}</p></div></div></div>` : ''}
+        </div>
+        <div class="character--modal" data-type="ships">
+            <div class="character--modal-inner">
+                <div class="character--modal-inner-scroll">
+                    <ul>
+                        ${character.ships.map(item => `<li><b>${item.character}</b><i>played by ${item.writer}</i><i>${item.relationship}</i></li>`).join('')}
+                    </ul>
                 </div>
             </div>
         </div>
     </div>`;
 }
+
+function openModal(e) {
+    let type = e.dataset.type;
+    let site = e.dataset.site;
+    let modal = site ? e.closest('.has-modal').querySelector(`.character--modal[data-type="${type}"][data-site="${site}"]`) : e.closest('.has-modal').querySelector(`.character--modal[data-type="${type}"]`);
+    modal.classList.toggle('is-open');
+    modal.addEventListener('click', e => {
+        e.target.classList.remove('is-open');
+    })
+}
+function switchSite(e) {
+    let site = e.dataset.site;
+    let wrap = e.closest('.character--wrap');
+    wrap.dataset.site = site;
+    let elements = wrap.querySelectorAll('.switchable[data-site]');
+    elements.forEach(el => {
+        if(el.dataset.site === site) {
+            el.classList.remove('hidden');
+        } else {
+            el.classList.add('hidden');
+        }
+    });
+}
+
 function formatMultipleInstance(character, sites) {
     let tagsString = ``;
     character.tags.forEach(siteInstance => {
@@ -2159,62 +2213,83 @@ function formatMultipleInstance(character, sites) {
         tagsString += ` site--${site.ID}`;
     });
     
-    let siteLabels = ``, siteTabs = ``;
+    let siteLabels = ``, siteModalButtons = ``, siteModals = ``, siteImages = ``;
+
+    character.sites.sort((a, b) => {
+        if(a.Site < b.Site) return -1;
+        else if(a.Site > b.Site) return 1;
+        else return 0;
+    });
     
-    character.sites.forEach(siteInstance => {
+    character.sites.forEach((siteInstance, i) => {
         let basics = character.basics.filter(item => item.site === siteInstance.site)[0].basics;
+        let extras = character.basics.filter(item => item.site === siteInstance.site)[0].extras;
         let ships = character.ships.filter(item => item.site === siteInstance.site)[0].characters;
         let site = sites.filter(item => item.Site === siteInstance.site)[0];
-        siteLabels += `<div class="character--label site--label" data-image="${basics.image}">${siteInstance.site}</div>`;
-        siteTabs += `<div class="character--tab">
-            <div class="character--basics">
-                ${basics.gender ? `<span>${basics.gender}</span>` : ''}
-                ${basics.pronouns ? `<span>${basics.pronouns}</span>` : ''}
-                ${basics.birthday ? `<span>born ${basics.birthday}</span>` : ''}
-                ${basics.age ? `<span><span class="character--age">${basics.age}</span> years old</span>` : ''}
-                ${basics.astrology ? `<span>${basics.astrology}</span>` : ''}
-                ${basics.face ? `<span>${basics.face}</span>` : ''}
-            </div>
-            <div class="character--info">
-                <div class="character--labels">
-                    <div class="character--label">Links</div>
-                    <div class="character--label">Relationships</div>
-                </div>
-                <div class="character--tabs">
-                    <div class="character--tab">
-                        <div class="character--links">
-                            <a href="${site.URL}/?showuser=${siteInstance.id}" target="_blank">View Application</a>
-                            ${character.links.map(item => `<a href="${item.url}" target="_blank">${item.title}</a>`).join('')}
-                        </div>
-                    </div>
-                    <div class="character--tab">
-                        <div class="character--ships">
-                            ${ships.map(item => `<div class="character--ship"><b>${item.character}</b> &mdash; <span>Played By ${item.writer}</span> &mdash; <i>${item.relationship}</i></div>`).join('')}
-                        </div>
+        siteImages += `<img src="${basics.image}" loading="lazy" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}" />`;
+        siteLabels += `<button onclick="switchSite(this)" data-site="${site.Site}">${site.Site}</button>`;
+        siteModalButtons += `<button onclick="openModal(this)" data-type="info" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}">info</button>
+            <button onclick="openModal(this)" data-type="ships" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}">relationships</button>
+            <button onclick="openModal(this)" data-type="links" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}">links</button>`;
+
+        let extrasHTML = ``;
+        for(item in extras) {
+            extrasHTML += `<li><b>${item}</b><span>${extras[item]}</span></li>`;
+        }
+
+        siteModals += `<div class="character--modal" data-type="info" data-site="${site.Site}">
+                <div class="character--modal-inner">
+                    <div class="character--modal-inner-scroll">
+                        <ul>
+                            <li><b>Gender</b><span>${basics.gender}</span></li>
+                            <li><b>Pronouns</b><span>${basics.pronouns}</span></li>
+                            <li><b>Age</b><span>${basics.age} years old</span></li>
+                            <li><b>Face</b><span>${basics.face}</span></li>
+                            ${extrasHTML}
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>`;
+            <div class="character--modal" data-type="ships" data-site="${site.Site}">
+                <div class="character--modal-inner">
+                    <div class="character--modal-inner-scroll">
+                        <ul>
+                            ${ships.length === 0 ? `<li class="fullWidth">No relationships registered with the tracker.</li>` : ``}
+                            ${ships.map(item => `<li><b>${item.character}</b><span>played by ${item.writer}</span><span>${item.relationship}</span></li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        <div class="character--modal" data-type="links" data-site="${site.Site}">
+                <div class="character--modal-inner">
+                    <div class="character--modal-inner-scroll">
+                        <ul>
+                            ${character.links.map(item => `<li><a href="${item.url}" target="_blank">${item.title}</a></li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            </div>`;
     });
 
-    return `<div class="character spy-track grid-item ${tagsString} ${character.character.split(' ')[0]}">
-        <div class="character--wrap">
+    return `<div class="character spy-track grid-item ${tagsString} ${character.character.split(' ')[0]} has-modal">
+        <div class="character--wrap" data-site="${character.sites[0].site}">
             <div class="character--image">
-                <img src="${character.basics[0].basics.image}" loading="lazy" />
+                ${siteImages}
             </div>
             <div class="character--main">
-                <a class="character--title">${capitalize(character.character)}</a>
-                ${character.vibes ? `<span>${character.vibes}</span>` : ''}
+                <div class="character--info">
+                    ${siteLabels}
+                </div>
+                <div class="character--title">
+                    <a href="${character.sites.URL}/${character.sites.Directory}${character.id}" target="_blank">${capitalize(character.character)}</a>
+                </div>
+                <div class="character--info">
+                    ${siteModalButtons}
+                </div>
             </div>
+            ${character.vibes && character.vibes !== '' ? `<div class="character--right"><div class="thread--right-inner"><div class="scroll"><p>${character.vibes}</p></div></div></div>` : ''}
         </div>
-        <div class="character--info">
-            <div class="character--labels">
-                ${siteLabels}
-            </div>
-            <div class="character--tabs site--tabs">
-                ${siteTabs}
-            </div>
-        </div>
+        ${siteModals}
     </div>`;
 }
 

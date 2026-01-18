@@ -17,17 +17,17 @@ body {
 
 main {
   margin-left: var(--size--menu-width); }
-  main:not(:has(.threads)) {
+  main:not(:has(.threads)):not(:has(.characters)) {
     padding: var(--space--lg) var(--space--xs); }
     @media (min-width: 601px) {
-      main:not(:has(.threads)) {
+      main:not(:has(.threads)):not(:has(.characters)) {
         padding: var(--space--lg); } }
 
 .backdrop {
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(24, 24, 24, 0.9);
   z-index: 2;
   backdrop-filter: blur(5px);
   transition-duration: 0.3s; }

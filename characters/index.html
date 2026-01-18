@@ -109,37 +109,30 @@
                 <div class="characters--header filters--wrap">
     <button onClick="toggleFilters(this)" class="mobileOnly">View Filters</button>
     <div class="filters--collapsible">
-        <div class="characters--sorting">
-            <input id="quicksearch" class="forminput memberlist-namesearch" type="text" size="25" name="name" value="" placeholder="Filter by name...">
-            <div class="characters--sort-buttons" data-type="flex">
-                <button type="button" class="threads--sort is-checked" data-sort="characterAsc">Character (A -> Z)</button>
-                <button type="button" class="threads--sort" data-sort="characterDesc">Character (Z -> A)</button>
-                
-            </div>
-        </div>
         <div class="characters--filters">
-            <!--Active?-->
+                <div class="characters--filters-inner">
+                <input id="quicksearch" class="forminput memberlist-namesearch" type="text" size="25" name="name" value="" placeholder="Filter by name...">
+                <!--Sorting-->
                 <div class="characters--filter filter--parent">
-                    <button onClick="openFilters(this)">Active?</button>
-                    <div class="characters--filter-dropdown">
-                        <div class="characters--filter-group filter--status" data-filter-group="status">
-                            <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>both</b></label>
-                            <label><span><input type="checkbox" value=".status--active"></span><b>yes</b></label>
-                            <label><span><input type="checkbox" value=".status--inactive"></span><b>no</b></label>
-                        </div>
+                    <button onClick="openFilters(this)">Sort</button>
+                    <div class="characters--filter-dropdown characters--sorting">
+                        <button type="button" class="characters--sort is-checked" data-sort="characterAsc">Character (A -> Z)</button>
+                        <button type="button" class="characters--sort" data-sort="characterDesc">Character (Z -> A)</button>
+                        
                     </div>
                 </div>
             <!--Site-->
-            
-                <div class="characters--filter filter--parent">
-                    <button onClick="openFilters(this)">Site</button>
-                    <div class="characters--filter-dropdown">
-                        <div class="characters--filter-group filter--sites" data-filter-group="site">
-                            <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>any</b></label>
+                
+                    <div class="characters--filter filter--parent">
+                        <button onClick="openFilters(this)">Site</button>
+                        <div class="characters--filter-dropdown">
+                            <div class="characters--filter-group filter--sites" data-filter-group="site">
+                                <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>any</b></label>
+                            </div>
                         </div>
                     </div>
-                </div>
-            
+                
+            </div>
         </div>
     </div>
 </div>
