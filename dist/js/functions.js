@@ -126,7 +126,7 @@ function initSiteSelect(el) {
         });
     });
 }
-function initPartnerSelect(el, type = 'initial', siteField = '#site') {
+function initPartnerSelect(el, type = 'initial', siteField = '#site', hasNPC = false) {
     fetch(`https://opensheet.elk.sh/${sheetID}/Partners`)
     .then((response) => response.json())
     .then((data) => {
@@ -145,15 +145,33 @@ function initPartnerSelect(el, type = 'initial', siteField = '#site') {
         
         el.closest('form').querySelectorAll('select#partner').forEach(select => {
             if(el.closest('form').dataset.form !== 'edit-partner') {
-                select.addEventListener('change', e => {
-                    initShipSelect(e.currentTarget, siteField);
-                });
+                if(hasNPC) {
+                    select.addEventListener('change', e => {
+                        let target = e.currentTarget;
+                        if(target.options[target.selectedIndex].value === 'npc') {
+                            select.closest('.row').querySelector('.ifPlayed').classList.add('hidden');
+                            select.closest('.row').querySelector('.ifNPC').classList.remove('hidden');
+                        } else {
+                            initShipSelect(e.currentTarget, siteField);
+                            select.closest('.row').querySelector('.ifPlayed').classList.remove('hidden');
+                            select.closest('.row').querySelector('.ifNPC').classList.add('hidden');
+                        }
+                    });
+                } else {
+                    select.closest('.row').querySelector('.ifPlayed').classList.remove('hidden');
+                    select.addEventListener('change', e => {
+                        initShipSelect(e.currentTarget, siteField);
+                    });
+                }
             }
             if(select.options.length < 2 || type === 'refresh') {
                 if(el.closest('form').dataset.form !== 'edit-partner') {
-                    select.closest('.row').querySelector('#character').innerHTML = `<option value="">(select)</option>`;
+                    select.closest('.row').querySelector('#character').innerHTML = `<option value="">(select)</option>${hasNPC ? `<option value="npc">NPC</option>` : ``}`;
                 }
                 let html = `<option value="">(select)</option>`;
+                if(hasNPC) {
+                    html += `<option value="npc">NPC</option>`;
+                }
                 partners.forEach(partner => {
                     html += `<option value="${partner.WriterID}">${capitalize(partner.Writer)}</option>`;
                 });
@@ -679,7 +697,7 @@ function addRow(e) {
         e.closest('.adjustable').querySelector('.rows').insertAdjacentHTML('beforeend', formatLinksRow());
     } else if(e.closest('.multi-buttons').dataset.rowType === 'ships') {
         e.closest('.adjustable').querySelector('.rows').insertAdjacentHTML('beforeend', formatShipsRow(e));
-        initPartnerSelect(e);
+        initPartnerSelect(e, 'initial', '#site', true);
     } else if(e.closest('.multi-buttons').dataset.rowType === 'tag-options') {
         e.closest('.adjustable').querySelector('.rows').insertAdjacentHTML('beforeend', formatTagOptions());
     } else if(e.closest('.multi-buttons').dataset.rowType === 'characters') {
@@ -689,7 +707,7 @@ function addRow(e) {
         initPartnerSelect(e);
     } else if(e.closest('.multi-buttons').dataset.rowType === 'add-ships') {
         e.closest('.adjustable').querySelector('.rows').insertAdjacentHTML('beforeend', formatShipsRow(e));
-        initPartnerSelect(e, 'initial', '#characterSite');
+        initPartnerSelect(e, 'initial', '#characterSite', true);
     } else if(e.closest('.multi-buttons').dataset.rowType === 'add-info') {
         e.closest('.adjustable').querySelector('.rows').insertAdjacentHTML('beforeend', formatInfoRow(e));
     }
@@ -732,21 +750,15 @@ function formatShipsRow(e) {
         </label>
         <label>
             <b>Character</b>
-            <span><select required id="character" required>
+            <span class="hidden ifPlayed"><select id="character">
                 <option value="">(select)</option>
             </select></span>
+            <span class="hidden ifNPC"><input type="text" class="npcname" placeholder="NPC Name" /></span>
         </label>
         <label class="fullWidth">
             <b>Type</b>
             <span><select required id="type" required>
-                <option value="">(select)</option>
-                <option value="antagonistic">Antagonistic</option>
-                <option value="familial">Familial</option>
-                <option value="found family">Found Family</option>
-                <option value="platonic">Platonic</option>
-                <option value="professional">Professional</option>
-                <option value="romantic">Romantic</option>
-                <option value="other">Other</option>
+                ${relationshipOptions}
             </select></span>
         </label>
     </div>`;
@@ -907,7 +919,9 @@ function submitCharacter(form) {
     let shipList = [];
     relationships.forEach(ship => {
         let writer = ship.options[ship.selectedIndex].innerText.trim().toLowerCase();
-        let character = ship.closest('.row').querySelector('#character').options[ship.closest('.row').querySelector('#character').selectedIndex].innerText.trim().toLowerCase();
+        let character = writer === 'npc'
+                                ? ship.closest('.row').querySelector('.npcname').value.trim().toLowerCase()
+                                : ship.closest('.row').querySelector('#character').options[ship.closest('.row').querySelector('#character').selectedIndex].innerText.trim().toLowerCase();
         let type = ship.closest('.row').querySelector('#type').options[ship.closest('.row').querySelector('#type').selectedIndex].innerText.trim().toLowerCase();
         shipList.push({
             writer: writer,
@@ -2138,20 +2152,39 @@ function formatSingleInstance(character) {
         } else {
             return 0
         }
-    })
+    });
+
+    let shipNames = [], combinedShips = {}, shipHTML = ``;
+    character.ships.forEach(ship => {
+        if(shipNames.includes(ship.character)) {
+            combinedShips[ship.character].relationship += `, ${ship.relationship}`;
+        } else {
+            shipNames.push(ship.character);
+            combinedShips[ship.character] = {
+                relationship: ship.relationship,
+                writer: ship.writer,
+            }
+        }
+    });
+    for(ship in combinedShips) {
+        shipHTML += `<li><b>${ship}</b><i>played by ${combinedShips[ship].writer}</i><i>${combinedShips[ship].relationship}</i></li>`
+    }
+
+    for(ship in combinedShips) {
+        shipHTML += `<li><b>${ship}</b><i>played by ${combinedShips[ship].writer}</i><i>${combinedShips[ship].relationship}</i></li>`
+    }
     
     return `<div class="character spy-track grid-item has-modal ${tagsString} ${character.character.split(' ')[0]}">
         <div class="character--wrap">
             <div class="character--image"><img src="${character.basics.image}" loading="lazy" /></div>
             <div class="character--main">
-                <a href="${character.sites.URL}/?showuser=${character.id}" target="_blank" class="character--title">${capitalize(character.character)}</a>
                 <div class="character--info">
                     ${character.basics.gender ? `<span>${character.basics.gender}</span>` : ''}
                     ${character.basics.pronouns ? `<span>${character.basics.pronouns}</span>` : ''}
-                    ${character.basics.birthday ? `<span>born ${character.basics.birthday}</span>` : ''}
                     ${character.basics.age ? `<span><span class="character--age">${character.basics.age}</span> years old</span>` : ''}
-                    ${character.basics.astrology ? `<span>${character.basics.astrology}</span>` : ''}
                     ${character.basics.face ? `<span>${character.basics.face}</span>` : ''}
+                    ${character.basics.birthday ? `<span>${character.basics.birthday}</span>` : ''}
+                    ${character.basics.astrology ? `<span>${character.basics.astrology}</span>` : ''}
                 </div>
                 <div class="character--title">
                     <a href="${character.sites.URL}/${character.sites.Directory}${character.id}" target="_blank">${capitalize(character.character)}</a>
@@ -2167,7 +2200,7 @@ function formatSingleInstance(character) {
             <div class="character--modal-inner">
                 <div class="character--modal-inner-scroll">
                     <ul>
-                        ${character.ships.map(item => `<li><b>${item.character}</b><i>played by ${item.writer}</i><i>${item.relationship}</i></li>`).join('')}
+                        ${shipHTML}
                     </ul>
                 </div>
             </div>
