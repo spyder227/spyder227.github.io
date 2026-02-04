@@ -48,6 +48,17 @@
                     letter-spacing: 0.2em;
                     font-weight: 900;
                 }
+
+                & > i {
+                    display: block;
+                    border-left: var(--border--secondary);
+                    background: var(--bg--primary);
+                    width: 100%;
+                    padding: var(--space--xs) var(--space--sm);
+                    font-size: 0.875rem;
+                    color: var(--text--primary);
+                    height: 36px;
+                }
             }
 
             textarea,
@@ -193,6 +204,9 @@
         @include mq-up(sm) {
             grid-template-columns: 1fr 1fr;
         }
+    }
+    &.change-ship:not(:first-child) {
+        margin-top: var(--space--lg);
     }
 }
 .multitoggle {

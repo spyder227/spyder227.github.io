@@ -178,6 +178,13 @@ h1 {
   border-bottom: var(--border--secondary);
   padding-bottom: 0.25em; }
 
+.h2 {
+  font-family: var(--font--serif);
+  text-transform: capitalize;
+  letter-spacing: 0;
+  font-size: 16px;
+  font-weight: 700; }
+
 a {
   color: var(--text--primary); }
 
@@ -466,6 +473,18 @@ section.links {
         font-size: 0.5rem;
         letter-spacing: 0.2em;
         font-weight: 900; }
+      .form form .field-wrap label > i,
+      .form form > label label > i,
+      .form form > label.imagePreview > div label > i,
+      .form form .multitoggle > label label > i {
+        display: block;
+        border-left: var(--border--secondary);
+        background: var(--bg--primary);
+        width: 100%;
+        padding: var(--space--xs) var(--space--sm);
+        font-size: 0.875rem;
+        color: var(--text--primary);
+        height: 36px; }
       .form form .field-wrap textarea,
       .form form .field-wrap select,
       .form form .field-wrap input,
@@ -605,6 +624,9 @@ section.links {
     .row.extra-info, .row.links, .row.ships, .row.characters, .row.features, .row.change-ships {
       -ms-grid-columns: 1fr 1fr;
       grid-template-columns: 1fr 1fr; } }
+
+.row.change-ship:not(:first-child) {
+  margin-top: var(--space--lg); }
 
 .multitoggle {
   display: -webkit-box;
@@ -1490,6 +1512,15 @@ section.links {
             font-size: 10px;
             font-weight: 900;
             letter-spacing: 0.1em; }
+      .character--modal-inner-header {
+        text-transform: capitalize;
+        font-size: 1.25rem;
+        font-weight: 900;
+        font-family: var(--font--serif);
+        border-bottom: var(--border--secondary);
+        margin-bottom: var(--space--sm); }
+        .character--modal-inner-header:not(:first-child) {
+          margin-top: var(--space--lg); }
 
 .charts--triple {
   display: -ms-grid;

@@ -460,6 +460,19 @@
                     }
                 }
             }
+            
+            &-header {
+            text-transform: capitalize;
+            font-size: 1.25rem;
+            font-weight: 900;
+            font-family: var(--font--serif);
+            border-bottom: var(--border--secondary);
+            margin-bottom: var(--space--sm);
+
+                &:not(:first-child) {
+                    margin-top: var(--space--lg);
+                }   
+            }
         }
     }
 }

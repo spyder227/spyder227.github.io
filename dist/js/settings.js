@@ -73,6 +73,16 @@ const noLegend = {
     }
 };
 
+const relationshipSections = `<option value="">(select)</option>
+    <option value="family" data-id="1">Family</option>
+    <option value="found family" data-id="2">Found Family</option>
+    <option value="romantic" data-id="3">Romantic</option>
+    <option value="platonic" data-id="4">Platonic</option>
+    <option value="professional" data-id="5">Professional</option>
+    <option value="antagonistic" data-id="6">Antagonistic</option>
+    <option value="pets" data-id="7">Pets</option>
+    <option value="miscellaneous" data-id="8">Miscellaneous</option>`;
+
 const relationshipOptions = `<option value="">(select)</option>
     <optgroup label="Family">
         <option value="parent">Parent</option>

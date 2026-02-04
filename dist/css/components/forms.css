@@ -41,6 +41,18 @@
         font-size: 0.5rem;
         letter-spacing: 0.2em;
         font-weight: 900; }
+      .form form .field-wrap label > i,
+      .form form > label label > i,
+      .form form > label.imagePreview > div label > i,
+      .form form .multitoggle > label label > i {
+        display: block;
+        border-left: var(--border--secondary);
+        background: var(--bg--primary);
+        width: 100%;
+        padding: var(--space--xs) var(--space--sm);
+        font-size: 0.875rem;
+        color: var(--text--primary);
+        height: 36px; }
       .form form .field-wrap textarea,
       .form form .field-wrap select,
       .form form .field-wrap input,
@@ -166,6 +178,9 @@
   @media (min-width: 769px) {
     .row.extra-info, .row.links, .row.ships, .row.characters, .row.features, .row.change-ships {
       grid-template-columns: 1fr 1fr; } }
+
+.row.change-ship:not(:first-child) {
+  margin-top: var(--space--lg); }
 
 .multitoggle {
   display: flex;

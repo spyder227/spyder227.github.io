@@ -154,13 +154,19 @@ function initPartnerSelect(el, type = 'initial', siteField = '#site', hasNPC = f
                 if(hasNPC) {
                     select.addEventListener('change', e => {
                         let target = e.currentTarget;
-                        if(target.options[target.selectedIndex].value === 'npc') {
+                        if(target.options[target.selectedIndex].value === '') {
+                            select.closest('.row').querySelector('.ifUnselected').classList.remove('hidden');
+                            select.closest('.row').querySelector('.ifPlayed').classList.add('hidden');
+                            select.closest('.row').querySelector('.ifNPC').classList.add('hidden');
+                        } else if(target.options[target.selectedIndex].value === 'npc') {
                             select.closest('.row').querySelector('.ifPlayed').classList.add('hidden');
                             select.closest('.row').querySelector('.ifNPC').classList.remove('hidden');
+                            select.closest('.row').querySelector('.ifUnselected').classList.add('hidden');
                         } else {
                             initShipSelect(e.currentTarget, siteField);
                             select.closest('.row').querySelector('.ifPlayed').classList.remove('hidden');
                             select.closest('.row').querySelector('.ifNPC').classList.add('hidden');
+                            select.closest('.row').querySelector('.ifUnselected').classList.add('hidden');
                         }
                     });
                 } else {
@@ -382,6 +388,9 @@ function initAutoPopulate(el) {
                 case 'removeShip':
                     initRemoveShips(el);
                     break;
+                case 'changeShip':
+                    initChangeShips(el);
+                    break;
                 case 'removeTags':
                     initRemoveTags(el);
                     break;
@@ -436,6 +445,22 @@ function initRemoveShips(el) {
         html += `</div>`;
 
         el.closest('form').querySelector('.clip-remove-ships').innerHTML = html;
+    });
+}
+function initChangeShips(el) {
+    fetch(`https://opensheet.elk.sh/${sheetID}/Characters`)
+    .then((response) => response.json())
+    .then((data) => {
+        let character = el.closest('form').querySelector('#character');
+        let site = el.closest('form').querySelector('#characterSite');
+        let existing = data.filter(item => item.Character === character.options[character.selectedIndex].value.trim().toLowerCase())[0];
+        let ships = JSON.parse(existing.Ships).filter(item => item.site === site.options[site.selectedIndex].innerText.trim().toLowerCase())[0].characters;
+        let html = ``;
+        ships.forEach(ship => {
+            html += formatShipChangesRow(ship);
+        });
+
+        el.closest('form').querySelector('.clip-change-ships').innerHTML = html;
     });
 }
 function initRemoveTags(el) {
@@ -759,17 +784,44 @@ function formatShipsRow(e) {
         </label>
         <label>
             <b>Character</b>
+            <i class="ifUnselected">Select a Partner</i>
             <span class="hidden ifPlayed"><select id="character">
                 <option value="">(select)</option>
             </select></span>
             <span class="hidden ifNPC"><input type="text" class="npcname" placeholder="NPC Name" /></span>
         </label>
-        <label class="fullWidth">
+        <label>
+            <b>Section</b>
+            <span><select required id="section" required>
+                ${relationshipSections}
+            </select></span>
+        </label>
+        <label>
             <b>Type</b>
             <span><select required id="type" required>
                 ${relationshipOptions}
             </select></span>
         </label>
+    </div>`;
+}
+function formatShipChangesRow(ship) {
+    return `<div class="row change-ship" data-writer="${ship.writer}" data-character="${ship.character}" data-section="${ship.section ? ship.section : 'unsorted'}" data-relationship="${ship.relationship}" data-section-id="${ship.sectionID ? ship.sectionID : '100'}">
+        <div class="h2">
+            ${ship.character}${ship.writer !== 'npc' ? `, Played by ${ship.writer}` : ` (NPC)`} -
+            ${ship.section && ship.section !== '' ? `${ship.section} - ` : ''}${ship.relationship}
+        </div>
+        <div class="grid"><label>
+            <b>Section</b>
+            <span><select id="section">
+                ${relationshipSections}
+            </select></span>
+        </label>
+        <label>
+            <b>Type</b>
+            <span><select id="type">
+                ${relationshipOptions}
+            </select></span>
+        </label></div>
     </div>`;
 }
 function formatTagOptions() {
@@ -930,10 +982,14 @@ function submitCharacter(form) {
         let writer = ship.options[ship.selectedIndex].innerText.trim().toLowerCase();
         let character = ship.closest('.row').querySelector('#character').options[ship.closest('.row').querySelector('#character').selectedIndex].innerText.trim().toLowerCase();
         let type = ship.closest('.row').querySelector('#type').options[ship.closest('.row').querySelector('#type').selectedIndex].innerText.trim().toLowerCase();
+        let section = ship.closest('.row').querySelector('#section').options[ship.closest('.row').querySelector('#section').selectedIndex].innerText.trim().toLowerCase();
+        let sectionID = ship.closest('.row').querySelector('#section').options[ship.closest('.row').querySelector('#section').selectedIndex].dataset.id;
         shipList.push({
             writer: writer,
             character: character,
             relationship: type,
+            section: section,
+            sectionID: sectionID,
         });
     });
 
@@ -1230,6 +1286,34 @@ function updateCharacter(form) {
                     extras: formattedExtras
                 }]);
             }
+        }
+
+        //change ships
+        if(selected.includes('changeShip')) {
+            let relationships = form.querySelectorAll('.change-ship');
+            let shipList = [];
+            relationships.forEach(ship => {
+                let writer = ship.dataset.writer;
+                let character = ship.dataset.character;
+                let existingSection = ship.dataset.section;
+                let existingType = ship.dataset.relationship;
+                let section = ship.querySelector('#section').options[ship.querySelector('#section').selectedIndex];
+                let type = ship.querySelector('#type').options[ship.querySelector('#type').selectedIndex];
+                shipList.push({
+                    writer: writer,
+                    character: character,
+                    relationship: type && type.value !== '' ? type.innerText.trim().toLowerCase() : existingType,
+                    section: section && section.value !== '' ? section.innerText.trim().toLowerCase() : existingSection,
+                    sectionID: section && section.value !== '' ? section.dataset.id : existingSectionId,
+                });
+            });
+            let existingShips = JSON.parse(existing.Ships);
+            for(instance in existingShips) {
+                if(existingShips[instance].site === site) {
+                    existingShips[instance].characters = [...shipList];
+                }
+            }
+            existing.Ships = JSON.stringify(existingShips);
         }
 
         //add ships
@@ -2171,21 +2255,53 @@ function formatSingleInstance(character, sites) {
         }
     });
 
-    let shipNames = [], combinedShips = {}, shipHTML = ``;
+    let shipNames = [], combinedShips = {}, shipHTML = ``, sectionableShips = [];
     character.ships.forEach(ship => {
         if(shipNames.includes(ship.character)) {
             combinedShips[ship.character].relationship += `, ${ship.relationship}`;
+            if(parseInt(combinedShips[ship.character].sectionID) > parseInt(ship.sectionID)) {
+                combinedShips[ship.character].sectionID = ship.sectionID;
+                combinedShips[ship.character].section = ship.section;
+            }
         } else {
             shipNames.push(ship.character);
             combinedShips[ship.character] = {
                 relationship: ship.relationship,
                 writer: ship.writer,
+                section: ship.section,
+                sectionID: ship.sectionID,
             }
         }
     });
     for(ship in combinedShips) {
-        shipHTML += `<li><b>${ship}</b><i>${combinedShips[ship].writer === 'npc' ? combinedShips[ship].writer : `played by ${combinedShips[ship].writer}`}</i><i>${combinedShips[ship].relationship}</i></li>`
+        sectionableShips.push({
+            character: ship,
+            ...combinedShips[ship],
+        });
     }
+
+    sectionableShips.sort((a, b) => {
+        if(parseInt(a.sectionID) < parseInt(b.sectionID)) {
+            return -1;
+        } else if(parseInt(a.sectionID) > parseInt(b.sectionID)) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+    
+    sectionableShips.forEach((ship, i) => {
+        if(i === 0) {
+            shipHTML += `<div class="character--modal-header">${ship.section ? ship.section : 'Unsorted'}</div><ul>`;
+            shipHTML += `<li><b>${ship.character}</b><i>${ship.writer === 'npc' ? ship.writer : `played by ${ship.writer}`}</i><i>${ship.relationship}</i></li>`;
+        } else if(sectionableShips[i - 1].section !== ship.section) {
+            shipHTML += `</ul><div class="character--modal-header">${ship.section ? ship.section : 'Unsorted'}</div><ul>`;
+            shipHTML += `<li><b>${ship.character}</b><i>${ship.writer === 'npc' ? ship.writer : `played by ${ship.writer}`}</i><i>${ship.relationship}</i></li>`;
+        } else {
+            shipHTML += `<li><b>${ship.character}</b><i>${ship.writer === 'npc' ? ship.writer : `played by ${ship.writer}`}</i><i>${ship.relationship}</i></li>`;
+        }
+    });
+    shipHTML += `</ul>`;
 
     let extrasHTML = ``;
     for(item in character.extras) {
@@ -2229,9 +2345,7 @@ function formatSingleInstance(character, sites) {
         <div class="character--modal" data-type="ships">
             <div class="character--modal-inner">
                 <div class="character--modal-inner-scroll">
-                    <ul>
-                        ${shipHTML}
-                    </ul>
+                    ${shipHTML}
                 </div>
             </div>
         </div>
