@@ -898,7 +898,7 @@ function submitCharacter(form) {
         age: form.querySelector('#ageValue').value.trim().toLowerCase(),
         face: form.querySelector('#face').value.trim().toLowerCase(),
         birthday: form.querySelector('#birthday').value.trim().toLowerCase(),
-        face: form.querySelector('#zodiac').value.trim().toLowerCase(),
+        astrology: form.querySelector('#zodiac').value.trim().toLowerCase(),
         image: form.querySelector('#image').value.trim(),
     };
 

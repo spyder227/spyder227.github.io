@@ -97,6 +97,7 @@ const relationshipOptions = `<option value="">(select)</option>
         <option value="aunt">Aunt</option>
         <option value="nephew">Nephew</option>
         <option value="niece">Niece</option>
+        <option value="inlaw">In-law</option>
         <option value="extended family">Extended Family</option>
     </optgroup>
     <optgroup label="Romantic">
