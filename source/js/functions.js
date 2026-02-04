@@ -2292,10 +2292,10 @@ function formatSingleInstance(character, sites) {
     
     sectionableShips.forEach((ship, i) => {
         if(i === 0) {
-            shipHTML += `<div class="character--modal-header">${ship.section ? ship.section : 'Unsorted'}</div><ul>`;
+            shipHTML += `<div class="character--modal-header h2">${ship.section ? ship.section : 'Unsorted'}</div><ul>`;
             shipHTML += `<li><b>${ship.character}</b><i>${ship.writer === 'npc' ? ship.writer : `played by ${ship.writer}`}</i><i>${ship.relationship}</i></li>`;
         } else if(sectionableShips[i - 1].section !== ship.section) {
-            shipHTML += `</ul><div class="character--modal-header">${ship.section ? ship.section : 'Unsorted'}</div><ul>`;
+            shipHTML += `</ul><div class="character--modal-header h2">${ship.section ? ship.section : 'Unsorted'}</div><ul>`;
             shipHTML += `<li><b>${ship.character}</b><i>${ship.writer === 'npc' ? ship.writer : `played by ${ship.writer}`}</i><i>${ship.relationship}</i></li>`;
         } else {
             shipHTML += `<li><b>${ship.character}</b><i>${ship.writer === 'npc' ? ship.writer : `played by ${ship.writer}`}</i><i>${ship.relationship}</i></li>`;
