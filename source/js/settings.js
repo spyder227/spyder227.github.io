@@ -101,9 +101,10 @@ const relationshipOptions = `<option value="">(select)</option>
         <option value="extended family">Extended Family</option>
     </optgroup>
     <optgroup label="Romantic">
-        <option value="spouse">Spouse</option>
+        <option value="married">Married</option>
         <option value="betrothed">Betrothed</option>
-        <option value="partner">Partner</option>
+        <option value="dating">Dating</option>
+        <option value="infatuated">Infatuated</option>
         <option value="crush">Crush</option>
         <option value="fling">Fling</option>
     </optgroup>
@@ -121,6 +122,7 @@ const relationshipOptions = `<option value="">(select)</option>
         <option value="employee">Employee</option>
         <option value="co-worker">Co-worker</option>
         <option value="mentor">Mentor</option>
+        <option value="apprentice">Apprentice</option>
     </optgroup>
     <optgroup label="Antagonistic">
         <option value="ex-spouse">Ex-spouse</option>
