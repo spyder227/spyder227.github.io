@@ -1325,10 +1325,12 @@ function updateCharacter(form) {
                 let character = writer === 'npc'
                                 ? ship.closest('.row').querySelector('.npcname').value.trim().toLowerCase()
                                 : ship.closest('.row').querySelector('#character').options[ship.closest('.row').querySelector('#character').selectedIndex].innerText.trim().toLowerCase();
+                let section = ship.closest('.row').querySelector('#section').options[ship.closest('.row').querySelector('#section').selectedIndex].innerText.trim().toLowerCase();
                 let type = ship.closest('.row').querySelector('#type').options[ship.closest('.row').querySelector('#type').selectedIndex].innerText.trim().toLowerCase();
                 shipList.push({
                     writer: writer,
                     character: character,
+                    section: section,
                     relationship: type,
                 });
             });
