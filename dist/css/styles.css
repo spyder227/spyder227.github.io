@@ -1633,6 +1633,17 @@ h2 {
   margin-left: auto;
   margin-right: auto; }
 
+#advertising1 button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background: var(--bg--primary);
+  color: var(--text--primary);
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+}
+
 .adsimage {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1641,10 +1652,16 @@ h2 {
   margin-left: auto;
   margin-right: auto; }
 
-.adscode {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+.adscode textarea {
+  margin: 20px;
+  background: var(--bg--quaternary);
+  padding: 10px;
+  border-radius: 5px;
+  border: #000;
+  color: var(--text--primary);
+  display: block;
+  width: 50%;
+  height: 100px;
   margin-left: auto;
   margin-right: auto; }
 
@@ -1678,14 +1695,6 @@ h2 {
   border: none;
   margin-top: 20px;
   margin-bottom: 20px; }
-
-#advertising1 button {
-  background: var(--bg--primary);
-  color: var(--text--primary);
-  border: none;
-  border-radius: 10px;
-  padding: 5px;
-  margin: 5px; }
 
 #advertising1 button:hover,
 #advertising2 button:hover {
