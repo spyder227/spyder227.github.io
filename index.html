@@ -111,7 +111,7 @@
                 <p>
                     <h1>Spyder's Site Tracker</h1>
                     <section class="charts">
-                        <div class="charts--triple">
+                        <div class="charts--double">
                             <div class="charts--thread-status charts--breakdown">
     <h2 class="site--names">idols & ichor</h1>
     <canvas id="ichor"></canvas>
@@ -165,41 +165,6 @@
 
             /*Thread Status*/
             new Chart(document.getElementById('imp'), {
-                ...chartOptions,
-                data: {
-                    labels: threadStats[0].status.tags.map(item => item.toUpperCase()),
-                    datasets: [{
-                        data: threadStats[0].status.totals,
-                        ...datasetOptions
-                    }]
-                },
-            });
-        });
-    });
-</script>
-<style>
-.site--names {
-    line-height:100%;
-}
-</style>
-                            <div class="charts--thread-status charts--breakdown">
-    <h2 class="site--names">sweet as honey</h1>
-    <canvas id="sah"></canvas>
-</div>
-<script>
-    fetch(`https://opensheet.elk.sh/${sheetID}/Threads`)
-    .then((response) => response.json())
-    .then((threadData) => {
-        fetch(`https://opensheet.elk.sh/${sheetID}/Sites`)
-        .then((response) => response.json())
-        .then((siteData) => {
-            //set overall variables
-            let siteName = 'sweet as honey';
-            let siteObject = siteName !== 'all' ? siteData.filter(item => item.Site === siteName) : siteData;
-            let threadStats = createThreadStats(threadData, siteObject);
-
-            /*Thread Status*/
-            new Chart(document.getElementById('sah'), {
                 ...chartOptions,
                 data: {
                     labels: threadStats[0].status.tags.map(item => item.toUpperCase()),
