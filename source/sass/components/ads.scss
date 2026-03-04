@@ -33,6 +33,15 @@ h2 {
     width:fit-content;
     margin-left:auto;
     margin-right:auto;
+    padding: 10px;
+    margin: 20px auto auto auto;
+}
+
+.adscode textarea {
+    color: var(--text--primary);
+    background: var(--bg--quaternary);
+    width: 300px;
+    height: 100px;
 }
 
 #advertising2 {
@@ -46,7 +55,7 @@ h2 {
     border:none;
     border-radius:10px;
     padding:5px;
-    margin:5px;
+    margin: 5px;
     padding:10px;
     text-transform:uppercase;
     letter-spacing:1px;
@@ -75,8 +84,9 @@ h2 {
     color: var(--text--primary);
     border:none;
     border-radius:10px;
-    padding:5px;
-    margin:5px;
+    padding:5px 10px 5px 10px;
+    margin:5px auto auto auto;
+    display:block;
 }
 
 #advertising1 button:hover,
