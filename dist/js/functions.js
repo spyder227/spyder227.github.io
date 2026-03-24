@@ -61,6 +61,8 @@ function initMenus() {
                     .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="${prefix}/threads/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
                 document.querySelector('.subnav[data-menu="stats"] .subnav--inner')
                     .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="${prefix}/stats/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
+                document.querySelector('.subnav[data-menu="writing"] .subnav--inner')
+                    .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="${prefix}/writing/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
             } else if(site.Status !== data[i - 1].Status) {
                 document.querySelector('.subnav[data-menu="sites"] .subnav--inner')
                     .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="${site.URL}" target="_blank" class="${site.Status}">${site.Site}</a>`);
@@ -70,6 +72,8 @@ function initMenus() {
                     .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="${prefix}/threads/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
                 document.querySelector('.subnav[data-menu="stats"] .subnav--inner')
                     .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="${prefix}/stats/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
+                document.querySelector('.subnav[data-menu="writing"] .subnav--inner')
+                    .insertAdjacentHTML('beforeend', `<strong>${site.Status}</strong><a href="${prefix}/writing/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
             } else {
                 document.querySelector('.subnav[data-menu="sites"] .subnav--inner')
                     .insertAdjacentHTML('beforeend', `<a href="${site.URL}" target="_blank" class="${site.Status}">${site.Site}</a>`);
@@ -79,6 +83,8 @@ function initMenus() {
                     .insertAdjacentHTML('beforeend', `<a href="${prefix}/threads/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
                 document.querySelector('.subnav[data-menu="stats"] .subnav--inner')
                     .insertAdjacentHTML('beforeend', `<a href="${prefix}/stats/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
+                document.querySelector('.subnav[data-menu="writing"] .subnav--inner')
+                    .insertAdjacentHTML('beforeend', `<a href="${prefix}/writing/${site.ID}.html" class="${site.Status}">${site.Site}</a>`);
             }
         });
     });
@@ -299,6 +305,34 @@ function initCharacterSelect(el) {
             })
         });
         el.closest('form').querySelector('#character').innerHTML = html;
+    });
+}
+function initThreadSelect(el) {
+    fetch(`https://opensheet.elk.sh/${sheetID}/Threads`)
+    .then((response) => response.json())
+    .then((data) => {
+        data.sort((a, b) => {
+            if(a.Title < b.Title) {
+                return -1;
+            } else if (a.Title > b.Title) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+        let selectedSite = el.closest('form').querySelector('#site').options[el.closest('form').querySelector('#site').selectedIndex].value;
+        let selectedCharacter = el.closest('form').querySelector('#character').options[el.closest('form').querySelector('#character').selectedIndex].value;
+
+        let threads = [...data.map(item => ({
+            ...item,
+            Character: JSON.parse(item.Character)
+        }))].filter(item => parseInt(item.Character.id) === parseInt(selectedCharacter) && item.SiteID === selectedSite);
+
+        let html = `<option value="">(select)</option>`;
+        threads.forEach(thread => {
+            html += `<option value="${thread.ThreadID}">${thread.Title}</option>`;
+        });
+        el.closest('form').querySelector('#thread-auto').innerHTML = html;
     });
 }
 function initTagSelect(el) {
@@ -1099,6 +1133,31 @@ function submitCharacter(form) {
         sendAjax(form, data, successMessage);
     });
 }
+function addRecord(form) {
+    //simple fields
+    let site = form.querySelector('#site').options[form.querySelector('#site').selectedIndex].innerText.trim().toLowerCase();
+    let character = form.querySelector('#character').options[form.querySelector('#character').selectedIndex];
+    let id = form.querySelector('#thread-auto').options[form.querySelector('#thread-auto').selectedIndex].value;
+    let words = form.querySelector('#words').value.trim();
+    let ship = form.querySelector('#ship').value.trim().toLowerCase();
+    let date = form.querySelector('#date').value;
+
+    let data = {
+        SubmissionType: 'add-record',
+        Site: site,
+        Character: JSON.stringify({
+            name: character.innerText.trim().toLowerCase().replaceAll(`'`, `&apos;`),
+            id: character.value.trim().toLowerCase(),
+        }),
+        Thread: id,
+        Words: words,
+        Ship: ship,
+        Date: date,
+    };
+
+    sendAjax(form, data, successMessage);
+}
+
 function submitThread(form) {
     //simple fields
     let site = form.querySelector('#site').options[form.querySelector('#site').selectedIndex].innerText.trim().toLowerCase();
@@ -1976,6 +2035,36 @@ function sendThreadAjax(data, thread, form = null, complete = null) {
         }
     });
 }
+function sendInlineRecordAjax(data, container) {
+    $.ajax({
+        url: `https://script.google.com/macros/s/${deployID}/exec`,   
+        data: data,
+        method: "POST",
+        type: "POST",
+        dataType: "json", 
+        success: function () {
+            console.log('success');
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('error');
+        },
+        complete: function () {
+            console.log('complete');
+            container.querySelectorAll('.record--inline button').forEach(button => {
+                button.classList.remove('is-updating');
+                button.removeAttribute('disabled');
+            });
+            container.querySelector('.record--inline').classList.remove('is-visible');
+
+            sendThreadAjax({
+                ...data,
+                SubmissionType: 'thread-status',
+            }, container);
+            $('#threads--rows').isotope('layout');
+        }
+    });
+}
+
 function changeStatus(e) {
     if(e.dataset.status === 'mine' || e.dataset.status === 'planned') {
         e.dataset.status = 'theirs';
@@ -2028,6 +2117,37 @@ function markHoarded(e) {
         Status: 'hoarded'
     }, thread, null, 'hoarded');
 }
+function recordReply(e) {
+    let container = e.closest('.thread--wrap');
+    container.querySelector('.record--inline').classList.toggle('is-visible');
+}
+function recordReplySend(e) {
+    let site = e.dataset.site,
+        character = e.dataset.character.replaceAll(`'`, `&apos;`),
+        characterID = e.dataset.characterId,
+        threadID = e.dataset.id,
+        container = e.closest('.thread--wrap'),
+        words = e.closest('.record--inline').querySelector('.word-count').value,
+        ship = e.closest('.record--inline').querySelector('.ship').value.toLowerCase().trim();
+    e.classList.add('is-updating');
+    e.setAttribute('disabled', true);
+    sendInlineRecordAjax({
+        SubmissionType: 'add-record',
+        Thread: threadID,
+        Site: site,
+        Character: JSON.stringify({
+            name: character,
+            id: characterID,
+        }),
+        Words: words,
+        Ship: ship,
+        Date: new Intl.DateTimeFormat('en-CA', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        }).format(new Date()),
+    }, container);
+}
 function markComplete(e) {
     e.dataset.status = 'complete';
     let thread = e.parentNode.parentNode.parentNode;
@@ -2037,7 +2157,10 @@ function markComplete(e) {
         SubmissionType: 'thread-status',
         ThreadID: e.dataset.id,
         Site: e.dataset.site,
-        Character: e.dataset.character.replaceAll(`'`, `&apos;`),
+        Character: JSON.stringify({
+            name: character,
+            id: characterID,
+        }),
         Status: 'complete'
     }, thread, null, 'complete');
 }
@@ -2070,36 +2193,43 @@ function formatThread(thread) {
     });
     let extraTags = thread.tags !== '' ? JSON.parse(thread.tags).map(item => `tag--${item}`).join(' ') : '';
 
-    let buttons = ``;
-    if (thread.status !== 'complete' && thread.status !== 'archived') {
-        buttons = `<button onClick="changeStatus(this)" data-status="${thread.status}" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}'>
+    let buttons = `<div class="record--inline">
+            <input class="word-count" type="number" min="0" />
+            <input class="ship" type="text" placeholder="(optional)" />
+            <button onClick="recordReplySend(this)" data-id="${thread.id}" data-site="${thread.site.Site}" data-character="${thread.character.name}" data-character-id="${thread.character.id}">
+                <span class="not-loading">Send</span>
+                <span class="loading">Sending...</span>
+            </button>
+        </div>
+        <button class="activeOnly" onClick="recordReply(this)">
+            <span class="not-loading">Record Reply</span>
+            <span class="loading">Recording...</span>
+        </button>
+        <button class="activeOnly" onClick="changeStatus(this)" data-status="${thread.status}" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}'>
             <span class="not-loading">Update Status</span>
             <span class="loading">Updating...</span>
         </button>
-        <button onClick="markHoarded(this)" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}'>
-            <span class="not-loading">Hoard Reply</span>
-            <span class="loading">Updating...</span>
-        </button>
-        <button onClick="markComplete(this)" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}'>
+        <button class="activeOnly" onClick="markComplete(this)" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}'>
             <span class="not-loading">Mark Complete</span>
             <span class="loading">Updating...</span>
+        </button>
+        <button class="inactiveOnly" onClick="reactivateThread(this)" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}'>
+            <span class="not-loading">Reactivate</span>
+            <span class="loading">Updating...</span>
+        </button>
+        <button class="activeOnly" onClick="markArchived(this)" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}'>
+            <span class="not-loading">Archive</span>
+            <span class="loading">Updating...</span>
         </button>`;
-
-        if (thread.status !== 'archived') {
-            buttons += `<button onClick="markArchived(this)" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}'>
-                <span class="not-loading">Archive</span>
-                <span class="loading">Updating...</span>
-            </button>`;
-        }
-    }
 
     return `<div class="thread spy-track grid-item grid-item ${thread.character.name.split(' ')[0]} ${partnerClasses} ${featuringClasses} status--${thread.status} type--${thread.type} delay--${getDelay(thread.updated)} ${extraTags} site--${thread.site.ID}">
         <div class="thread--wrap">
             <div class="thread--main">
                 <div class="thread--dates">
                     <div class="thread--type">${thread.type}</div>
-                    <span class="thread--ic-date">Set <span>${thread.date}</span></span>
+                    ${thread.date ? `<span class="thread--ic-date">Set <span>${thread.date}</span></span>` : ``}
                     <span class="thread--last-post">Last Active <span>${thread.updated}</span></span>
+                    ${thread.date ? `` : `<span class="thread--ic-date"><span></span></span>`}
                 </div>
                 <div class="thread--title">
                     <a href="${thread.site.URL}/?showtopic=${thread.id}&view=getnewpost" target="_blank">${capitalize(thread.title, [' ', '-'])}</a>
@@ -2472,7 +2602,7 @@ function formatMultipleInstance(character, sites) {
             </div>`;
     });
     
-    return `<div class="character lux-track grid-item ${tagsString} ${character.character.split(' ')[0]} has-modal">
+    return `<div class="character spy-track grid-item ${tagsString} ${character.character.split(' ')[0]} has-modal">
         <div class="character--wrap" data-site="${character.sites[0].site}">
             <div class="character--image">
                 ${siteImages}
