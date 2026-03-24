@@ -1,0 +1,101 @@
+<div class="records--header">
+    <button class="records--toggle" data-view="heatmap" onClick="toggleRecordsView(this)">
+        <span>Heatmap</span>
+        <span>List</span>
+    </button>
+    <hr />
+    <button onClick="toggleFilters(this)" class="mobileOnly">View Filters</button>
+    <div class="filters--collapsible">
+        <div class="threads--filters">
+            <div class="threads--filters-inner">
+                <!--Year-->
+                <div class="threads--filter filter--parent">
+                    <button onClick="openFilters(this)">Year</button>
+                    <div class="threads--filter-dropdown">
+                        <div class="threads--filter-group filter--year" data-filter-group="year"></div>
+                    </div>
+                </div>
+                <!--Characters-->
+                <div class="threads--filter filter--parent">
+                    <button onClick="openFilters(this)">Character</button>
+                    <div class="threads--filter-dropdown">
+                        <div class="threads--filter-group filter--characters" data-filter-group="character">
+                            <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>all</b></label>
+                        </div>
+                    </div>
+                </div>
+                <!--Partner-->
+                <div class="threads--filter filter--parent">
+                    <button onClick="openFilters(this)">Ship</button>
+                    <div class="threads--filter-dropdown">
+                        <div class="threads--filter-group filter--ships" data-filter-group="ship">
+                            <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>all</b></label>
+                        </div>
+                    </div>
+                </div>
+                <!--Site-->
+                @@if (sitename === 'all') {
+                    <div class="threads--filter filter--parent">
+                        <button onClick="openFilters(this)">Site</button>
+                        <div class="threads--filter-dropdown">
+                            <div class="threads--filter-group filter--sites" data-filter-group="site">
+                                <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>any</b></label>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="records--content" data-view="heatmap">
+    <div class="records--heatmaps"><div class="records--spinner"><i class="fa-solid fa-cog fa-spin"></i></div></div>
+    <div class="records--list"><div class="records--spinner"><i class="fa-solid fa-cog fa-spin"></i></div></div>
+</div>
+<script>
+    let siteName = '@@sitename';
+    let siteObject, staticThreads, staticRecords;
+
+    fetch(`https://opensheet.elk.sh/${sheetID}/Sites`)
+    .then((response) => response.json())
+    .then((siteData) => {
+        siteObject = siteName !== 'all' ? siteData.filter(item => item.Site === siteName) : siteData;
+
+        fetch(`https://opensheet.elk.sh/${sheetID}/Threads`)
+        .then((response) => response.json())
+        .then((threadData) => {
+            if(siteObject.length === 1) {
+                staticThreads = [...threadData.filter(item => item.Site === siteObject[0].Site)];
+            } else {
+                staticThreads = [...threadData];
+            }
+
+            fetch(`https://opensheet.elk.sh/${sheetID}/Writing`)
+            .then((response) => response.json())
+            .then((recordsData) => {
+                if(siteObject.length === 1) {
+                    staticRecords = [...recordsData.filter(item => item.Site === siteObject[0].Site)];
+                } else {
+                    staticRecords = [...recordsData];
+                }
+
+                siteObject.sort((a, b) => {
+                    if(a.Status === 'active' && b.Status !== 'active') return -1;
+                    else if(a.Status !== 'active' && b.Status === 'active') return 1;
+                    else if(a.Site < b.Site) return -1;
+                    else if(a.Site > b.Site) return 1;
+                    else return 0;
+                });
+
+                let recordYears = [...new Set(staticRecords.map(item => new Date(item.Date).getFullYear()))];
+                let recordCharacters = [...new Set(staticRecords.map(item => JSON.parse(item.Character).name))];
+                let recordShips = [...new Set(staticRecords.map(item => item.Ship))];
+                let recordSites = [...new Set(siteObject.map(item => ({Site: item.Site, Status: item.Status})))];
+                initRecordsFilters(recordYears, recordCharacters, recordShips, recordSites);
+                initRecords(siteObject, staticThreads, staticRecords);
+            });
+
+        });
+
+    });
+</script>

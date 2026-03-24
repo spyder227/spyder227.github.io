@@ -44,6 +44,9 @@ document.querySelectorAll('form').forEach(form => {
             case 'edit-thread':
                 updateThread(e.currentTarget);
                 break;
+            case 'add-record':
+                addRecord(e.currentTarget);
+                break;
             default:
                 break;
         }
@@ -63,6 +66,13 @@ document.querySelectorAll('select#site').forEach(el => {
             initCharacterSelect(e.currentTarget);
         }
     });
+});
+document.querySelectorAll('select#character').forEach(el => {
+    if(document.querySelector('select#thread-auto')) {
+        el.addEventListener('change', e => {
+            initThreadSelect(e.currentTarget);
+        });
+    }
 });
 document.querySelectorAll('.accordion.sites').forEach(el => {
     initTagSites(el);

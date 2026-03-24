@@ -30,6 +30,7 @@
   --border--primary: 1px solid rgb(80, 80, 80);
   --border--thick: 5px solid rgb(80, 80, 80);
   --border--secondary: 1px solid rgb(95, 95, 95);
+  --border--primary-color: rgb(80, 80, 80);
   --text--primary: #d3d3d3;
   --text--secondary: #f8f8f8;
   --text--on-accent: #f8f8f8; }

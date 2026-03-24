@@ -29,7 +29,7 @@ body {
 
 main {
     margin-left: var(--size--menu-width);
-    &:not(:has(.threads)):not(:has(.characters)) {
+    &:not(:has(.threads)):not(:has(.characters)):not(:has(.records)) {
         padding: var(--space--lg) var(--space--xs);
     
         @include mq-up(xs) {
@@ -42,14 +42,14 @@ main {
     position: fixed;
     top: 0;
     left: 0;
-    background: rgba(24, 24, 24, 0.9);
     z-index: 2;
-    backdrop-filter: blur(5px);
     transition-duration: 0.3s;
 
     &.horizontal {
         width: 0;
         height: 100vh;
+        background: rgba(24, 24, 24, 0.9);
+        backdrop-filter: blur(5px);
         
         &.is-active {
             width: 100%;

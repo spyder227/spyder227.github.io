@@ -54,6 +54,10 @@
             <i class="fa-solid fa-chart-pie"></i>
             <span>Stats</span>
         </button>
+        <button onClick="openSubmenu(this)" data-menu="writing">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>Writing</span>
+        </button>
         <button onClick="openSubmenu(this)" data-menu="ads">
             <i class="fa-solid fa-tag"></i>
             <span>Ads</span>
@@ -84,8 +88,15 @@
         <a href="../stats/index.html">View Combined</a>
     </div>
 </nav>
+<nav class="subnav" data-menu="writing">
+    <div class="subnav--inner">
+        <a href="../writing/index.html">View Combined</a>
+    </div>
+</nav>
 <nav class="subnav" data-menu="admin">
     <div class="subnav--inner">
+        <strong>Records</strong>
+        <a href="../admin/new-record.html">Add Record</a>
         <strong>Add</strong>
         <a href="../admin/new-site.html">Add Site</a>
         <a href="../admin/new-tag.html">Add Tags</a>

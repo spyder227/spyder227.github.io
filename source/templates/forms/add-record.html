@@ -1,0 +1,34 @@
+<h1>Add Record</h1>
+<form data-form="add-record">
+    <label>
+        <b>Site</b>
+        <span><select required id="site">
+            <option value="">(select)</option>
+        </select></span>
+    </label>
+    <label>
+        <b>Character</b>
+        <span><select required id="character">
+            <option value="">(select)</option>
+        </select></span>
+    </label>
+    <label>
+        <b>Thread</b>
+        <span><select required id="thread-auto">
+            <option value="">(select)</option>
+        </select></span>
+    </label>
+    <label>
+        <b>Word Count</b>
+        <span><input type="number" id="words" min="0" required /></span>
+    </label>
+    <label>
+        <b>Ship</b>
+        <span><input type="text" id="ship" placeholder="(optional)" /></span>
+    </label>
+    <label>
+        <b>Post Date</b>
+        <span><input type="date" id="date" /></span>
+    </label>
+    <button type="submit" class="fullWidth">Submit</button>
+</form>

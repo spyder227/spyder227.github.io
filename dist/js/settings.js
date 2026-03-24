@@ -15,6 +15,8 @@ const chartColors = [
     '#b66363' //red
 ];
 
+const accentRGB = '105, 158, 156';
+
 const datasetOptions = {
     backgroundColor: chartColors,
     borderWidth: 5,
@@ -81,7 +83,7 @@ const relationshipSections = `<option value="">(select)</option>
     <option value="professional" data-id="5">Professional</option>
     <option value="antagonistic" data-id="6">Antagonistic</option>
     <option value="pets" data-id="7">Pets</option>
-    <option value="miscellaneous" data-id="8">Miscellaneous</option>`;
+    <option value="miscellaneous" data-id="8">Miscellaneous</option>`;  
 
 const relationshipOptions = `<option value="">(select)</option>
     <optgroup label="Family">

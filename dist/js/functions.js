@@ -2737,3 +2737,238 @@ function groupAges(age) {
         return 'Non-Human Aging';
     }
 }
+
+/***** WRITING TRACKING FUNCTIONS *****/
+function toggleRecordsView(e) {
+    let view = e.dataset.view.toLowerCase().trim();
+    if(view === 'heatmap') {
+        e.dataset.view = 'list';
+        e.closest('.records').querySelector('.records--content').dataset.view = 'list';
+    } else {
+        e.dataset.view = 'heatmap';
+        e.closest('.records').querySelector('.records--content').dataset.view = 'heatmap';
+    }
+}
+function changeRecordYear(e) {
+    e.closest('.filter--year').querySelectorAll('button').forEach(item => item.classList.remove('is-active'));
+    e.classList.add('is-active');
+    initRecords(siteObject, staticThreads, staticRecords);
+}
+function changeRecordSite(e) {
+    e.closest('.filter--sites').querySelectorAll('button').forEach(item => item.classList.remove('is-active'));
+    e.classList.add('is-active');
+    initRecords(siteObject, staticThreads, staticRecords);
+}
+function changeRecordShip(e) {
+    e.closest('.filter--ships').querySelectorAll('button').forEach(item => item.classList.remove('is-active'));
+    e.classList.add('is-active');
+    initRecords(siteObject, staticThreads, staticRecords);
+}
+function changeRecordCharacter(e) {
+    e.closest('.filter--characters').querySelectorAll('button').forEach(item => item.classList.remove('is-active'));
+    e.classList.add('is-active');
+    initRecords(siteObject, staticThreads, staticRecords);
+}
+function initRecordsFilters(years, characters, ships, sites) {
+    let yearsHTML = ``;
+    years.forEach((year, i) => {
+        yearsHTML += `<button onClick="changeRecordYear(this)" data-year="${year}" class="${i === 0 ? 'is-active' : ''}">
+            ${year}
+        </button>`;
+    })
+    document.querySelector('.records .filter--year').innerHTML = yearsHTML;
+
+    let charHTML = `<button onClick="changeRecordCharacter(this)" data-character="all" class="is-active">All</button>`;
+    characters.forEach(character => {
+        charHTML += `<button onClick="changeRecordCharacter(this)" data-character="${character}">
+            ${character}
+        </button>`;
+    })
+    document.querySelector('.records .filter--characters').innerHTML = charHTML;
+
+    let shipsHTML = `<button onClick="changeRecordShip(this)" data-ship="all" class="is-active">All</button>`;
+    ships.forEach(ship => {
+        shipsHTML += `<button onClick="changeRecordShip(this)" data-ship="${ship}">
+            ${ship}
+        </button>`;
+    })
+    document.querySelector('.records .filter--ships').innerHTML = shipsHTML;
+
+    if(sites.length > 1) {
+        let sitesHTML = `<button onClick="changeRecordSite(this)" data-site="all" class="is-active">All</button>`;
+        sites.forEach((site, i) => {
+            if(sites[i - 1] && sites[i - 1].Status === 'active' && site.Status !== 'active') {
+                sitesHTML += '<hr />';
+            }
+            sitesHTML += `<button onClick="changeRecordSite(this)" data-site="${site.Site}">
+                ${site.Site}
+            </button>`;
+        });
+        document.querySelector('.records .filter--sites').innerHTML = sitesHTML;
+    }
+}
+function initRecords(sites, threads, records) {
+    let selectedFilters = {
+        year: parseInt(document.querySelector('.records .filter--year .is-active').dataset.year),
+        character: document.querySelector('.records .filter--characters .is-active').dataset.character,
+        ship: document.querySelector('.records .filter--ships .is-active').dataset.ship,
+        site: document.querySelector('.records .filter--sites') ? document.querySelector('.records .filter--sites .is-active').dataset.site : sites[0].Site,
+    }
+
+    let filteredRecords = records.filter(item => 
+        (item.Site === selectedFilters.site || selectedFilters.site === 'all') &&
+        new Date(item.Date).getFullYear() === selectedFilters.year &&
+        (JSON.parse(item.Character).name === selectedFilters.character || selectedFilters.character === 'all') &&
+        (item.Ship === selectedFilters.ship || selectedFilters.ship === 'all')
+    );
+
+    console.log('filtered:');
+    console.log(filteredRecords);
+
+    let heatmapHTML = formatHeatmap(filteredRecords, selectedFilters.year),
+        listHTML = `Coming soon...`;
+        
+    document.querySelector('.records--heatmaps').innerHTML = heatmapHTML;
+    document.querySelector('.records--list').innerHTML = listHTML;
+}
+function totalWords(records) {
+    let words = 0;
+    records.forEach(record => {
+        words += parseInt(record.Words);
+    });
+    return words;
+}
+function daysInMonth(month, year) {
+    return new Date(year, month, 0).getDate();
+}
+function firstDayOfMonth(month, year) {
+    return new Date(year, month, 1).getDay();
+}
+function formatHeatmap(records, year) {
+    let monthlyRecords = {
+        january: records.filter(item => new Date(item.Date).getMonth() === 0),
+        february: records.filter(item => new Date(item.Date).getMonth() === 1),
+        march: records.filter(item => new Date(item.Date).getMonth() === 2),
+        april: records.filter(item => new Date(item.Date).getMonth() === 3),
+        may: records.filter(item => new Date(item.Date).getMonth() === 4),
+        june: records.filter(item => new Date(item.Date).getMonth() === 5),
+        july: records.filter(item => new Date(item.Date).getMonth() === 6),
+        august: records.filter(item => new Date(item.Date).getMonth() === 7),
+        september: records.filter(item => new Date(item.Date).getMonth() === 8),
+        october: records.filter(item => new Date(item.Date).getMonth() === 9),
+        november: records.filter(item => new Date(item.Date).getMonth() === 10),
+        december: records.filter(item => new Date(item.Date).getMonth() === 11),
+    }
+    let html = `<div class="heatmap">
+        <div class="heatmap--header">
+            <h2>${year} Heatmap</h2>
+            <div class="heatmap--stats">
+                <span>${records.length} posts</span>
+                <span>${totalWords(records)} words</span>
+            </div>
+        </div>
+        <div class="heatmap--calendars">
+            ${formatHeatmapCalendar(monthlyRecords, year)}
+        </div>
+    </div>`;
+
+    return html;
+}
+function assessYearlyWords(records, year) {
+    let yearlyWords = {};
+    for(let month = 0; month < 12; month++) {
+        for(let day = 0; day < daysInMonth(month, year); day++) {
+            let wordsByDay = 0;
+            let recordsByDay = records[getMonthName(month)].filter(item => (new Date(item.Date).getDate() === day + 1) && new Date(item.Date).getMonth() === month);
+            recordsByDay.forEach(record => wordsByDay += parseInt(record.Words));
+            yearlyWords[`${month + 1}/${day + 1}/${year}`] = wordsByDay;
+        }
+    }
+    return yearlyWords;
+}
+function getOpacity(words, max) {
+    if(!max || words <= 0) return 0;
+
+    const percent = words / max;
+    return Math.round(percent * 100) / 100;
+}
+function formatHeatmapCalendar(records, year) {
+    let html = ``;
+    let yearlyWords = assessYearlyWords(records, year);
+    let maxWords = Math.max(0, ...Object.values(yearlyWords));
+
+    for(let i = 0; i < 12; i++) {
+        html += formatMonthlyHeatmap(records[getMonthName(i)], getMonthName(i), year, maxWords);
+    }
+
+    return html;
+}
+function formatCalendarRow(row, firstDay, lastDay, rowCount, recordsPerDay, maxWords) {
+    let html = ``;
+
+    for(let i = 0; i < 7; i++) {
+        let wordCount = 0;
+        let calendarSquare = i + ((row - 1) * 7);
+        let daysRecords = recordsPerDay[calendarSquare - firstDay];
+        if(daysRecords && daysRecords.length > 0) {
+            daysRecords.forEach(record => {
+                wordCount += parseInt(record.Words);
+            });
+        }
+
+        if((row === 1 && i < firstDay) || (i >= lastDay && row === rowCount)) {
+            //placeholder days
+            html += `<div class="placeholder"></div>`;
+        } else {
+            //inner row days
+            html += `<div ${wordCount > 0 ? `style="background-color: rgba(${accentRGB}, ${getOpacity(wordCount, maxWords)})"` : ''}>
+                <span>${calendarSquare - firstDay + 1}</span>
+                ${wordCount > 0 ? `<div class="heatmap--tooltip">${daysRecords.length} posts<br>${wordCount} words</div>` : ''}
+            </div>`;
+        }
+    }
+
+    return html;
+}
+function formatMonthlyHeatmap(records, month, year, maxWords) {
+    let numDays = daysInMonth(getMonthNum(month), year);
+    let firstDay = firstDayOfMonth (getMonthNum(month) - 1, year);
+    let numRows = Math.ceil((numDays + firstDay) / 7);
+    let lastDay = (numRows * 7) - (numDays + firstDay);
+    
+    let recordsPerDay = [];
+    for(let i = 0; i < numDays; i++) {
+        let dayRecords = records.filter(item => new Date(item.Date).getDate() === i + 1);
+        recordsPerDay.push(dayRecords);
+    }
+
+    let gridHTML = ``;
+    for(let i = 0; i < numRows; i++) {
+        if(i === 0) {
+            //first week
+            gridHTML += formatCalendarRow(i + 1, firstDay, 7 - lastDay, numRows, recordsPerDay, maxWords);
+        } else if(i === numRows - 1) {
+            //last week
+            gridHTML += formatCalendarRow(i + 1, firstDay, 7 - lastDay, numRows, recordsPerDay, maxWords);
+        } else {
+            gridHTML += formatCalendarRow(i + 1, firstDay, 7 - lastDay, numRows, recordsPerDay, maxWords);
+        }
+    }
+
+    let html = `<div class="heatmap--month">
+        <b>${month}</b>
+        <span>${totalWords(records)} words</span>
+        <div class="heatmap--calendar">
+            <b>Sun</b>
+            <b>Mon</b>
+            <b>Tue</b>
+            <b>Wed</b>
+            <b>Thu</b>
+            <b>Fri</b>
+            <b>Sat</b>
+            ${gridHTML}
+        </div>
+    </div>`;
+
+    return html;
+}
