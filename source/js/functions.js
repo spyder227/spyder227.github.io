@@ -328,9 +328,35 @@ function initThreadSelect(el) {
             Character: JSON.parse(item.Character)
         }))].filter(item => parseInt(item.Character.id) === parseInt(selectedCharacter) && item.SiteID === selectedSite);
 
+        threads.sort((a, b) => {
+            if((a.Status !== 'complete' && a.Status !== 'archived') && (b.Status === 'complete' || b.Status === 'archived')) {
+                return -1;
+            } else if ((b.Status !== 'complete' && b.Status !== 'archived') && (a.Status === 'complete' || a.Status === 'archived')) {
+                return 1;
+            } else if(a.Title < b.Title) {
+                return -1;
+            } else if(a.Title > b.Title) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+
         let html = `<option value="">(select)</option>`;
-        threads.forEach(thread => {
-            html += `<option value="${thread.ThreadID}">${thread.Title}</option>`;
+        threads.forEach((thread, i) => {
+            if(i === 0) {
+                html += `<optgroup label="${thread.Status !== 'complete' && thread.Status !== 'archived' ? 'Active' : 'Inactive'}">`;
+                html += `<option value="${thread.ThreadID}">${capitalize(thread.Title, [' ', '-'])}</option>`;
+            } else if(threads[i - 1].Status !== 'complete' && threads[i - 1].Status !== 'archived' && (thread.Status === 'complete' || thread.Status === 'archived')) {
+                html += `</optgroup>`;
+                html += `<optgroup label="${thread.Status !== 'complete' && thread.Status !== 'archived' ? 'Active' : 'Inactive'}">`;
+                html += `<option value="${thread.ThreadID}">${capitalize(thread.Title, [' ', '-'])}</option>`;
+            } else {
+                html += `<option value="${thread.ThreadID}">${capitalize(thread.Title, [' ', '-'])}</option>`;
+            }
+            if(threads.length - 1 === i) {
+                html += `</optgroup>`;
+            }
         });
         el.closest('form').querySelector('#thread-auto').innerHTML = html;
     });
@@ -597,7 +623,7 @@ function openSubmenu(e) {
         document.querySelectorAll(`[data-menu="${menu}"]`).forEach(el => el.classList.add('is-open'));
     }
 }
-function sendAjax(form, data, successMessage) {
+function sendAjax(form, data, successMessage, async = true) {
     $(form).trigger('reset');
     
     $.ajax({
@@ -606,6 +632,7 @@ function sendAjax(form, data, successMessage) {
         method: "POST",
         type: "POST",
         dataType: "json", 
+        async: async,
         success: function () {
             console.log('success');
         },
@@ -626,7 +653,7 @@ function sendAjax(form, data, successMessage) {
         }
     });
 }
-function sendAjaxSync(data) {
+function sendAjaxSync(data, form = null, count = null, num = null) {
     $.ajax({
         url: `https://script.google.com/macros/s/${deployID}/exec`,   
         data: data,
@@ -636,13 +663,37 @@ function sendAjaxSync(data) {
         async: false,
         success: function () {
             console.log('success');
+            if(form && count > 1) {
+                form.querySelector('[type="submit"]').innerText = 'Submitting...';
+            } else if(form) { 
+                if(successMessage) {
+                    form.querySelector('[type="submit"]').innerText = 'Submitted';
+                    form.innerHTML = successMessage;
+                }
+            }
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log('error');
             console.log(`Whoops! The sheet connection didn't quite work. Please refresh the page and try again! If this persists, please open the console (ctrl + shift + J) and send Lux a screenshot of what's there.`);
+            if(form) {
+                form.querySelector('[type="submit"]').innerText = 'ERROR!!';
+            }
         },
         complete: function () {
-            console.log('thread complete');
+            console.log('call complete');
+            if(count && num && (count - 1 === num || count === 1)) {
+                console.log('all complete');
+                setTimeout(() => {
+                    if(form) {
+                        form.querySelector('[type="submit"]').innerText = `Submit`;
+                        form.querySelector('[type="submit"]').removeAttribute('disabled');
+                    
+                        if(successMessage) {
+                            form.innerHTML = successMessage;
+                        }
+                    }
+                }, 100);
+            }
         }
     });
 }
@@ -778,6 +829,8 @@ function addRow(e) {
         initPartnerSelect(e, 'initial', '#characterSite', true);
     } else if(e.closest('.multi-buttons').dataset.rowType === 'add-info') {
         e.closest('.adjustable').querySelector('.rows').insertAdjacentHTML('beforeend', formatInfoRow(e));
+    } else if(e.closest('.multi-buttons').dataset.rowType === 'records') {
+        e.closest('.adjustable').querySelector('.rows').insertAdjacentHTML('beforeend', formatRecordsRow(e));
     }
 }
 function removeRow(e) {
@@ -793,6 +846,18 @@ function formatInfoRow() {
         <label>
             <b>Variable Content</b>
             <span><input type="text" class="content" placeholder="Content" required /></span>
+        </label>
+    </div>`;
+}
+function formatRecordsRow() {
+    return `<div class="row records-row grid">
+        <label>
+            <b>Word Count</b>
+            <span><input type="number" class="words" min="0" required /></span>
+        </label>
+        <label>
+            <b>Post Date</b>
+            <span><input type="date" class="date" value="${new Date()}" /></span>
         </label>
     </div>`;
 }
@@ -1138,24 +1203,30 @@ function addRecord(form) {
     let site = form.querySelector('#site').options[form.querySelector('#site').selectedIndex].innerText.trim().toLowerCase();
     let character = form.querySelector('#character').options[form.querySelector('#character').selectedIndex];
     let id = form.querySelector('#thread-auto').options[form.querySelector('#thread-auto').selectedIndex].value;
-    let words = form.querySelector('#words').value.trim();
-    let ship = form.querySelector('#ship').value.trim().toLowerCase();
-    let date = form.querySelector('#date').value;
+    let records = form.querySelectorAll('.records-row');
+    let ship = form.querySelector('#ship').value.toLowerCase().trim();
+    let data = [];
 
-    let data = {
-        SubmissionType: 'add-record',
-        Site: site,
-        Character: JSON.stringify({
-            name: character.innerText.trim().toLowerCase().replaceAll(`'`, `&apos;`),
-            id: character.value.trim().toLowerCase(),
-        }),
-        Thread: id,
-        Words: words,
-        Ship: ship,
-        Date: date,
-    };
+    records.forEach(record => {
+        data.push({
+            SubmissionType: 'add-record',
+            Site: site,
+            Character: JSON.stringify({
+                name: character.innerText.trim().toLowerCase().replaceAll(`'`, `&apos;`),
+                id: character.value.trim().toLowerCase(),
+            }),
+            Thread: id,
+            Words: record.querySelector('.words').value.trim(),
+            Ship: ship,
+            Date: record.querySelector('.date').value,
+        })
+    });
 
-    sendAjax(form, data, successMessage);
+    form.querySelector('[type="submit"]').innerText = `Submitting...`;
+    form.querySelector('[type="submit"]').setAttribute('disabled', true);
+    data.forEach((item, i) => {
+        sendAjaxSync(item, form, data.length, i);
+    });
 }
 
 function submitThread(form) {

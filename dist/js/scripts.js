@@ -13,39 +13,39 @@ document.querySelectorAll('.backdrop').forEach(overlay => {
 document.querySelectorAll('form').forEach(form => {
     form.addEventListener('submit', e => {
         e.preventDefault();
-        e.currentTarget.querySelector('[type="submit"]').innerText = 'Submitting...';
-        let type = e.currentTarget.dataset.form;
+        let form = e.currentTarget;
+        let type = form.dataset.form;
 
         switch(type) {
             case 'add-site':
-                submitSite(e.currentTarget);
+                submitSite(form);
                 break;
             case 'add-tags':
-                submitTags(e.currentTarget);
+                submitTags(form);
                 break;
             case 'add-character':
-                submitCharacter(e.currentTarget);
+                submitCharacter(form);
                 break;
             case 'add-partner':
-                submitPartner(e.currentTarget);
+                submitPartner(form);
                 break;
             case 'add-thread':
-                submitThread(e.currentTarget);
+                submitThread(form);
                 break;
             case 'edit-tags':
-                updateTags(e.currentTarget);
+                updateTags(form);
                 break;
             case 'edit-character':
-                updateCharacter(e.currentTarget);
+                updateCharacter(form);
                 break;
             case 'edit-partner':
-                updatePartner(e.currentTarget);
+                updatePartner(form);
                 break;
             case 'edit-thread':
-                updateThread(e.currentTarget);
+                updateThread(form);
                 break;
             case 'add-record':
-                addRecord(e.currentTarget);
+                addRecord(form);
                 break;
             default:
                 break;

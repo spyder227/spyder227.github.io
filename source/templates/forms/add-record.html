@@ -19,16 +19,16 @@
         </select></span>
     </label>
     <label>
-        <b>Word Count</b>
-        <span><input type="number" id="words" min="0" required /></span>
-    </label>
-    <label>
         <b>Ship</b>
         <span><input type="text" id="ship" placeholder="(optional)" /></span>
     </label>
-    <label>
-        <b>Post Date</b>
-        <span><input type="date" id="date" /></span>
-    </label>
+    <div class="field-wrap fullWidth adjustable">
+        <b>Records</b>
+        <div class="rows"></div>
+        <div class="multi-buttons" data-row-type="records">
+            <button type="button" onclick="addRow(this)">+ New Row</button>
+            <button type="button" onclick="removeRow(this)">- Remove Row</button>
+        </div>
+    </div>
     <button type="submit" class="fullWidth">Submit</button>
 </form>
