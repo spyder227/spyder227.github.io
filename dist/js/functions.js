@@ -3019,6 +3019,7 @@ function initRecords(sites, records) {
         character: document.querySelector('.records .filter--characters .is-active').dataset.character,
         ship: document.querySelector('.records .filter--ships .is-active').dataset.ship,
         site: document.querySelector('.records .filter--sites') ? document.querySelector('.records .filter--sites .is-active').dataset.site : sites[0].Site,
+        type: document.querySelector('.records .filter--type .is-active').dataset.type,
         partner: document.querySelector('.records .filter--partners .is-active').dataset.partner,
     }
 
@@ -3028,17 +3029,20 @@ function initRecords(sites, records) {
         new Date(item.Date).getFullYear() === selectedFilters.year &&
         (JSON.parse(item.Character).name === selectedFilters.character || selectedFilters.character === 'all') &&
         (item.Ship === selectedFilters.ship || selectedFilters.ship === 'all') &&
+        (item.threadData.Type === selectedFilters.type || selectedFilters.type === 'all') &&
         (item.partnerNames.includes(selectedFilters.partner) || selectedFilters.partner === 'all')
     );
 
     let filteredThreads = threads.filter(item => 
         (item.Site === selectedFilters.site || selectedFilters.site === 'all') &&
-        (JSON.parse(item.Character).name === selectedFilters.character || selectedFilters.character === 'all')
+        (JSON.parse(item.Character).name === selectedFilters.character || selectedFilters.character === 'all') &&
+        (item.Type === selectedFilters.type || selectedFilters.type === 'all')
     );
 
     console.log('final records:');
     console.log(filteredRecords);
 
+    //format and print
     let heatmapHTML = formatHeatmap(filteredRecords, selectedFilters.year),
         listHTML = `Coming soon...`;
         
