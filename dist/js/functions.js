@@ -2961,8 +2961,7 @@ function initRecordsFilters(years, characters, ships, sites, partners) {
         else if(parseInt(a) < parseInt(b)) return 1;
         else return 0;
     });
-}
-function initRecordsFilters(years, characters, ships, sites) {
+
     let yearsHTML = ``;
     years.forEach((year, i) => {
         yearsHTML += `<button onClick="changeRecordFilter(this)" data-filter="year" data-year="${year}" class="${i === 0 ? 'is-active' : ''}">
@@ -3031,12 +3030,6 @@ function initRecords(sites, records) {
         (item.Ship === selectedFilters.ship || selectedFilters.ship === 'all') &&
         (item.threadData.Type === selectedFilters.type || selectedFilters.type === 'all') &&
         (item.partnerNames.includes(selectedFilters.partner) || selectedFilters.partner === 'all')
-    );
-
-    let filteredThreads = threads.filter(item => 
-        (item.Site === selectedFilters.site || selectedFilters.site === 'all') &&
-        (JSON.parse(item.Character).name === selectedFilters.character || selectedFilters.character === 'all') &&
-        (item.Type === selectedFilters.type || selectedFilters.type === 'all')
     );
 
     console.log('final records:');
