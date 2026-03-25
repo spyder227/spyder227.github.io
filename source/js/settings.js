@@ -15,7 +15,9 @@ const chartColors = [
     '#b66363' //red
 ];
 
-const accentRGB = '105, 158, 156';
+const heatmapLow = '103, 166, 154';
+const heatmapMid = '111, 155, 104';
+const heatmapHigh = '174, 157, 102';
 
 const datasetOptions = {
     backgroundColor: chartColors,

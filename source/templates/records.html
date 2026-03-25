@@ -19,18 +19,21 @@
                 <div class="threads--filter filter--parent">
                     <button onClick="openFilters(this)">Character</button>
                     <div class="threads--filter-dropdown">
-                        <div class="threads--filter-group filter--characters" data-filter-group="character">
-                            <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>all</b></label>
-                        </div>
+                        <div class="threads--filter-group filter--characters" data-filter-group="character"></div>
+                    </div>
+                </div>
+                <!--Ship-->
+                <div class="threads--filter filter--parent">
+                    <button onClick="openFilters(this)">Ship</button>
+                    <div class="threads--filter-dropdown">
+                        <div class="threads--filter-group filter--ships" data-filter-group="ship"></div>
                     </div>
                 </div>
                 <!--Partner-->
                 <div class="threads--filter filter--parent">
-                    <button onClick="openFilters(this)">Ship</button>
+                    <button onClick="openFilters(this)">Partner</button>
                     <div class="threads--filter-dropdown">
-                        <div class="threads--filter-group filter--ships" data-filter-group="ship">
-                            <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>all</b></label>
-                        </div>
+                        <div class="threads--filter-group filter--partners" data-filter-group="partner"></div>
                     </div>
                 </div>
                 <!--Site-->
@@ -38,9 +41,7 @@
                     <div class="threads--filter filter--parent">
                         <button onClick="openFilters(this)">Site</button>
                         <div class="threads--filter-dropdown">
-                            <div class="threads--filter-group filter--sites" data-filter-group="site">
-                                <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>any</b></label>
-                            </div>
+                            <div class="threads--filter-group filter--sites" data-filter-group="site"></div>
                         </div>
                     </div>
                 }
@@ -73,10 +74,11 @@
             fetch(`https://opensheet.elk.sh/${sheetID}/Writing`)
             .then((response) => response.json())
             .then((recordsData) => {
+                let filteredRecords = [];
                 if(siteObject.length === 1) {
-                    staticRecords = [...recordsData.filter(item => item.Site === siteObject[0].Site)];
+                    filteredRecords = [...recordsData.filter(item => item.Site === siteObject[0].Site)];
                 } else {
-                    staticRecords = [...recordsData];
+                    filteredRecords = [...recordsData];
                 }
 
                 siteObject.sort((a, b) => {
@@ -87,12 +89,48 @@
                     else return 0;
                 });
 
+                //combine thread data into record data
+                let combinedRecords = filteredRecords.map(item => {
+                    let thread = staticThreads.filter(thread => thread.ThreadID === item.Thread && thread.Site === item.Site)[0];
+                    let partnerNamesArray = [], partnerIdsArray = [];
+                    JSON.parse(thread.Featuring).forEach(partner => {
+                        if(!partnerNamesArray.includes(partner.writer)) {
+                            partnerNamesArray.push(partner.writer);
+                            partnerIdsArray.push(partner.writerId);
+                        }
+                    });
+                    
+                    return ({
+                        ...item,
+                        threadData: thread,
+                        partnerNames: partnerNamesArray,
+                        partnerIds: partnerIdsArray,
+                    });
+                });
+
+                if(siteObject.length === 1) {
+                    staticRecords = [...combinedRecords.filter(item => item.Site === siteObject[0].Site)];
+                } else {
+                    staticRecords = [...combinedRecords];
+                }
+
                 let recordYears = [...new Set(staticRecords.map(item => new Date(item.Date).getFullYear()))];
                 let recordCharacters = [...new Set(staticRecords.map(item => JSON.parse(item.Character).name))];
                 let recordShips = [...new Set(staticRecords.map(item => item.Ship))];
                 let recordSites = [...new Set(siteObject.map(item => ({Site: item.Site, Status: item.Status})))];
-                initRecordsFilters(recordYears, recordCharacters, recordShips, recordSites);
-                initRecords(siteObject, staticThreads, staticRecords);
+                
+                let combinedPartners = [...new Set(staticRecords.map(item => item.partnerNames))];
+                let recordPartners = [];
+                combinedPartners.forEach(partnerArray => {
+                    partnerArray.forEach(partner => {
+                        if(!recordPartners.includes(partner)) {
+                            recordPartners.push(partner);
+                        }
+                    });
+                });
+
+                initRecordsFilters(recordYears, recordCharacters, recordShips, recordSites, recordPartners);
+                initRecords(siteObject, staticRecords);
             });
 
         });

@@ -2950,80 +2950,93 @@ function toggleRecordsView(e) {
         e.closest('.records').querySelector('.records--content').dataset.view = 'heatmap';
     }
 }
-function changeRecordYear(e) {
-    e.closest('.filter--year').querySelectorAll('button').forEach(item => item.classList.remove('is-active'));
+function changeRecordFilter(e) {
+    e.closest(`.filter--${e.dataset.filter}`).querySelectorAll('button').forEach(item => item.classList.remove('is-active'));
     e.classList.add('is-active');
-    initRecords(siteObject, staticThreads, staticRecords);
+    initRecords(siteObject, staticRecords);
 }
-function changeRecordSite(e) {
-    e.closest('.filter--sites').querySelectorAll('button').forEach(item => item.classList.remove('is-active'));
-    e.classList.add('is-active');
-    initRecords(siteObject, staticThreads, staticRecords);
-}
-function changeRecordShip(e) {
-    e.closest('.filter--ships').querySelectorAll('button').forEach(item => item.classList.remove('is-active'));
-    e.classList.add('is-active');
-    initRecords(siteObject, staticThreads, staticRecords);
-}
-function changeRecordCharacter(e) {
-    e.closest('.filter--characters').querySelectorAll('button').forEach(item => item.classList.remove('is-active'));
-    e.classList.add('is-active');
-    initRecords(siteObject, staticThreads, staticRecords);
+function initRecordsFilters(years, characters, ships, sites, partners) {
+    years.sort((a, b) => {
+        if(parseInt(a) > parseInt(b)) return -1;
+        else if(parseInt(a) < parseInt(b)) return 1;
+        else return 0;
+    });
 }
 function initRecordsFilters(years, characters, ships, sites) {
     let yearsHTML = ``;
     years.forEach((year, i) => {
-        yearsHTML += `<button onClick="changeRecordYear(this)" data-year="${year}" class="${i === 0 ? 'is-active' : ''}">
+        yearsHTML += `<button onClick="changeRecordFilter(this)" data-filter="year" data-year="${year}" class="${i === 0 ? 'is-active' : ''}">
             ${year}
         </button>`;
     })
     document.querySelector('.records .filter--year').innerHTML = yearsHTML;
 
-    let charHTML = `<button onClick="changeRecordCharacter(this)" data-character="all" class="is-active">All</button>`;
+    characters.sort();
+    let charHTML = `<button onClick="changeRecordFilter(this)" data-filter="characters" data-character="all" class="is-active">All</button>`;
     characters.forEach(character => {
-        charHTML += `<button onClick="changeRecordCharacter(this)" data-character="${character}">
+        charHTML += `<button onClick="changeRecordFilter(this)" data-filter="characters" data-character="${character}">
             ${character}
         </button>`;
     })
     document.querySelector('.records .filter--characters').innerHTML = charHTML;
 
-    let shipsHTML = `<button onClick="changeRecordShip(this)" data-ship="all" class="is-active">All</button>`;
+    ships.sort();
+    let shipsHTML = `<button onClick="changeRecordFilter(this)" data-filter="ships" data-ship="all" class="is-active">All</button>`;
     ships.forEach(ship => {
-        shipsHTML += `<button onClick="changeRecordShip(this)" data-ship="${ship}">
-            ${ship}
-        </button>`;
+        if(ship !== '') {
+            shipsHTML += `<button onClick="changeRecordFilter(this)" data-filter="ships" data-ship="${ship}">
+                ${ship}
+            </button>`;
+        }
     })
     document.querySelector('.records .filter--ships').innerHTML = shipsHTML;
 
+    partners.sort();
+    let partnersHTML = `<button onClick="changeRecordFilter(this)" data-filter="partners" data-partner="all" class="is-active">All</button>`;
+    partners.forEach(partner => {
+        partnersHTML += `<button onClick="changeRecordFilter(this)" data-filter="partners" data-partner="${partner}">
+            ${partner}
+        </button>`;
+    })
+    document.querySelector('.records .filter--partners').innerHTML = partnersHTML;
+
     if(sites.length > 1) {
-        let sitesHTML = `<button onClick="changeRecordSite(this)" data-site="all" class="is-active">All</button>`;
+        let sitesHTML = `<button onClick="changeRecordFilter(this)" data-filter="sites" data-site="all" class="is-active">All</button>`;
         sites.forEach((site, i) => {
             if(sites[i - 1] && sites[i - 1].Status === 'active' && site.Status !== 'active') {
                 sitesHTML += '<hr />';
             }
-            sitesHTML += `<button onClick="changeRecordSite(this)" data-site="${site.Site}">
+            sitesHTML += `<button onClick="changeRecordFilter(this)" data-filter="sites" data-site="${site.Site}">
                 ${site.Site}
             </button>`;
         });
         document.querySelector('.records .filter--sites').innerHTML = sitesHTML;
     }
 }
-function initRecords(sites, threads, records) {
+function initRecords(sites, records) {
     let selectedFilters = {
         year: parseInt(document.querySelector('.records .filter--year .is-active').dataset.year),
         character: document.querySelector('.records .filter--characters .is-active').dataset.character,
         ship: document.querySelector('.records .filter--ships .is-active').dataset.ship,
         site: document.querySelector('.records .filter--sites') ? document.querySelector('.records .filter--sites .is-active').dataset.site : sites[0].Site,
+        partner: document.querySelector('.records .filter--partners .is-active').dataset.partner,
     }
 
+    //filter records and threads by the relevant data
     let filteredRecords = records.filter(item => 
         (item.Site === selectedFilters.site || selectedFilters.site === 'all') &&
         new Date(item.Date).getFullYear() === selectedFilters.year &&
         (JSON.parse(item.Character).name === selectedFilters.character || selectedFilters.character === 'all') &&
-        (item.Ship === selectedFilters.ship || selectedFilters.ship === 'all')
+        (item.Ship === selectedFilters.ship || selectedFilters.ship === 'all') &&
+        (item.partnerNames.includes(selectedFilters.partner) || selectedFilters.partner === 'all')
     );
 
-    console.log('filtered:');
+    let filteredThreads = threads.filter(item => 
+        (item.Site === selectedFilters.site || selectedFilters.site === 'all') &&
+        (JSON.parse(item.Character).name === selectedFilters.character || selectedFilters.character === 'all')
+    );
+
+    console.log('final records:');
     console.log(filteredRecords);
 
     let heatmapHTML = formatHeatmap(filteredRecords, selectedFilters.year),
@@ -3064,8 +3077,9 @@ function formatHeatmap(records, year) {
         <div class="heatmap--header">
             <h2>${year} Heatmap</h2>
             <div class="heatmap--stats">
-                <span>${records.length} posts</span>
-                <span>${totalWords(records)} words</span>
+                <span>${records.length.toLocaleString('en-US')} posts</span>
+                <span>${totalWords(records).toLocaleString('en-US')} words</span>
+                <span>${getAverage(totalWords(records), records.length)} avg</span>
             </div>
         </div>
         <div class="heatmap--calendars">
@@ -3087,11 +3101,24 @@ function assessYearlyWords(records, year) {
     }
     return yearlyWords;
 }
-function getOpacity(words, max) {
+function getAverage(words, posts) {
+    if(words > 0 && posts > 0) {
+        return Math.round(words / posts).toLocaleString('en-US');
+    }
+    return 0;
+}
+function getColor(words, max) {
     if(!max || words <= 0) return 0;
 
-    const percent = words / max;
-    return Math.round(percent * 100) / 100;
+    const percentNum = Math.round((words / max) * 100);
+    const roundedTen = Math.ceil(percentNum / 10) * 10;
+    const chunk = roundedTen / 100;
+    if(chunk < 0.4) {
+        return `${heatmapLow}, ${chunk + 0.1}`;
+    } else if(chunk >= 0.7) {
+        return `${heatmapHigh}, ${chunk}`;
+    }
+    return `${heatmapMid}, ${chunk}`;
 }
 function formatHeatmapCalendar(records, year) {
     let html = ``;
@@ -3122,9 +3149,9 @@ function formatCalendarRow(row, firstDay, lastDay, rowCount, recordsPerDay, maxW
             html += `<div class="placeholder"></div>`;
         } else {
             //inner row days
-            html += `<div ${wordCount > 0 ? `style="background-color: rgba(${accentRGB}, ${getOpacity(wordCount, maxWords)})"` : ''}>
+            html += `<div ${wordCount > 0 ? `style="background-color: rgba(${getColor(wordCount, maxWords)})"` : ''}>
                 <span>${calendarSquare - firstDay + 1}</span>
-                ${wordCount > 0 ? `<div class="heatmap--tooltip">${daysRecords.length} posts<br>${wordCount} words</div>` : ''}
+                ${wordCount > 0 ? `<div class="heatmap--tooltip">${daysRecords.length} posts<br>${wordCount} words<br>${getAverage(wordCount, daysRecords.length)} avg</div>` : ''}
             </div>`;
         }
     }
@@ -3158,7 +3185,11 @@ function formatMonthlyHeatmap(records, month, year, maxWords) {
 
     let html = `<div class="heatmap--month">
         <b>${month}</b>
-        <span>${totalWords(records)} words</span>
+        <div class="heatmap--stats">
+            <span>${records.length.toLocaleString('en-US')} posts</span>
+            <span>${totalWords(records).toLocaleString('en-US')} words</span>
+            <span>${getAverage(totalWords(records), records.length)} avg</span>
+        </div>
         <div class="heatmap--calendar">
             <b>Sun</b>
             <b>Mon</b>
