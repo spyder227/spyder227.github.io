@@ -3030,7 +3030,7 @@ function initRecords(sites, records) {
         new Date(item.Date).getFullYear() === selectedFilters.year &&
         (JSON.parse(item.Character).name === selectedFilters.character || selectedFilters.character === 'all') &&
         (item.Ship === selectedFilters.ship || selectedFilters.ship === 'all') &&
-        (item.threadData.Type === selectedFilters.type || selectedFilters.type === 'all') &&
+        ((item.threadData && item.threadData.Type === selectedFilters.type) || selectedFilters.type === 'all') &&
         (item.partnerNames.includes(selectedFilters.partner) || selectedFilters.partner === 'all')
     );
 

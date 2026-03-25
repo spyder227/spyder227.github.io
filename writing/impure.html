@@ -217,12 +217,14 @@
                 let combinedRecords = filteredRecords.map(item => {
                     let thread = staticThreads.filter(thread => thread.ThreadID === item.Thread && thread.Site === item.Site)[0];
                     let partnerNamesArray = [], partnerIdsArray = [];
-                    JSON.parse(thread.Featuring).forEach(partner => {
-                        if(!partnerNamesArray.includes(partner.writer)) {
-                            partnerNamesArray.push(partner.writer);
-                            partnerIdsArray.push(partner.writerId);
-                        }
-                    });
+                    if(thread) {
+                        JSON.parse(thread.Featuring).forEach(partner => {
+                            if(!partnerNamesArray.includes(partner.writer)) {
+                                partnerNamesArray.push(partner.writer);
+                                partnerIdsArray.push(partner.writerId);
+                            }
+                        });
+                    }
                     
                     return ({
                         ...item,
