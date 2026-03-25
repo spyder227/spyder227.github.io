@@ -155,6 +155,18 @@
                         <div class="threads--filter-group filter--partners" data-filter-group="partner"></div>
                     </div>
                 </div>
+                <!--Type-->
+                <div class="threads--filter filter--parent">
+                    <button onClick="openFilters(this)">Type</button>
+                    <div class="threads--filter-dropdown">
+                        <div class="threads--filter-group filter--type" data-filter-group="type">
+                            <button class="is-active" onclick="changeRecordFilter(this)" data-filter="type" data-type="all">all</button>
+                            <button onclick="changeRecordFilter(this)" data-filter="type" data-type="thread">thread</button>
+                            <button onclick="changeRecordFilter(this)" data-filter="type" data-type="oneshot">oneshot</button>
+                            <button onclick="changeRecordFilter(this)" data-filter="type" data-type="event">event</button>
+                        </div>
+                    </div>
+                </div>
                 <!--Site-->
                 
             </div>
@@ -192,7 +204,7 @@
                 } else {
                     filteredRecords = [...recordsData];
                 }
-
+                
                 siteObject.sort((a, b) => {
                     if(a.Status === 'active' && b.Status !== 'active') return -1;
                     else if(a.Status !== 'active' && b.Status === 'active') return 1;
@@ -230,7 +242,6 @@
                 let recordCharacters = [...new Set(staticRecords.map(item => JSON.parse(item.Character).name))];
                 let recordShips = [...new Set(staticRecords.map(item => item.Ship))];
                 let recordSites = [...new Set(siteObject.map(item => ({Site: item.Site, Status: item.Status})))];
-                
                 let combinedPartners = [...new Set(staticRecords.map(item => item.partnerNames))];
                 let recordPartners = [];
                 combinedPartners.forEach(partnerArray => {
