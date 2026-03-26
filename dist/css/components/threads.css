@@ -73,6 +73,9 @@
         outline: none;
         cursor: pointer;
         text-align: left; }
+        .threads--filters-inner .filter--parent > button:hover {
+          border-color: var(--accent);
+          color: var(--text--secondary); }
       .threads--filters-inner .filter--parent.is-active > button {
         border-color: var(--accent);
         color: var(--text--secondary); }

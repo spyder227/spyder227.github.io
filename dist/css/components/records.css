@@ -11,16 +11,45 @@
     border-right: var(--border--primary);
     padding: var(--space--md);
     height: 61px; }
+    @media (max-width: 600px) {
+      .records--header {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: var(--space--md); } }
     @media (min-width: 601px) {
       .records--header {
         height: 100vh;
         padding: var(--space--md) 0 var(--space--md) var(--space--md); } }
+    .records--header > button:not(.records--toggle) {
+      background: none;
+      border: var(--border--primary);
+      border-radius: var(--radius--standard);
+      font-size: 9px;
+      text-transform: uppercase;
+      color: var(--text--primary);
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      line-height: 100%;
+      padding: var(--space--sm);
+      cursor: pointer;
+      transition: 0.3s ease-in-out; }
+      .records--header > button:not(.records--toggle):hover {
+        background: var(--accent);
+        color: var(--text--secondary); }
+    .records--header > hr {
+      width: calc(100% - var(--space--md)); }
+      @media (max-width: 600px) {
+        .records--header > hr {
+          display: none; } }
     .records--header hr {
       border: 0;
-      width: calc(100% - var(--space--md));
       height: 1px;
       background: var(--border--primary-color);
       margin: var(--space--md) 0; }
+    .records--header:has([data-view="list" i]) .heatmapOnly {
+      display: none; }
+    .records--header:has([data-view="heatmap" i]) .listOnly {
+      display: none; }
   .records--toggle {
     background: none;
     width: calc(100% - var(--space--md));
@@ -38,7 +67,14 @@
     outline: none;
     cursor: pointer;
     text-align: left;
-    overflow: auto; }
+    overflow: auto;
+    align-items: center; }
+    @media (max-width: 600px) {
+      .records--toggle {
+        order: 2;
+        margin: 0;
+        padding: 0 var(--space--xs);
+        width: 100%; } }
     .records--toggle::before {
       position: absolute;
       top: 0;
@@ -49,6 +85,9 @@
       border-radius: 50px;
       background: var(--bg-accent);
       transition: 0.3s ease-in-out; }
+      @media (max-width: 600px) {
+        .records--toggle::before {
+          width: calc(50% + var(--space--xs)); } }
     .records--toggle[data-view="list" i]::before {
       left: calc(50% - var(--space--sm)); }
     .records--toggle span {
@@ -73,6 +112,13 @@
     --fa-animation-duration: 5s; }
   .records--spinner {
     font-size: 100px; }
+    .records--spinner--list {
+      display: grid;
+      grid-template-columns: 100%;
+      gap: var(--space--sm); }
+      @media (min-width: 1441px) {
+        .records--spinner--list {
+          grid-template-columns: 1fr 1fr; } }
   .records .threads--filter-group button {
     background: none;
     border: none;
@@ -128,7 +174,9 @@
   color: var(--text--primary);
   font-size: 0.5rem;
   text-transform: uppercase;
-  letter-spacing: 0.2em; }
+  letter-spacing: 0.2em;
+  line-height: 200%;
+  justify-content: center; }
 
 .heatmap--calendars {
   display: flex;
@@ -149,6 +197,9 @@
     letter-spacing: 0.2em;
     text-align: center;
     padding: 0 var(--space--xs); }
+    @media (max-width: 480px) {
+      .heatmap--calendar > b {
+        font-size: 0.4rem; } }
   .heatmap--calendar > div {
     width: 100%;
     aspect-ratio: 1 / 1;
@@ -203,6 +254,11 @@
   align-items: center;
   width: max-content;
   max-width: 100%; }
+  .heatmap--month .heatmap--stats {
+    margin: var(--space--xs) 0;
+    border-bottom: var(--border--primary);
+    padding-bottom: var(--space--xs);
+    width: 100%; }
   .heatmap--month > b {
     font-family: var(--font--serif);
     font-weight: 900;
@@ -214,3 +270,81 @@
     text-transform: uppercase;
     letter-spacing: 0.2em;
     font-weight: 900; }
+
+.record {
+  width: 100%;
+  background: var(--bg--tertiary);
+  border-left: var(--border--thick);
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 0 var(--space--md);
+  padding: var(--space--md); }
+  @media (min-width: 601px) {
+    .record {
+      padding: var(--space--md) var(--space--lg); } }
+  @media (min-width: 1025px) {
+    .record {
+      grid-template-columns: auto 200px;
+      grid-template-rows: max-content auto; } }
+  .record a {
+    color: var(--text-secondary); }
+  .record--stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space--xs) var(--space--lg);
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    line-height: 200%; }
+  .record--details {
+    display: flex;
+    height: 100%;
+    gap: var(--space--xs) var(--space--lg);
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    line-height: 200%; }
+    @media (max-width: 1024px) {
+      .record--details {
+        flex-wrap: wrap;
+        border-top: var(--border--primary);
+        padding-top: var(--space--md);
+        margin-top: var(--space--md);
+        padding-bottom: var(--space--xs);
+        order: 3; } }
+    @media (min-width: 1025px) {
+      .record--details {
+        flex-direction: column;
+        justify-content: center;
+        border-left: var(--border--primary);
+        padding-left: var(--space--lg);
+        grid-row: span 2; } }
+    .record--details > div {
+      display: flex;
+      align-items: center;
+      gap: var(--space--xs) var(--space--sm); }
+      @media (min-width: 1025px) {
+        .record--details > div {
+          flex-wrap: wrap; } }
+      .record--details > div > b {
+        color: var(--text--secondary); }
+  .record--title {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space--sm); }
+    .record--title > div {
+      display: flex;
+      align-items: end;
+      gap: var(--space--xs); }
+      .record--title > div > b {
+        font-family: var(--font--serif);
+        font-weight: 900;
+        font-size: 48px;
+        line-height: 100%; }
+      .record--title > div > span {
+        padding-bottom: var(--space--xs); }
+    .record--title span {
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      line-height: 200%; }
