@@ -127,7 +127,7 @@
     <div class="filters--collapsible">
         <div class="threads--filters">
             <div class="threads--filters-inner">
-                <!--Metric-->
+                <!--Year-->
                 <div class="threads--filter filter--parent heatmapOnly">
                     <button onClick="openFilters(this)">Metric</button>
                     <div class="threads--filter-dropdown">
@@ -193,6 +193,8 @@
                         <div class="threads--filter-group filter--type" data-filter-group="type">
                             <button class="is-active" onclick="changeRecordFilter(this)" data-filter="type" data-type="all">all</button>
                             <button onclick="changeRecordFilter(this)" data-filter="type" data-type="thread">thread</button>
+                            <button onclick="changeRecordFilter(this)" data-filter="type" data-type="comm">comm</button>
+                            <button onclick="changeRecordFilter(this)" data-filter="type" data-type="social media">social media</button>
                             <button onclick="changeRecordFilter(this)" data-filter="type" data-type="oneshot">oneshot</button>
                             <button onclick="changeRecordFilter(this)" data-filter="type" data-type="event">event</button>
                         </div>
@@ -263,16 +265,8 @@
                             }
                         });
                     }
-<<<<<<< HEAD
-<<<<<<< HEAD
 
                     let data = {
-=======
-=======
->>>>>>> 29213e2 (check for thread data first)
-                    
-                    return ({
->>>>>>> 29213e272df11e4491a23174c2a95e1c96434b5e
                         ...item,
                         partnerNames: partnerNamesArray,
                         partnerIds: partnerIdsArray,
