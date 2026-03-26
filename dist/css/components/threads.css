@@ -24,8 +24,6 @@
       color: var(--text--primary);
       letter-spacing: 0.1em;
       font-weight: 700;
-      padding: var(--space--xs) var(--space--lg);
-      margin: 0 0 var(--space--sm);
       line-height: 100%;
       padding: var(--space--sm);
       cursor: pointer;
@@ -102,6 +100,51 @@
         .threads--filters-inner a:hover {
           border-color: var(--accent);
           color: var(--text--secondary); }
+    .threads--filters-active {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space--xs); }
+      .threads--filters-active:has(.threads--filters-clipped:empty) {
+        display: none; }
+    .threads--filters-clear {
+      background: var(--bg-accent);
+      border: var(--border--primary);
+      border-color: var(--bg-accent);
+      border-radius: var(--radius--standard);
+      font-size: 9px;
+      text-transform: uppercase;
+      color: var(--text--on-accent);
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      line-height: 100%;
+      padding: var(--space--sm);
+      cursor: pointer; }
+    .threads--filters-clipped {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space--xs); }
+      .threads--filters-clipped button {
+        display: flex;
+        gap: var(--space--sm);
+        align-items: center;
+        background: none;
+        border: var(--border--primary);
+        border-radius: var(--radius--standard);
+        font-size: 9px;
+        text-transform: uppercase;
+        color: var(--text--primary);
+        letter-spacing: 0.1em;
+        font-weight: 700;
+        line-height: 100%;
+        padding: var(--space--sm);
+        cursor: pointer;
+        transition: 0.3s ease-in-out; }
+        .threads--filters-clipped button::before {
+          content: '\f00d';
+          font-family: 'Font Awesome 7 Pro'; }
+        .threads--filters-clipped button:hover {
+          background: var(--accent);
+          color: var(--text--on-accent); }
   .threads--filter-dropdown {
     display: none; }
   .threads--filter-group {
@@ -140,6 +183,11 @@
         .threads--filter-group label.is-checked > span {
           border-color: var(--accent);
           background: var(--accent); }
+    .threads--filter-group > b {
+      font-family: var(--font--serif);
+      font-weight: 900;
+      font-size: 18px;
+      text-transform: capitalize; }
   .threads--sorting {
     flex-direction: column;
     gap: var(--space--sm);
@@ -178,7 +226,7 @@
           border-color: var(--accent);
           background: var(--accent); }
   .threads--content {
-    max-width: 100%;
+    overflow: hidden;
     padding: var(--space--md); }
     @media (min-width: 601px) {
       .threads--content {
@@ -190,10 +238,11 @@
   background: var(--bg--tertiary);
   border-left: var(--border--thick); }
   .thread:has(.status--mine), .thread:has([data-status="mine"]) {
-    border-color: var(--bg-accent);
-    background: var(--spy-accent); }
-    .thread:has(.status--mine) .thread--buttons button, .thread:has([data-status="mine"]) .thread--buttons button {
-      border: 1px solid var(--spy-border); }
+    border-color: var(--bg-accent); }
+  .thread.status--mine .inactiveOnly, .thread.status--theirs .inactiveOnly {
+    display: none; }
+  .thread.status--complete .activeOnly, .thread.status--archived .activeOnly {
+    display: none; }
   .thread.status--complete {
     opacity: 0.25;
     transition-duration: 0.3s; }
@@ -265,7 +314,7 @@
           height: calc(100% - (2 * var(--space--md)));
           width: calc(100% - var(--space--md));
           max-height: none;
-          border-left: 1px solid var(--bg--quintenary);
+          border-left: var(--border--primary);
           border-top: none; } }
       .thread--right-inner .scroll {
         height: 100%;

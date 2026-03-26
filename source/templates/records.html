@@ -8,6 +8,10 @@
     <div class="filters--collapsible">
         <div class="threads--filters">
             <div class="threads--filters-inner">
+                <div class="threads--filters-active">
+                    <button class="threads--filters-clear" onClick="clearAllFilters()">Clear All Filters</button>
+                    <div class="threads--filters-clipped"></div>
+                </div>
                 <!--Year-->
                 <div class="threads--filter filter--parent heatmapOnly">
                     <button onClick="openFilters(this)">Metric</button>
@@ -30,19 +34,19 @@
                     <button onClick="openFilters(this)">Month</button>
                     <div class="threads--filter-dropdown">
                         <div class="threads--filter-group filter--month" data-filter-group="month">
-                            <button onclick="changeRecordFilter(this)" data-filter="month" data-month="all" class="is-active">all</button>
-                            <button onclick="changeRecordFilter(this)" data-filter="month" data-month="january">january</button>
-                            <button onclick="changeRecordFilter(this)" data-filter="month" data-month="february">february</button>
-                            <button onclick="changeRecordFilter(this)" data-filter="month" data-month="march">march</button>
-                            <button onclick="changeRecordFilter(this)" data-filter="month" data-month="april">april</button>
-                            <button onclick="changeRecordFilter(this)" data-filter="month" data-month="may">may</button>
-                            <button onclick="changeRecordFilter(this)" data-filter="month" data-month="june">june</button>
-                            <button onclick="changeRecordFilter(this)" data-filter="month" data-month="july">july</button>
-                            <button onclick="changeRecordFilter(this)" data-filter="month" data-month="august">august</button>
-                            <button onclick="changeRecordFilter(this)" data-filter="month" data-month="september">september</button>
-                            <button onclick="changeRecordFilter(this)" data-filter="month" data-month="october">october</button>
-                            <button onclick="changeRecordFilter(this)" data-filter="month" data-month="november">november</button>
-                            <button onclick="changeRecordFilter(this)" data-filter="month" data-month="december">december</button>
+                            <button onclick="changeRecordFilter(this)" data-all data-filter="month" data-month="all" class="is-active">all</button>
+                            <button onclick="changeRecordFilter(this)" data-list-filter data-filter="month" data-month="january">january</button>
+                            <button onclick="changeRecordFilter(this)" data-list-filter data-filter="month" data-month="february">february</button>
+                            <button onclick="changeRecordFilter(this)" data-list-filter data-filter="month" data-month="march">march</button>
+                            <button onclick="changeRecordFilter(this)" data-list-filter data-filter="month" data-month="april">april</button>
+                            <button onclick="changeRecordFilter(this)" data-list-filter data-filter="month" data-month="may">may</button>
+                            <button onclick="changeRecordFilter(this)" data-list-filter data-filter="month" data-month="june">june</button>
+                            <button onclick="changeRecordFilter(this)" data-list-filter data-filter="month" data-month="july">july</button>
+                            <button onclick="changeRecordFilter(this)" data-list-filter data-filter="month" data-month="august">august</button>
+                            <button onclick="changeRecordFilter(this)" data-list-filter data-filter="month" data-month="september">september</button>
+                            <button onclick="changeRecordFilter(this)" data-list-filter data-filter="month" data-month="october">october</button>
+                            <button onclick="changeRecordFilter(this)" data-list-filter data-filter="month" data-month="november">november</button>
+                            <button onclick="changeRecordFilter(this)" data-list-filter data-filter="month" data-month="december">december</button>
                         </div>
                     </div>
                 </div>
@@ -72,12 +76,12 @@
                     <button onClick="openFilters(this)">Type</button>
                     <div class="threads--filter-dropdown">
                         <div class="threads--filter-group filter--type" data-filter-group="type">
-                            <button class="is-active" onclick="changeRecordFilter(this)" data-filter="type" data-type="all">all</button>
-                            <button onclick="changeRecordFilter(this)" data-filter="type" data-type="thread">thread</button>
-                            <button onclick="changeRecordFilter(this)" data-filter="type" data-type="comm">comm</button>
-                            <button onclick="changeRecordFilter(this)" data-filter="type" data-type="social media">social media</button>
-                            <button onclick="changeRecordFilter(this)" data-filter="type" data-type="oneshot">oneshot</button>
-                            <button onclick="changeRecordFilter(this)" data-filter="type" data-type="event">event</button>
+                            <button class="is-active" onclick="changeRecordFilter(this)" data-all data-filter="type" data-type="all">all</button>
+                            <button onclick="changeRecordFilter(this)" data-list-filter data-filter="type" data-type="thread">thread</button>
+                            <button onclick="changeRecordFilter(this)" data-list-filter data-filter="type" data-type="comm">comm</button>
+                            <button onclick="changeRecordFilter(this)" data-list-filter data-filter="type" data-type="social media">social media</button>
+                            <button onclick="changeRecordFilter(this)" data-list-filter data-filter="type" data-type="oneshot">oneshot</button>
+                            <button onclick="changeRecordFilter(this)" data-list-filter data-filter="type" data-type="event">event</button>
                         </div>
                     </div>
                 </div>
@@ -182,9 +186,9 @@
                         }
                     });
                 });
-
+                console.log(recordSites);
                 initRecordsFilters(recordYears, recordCharacters, recordShips, recordSites, recordPartners);
-                initRecords(siteObject, staticRecords);
+                initRecords(siteObject, staticRecords, true);
             });
 
         });

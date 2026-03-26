@@ -29,6 +29,7 @@ body {
 
 main {
     margin-left: var(--size--menu-width);
+
     &:not(:has(.threads)):not(:has(.characters)):not(:has(.records)) {
         padding: var(--space--lg) var(--space--xs);
     
@@ -61,7 +62,7 @@ main {
         width: 100%;
 
         &.is-active {
-            height: 100vh;
+            //height: 100vh;
         }
     }
 }

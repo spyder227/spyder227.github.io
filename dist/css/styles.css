@@ -159,8 +159,6 @@ main {
   .backdrop.vertical {
     height: 0;
     width: 100%; }
-    .backdrop.vertical.is-active {
-      height: 100vh; }
 
 [target="_blank"]::after {
   content: '\f08e';
@@ -757,8 +755,6 @@ section.links {
       color: var(--text--primary);
       letter-spacing: 0.1em;
       font-weight: 700;
-      padding: var(--space--xs) var(--space--lg);
-      margin: 0 0 var(--space--sm);
       line-height: 100%;
       padding: var(--space--sm);
       cursor: pointer;
@@ -849,6 +845,70 @@ section.links {
         .threads--filters-inner a:hover {
           border-color: var(--accent);
           color: var(--text--secondary); }
+    .threads--filters-active {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      gap: var(--space--xs); }
+      .threads--filters-active:has(.threads--filters-clipped:empty) {
+        display: none; }
+    .threads--filters-clear {
+      background: var(--bg-accent);
+      border: var(--border--primary);
+      border-color: var(--bg-accent);
+      border-radius: var(--radius--standard);
+      font-size: 9px;
+      text-transform: uppercase;
+      color: var(--text--on-accent);
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      line-height: 100%;
+      padding: var(--space--sm);
+      cursor: pointer; }
+    .threads--filters-clipped {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-wrap: wrap;
+          -ms-flex-wrap: wrap;
+              flex-wrap: wrap;
+      gap: var(--space--xs); }
+      .threads--filters-clipped button {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        gap: var(--space--sm);
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+            -ms-flex-align: center;
+                align-items: center;
+        background: none;
+        border: var(--border--primary);
+        border-radius: var(--radius--standard);
+        font-size: 9px;
+        text-transform: uppercase;
+        color: var(--text--primary);
+        letter-spacing: 0.1em;
+        font-weight: 700;
+        line-height: 100%;
+        padding: var(--space--sm);
+        cursor: pointer;
+        -webkit-transition: 0.3s ease-in-out;
+        transition: 0.3s ease-in-out; }
+        .threads--filters-clipped button::before {
+          content: '\f00d';
+          font-family: 'Font Awesome 7 Pro'; }
+        .threads--filters-clipped button:hover {
+          background: var(--accent);
+          color: var(--text--on-accent); }
   .threads--filter-dropdown {
     display: none; }
   .threads--filter-group {
@@ -902,6 +962,11 @@ section.links {
         .threads--filter-group label.is-checked > span {
           border-color: var(--accent);
           background: var(--accent); }
+    .threads--filter-group > b {
+      font-family: var(--font--serif);
+      font-weight: 900;
+      font-size: 18px;
+      text-transform: capitalize; }
   .threads--sorting {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -952,7 +1017,7 @@ section.links {
           border-color: var(--accent);
           background: var(--accent); }
   .threads--content {
-    max-width: 100%;
+    overflow: hidden;
     padding: var(--space--md); }
     @media (min-width: 601px) {
       .threads--content {
@@ -964,10 +1029,11 @@ section.links {
   background: var(--bg--tertiary);
   border-left: var(--border--thick); }
   .thread:has(.status--mine), .thread:has([data-status="mine"]) {
-    border-color: var(--bg-accent);
-    background: var(--spy-accent); }
-    .thread:has(.status--mine) .thread--buttons button, .thread:has([data-status="mine"]) .thread--buttons button {
-      border: 1px solid var(--spy-border); }
+    border-color: var(--bg-accent); }
+  .thread.status--mine .inactiveOnly, .thread.status--theirs .inactiveOnly {
+    display: none; }
+  .thread.status--complete .activeOnly, .thread.status--archived .activeOnly {
+    display: none; }
   .thread.status--complete {
     opacity: 0.25;
     -webkit-transition-duration: 0.3s;
@@ -1051,7 +1117,7 @@ section.links {
           height: calc(100% - (2 * var(--space--md)));
           width: calc(100% - var(--space--md));
           max-height: none;
-          border-left: 1px solid var(--bg--quintenary);
+          border-left: var(--border--primary);
           border-top: none; } }
       .thread--right-inner .scroll {
         height: 100%;
@@ -1789,6 +1855,9 @@ section.links {
           width: calc(50% + var(--space--xs)); } }
     .records--toggle[data-view="list" i]::before {
       left: calc(50% - var(--space--sm)); }
+      @media (max-width: 600px) {
+        .records--toggle[data-view="list" i]::before {
+          left: calc(50% - var(--space--xs)); } }
     .records--toggle span {
       text-align: center;
       z-index: 1;
@@ -2076,6 +2145,17 @@ section.links {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     line-height: 200%; }
+    .record--stats button {
+      background: none;
+      border: none;
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      line-height: 200%;
+      color: var(--text--primary);
+      padding: 0;
+      margin: 0;
+      cursor: pointer; }
   .record--details {
     display: -webkit-box;
     display: -webkit-flex;
@@ -2132,6 +2212,17 @@ section.links {
                   flex-wrap: wrap; } }
       .record--details > div > b {
         color: var(--text--secondary); }
+    .record--details button {
+      background: none;
+      border: none;
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      line-height: 200%;
+      color: var(--text--primary);
+      padding: 0;
+      margin: 0;
+      cursor: pointer; }
   .record--title {
     display: -webkit-box;
     display: -webkit-flex;

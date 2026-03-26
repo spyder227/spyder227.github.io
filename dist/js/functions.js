@@ -2956,10 +2956,35 @@ function toggleRecordsView(e) {
         initRecords(siteObject, staticRecords);
     }
 }
+function listActiveFilters() {
+    let html = ``;
+    let filters = document.querySelectorAll('.is-active[data-list-filter]');
+    filters.forEach(filter => {
+        html += `<button data-type="${filter.dataset.filter}" onClick="clearSingleFilter(this)">${filter.innerText}</button>`;
+    });
+    document.querySelector('.threads--filters-clipped').innerHTML = html;
+}
 function changeRecordFilter(e) {
     e.closest(`.filter--${e.dataset.filter}`).querySelectorAll('button').forEach(item => item.classList.remove('is-active'));
     e.classList.add('is-active');
     initRecords(siteObject, staticRecords);
+    listActiveFilters();
+}
+function clearSingleFilter(e) {
+    document.querySelectorAll(`button[data-filter="${e.dataset.type}"][data-list-filter]`).forEach(button => button.classList.remove('is-active'));
+    document.querySelector(`button[data-filter="${e.dataset.type}"][data-all]`).classList.add('is-active');
+    document.querySelectorAll('.filter--parent').forEach(item => item.classList.remove('is-active'));
+    initRecords(siteObject, staticRecords);
+    listActiveFilters();
+}
+function clearAllFilters() {
+    document.querySelectorAll('.threads--filter-group:has([data-list-filter]').forEach(container => {
+        container.querySelectorAll('button[data-list-filter]').forEach(button => button.classList.remove('is-active'));
+        container.querySelector('button[data-all]').classList.add('is-active');
+    });
+    document.querySelectorAll('.filter--parent').forEach(item => item.classList.remove('is-active'));
+    initRecords(siteObject, staticRecords);
+    listActiveFilters();
 }
 function initRecordsFilters(years, characters, ships, sites, partners) {
     years.sort((a, b) => {
@@ -2977,19 +3002,19 @@ function initRecordsFilters(years, characters, ships, sites, partners) {
     document.querySelector('.records .filter--year').innerHTML = yearsHTML;
 
     characters.sort();
-    let charHTML = `<button onClick="changeRecordFilter(this)" data-filter="characters" data-character="all" class="is-active">All</button>`;
+    let charHTML = `<button onClick="changeRecordFilter(this)" data-all data-filter="characters" data-character="all" class="is-active">All</button>`;
     characters.forEach(character => {
-        charHTML += `<button onClick="changeRecordFilter(this)" data-filter="characters" data-character="${character}">
+        charHTML += `<button onClick="changeRecordFilter(this)" data-list-filter data-filter="characters" data-character="${character}">
             ${character}
         </button>`;
     })
     document.querySelector('.records .filter--characters').innerHTML = charHTML;
 
     ships.sort();
-    let shipsHTML = `<button onClick="changeRecordFilter(this)" data-filter="ships" data-ship="all" class="is-active">All</button>`;
+    let shipsHTML = `<button onClick="changeRecordFilter(this)" data-all data-filter="ships" data-ship="all" class="is-active">All</button>`;
     ships.forEach(ship => {
         if(ship !== '') {
-            shipsHTML += `<button onClick="changeRecordFilter(this)" data-filter="ships" data-ship="${ship}">
+            shipsHTML += `<button onClick="changeRecordFilter(this)" data-list-filter data-filter="ships" data-ship="${ship}">
                 ${ship}
             </button>`;
         }
@@ -2997,28 +3022,71 @@ function initRecordsFilters(years, characters, ships, sites, partners) {
     document.querySelector('.records .filter--ships').innerHTML = shipsHTML;
 
     partners.sort();
-    let partnersHTML = `<button onClick="changeRecordFilter(this)" data-filter="partners" data-partner="all" class="is-active">All</button>`;
+    let partnersHTML = `<button onClick="changeRecordFilter(this)" data-all data-filter="partners" data-partner="all" class="is-active">All</button>`;
     partners.forEach(partner => {
-        partnersHTML += `<button onClick="changeRecordFilter(this)" data-filter="partners" data-partner="${partner}">
+        partnersHTML += `<button onClick="changeRecordFilter(this)" data-list-filter data-filter="partners" data-partner="${partner}">
             ${partner}
         </button>`;
     })
     document.querySelector('.records .filter--partners').innerHTML = partnersHTML;
 
     if(sites.length > 1) {
-        let sitesHTML = `<button onClick="changeRecordFilter(this)" data-filter="sites" data-site="all" class="is-active">All</button>`;
+        let sitesHTML = `<button onClick="changeRecordFilter(this)" data-all data-filter="sites" data-site="all" class="is-active">All</button>`;
+        sitesHTML += '<b>Active</b>';
         sites.forEach((site, i) => {
             if(sites[i - 1] && sites[i - 1].Status === 'active' && site.Status !== 'active') {
-                sitesHTML += '<hr />';
+                sitesHTML += '<b>Inactive</b>';
             }
-            sitesHTML += `<button onClick="changeRecordFilter(this)" data-filter="sites" data-site="${site.Site}">
+            sitesHTML += `<button onClick="changeRecordFilter(this)" data-list-filter data-filter="sites" data-site="${site.Site}">
                 ${site.Site}
             </button>`;
         });
         document.querySelector('.records .filter--sites').innerHTML = sitesHTML;
     }
 }
-function initRecords(sites, records) {
+function filterFilters(years, characters, ships, sites, partners, multisite) {
+    document.querySelectorAll('[data-filter="year"]').forEach(filter => {
+        if(filter.dataset.year !== 'all' && !years.includes(parseInt(filter.dataset.year))) {
+            filter.classList.add('hidden');
+        }
+    });
+
+    document.querySelectorAll('[data-filter="characters"]').forEach(filter => {
+        if(filter.dataset.character !== 'all' && !characters.includes(filter.dataset.character)) {
+            filter.classList.add('hidden');
+        } else {
+            filter.classList.remove('hidden');
+        }
+    });
+
+    document.querySelectorAll('[data-filter="ships"]').forEach(filter => {
+        if(filter.dataset.ship !== 'all' && !ships.includes(filter.dataset.ship)) {
+            filter.classList.add('hidden');
+        } else {
+            filter.classList.remove('hidden');
+        }
+    });
+
+    document.querySelectorAll('[data-filter="partners"]').forEach(filter => {
+        if(filter.dataset.partner !== 'all' && !partners.includes(filter.dataset.partner)) {
+            filter.classList.add('hidden');
+        } else {
+            filter.classList.remove('hidden');
+        }
+    });
+
+    if(multisite) {
+        document.querySelectorAll('[data-filter="sites"]').forEach(filter => {
+            let siteNames = sites.map(item => item.Site);
+            if(filter.dataset.site !== 'all' && !siteNames.includes(filter.dataset.site)) {
+                filter.classList.add('hidden');
+            } else {
+                filter.classList.remove('hidden');
+            }
+        });
+    }
+}
+function initRecords(sites, records, init = false) {
 
     //get active filters
     let selectedFilters = {
@@ -3043,12 +3111,46 @@ function initRecords(sites, records) {
         (item.partnerNames.includes(selectedFilters.partner) || selectedFilters.partner === 'all')
     );
 
+    if(!init) {
+        //filter filters?
+        let relevantYears = [...new Set(filteredRecords.map(item => new Date(item.Date).getFullYear()))];
+        let relevantCharacters = [...new Set(filteredRecords.map(item => JSON.parse(item.Character).name))];
+        let relevantShips = [...new Set(filteredRecords.map(item => item.Ship))];
+        let combinedRelevantSites = [...new Set(filteredRecords.map(item => item.Site))];
+        let relevantSites = [];
+        siteObject.forEach(site => {
+            if(combinedRelevantSites.includes(site.Site)) {
+                relevantSites.push({
+                    Site: site.Site,
+                    Status: site.Status
+                });
+            }
+        });
+        let combinedRelevantPartners = [...new Set(filteredRecords.map(item => item.partnerNames))];
+        let relevantPartners = [];
+        combinedRelevantPartners.forEach(partnerArray => {
+            partnerArray.forEach(partner => {
+                if(!relevantPartners.includes(partner)) {
+                    relevantPartners.push(partner);
+                }
+            });
+        });
+
+        console.log(relevantYears);
+        console.log(relevantCharacters);
+        console.log(relevantShips);
+        console.log(relevantPartners);
+        console.log(relevantSites);
+        filterFilters(relevantYears, relevantCharacters, relevantShips, relevantSites, relevantPartners, siteObject.length > 1);
+    }
+
     //format and print
     let heatmapHTML = formatHeatmap(filteredRecords, selectedFilters.year, selectedFilters.metric),
         listHTML = formatList(filteredRecords, selectedFilters);
         
     document.querySelector('.records--heatmaps').innerHTML = heatmapHTML;
     document.querySelector('.records--list').innerHTML = listHTML;
+    listActiveFilters();
 }
 function totalWords(records) {
     let words = 0;
@@ -3254,20 +3356,24 @@ function formatListRecord(record) {
         site = siteObject.filter(item => item.Site === record.Site)[0];
     }
     let siteURL = site.URL;
+    let formattedPartners = record.partnerNames.map(item => `<button onClick="updateFilterFromRecord(this)" data-value="${item}" data-type="partner">${item}</button>`);
     return `<div class="record">
         <div class="record--stats">
             ${siteObject.length > 1 ? `<span>${record.Site}</span>` : ''}
-            ${record.threadData ? `<span>${record.threadData.Type}</span>` : ''}
+            ${record.threadData ? `<button onClick="updateFilterFromRecord(this)" data-value="${record.threadData.Type}" data-type="type">${record.threadData.Type}</button>` : ''}
             <span>${record.Date}</span>
         </div>
         <div class="record--details">
-            <div><b>character</b><span><a href="${siteURL}?showuser=${JSON.parse(record.Character).id}">${JSON.parse(record.Character).name}</a></span></div>
-            <div><b>partner</b><span>${record.partnerNames.map((item, i) => `<a href="${siteURL}?showuser=${record.partnerIds[i]}">${item}</a>`).join(', ')}</span></div>
-            <div><b>ship</b><span>${record.Ship}</span></div>
+            <div><b>character</b><button onClick="updateFilterFromRecord(this)" data-value="${JSON.parse(record.Character).name}" data-type="character">${JSON.parse(record.Character).name}</button></div>
+            <div><b>partner</b><span>${formattedPartners.join(', ')}</span></div>
+            <div><b>ship</b><button onClick="updateFilterFromRecord(this)" data-value="${record.Ship}" data-type="ship">${record.Ship}</button></div>
         </div>
         <div class="record--title">
             <div><b>${record.Words}</b><span>Words</span></div>
             ${record.threadData ? `<span><a href="${siteURL}?showtopic=${record.Thread}">${record.threadData.Title}</a></span>` : ''}
         </div>
     </div>`;
+}
+function updateFilterFromRecord(e) {
+    document.querySelector(`button[data-${e.dataset.type}="${e.dataset.value}"]`).click();
 }
