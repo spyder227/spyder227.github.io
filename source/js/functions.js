@@ -3221,6 +3221,7 @@ function formatMonthlyHeatmap(records, month, year, max, metric) {
     </div>`;
 
     return html;
+}
 
     function formatList(records, filters) {
     records.sort((a, b) => {
@@ -3269,5 +3270,4 @@ function formatListRecord(record) {
             ${record.threadData ? `<span><a href="${siteURL}?showtopic=${record.Thread}">${record.threadData.Title}</a></span>` : ''}
         </div>
     </div>`;
-}
 }
