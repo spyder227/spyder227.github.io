@@ -1820,16 +1820,16 @@ section.links {
     --fa-animation-duration: 5s; }
   .records--spinner {
     font-size: 100px; }
-    .records--spinner--list {
-      display: -ms-grid;
-      display: grid;
-      -ms-grid-columns: 100%;
-      grid-template-columns: 100%;
-      gap: var(--space--sm); }
-      @media (min-width: 1441px) {
-        .records--spinner--list {
-          -ms-grid-columns: 1fr 1fr;
-          grid-template-columns: 1fr 1fr; } }
+  .records--list {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 100%;
+    grid-template-columns: 100%;
+    gap: var(--space--sm); }
+    @media (min-width: 1441px) {
+      .records--list {
+        -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr; } }
   .records .threads--filter-group button {
     background: none;
     border: none;

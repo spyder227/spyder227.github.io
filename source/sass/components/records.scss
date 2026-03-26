@@ -61,6 +61,7 @@
             background: var(--border--primary-color);
             margin: var(--space--md) 0;
         }
+
         &:has([data-view="list" i]) {
             .heatmapOnly {
                 display: none;
@@ -160,8 +161,8 @@
     }
     &--spinner {
         font-size: 100px;
-
-        &--list {
+    }
+    &--list {
         display: grid;
         grid-template-columns: 100%;
         gap: var(--space--sm);
@@ -169,7 +170,6 @@
         @include mq-up(xl) {
             grid-template-columns: 1fr 1fr;
         }
-    }
     }
 
     .threads--filter-group {
@@ -340,14 +340,13 @@
         align-items: center;
         width: max-content;
         max-width: 100%;
-
+        
         .heatmap--stats {
             margin: var(--space--xs) 0;
             border-bottom: var(--border--primary);
             padding-bottom: var(--space--xs);
             width: 100%;
         }
-        
         & > b {
             font-family: var(--font--serif);
             font-weight: 900;
@@ -362,7 +361,7 @@
             font-weight: 900;
         }
     }
-    }
+}
 
 .record {
     width: 100%;
