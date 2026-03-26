@@ -238,7 +238,10 @@
   background: var(--bg--tertiary);
   border-left: var(--border--thick); }
   .thread:has(.status--mine), .thread:has([data-status="mine"]) {
-    border-color: var(--bg-accent); }
+    border-color: var(--bg-accent);
+    background: rgba(var(--accent-rgb), 0.4); }
+    .thread:has(.status--mine) button, .thread:has([data-status="mine"]) button {
+      border: 1px solid var(--spy-border); }
   .thread.status--mine .inactiveOnly, .thread.status--theirs .inactiveOnly {
     display: none; }
   .thread.status--complete .activeOnly, .thread.status--archived .activeOnly {

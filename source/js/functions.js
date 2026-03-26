@@ -2279,6 +2279,10 @@ function formatThread(thread) {
             <span class="not-loading">Update Status</span>
             <span class="loading">Updating...</span>
         </button>
+        <button class="activeOnly" onClick="markHoarded(this)" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}'>
+            <span class="not-loading">Hoard</span>
+            <span class="loading">Updating...</span>
+        </button>
         <button class="activeOnly" onClick="markComplete(this)" data-id="${thread.id}" data-site="${thread.site.Site}" data-character='${JSON.stringify(thread.character)}'>
             <span class="not-loading">Mark Complete</span>
             <span class="loading">Updating...</span>
