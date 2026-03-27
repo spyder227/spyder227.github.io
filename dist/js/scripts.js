@@ -1,5 +1,6 @@
 setTheme();
 initMenus();
+let storedSites = [], storedPartners = [], storedCharacters = [], storedThreads = [], storedTags = [], storedRecords = [], storedFreeforms = [];
 
 document.querySelectorAll('.backdrop').forEach(overlay => {
     overlay.addEventListener('click', () => {
@@ -9,7 +10,6 @@ document.querySelectorAll('.backdrop').forEach(overlay => {
         document.querySelectorAll('.backdrop').forEach(backdrop => backdrop.classList.remove('is-active'));
     });
 });
-
 document.querySelectorAll('form').forEach(form => {
     form.addEventListener('submit', e => {
         e.preventDefault();
@@ -33,16 +33,16 @@ document.querySelectorAll('form').forEach(form => {
                 submitThread(form);
                 break;
             case 'edit-tags':
-                updateTags(form);
+                updateTags(form, storedTags);
                 break;
             case 'edit-character':
-                updateCharacter(form);
+                updateCharacter(form, storedCharacters);
                 break;
             case 'edit-partner':
-                updatePartner(form);
+                updatePartner(form, storedPartners);
                 break;
             case 'edit-thread':
-                updateThread(form);
+                updateThread(form, storedThreads);
                 break;
             case 'add-record':
                 addRecord(form);
@@ -52,34 +52,25 @@ document.querySelectorAll('form').forEach(form => {
         }
     });
 });
-
-document.querySelectorAll('select#site, .ships select#partner').forEach(el => {
-    initSiteSelect(el);
-});
-document.querySelectorAll('select#site').forEach(el => {
+document.querySelectorAll('form:not([data-form="edit-partner"]) select#site').forEach(el => {
     el.addEventListener('change', e => {
-        initPartnerSelect(e.currentTarget, 'refresh');
+        initPartnerSelect(e.currentTarget, storedPartners, 'refresh', '#site', true);
         document.querySelectorAll('.accordion.tags').forEach(el => {
-            initTags(el, e.currentTarget.options[e.currentTarget.selectedIndex].innerText.trim().toLowerCase());
+            initTags(el, e.currentTarget.options[e.currentTarget.selectedIndex].innerText.trim().toLowerCase(), storedTags);
         });
         if(document.querySelector('select#character')) {
-            initCharacterSelect(e.currentTarget);
+            initCharacterSelect(e.currentTarget, storedCharacters);
         }
     });
 });
 document.querySelectorAll('select#character').forEach(el => {
     if(document.querySelector('select#thread-auto')) {
         el.addEventListener('change', e => {
-            initThreadSelect(e.currentTarget);
+            initThreadSelect(e.currentTarget, storedThreads);
         });
     }
 });
-document.querySelectorAll('.accordion.sites').forEach(el => {
-    initTagSites(el);
-    initAccordion();
-});
 document.querySelectorAll('[data-form="edit-tags"] select#title').forEach(el => {
-    initTagSelect(el);
     el.addEventListener('change', e => {
         if(e.currentTarget.value !== '') {
             el.closest('form').querySelectorAll('.ifFound').forEach(child => child.classList.remove('hidden'));
@@ -91,7 +82,7 @@ document.querySelectorAll('[data-form="edit-tags"] select#title').forEach(el => 
 });
 document.querySelectorAll('[data-form="edit-partner"] select#site').forEach(el => {
     el.addEventListener('change', e => {
-        initPartnerSelect(e.currentTarget, 'initial');
+        initPartnerSelect(e.currentTarget, storedPartners, 'initial');
     });
 })
 document.querySelectorAll('.accordion.updates input').forEach(el => {
@@ -137,7 +128,6 @@ if(document.querySelector('[data-form="add-character"]')) {
     })
 }
 if(document.querySelector('[data-form="edit-character"]')) {
-    initEditCharacterSelect(document.querySelector('[data-form="edit-character"] #character'));
     document.querySelectorAll('[data-form="edit-character"] select#character, [data-form="edit-character"] select#characterSite').forEach(select => {
         select.addEventListener('change', e => {
             e.currentTarget.closest('form').querySelectorAll('input[value="removeLinks"]:checked, input[value="changeShip"]:checked, input[value="removeShip"]:checked, input[value="removeTags"]:checked, input[value="changeBasics"]:checked').forEach(item => {
@@ -151,7 +141,7 @@ if(document.querySelector('[data-form="edit-character"]')) {
     });
 
     document.querySelector('[data-form="edit-character"] select#characterSite').addEventListener('change', e => {
-        initTags(e.currentTarget.closest('form'), e.currentTarget.options[e.currentTarget.selectedIndex].innerText.trim().toLowerCase());
+        initTags(e.currentTarget.closest('form'), e.currentTarget.options[e.currentTarget.selectedIndex].innerText.trim().toLowerCase(), storedTags);
     });
 
     document.querySelectorAll('.accordion.updates input').forEach(el => {
@@ -167,6 +157,7 @@ if(document.querySelector('[data-form="edit-character"]')) {
             el.closest('form').querySelectorAll('.ifSiteSpecific option[value=""]').forEach(item => item.innerText = `Please select a character first.`);
         }
     });
+
     let imageURLField = document.querySelector('[data-form="edit-character"] .imagePreview input');
     if(imageURLField.value !== '') {
         imageURLField.closest('.imagePreview').querySelector('img').setAttribute('src', imageURLField.value);
@@ -180,19 +171,22 @@ if(document.querySelector('[data-form="add-thread"]')) {
 }
 if(document.querySelector('[data-form="edit-thread"]')) {
     let form = document.querySelector('[data-form="edit-thread"]');
-    let currentTitle = form.querySelector('#title');
     let site = form.querySelector('#site');
+    let currentTitle = form.querySelector('#title');
+    site.addEventListener('change', () => {
+        initThreadSelect(currentTitle, storedThreads)
+    });
 
-    if(currentTitle.value !== '' && site.options[site.selectedIndex].value !== '') {
-        handleTitleChange(currentTitle.value.trim().toLowerCase(), site.options[site.selectedIndex].innerText.trim().toUppercase());
+    if(currentTitle.options[currentTitle.selectedIndex].value !== '' && site.options[site.selectedIndex].value !== '') {
+        handleTitleChange(currentTitle.options[currentTitle.selectedIndex].innerText.trim().toLowerCase(), site.options[site.selectedIndex].innerText.trim().toUppercase(), storedThreads);
     } else {
         document.querySelector('[data-form="edit-thread"] .tags.addition .multiselect').innerHTML = `<p>Select a thread and site first.</p>`;
         document.querySelector('[data-form="edit-thread"] .tags.removal .multiselect').innerHTML = `<p>Select a thread and site first.</p>`;
     }
 
     currentTitle.addEventListener('change', () => {
-        if(currentTitle.value !== '' && site.options[site.selectedIndex].value !== '') {
-            handleTitleChange(currentTitle.value.trim().toLowerCase(), site.options[site.selectedIndex].innerText.trim().toLowerCase());
+        if(currentTitle.options[currentTitle.selectedIndex].value !== '' && site.options[site.selectedIndex].value !== '') {
+            handleTitleChange(currentTitle.options[currentTitle.selectedIndex].innerText.trim().toLowerCase(), site.options[site.selectedIndex].innerText.trim().toLowerCase(), storedThreads);
         } else {
             document.querySelector('[data-form="edit-thread"] .tags.addition .multiselect').innerHTML = `<p>Select a thread and site first.</p>`;
             document.querySelector('[data-form="edit-thread"] .tags.removal .multiselect').innerHTML = `<p>Select a thread and site first.</p>`;
@@ -201,7 +195,7 @@ if(document.querySelector('[data-form="edit-thread"]')) {
 
     site.addEventListener('change', () => {
         if(currentTitle.value !== '' && site.options[site.selectedIndex].value !== '') {
-            handleTitleChange(currentTitle.value.trim().toLowerCase(), site.options[site.selectedIndex].innerText.trim().toLowerCase());
+            handleTitleChange(currentTitle.options[currentTitle.selectedIndex].innerText.trim().toLowerCase(), site.options[site.selectedIndex].innerText.trim().toLowerCase(), storedThreads);
         } else {
             document.querySelector('[data-form="edit-thread"] .tags.addition .multiselect').innerHTML = `<p>Select a thread and site first.</p>`;
             document.querySelector('[data-form="edit-thread"] .tags.removal .multiselect').innerHTML = `<p>Select a thread and site first.</p>`;

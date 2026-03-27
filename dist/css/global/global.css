@@ -45,3 +45,16 @@ main {
   font-family: 'Font Awesome 7 Pro';
   margin-left: var(--space--xs);
   color: var(--accent); }
+
+#loading {
+  font-size: 100px;
+  position: fixed;
+  top: 0;
+  left: var(--size--menu-width);
+  background: var(--bg--primary);
+  width: calc(100% - var(--size--menu-width));
+  height: 100vh;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center; }

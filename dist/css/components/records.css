@@ -114,7 +114,19 @@
     height: 100vh;
     --fa-animation-duration: 5s; }
   .records--spinner {
-    font-size: 100px; }
+    font-size: 100px;
+    position: fixed;
+    top: 0;
+    left: calc(var(--size--menu-width) + var(--size--filters-width));
+    background: var(--bg--primary);
+    width: calc(100% - var(--size--menu-width) - var(--size--filters-width));
+    height: 100vh;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    .records--spinner:not(:only-child) {
+      display: none; }
   .records--list {
     display: grid;
     grid-template-columns: 100%;
