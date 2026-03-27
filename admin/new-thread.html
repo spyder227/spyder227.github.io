@@ -117,7 +117,8 @@
 </nav>
         <main>
             <section class="form">
-                <h1>Add Thread</h1>
+                <div id="loading"><i class="fa-solid fa-cog fa-spin"></i></div>
+<h1>Add Thread</h1>
 <form data-form="add-thread">
     <label class="fullWidth">
         <b>Title</b>
@@ -195,7 +196,23 @@
     </div>
     <button type="submit" class="fullWidth">Submit</button>
 </form>
-<!--<button onClick="portThreads()">Port Threads from Old Tracker</button>-->
+<script>
+    fetch(`https://opensheet.elk.sh/${sheetID}/Characters`)
+    .then((response) => response.json())
+    .then((characterData) => {
+        storedCharacters = [...characterData];
+
+        fetch(`https://opensheet.elk.sh/${sheetID}/Partners`)
+        .then((response) => response.json())
+        .then((partnerData) => {
+            storedPartners = [...partnerData];
+
+        }).then(() => {
+            initSiteSelects();
+            document.querySelector('#loading').remove();
+        });
+    });
+</script>
             </section>
         </main>
         <!--Scripts-->
