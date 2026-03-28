@@ -3,6 +3,8 @@
   @media (min-width: 601px) {
     .records {
       grid-template-columns: var(--size--filters-width) calc(100% - var(--size--filters-width)); } }
+  .records .filter--collapsible {
+    height: calc(100% - 70px); }
   .records--header {
     position: sticky;
     top: 0;
@@ -20,6 +22,8 @@
       .records--header {
         height: 100vh;
         padding: var(--space--md) 0 var(--space--md) var(--space--md); } }
+    .records--header p {
+      text-align: center; }
     .records--header > button:not(.records--toggle) {
       background: none;
       border: var(--border--primary);

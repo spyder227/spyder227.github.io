@@ -173,7 +173,6 @@ function initSiteSelects() {
 function initPartnerSelect(el, data, type = 'initial', siteField = '#site', hasNPC = false) {
     let site = el.closest('form').querySelector(siteField).options[el.closest('form').querySelector(siteField).selectedIndex].innerText.trim().toLowerCase();
     let partners = data.filter(item => item.Site === site && item.Status !== 'inactive');
-    console.log(hasNPC);
     partners.sort((a, b) => {
         if(a.Writer < b.Writer) {
             return -1;
@@ -2961,9 +2960,9 @@ function initRecordsFilters(years, characters, ships, sites, partners) {
         else if(parseInt(a) < parseInt(b)) return 1;
         else return 0;
     });
-    let yearsHTML = `<button onClick="changeRecordFilter(this)" data-filter="year" data-year="all" class="listOnly">All</button>`;
+    let yearsHTML = `<button onClick="changeRecordFilter(this)" data-all data-filter="year" data-year="all">All</button>`;
     years.forEach((year, i) => {
-        yearsHTML += `<button onClick="changeRecordFilter(this)" data-filter="year" data-year="${year}" class="${i === 0 ? 'is-active' : ''}">
+        yearsHTML += `<button onClick="changeRecordFilter(this)" data-list-filter data-filter="year" data-year="${year}" class="${i === 0 ? 'is-active' : ''}">
             ${year}
         </button>`;
     })
@@ -3016,6 +3015,8 @@ function filterFilters(years, characters, ships, sites, partners, multisite) {
     document.querySelectorAll('[data-filter="year"]').forEach(filter => {
         if(filter.dataset.year !== 'all' && !years.includes(parseInt(filter.dataset.year))) {
             filter.classList.add('hidden');
+        } else {
+            filter.classList.remove('hidden');
         }
     });
 
@@ -3055,9 +3056,15 @@ function filterFilters(years, characters, ships, sites, partners, multisite) {
     }
 }
 function initRecords(sites, records, init = false) {
+    let allYears = Array.from(document.querySelectorAll('.records .filter--year button:not([data-all]')).map(item => parseInt(item.dataset.year)).sort((a, b) => {
+        if(a > b) return -1;
+        else if(b < a) return 1;
+        else return 0;
+    });
+
     //get active filters
     let selectedFilters = {
-        year: parseInt(document.querySelector('.records .filter--year .is-active').dataset.year),
+        year: document.querySelector('.records .filter--year .is-active').dataset.year === 'all' ? document.querySelector('.records .filter--year .is-active').dataset.year : parseInt(document.querySelector('.records .filter--year .is-active').dataset.year),
         month: document.querySelector('.records .filter--month .is-active').dataset.month,
         character: document.querySelector('.records .filter--characters .is-active').dataset.character,
         ship: document.querySelector('.records .filter--ships .is-active').dataset.ship,
@@ -3103,16 +3110,11 @@ function initRecords(sites, records, init = false) {
             });
         });
 
-        console.log(relevantYears);
-        console.log(relevantCharacters);
-        console.log(relevantShips);
-        console.log(relevantPartners);
-        console.log(relevantSites);
         filterFilters(relevantYears, relevantCharacters, relevantShips, relevantSites, relevantPartners, siteObject.length > 1);
     }
 
     //format and print
-    let heatmapHTML = formatHeatmap(filteredRecords, selectedFilters.year, selectedFilters.metric),
+    let heatmapHTML = formatHeatmap(filteredRecords, selectedFilters.year === 'all' ? allYears[0] : selectedFilters.year, selectedFilters.metric, selectedFilters.year === 'all'),
         listHTML = formatList(filteredRecords, selectedFilters);
         
     document.querySelector('.records--heatmaps').innerHTML = heatmapHTML;
@@ -3132,7 +3134,7 @@ function daysInMonth(month, year) {
 function firstDayOfMonth(month, year) {
     return new Date(year, month, 1).getDay();
 }
-function formatHeatmap(records, year, metric) {
+function formatHeatmap(records, year, metric, isAll = false) {
     let monthlyRecords = {
         january: records.filter(item => new Date(item.Date).getMonth() === 0),
         february: records.filter(item => new Date(item.Date).getMonth() === 1),
@@ -3149,12 +3151,13 @@ function formatHeatmap(records, year, metric) {
     }
     let html = `<div class="heatmap">
         <div class="heatmap--header">
-            <h2>${year} Heatmap</h2>
+            <h2>${isAll ? 'Cumulative' : year} Heatmap</h2>
             <div class="heatmap--stats">
                 <span>${records.length.toLocaleString('en-US')} posts</span>
                 <span>${totalWords(records).toLocaleString('en-US')} words</span>
                 <span>${getAverage(totalWords(records), records.length)} avg</span>
             </div>
+            ${isAll ? '<p>Stats are combined across all years. E.g., January is combined of all January instances that exist.</p>' : ''}
         </div>
         <div class="heatmap--calendars">
             ${formatHeatmapCalendar(monthlyRecords, year, metric)}
@@ -3321,6 +3324,7 @@ function formatListRecord(record) {
     if(siteObject.length > 1) {
         site = siteObject.filter(item => item.Site === record.Site)[0];
     }
+    
     let siteURL = site.URL;
 
     let formattedPartners = record.partnerNames.map(item => `<button onClick="updateFilterFromRecord(this)" data-value="${item}" data-type="partner">${item}</button>`);
