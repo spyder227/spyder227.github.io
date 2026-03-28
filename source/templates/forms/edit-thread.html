@@ -1,12 +1,15 @@
+<div id="loading"><i class="fa-solid fa-cog fa-spin"></i></div>
 <h1>Edit Thread</h1>
 <form data-form="edit-thread">
     <label>
-        <b>Current Title</b>
-        <span><input type="text" id="title" placeholder="Thread title" required /></span>
-    </label>
-    <label>
         <b>Site</b>
         <span><select required id="site">
+            <option value="">(select)</option>
+        </select></span>
+    </label>
+    <label>
+        <b>Current Title</b>
+        <span><select required id="title">
             <option value="">(select)</option>
         </select></span>
     </label>
@@ -65,3 +68,20 @@
     </div>
     <button type="submit" class="fullWidth">Submit</button>
 </form>
+<script>
+    fetch(`https://opensheet.elk.sh/${sheetID}/Tagging`)
+    .then((response) => response.json())
+    .then((tagData) => {
+        storedTags = [...tagData];
+
+        fetch(`https://opensheet.elk.sh/${sheetID}/Threads`)
+        .then((response) => response.json())
+        .then((threadData) => {
+            storedThreads = [...threadData];
+
+        }).then(() => {
+            initSiteSelects();
+            document.querySelector('#loading').remove();
+        });
+    });
+</script>

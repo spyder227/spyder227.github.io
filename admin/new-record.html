@@ -117,7 +117,8 @@
 </nav>
         <main>
             <section class="form">
-                <h1>Add Record</h1>
+                <div id="loading"><i class="fa-solid fa-cog fa-spin"></i></div>
+<h1>Add Record</h1>
 <form data-form="add-record">
     <label>
         <b>Site</b>
@@ -151,6 +152,24 @@
     </div>
     <button type="submit" class="fullWidth">Submit</button>
 </form>
+<script>
+
+    fetch(`https://opensheet.elk.sh/${sheetID}/Characters`)
+    .then((response) => response.json())
+    .then((characterData) => {
+        storedCharacters = [...characterData];
+
+        fetch(`https://opensheet.elk.sh/${sheetID}/Threads`)
+        .then((response) => response.json())
+        .then((threadData) => {
+            storedThreads = [...threadData];
+
+        }).then(() => {
+            initSiteSelects();
+            document.querySelector('#loading').remove();
+        });
+    });
+</script>
             </section>
         </main>
         <!--Scripts-->

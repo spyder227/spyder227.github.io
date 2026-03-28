@@ -117,7 +117,8 @@
 </nav>
         <main>
             <section class="form">
-                <h1>Add Character</h1>
+                <div id="loading"><i class="fa-solid fa-cog fa-spin"></i></div>
+<h1>Add Character</h1>
 <form data-form="add-character">
     <label class="fullWidth">
         <b>Character</b>
@@ -149,24 +150,12 @@
         <b>Face</b>
         <span><input type="text" id="face" placeholder="Face" required /></span>
     </label>
-    <label>
-        <b>Birthday</b>
-        <span><input type="text" id="birthday" placeholder="Month Day" required /></span>
-    </label>
-    <label>
-        <b>Astrological Sign</b>
-        <span><input type="text" id="zodiac" placeholder="Astrological Sign" required /></span>
-    </label>
     <label class="fullWidth imagePreview">
         <img src="" loading="lazy" />
         <div>
             <b>Image URL</b>
             <span><input type="text" id="image" placeholder="URL" /></span>
         </div>
-    </label>
-    <label class="fullWidth">
-        <b>Vibes</b>
-        <span><textarea type="text" id="vibes" placeholder="(Optional)"></textarea></span>
     </label>
     <div class="field-wrap fullWidth adjustable">
         <b>Extra Info</b>
@@ -176,6 +165,10 @@
             <button type="button" onclick="removeRow(this)">- Remove Row</button>
         </div>
     </div>
+    <label class="fullWidth">
+        <b>Vibes</b>
+        <span><textarea type="text" id="vibes" placeholder="(Optional)"></textarea></span>
+    </label>
     <div class="field-wrap fullWidth adjustable">
         <b>Links</b>
         <div class="rows"></div>
@@ -208,6 +201,24 @@
     </div>
     <button type="submit" class="fullWidth">Submit</button>
 </form>
+<script>
+
+    fetch(`https://opensheet.elk.sh/${sheetID}/Tagging`)
+    .then((response) => response.json())
+    .then((tagData) => {
+        storedTags = [...tagData];
+
+        fetch(`https://opensheet.elk.sh/${sheetID}/Partners`)
+        .then((response) => response.json())
+        .then((partnerData) => {
+            storedPartners = [...partnerData];
+
+        }).then(() => {
+            initSiteSelects();
+            document.querySelector('#loading').remove();
+        });
+    });
+</script>
             </section>
         </main>
         <!--Scripts-->

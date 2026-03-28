@@ -1,3 +1,4 @@
+<div id="loading"><i class="fa-solid fa-cog fa-spin"></i></div>
 <h1>Edit Partner</h1>
 <form data-form="edit-partner">
     <label>
@@ -22,3 +23,14 @@
     </div>
     <button type="submit" class="fullWidth">Submit</button>
 </form>
+<script>
+    fetch(`https://opensheet.elk.sh/${sheetID}/Partners`)
+    .then((response) => response.json())
+    .then((partnerData) => {
+        storedPartners = [...partnerData];
+        
+    }).then(() => {
+        initSiteSelects();
+        document.querySelector('#loading').remove();
+    });
+</script>

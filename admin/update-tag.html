@@ -117,7 +117,8 @@
 </nav>
         <main>
             <section class="form">
-                <h1>Edit Tags</h1>
+                <div id="loading"><i class="fa-solid fa-cog fa-spin"></i></div>
+<h1>Edit Tags</h1>
 <form data-form="edit-tags">
     <label class="fullWidth">
         <b>Tag Title</b>
@@ -139,6 +140,17 @@
     </div>
     <button type="submit" class="fullWidth">Submit</button>
 </form>
+<script>
+    fetch(`https://opensheet.elk.sh/${sheetID}/Tagging`)
+    .then((response) => response.json())
+    .then((tagData) => {
+        storedTags = [...tagData];
+        
+    }).then(() => {
+        initTagSelect(document.querySelector('#title'), storedTags);
+        document.querySelector('#loading').remove();
+    });
+</script>
             </section>
         </main>
         <!--Scripts-->
