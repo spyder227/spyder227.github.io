@@ -2603,6 +2603,10 @@ function formatSingleInstance(character, sites) {
     }
     
     let charName = character.character.toLowerCase().trim();
+    if (charName === `dawson o brian`) { 
+        charName = `dawson o'brian`;
+    }
+
     return `<div class="character spy-track grid-item has-modal ${tagsString} ${character.character.split(' ')[0]}">
         <div class="character--wrap">
             <div class="character--image"><img src="${character.basics.image}" loading="lazy" /></div>
@@ -2732,6 +2736,9 @@ function formatMultipleInstance(character, sites) {
         }
 
         let charName = character.character.toLowerCase().trim();
+        if (charName === `dawson o brian`) {
+            charName = `dawson o'brian`;
+        }
         siteModals += `<div class="character--modal" data-type="info" data-site="${site.Site}">
                 <div class="character--modal-inner">
                     <div class="character--modal-inner-scroll">
