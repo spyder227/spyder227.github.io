@@ -134,7 +134,51 @@ function initAccordion(target = '.accordion') {
         })
     })
 }
+function initIndex(sites) {
+    sites.sort((a, b) => {
+        if(a.Close === '' && b.Close !== '') return -1;
+        else if(a.Close !== '' && b.Close === '') return 1;
+        else if(a.Site < b.Site) return -1;
+        else if(a.Site > b.Site) return 1;
+        else return 0;
+    });
+    fetch(`https://opensheet.elk.sh/${sheetID}/Characters`)
+    .then((response) => response.json())
+    .then((characterData) => {
+        storedCharacters = [...characterData];
 
+        fetch(`https://opensheet.elk.sh/${sheetID}/Threads`)
+        .then((response) => response.json())
+        .then((threadData) => {
+            storedThreads = [...threadData];
+
+            fetch(`https://opensheet.elk.sh/${sheetID}/Writing`)
+            .then((response) => response.json())
+            .then((recordData) => {
+                storedRecords = [...recordData];
+
+
+                let html = ``;
+                sites.forEach((site, i) => {
+                    let siteCharacters = storedCharacters.filter(item => item.Sites.includes(site.Site));
+                    let siteThreads = storedThreads.filter(item => item.Site === site.Site);
+                    let siteRecords = storedRecords.filter(item => item.Site === site.Site);
+                    
+                    if(i === 0) {
+                        html += `<h2 class="h2">Active</h2><div class="grid">`;
+                    } else if(sites[i - 1].Close === '' && site.Close !== '') {
+                        html += `</div><h2 class="h2">Inactive</h2><div class="grid">`;
+                    }
+                    html += formatSiteBlock(site, siteCharacters, siteThreads, siteRecords);
+                    if(sites.length - 1 === i) {
+                        html += `</div>`;
+                    }
+                });
+                document.querySelector('main').innerHTML = html;
+            });
+        });
+    });
+}
 function formatSiteBlock(site, characters, threads, records) {
     return `<div class="site">
         <div class="site--stats">
@@ -1343,6 +1387,20 @@ function submitApp(form) {
         miscFormatted[title] = miscContents[i];
     });
 
+    let data = {
+        SubmissionType: 'add-longform',
+        Character: characterName,
+        ID: characterId,
+        Site: site,
+        Cheatsheet: cheatsheet,
+        Misc: JSON.stringify(miscFormatted),
+    };
+
+    let existing = storedApps.filter(item => item.Character === characterName && item.Site === site);
+    if(existing.length > 0) {
+        data.SubmissionType = 'replace-longform';
+    }
+
     sendAjax(form, data, successMessage);
 }
 function updateTags(form, data) {
@@ -1654,8 +1712,11 @@ function updateCharacter(form, data) {
 
     sendAjax(form, existing, successMessage);
 }
-function updateThread(form, data) {let currentTitle = form.querySelector('#title').options[form.querySelector('#title').selectedIndex].innerText.trim().toLowerCase();
+function updateThread(form, data) {
+    let currentTitle = form.querySelector('#title').options[form.querySelector('#title').selectedIndex].innerText.trim().toLowerCase();
     let site = form.querySelector('#site').options[form.querySelector('#site').selectedIndex].innerText.trim().toLowerCase();
+    console.log(currentTitle);
+    console.log(site);
     let existing = data.filter(item => item.Title === currentTitle && item.Site === site)[0];
     let selected = Array.from(form.querySelectorAll('.updates input:checked')).map(item => item.value);
 
@@ -2373,7 +2434,7 @@ function prepTags(data, site) {
     
     document.querySelector('.characters--filters-inner').insertAdjacentHTML('beforeend', html);
 }
-function prepCharacters(data, site) {
+function prepCharacters(data, site, longform) {
     data.forEach((item, i) => {
         data[i].Sites = JSON.parse(item.Sites);
         data[i].Links = JSON.parse(item.Links);
@@ -2403,7 +2464,7 @@ function prepCharacters(data, site) {
             return 0;
         }
     });
-    
+
     return characters;
 }
 function populateCharacters(array, siteObject) {
@@ -2438,14 +2499,12 @@ function populateCharacters(array, siteObject) {
                     character.extras = instance.extras;
                 }
             });
-            character.apps = array[i].Apps[0];
         } else {
             character.ships = array[i].Ships;
             character.tags = array[i].Tags;
             character.sites = array[i].Sites;
             character.basics = array[i].Basics;
             character.id = null;
-            character.apps = array[i].Apps;
         }
         html += formatCharacter(character, siteObject.length > 1, siteObject);
     }
@@ -2543,7 +2602,7 @@ function formatSingleInstance(character, sites) {
         extrasHTML += `<li><b>${item}</b><span>${character.extras[item]}</span></li>`;
     }
     
-    
+    let charName = character.character.toLowerCase().trim();
     return `<div class="character spy-track grid-item has-modal ${tagsString} ${character.character.split(' ')[0]}">
         <div class="character--wrap">
             <div class="character--image"><img src="${character.basics.image}" loading="lazy" /></div>
@@ -2560,6 +2619,9 @@ function formatSingleInstance(character, sites) {
                 <div class="character--info">
                     <button onclick="openModal(this)" data-type="info">info</button>
                     ${character.ships.length > 0 ? `<button onclick="openModal(this)" data-type="ships">relationships</button>` : ``}
+                    <a href="https://spywrites.tumblr.com/tagged/muse:  ${charName}" target="_blank">tumblr</a>
+                    <a href="https://spywrites.tumblr.com/tagged/img: ${charName}" target="_blank">images</a>
+                    <a href="https://spywrites.tumblr.com/tagged/mood: ${charName}" target="_blank">aesthetic</a>
                     ${character.links.map(item => `<a href="${item.url}" target="_blank">${item.title}</a>`).join('')}
                 </div>
             </div>
@@ -2639,7 +2701,6 @@ function formatMultipleInstance(character, sites) {
         let basics = character.basics.filter(item => item.site === siteInstance.site)[0].basics;
         let extras = character.basics.filter(item => item.site === siteInstance.site)[0].extras;
         let ships = character.ships.filter(item => item.site === siteInstance.site)[0].characters;
-        let siteApp = character.apps.filter(app => app.site === siteInstance.site)[0];
         let site = sites.filter(item => item.Site === siteInstance.site)[0];
 
         siteImages += `<img src="${basics.image}" loading="lazy" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}" />`;
@@ -2670,6 +2731,7 @@ function formatMultipleInstance(character, sites) {
             shipHTML += `<li><b>${ship}</b><i>${combinedShips[ship].writer === 'npc' ? combinedShips[ship].writer : `played by ${combinedShips[ship].writer}`}</i><i>${combinedShips[ship].relationship}</i></li>`
         }
 
+        let charName = character.character.toLowerCase().trim();
         siteModals += `<div class="character--modal" data-type="info" data-site="${site.Site}">
                 <div class="character--modal-inner">
                     <div class="character--modal-inner-scroll">
@@ -2697,6 +2759,9 @@ function formatMultipleInstance(character, sites) {
                 <div class="character--modal-inner">
                     <div class="character--modal-inner-scroll">
                         <ul>
+                            <li><a href="https://spywrites.tumblr.com/tagged/muse: ${charName}" target="_blank">tumblr</a></li>
+                            <li><a href="https://spywrites.tumblr.com/tagged/img: ${charName}" target="_blank">images</a></li>
+                            <li><a href="https://spywrites.tumblr.com/tagged/mood: ${charName}" target="_blank">aesthetic</a></li>
                             ${character.links.map(item => `<li><a href="${item.url}" target="_blank">${item.title}</a></li>`).join('')}
                         </ul>
                     </div>
@@ -2725,7 +2790,6 @@ function formatMultipleInstance(character, sites) {
         ${siteModals}
     </div>`;
 }
-const markdownSafe = ['.apps .freeform.app--block > .scroll'];
 function initMarkdownLists() {
     let quickLists = document.querySelectorAll('tl');
     if(quickLists.length > 0) {
