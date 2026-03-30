@@ -1,5 +1,4 @@
 let storedSites = [], storedPartners = [], storedCharacters = [], storedThreads = [], storedTags = [], storedRecords = [], storedFreeforms = [];
-setTheme();
 initMenus();
 
 document.querySelectorAll('.backdrop').forEach(overlay => {
