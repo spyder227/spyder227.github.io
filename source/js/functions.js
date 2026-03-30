@@ -1335,7 +1335,6 @@ function submitApp(form) {
     let characterName = form.querySelector('#character').options[form.querySelector('#character').selectedIndex].innerText.toLowerCase().trim();
     let characterId = form.querySelector('#character').options[form.querySelector('#character').selectedIndex].value.trim();
     let cheatsheet = form.querySelector('#cheatsheet').value.trim().replaceAll('\n', '');
-    let freeform = form.querySelector('#freeform').value.trim().replaceAll('\n', '');
     let miscTitles = Array.from(form.querySelectorAll('.app-info .title')).map(item => item.value.toLowerCase().trim());
     let miscContents = Array.from(form.querySelectorAll('.app-info .content')).map(item => item.value.trim().replaceAll('\n', ''));
     let miscFormatted = {};
@@ -1343,21 +1342,6 @@ function submitApp(form) {
     miscTitles.forEach((title, i) => {
         miscFormatted[title] = miscContents[i];
     });
-
-    let data = {
-        SubmissionType: 'add-longform',
-        Character: characterName,
-        ID: characterId,
-        Site: site,
-        Cheatsheet: cheatsheet,
-        Freeform: freeform,
-        Misc: JSON.stringify(miscFormatted),
-    };
-
-    let existing = storedApps.filter(item => item.Character === characterName && item.Site === site);
-    if(existing.length > 0) {
-        data.SubmissionType = 'replace-longform';
-    }
 
     sendAjax(form, data, successMessage);
 }
@@ -1670,8 +1654,7 @@ function updateCharacter(form, data) {
 
     sendAjax(form, existing, successMessage);
 }
-function updateThread(form, data) {
-    let currentTitle = form.querySelector('#title').value.trim().toLowerCase();
+function updateThread(form, data) {let currentTitle = form.querySelector('#title').options[form.querySelector('#title').selectedIndex].innerText.trim().toLowerCase();
     let site = form.querySelector('#site').options[form.querySelector('#site').selectedIndex].innerText.trim().toLowerCase();
     let existing = data.filter(item => item.Title === currentTitle && item.Site === site)[0];
     let selected = Array.from(form.querySelectorAll('.updates input:checked')).map(item => item.value);
@@ -2390,7 +2373,7 @@ function prepTags(data, site) {
     
     document.querySelector('.characters--filters-inner').insertAdjacentHTML('beforeend', html);
 }
-function prepCharacters(data, site, longform) {
+function prepCharacters(data, site) {
     data.forEach((item, i) => {
         data[i].Sites = JSON.parse(item.Sites);
         data[i].Links = JSON.parse(item.Links);
@@ -2419,34 +2402,6 @@ function prepCharacters(data, site, longform) {
         } else {
             return 0;
         }
-    });
-
-    characters.forEach(character => {
-        let apps = [];
-        if(site !== 'all') {
-            let entry = longform.filter(item => item.Character === character.Character && item.Site === site)[0];
-            if(entry) {
-                apps.push({
-                    site: entry.Site,
-                    ...((entry.Cheatsheet && entry.Cheatsheet !== '') && {cheatsheet: entry.Cheatsheet}),
-                    ...((entry.Freeform && entry.Freeform !== '') && {freeform: entry.Freeform}),
-                    ...((entry.Misc && entry.Misc !== '') && {misc: JSON.parse(entry.Misc)}),
-                });
-            }
-        } else {
-            let entries = longform.filter(item => item.Character === character.Character);
-            if(entries.length > 0) {
-                entries.forEach(entry => {
-                    apps.push({
-                        site: entry.Site,
-                        ...((entry.Cheatsheet && entry.Cheatsheet !== '') && {cheatsheet: entry.Cheatsheet}),
-                        ...((entry.Freeform && entry.Freeform !== '') && {freeform: entry.Freeform}),
-                        ...((entry.Misc && entry.Misc !== '') && {misc: JSON.parse(entry.Misc)}),
-                    });
-                });
-            }
-        }
-        character.Apps = apps;
     });
     
     return characters;
@@ -2587,37 +2542,6 @@ function formatSingleInstance(character, sites) {
     for(item in character.extras) {
         extrasHTML += `<li><b>${item}</b><span>${character.extras[item]}</span></li>`;
     }
-
-    let longformHTML = ``;
-    if(character.apps) {
-        if(character.apps.cheatsheet) {
-            longformHTML += `<div class="app--block accordion">
-                <strong class="accordion--trigger">Cheatsheet</strong>
-                <span class="scroll accordion--content">${character.apps.cheatsheet}</span>
-            </div>`;
-        }
-        if(character.apps.freeform) {
-            longformHTML += `<div class="app--block freeform accordion">
-                <strong class="accordion--trigger">Freeform</strong>
-                <span class="scroll accordion--content">${character.apps.freeform}</span>
-            </div>`;
-        }
-        for(item in character.apps.misc) {
-            if(character.apps.misc[item] !== '') {
-                if(item !== 'horses') {
-                    longformHTML += `<div class="app--block accordion">
-                        <strong class="accordion--trigger">${item}</strong>
-                        <span class="scroll accordion--content">${character.apps.misc[item]}</span>
-                    </div>`;
-                } else {
-                    longformHTML += `<div class="app--block accordion">
-                        <strong class="accordion--trigger">${item}</strong>
-                        <span class="scroll accordion--content"><textarea>${character.apps.misc[item]}</textarea></span>
-                    </div>`;
-                }
-            }
-        }
-    }
     
     
     return `<div class="character spy-track grid-item has-modal ${tagsString} ${character.character.split(' ')[0]}">
@@ -2635,7 +2559,6 @@ function formatSingleInstance(character, sites) {
                 </div>
                 <div class="character--info">
                     <button onclick="openModal(this)" data-type="info">info</button>
-                    ${longformHTML !== '' ? `<button onclick="openModal(this)" data-type="longform">app</button>` : ``}
                     ${character.ships.length > 0 ? `<button onclick="openModal(this)" data-type="ships">relationships</button>` : ``}
                     ${character.links.map(item => `<a href="${item.url}" target="_blank">${item.title}</a>`).join('')}
                 </div>
@@ -2652,13 +2575,6 @@ function formatSingleInstance(character, sites) {
                         <li><b>Face</b><span>${character.basics.face}</span></li>
                         ${extrasHTML}
                     </ul>
-                </div>
-            </div>
-        </div>
-        <div class="character--modal" data-type="longform">
-            <div class="character--modal-inner">
-                <div class="character--modal-inner-scroll apps">
-                    ${longformHTML}
                 </div>
             </div>
         </div>
@@ -2729,7 +2645,6 @@ function formatMultipleInstance(character, sites) {
         siteImages += `<img src="${basics.image}" loading="lazy" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}" />`;
         siteLabels += `<button onclick="switchSite(this)" data-site="${site.Site}" class="${i === 0 ? 'is-active' : ''}">${site.Site}</button>`;
         siteModalButtons += `<button onclick="openModal(this)" data-type="info" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}">info</button>
-            ${siteApp ? `<button onclick="openModal(this)" data-type="longform" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}">app</button>` : ``}
             <button onclick="openModal(this)" data-type="ships" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}">relationships</button>
             <button onclick="openModal(this)" data-type="links" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}">links</button>`;
         siteProfiles += `<a href="${site.URL}/${site.Directory}${charSite.id}" target="_blank" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}">${capitalize(character.character)}</a>`;
@@ -2755,37 +2670,6 @@ function formatMultipleInstance(character, sites) {
             shipHTML += `<li><b>${ship}</b><i>${combinedShips[ship].writer === 'npc' ? combinedShips[ship].writer : `played by ${combinedShips[ship].writer}`}</i><i>${combinedShips[ship].relationship}</i></li>`
         }
 
-        let longformHTML = ``;
-        if(siteApp) {
-            if(siteApp.cheatsheet) {
-                longformHTML += `<div class="app--block accordion">
-                    <strong class="accordion--trigger">Cheatsheet</strong>
-                    <span class="scroll accordion--content">${siteApp.cheatsheet}</span>
-                </div>`;
-            }
-            if(siteApp.freeform) {
-                longformHTML += `<div class="app--block freeform accordion">
-                    <strong class="accordion--trigger">Freeform</strong>
-                    <span class="scroll accordion--content">${siteApp.freeform}</span>
-                </div>`;
-            }
-            for(item in siteApp.misc) {
-                if(siteApp.misc[item] !== '') {
-                    if(item !== 'horses') {
-                        longformHTML += `<div class="app--block accordion">
-                            <strong class="accordion--trigger">${item}</strong>
-                            <span class="scroll accordion--content">${siteApp.misc[item]}</span>
-                        </div>`;
-                    } else {
-                        longformHTML += `<div class="app--block accordion">
-                            <strong class="accordion--trigger">${item}</strong>
-                            <span class="scroll accordion--content"><textarea>${siteApp.misc[item]}</textarea></span>
-                        </div>`;
-                    }
-                }
-            }
-        }
-
         siteModals += `<div class="character--modal" data-type="info" data-site="${site.Site}">
                 <div class="character--modal-inner">
                     <div class="character--modal-inner-scroll">
@@ -2796,13 +2680,6 @@ function formatMultipleInstance(character, sites) {
                             <li><b>Face</b><span>${basics.face}</span></li>
                             ${extrasHTML}
                         </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="character--modal" data-type="longform" data-site="${site.Site}">
-                <div class="character--modal-inner">
-                    <div class="character--modal-inner-scroll apps">
-                        ${longformHTML}
                     </div>
                 </div>
             </div>
