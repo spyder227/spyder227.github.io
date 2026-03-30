@@ -1,6 +1,6 @@
+let storedSites = [], storedPartners = [], storedCharacters = [], storedThreads = [], storedTags = [], storedRecords = [], storedFreeforms = [];
 setTheme();
 initMenus();
-let storedSites = [], storedPartners = [], storedCharacters = [], storedThreads = [], storedTags = [], storedRecords = [], storedFreeforms = [];
 
 document.querySelectorAll('.backdrop').forEach(overlay => {
     overlay.addEventListener('click', () => {
@@ -25,6 +25,9 @@ document.querySelectorAll('form').forEach(form => {
                 break;
             case 'add-character':
                 submitCharacter(form);
+                break;
+            case 'add-app':
+                submitApp(form);
                 break;
             case 'add-partner':
                 submitPartner(form);
