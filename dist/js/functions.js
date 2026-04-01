@@ -1790,6 +1790,12 @@ function addRecord(form) {
     });
 }
 
+function countWords(e) {
+    let form = e.closest('form');
+    let content = form.querySelector('textarea');
+    form.querySelector('.result').innerHTML = `${content.value.replace(/\n/g, ' ').split(' ').filter(word => word !== '').length} Words`;
+}
+
 /***** ISOTOPE FUNCTIONS *****/
 function openFilters(e) {
     document.querySelector('.backdrop.horizontal').classList.remove('is-active');
@@ -2233,7 +2239,7 @@ function sendInlineRecordAjax(data, container) {
         }
     });
 }
-function countWords(content) {
+function countContentWords(content) {
     return content.replace(/\n/g, ' ').split(' ').filter(word => word !== '').length;
 }
 function changeStatus(e) {
