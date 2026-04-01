@@ -1185,6 +1185,10 @@ section.links {
         display: none; }
 
 .record--inline {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+  grid-template-columns: repeat(2, 1fr);
   -webkit-transform: scaleY(0);
       -ms-transform: scaleY(0);
           transform: scaleY(0);
@@ -1195,15 +1199,6 @@ section.links {
   bottom: calc(100% + var(--space--xs));
   background: var(--bg--quaternary);
   z-index: 2;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
   padding: var(--space--sm);
   gap: var(--space--xs);
   -webkit-transition: 0.3s ease-in-out;
@@ -1224,7 +1219,21 @@ section.links {
     outline: none; }
     .record--inline input:focus {
       border-left-color: var(--accent); }
+  .record--inline textarea {
+    grid-column: 1 / -1;
+    border: 0;
+    border-left: var(--border--secondary);
+    background: var(--bg--primary);
+    width: 100%;
+    padding: var(--space--xs) var(--space--sm);
+    font-size: 0.875rem;
+    color: var(--text--primary);
+    height: 36px;
+    outline: none; }
+    .record--inline textarea:focus {
+      border-left-color: var(--accent); }
   .record--inline > button {
+    grid-column: 1 / -1;
     border: var(--border--primary);
     background: none;
     border-radius: var(--radius--standard);
