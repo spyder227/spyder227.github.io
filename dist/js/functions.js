@@ -2233,7 +2233,7 @@ function sendInlineRecordAjax(data, container) {
         }
     });
 }
-function countContentWords(content) {
+function countWords(content) {
     return content.replace(/\n/g, ' ').split(' ').filter(word => word !== '').length;
 }
 function changeStatus(e) {
