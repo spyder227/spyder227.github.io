@@ -173,6 +173,7 @@
           border-color: var(--accent);
           background: var(--accent); }
   .characters--content {
+    overflow: hidden;
     padding: var(--space--md); }
     @media (min-width: 601px) {
       .characters--content {
@@ -254,6 +255,9 @@
       cursor: pointer;
       margin: 0;
       padding: 0; }
+      .character--info > button.is-active {
+        border-bottom: var(--border--primary);
+        border-color: var(--accent); }
   .character--right {
     position: relative;
     font-size: 12px;
@@ -307,6 +311,9 @@
       max-height: 300px;
       background: var(--bg--quaternary);
       padding: var(--space--lg) var(--space--md) var(--space--lg) var(--space--lg); }
+      .character--modal-inner:has(.apps) {
+        max-height: 500px;
+        max-width: 600px; }
       .character--modal-inner-scroll {
         height: 100%;
         overflow: auto;
@@ -339,12 +346,273 @@
             font-size: 10px;
             font-weight: 900;
             letter-spacing: 0.1em; }
-      .character--modal-inner-header {
-        text-transform: capitalize;
-        font-size: 1.25rem;
-        font-weight: 900;
-        font-family: var(--font--serif);
-        border-bottom: var(--border--secondary);
-        margin-bottom: var(--space--sm); }
-        .character--modal-inner-header:not(:first-child) {
-          margin-top: var(--space--lg); }
+    .character--modal-header {
+      text-transform: capitalize;
+      font-size: 1.25rem;
+      font-weight: 900;
+      font-family: var(--font--serif);
+      border-bottom: var(--border--secondary);
+      margin-bottom: var(--space--sm); }
+      .character--modal-header:not(:first-child) {
+        margin-top: var(--space--lg); }
+  .character .apps * {
+    all: unset; }
+  .character .apps .accordion--trigger {
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.5rem;
+    letter-spacing: 0.2em;
+    font-weight: 900; }
+    .character .apps .accordion--trigger::after {
+      content: '\f107';
+      font-family: 'Font Awesome 7 Pro';
+      font-weight: 700;
+      margin-left: var(--space--sm);
+      top: -0.1em;
+      position: relative;
+      transform: rotate(0deg);
+      transition-duration: 0.3s;
+      display: inline-block; }
+    .character .apps .accordion--trigger.is-active::after {
+      transform: rotate(180deg); }
+  .character .apps .accordion--content {
+    display: none;
+    padding-bottom: var(--space--md); }
+    .character .apps .accordion--content.is-active {
+      display: block; }
+  .character .app--block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space--sm);
+    color: var(--text--primary);
+    font-size: 0.75rem;
+    line-height: 200%;
+    text-align: justify; }
+    .character .app--block:not(:last-child) {
+      margin-bottom: var(--space--md); }
+      @media (min-width: 481px) {
+        .character .app--block:not(:last-child) {
+          margin-bottom: var(--space--lg); } }
+    .character .app--block strong {
+      line-height: 200%;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-bottom: var(--border--primary);
+      border-bottom-color: var(--accent);
+      width: max-content;
+      max-width: 100%; }
+    .character .app--block > .scroll {
+      border-left: var(--border--primary);
+      border-left-color: var(--accent);
+      background: var(--bg--primary);
+      padding: var(--space--md); }
+      @media (min-width: 481px) {
+        .character .app--block > .scroll {
+          padding: var(--space--md) var(--space--lg); } }
+      .character .app--block > .scroll ul {
+        display: block;
+        padding-left: var(--space--md); }
+        .character .app--block > .scroll ul > br {
+          display: none; }
+        .character .app--block > .scroll ul li {
+          display: list-item;
+          padding-left: var(--space--sm); }
+          .character .app--block > .scroll ul li:first-child {
+            padding-top: var(--space--sm); }
+          .character .app--block > .scroll ul li:not(:last-child) {
+            padding-bottom: var(--space--md); }
+          .character .app--block > .scroll ul li::marker {
+            content: '\f86c';
+            font-family: 'Font Awesome 7 Sharp';
+            font-weight: 300;
+            color: var(--accent); }
+      .character .app--block > .scroll tag-shiptitle,
+      .character .app--block > .scroll tag-relheader,
+      .character .app--block > .scroll tag-relationship > b,
+      .character .app--block > .scroll tag-relationship > a,
+      .character .app--block > .scroll tag-rel > b,
+      .character .app--block > .scroll tag-rel > a,
+      .character .app--block > .scroll h2,
+      .character .app--block > .scroll h3,
+      .character .app--block > .scroll h4,
+      .character .app--block > .scroll h5,
+      .character .app--block > .scroll h6,
+      .character .app--block > .scroll h7,
+      .character .app--block > .scroll h8,
+      .character .app--block > .scroll .h2,
+      .character .app--block > .scroll .h3,
+      .character .app--block > .scroll .h4,
+      .character .app--block > .scroll .h5,
+      .character .app--block > .scroll .h6,
+      .character .app--block > .scroll .h7,
+      .character .app--block > .scroll .h8,
+      .character .app--block > .scroll tag-xl,
+      .character .app--block > .scroll tag-lg,
+      .character .app--block > .scroll tag-md,
+      .character .app--block > .scroll tag-sm,
+      .character .app--block > .scroll tag-xs,
+      .character .app--block > .scroll tag-year,
+      .character .app--block > .scroll tag-date {
+        display: block;
+        width: max-content;
+        max-width: 100%;
+        text-transform: uppercase;
+        font-weight: 900; }
+        .character .app--block > .scroll tag-shiptitle:not(:first-child),
+        .character .app--block > .scroll tag-relheader:not(:first-child),
+        .character .app--block > .scroll tag-relationship > b:not(:first-child),
+        .character .app--block > .scroll tag-relationship > a:not(:first-child),
+        .character .app--block > .scroll tag-rel > b:not(:first-child),
+        .character .app--block > .scroll tag-rel > a:not(:first-child),
+        .character .app--block > .scroll h2:not(:first-child),
+        .character .app--block > .scroll h3:not(:first-child),
+        .character .app--block > .scroll h4:not(:first-child),
+        .character .app--block > .scroll h5:not(:first-child),
+        .character .app--block > .scroll h6:not(:first-child),
+        .character .app--block > .scroll h7:not(:first-child),
+        .character .app--block > .scroll h8:not(:first-child),
+        .character .app--block > .scroll .h2:not(:first-child),
+        .character .app--block > .scroll .h3:not(:first-child),
+        .character .app--block > .scroll .h4:not(:first-child),
+        .character .app--block > .scroll .h5:not(:first-child),
+        .character .app--block > .scroll .h6:not(:first-child),
+        .character .app--block > .scroll .h7:not(:first-child),
+        .character .app--block > .scroll .h8:not(:first-child),
+        .character .app--block > .scroll tag-xl:not(:first-child),
+        .character .app--block > .scroll tag-lg:not(:first-child),
+        .character .app--block > .scroll tag-md:not(:first-child),
+        .character .app--block > .scroll tag-sm:not(:first-child),
+        .character .app--block > .scroll tag-xs:not(:first-child),
+        .character .app--block > .scroll tag-year:not(:first-child),
+        .character .app--block > .scroll tag-date:not(:first-child) {
+          margin: 1em 0; }
+        .character .app--block > .scroll tag-shiptitle + br,
+        .character .app--block > .scroll tag-relheader + br,
+        .character .app--block > .scroll tag-relationship > b + br,
+        .character .app--block > .scroll tag-relationship > a + br,
+        .character .app--block > .scroll tag-rel > b + br,
+        .character .app--block > .scroll tag-rel > a + br,
+        .character .app--block > .scroll h2 + br,
+        .character .app--block > .scroll h3 + br,
+        .character .app--block > .scroll h4 + br,
+        .character .app--block > .scroll h5 + br,
+        .character .app--block > .scroll h6 + br,
+        .character .app--block > .scroll h7 + br,
+        .character .app--block > .scroll h8 + br,
+        .character .app--block > .scroll .h2 + br,
+        .character .app--block > .scroll .h3 + br,
+        .character .app--block > .scroll .h4 + br,
+        .character .app--block > .scroll .h5 + br,
+        .character .app--block > .scroll .h6 + br,
+        .character .app--block > .scroll .h7 + br,
+        .character .app--block > .scroll .h8 + br,
+        .character .app--block > .scroll tag-xl + br,
+        .character .app--block > .scroll tag-lg + br,
+        .character .app--block > .scroll tag-md + br,
+        .character .app--block > .scroll tag-sm + br,
+        .character .app--block > .scroll tag-xs + br,
+        .character .app--block > .scroll tag-year + br,
+        .character .app--block > .scroll tag-date + br {
+          display: none; }
+      .character .app--block > .scroll tag-xl,
+      .character .app--block > .scroll .h2,
+      .character .app--block > .scroll h2 {
+        font-size: 32px; }
+      .character .app--block > .scroll .h3,
+      .character .app--block > .scroll h3 {
+        font-size: 28px; }
+      .character .app--block > .scroll tag-year,
+      .character .app--block > .scroll tag-lg,
+      .character .app--block > .scroll .h4,
+      .character .app--block > .scroll h4 {
+        font-size: 24px; }
+      .character .app--block > .scroll tag-md,
+      .character .app--block > .scroll .h5,
+      .character .app--block > .scroll h5 {
+        font-size: 20px; }
+      .character .app--block > .scroll tag-sm,
+      .character .app--block > .scroll tag-shiptitle,
+      .character .app--block > .scroll tag-relheader,
+      .character .app--block > .scroll .h6,
+      .character .app--block > .scroll h6 {
+        font-size: 16px; }
+      .character .app--block > .scroll tag-date,
+      .character .app--block > .scroll .h7,
+      .character .app--block > .scroll h7 {
+        font-size: 12px; }
+      .character .app--block > .scroll tag-xs,
+      .character .app--block > .scroll tag-relationship > b,
+      .character .app--block > .scroll tag-relationship > a,
+      .character .app--block > .scroll tag-rel > b,
+      .character .app--block > .scroll tag-rel > a,
+      .character .app--block > .scroll .h8,
+      .character .app--block > .scroll h8 {
+        font-size: 8px;
+        letter-spacing: 0.1em;
+        line-height: 200%; }
+      .character .app--block > .scroll tag-shiptitle ~ br,
+      .character .app--block > .scroll tag-relheader ~ br,
+      .character .app--block > .scroll tag-relationship > br,
+      .character .app--block > .scroll tag-rel > br {
+        display: none; }
+      .character .app--block > .scroll tag-relationship,
+      .character .app--block > .scroll tag-rel {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space--xs); }
+        .character .app--block > .scroll tag-relationship:not(:first-child),
+        .character .app--block > .scroll tag-rel:not(:first-child) {
+          margin: 1em 0; }
+      .character .app--block > .scroll tag-relationship > b,
+      .character .app--block > .scroll tag-relationship > a,
+      .character .app--block > .scroll tag-rel > b,
+      .character .app--block > .scroll tag-rel > a {
+        border-bottom: var(--border--primary);
+        border-color: var(--accent); }
+      .character .app--block > .scroll blockquote,
+      .character .app--block > .scroll luxblock {
+        display: block;
+        margin: var(--space--md) 0; }
+        .character .app--block > .scroll blockquote + br,
+        .character .app--block > .scroll luxblock + br {
+          display: none; }
+      .character .app--block > .scroll tag-event,
+      .character .app--block > .scroll blockquote {
+        background: rgba(var(--rgb), 0.25);
+        border: var(--border--primary);
+        border-color: var(--accent);
+        padding: var(--space--md); }
+        @media (min-width: 481px) {
+          .character .app--block > .scroll tag-event,
+          .character .app--block > .scroll blockquote {
+            padding: var(--space--lg); } }
+      .character .app--block > .scroll b {
+        font-weight: 700;
+        color: var(--accent); }
+      .character .app--block > .scroll i {
+        color: var(--text--secondary);
+        font-style: italic; }
+      .character .app--block > .scroll u {
+        text-decoration: underline;
+        text-decoration-color: var(--accent); }
+      .character .app--block > .scroll s {
+        text-decoration: line-through;
+        text-decoration-color: var(--text--secondary); }
+      .character .app--block > .scroll tag-labels {
+        display: none; }
+        .character .app--block > .scroll tag-labels ~ br {
+          display: none; }
+      .character .app--block > .scroll tag-date > br,
+      .character .app--block > .scroll tag-events > br,
+      .character .app--block > .scroll tag-timeline > br,
+      .character .app--block > .scroll tag-tabs > br,
+      .character .app--block > .scroll tag-tabset > br,
+      .character .app--block > .scroll tag-tab > br {
+        display: none; }
+      .character .app--block > .scroll tag-date,
+      .character .app--block > .scroll tag-events {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space--xs); }
