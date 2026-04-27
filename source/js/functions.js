@@ -134,51 +134,6 @@ function initAccordion(target = '.accordion') {
         })
     })
 }
-function initIndex(sites) {
-    sites.sort((a, b) => {
-        if(a.Close === '' && b.Close !== '') return -1;
-        else if(a.Close !== '' && b.Close === '') return 1;
-        else if(a.Site < b.Site) return -1;
-        else if(a.Site > b.Site) return 1;
-        else return 0;
-    });
-    fetch(`https://opensheet.elk.sh/${sheetID}/Characters`)
-    .then((response) => response.json())
-    .then((characterData) => {
-        storedCharacters = [...characterData];
-
-        fetch(`https://opensheet.elk.sh/${sheetID}/Threads`)
-        .then((response) => response.json())
-        .then((threadData) => {
-            storedThreads = [...threadData];
-
-            fetch(`https://opensheet.elk.sh/${sheetID}/Writing`)
-            .then((response) => response.json())
-            .then((recordData) => {
-                storedRecords = [...recordData];
-
-
-                let html = ``;
-                sites.forEach((site, i) => {
-                    let siteCharacters = storedCharacters.filter(item => item.Sites.includes(site.Site));
-                    let siteThreads = storedThreads.filter(item => item.Site === site.Site);
-                    let siteRecords = storedRecords.filter(item => item.Site === site.Site);
-                    
-                    if(i === 0) {
-                        html += `<h2 class="h2">Active</h2><div class="grid">`;
-                    } else if(sites[i - 1].Close === '' && site.Close !== '') {
-                        html += `</div><h2 class="h2">Inactive</h2><div class="grid">`;
-                    }
-                    html += formatSiteBlock(site, siteCharacters, siteThreads, siteRecords);
-                    if(sites.length - 1 === i) {
-                        html += `</div>`;
-                    }
-                });
-                document.querySelector('main').innerHTML = html;
-            });
-        });
-    });
-}
 function formatSiteBlock(site, characters, threads, records) {
     return `<div class="site">
         <div class="site--stats">
