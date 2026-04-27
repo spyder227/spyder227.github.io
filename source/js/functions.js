@@ -101,6 +101,9 @@ function initMenus() {
             });
             document.querySelector('#loading').remove();
         }
+        if(document.querySelector('body.index')) {
+            initIndex([...storedSites]);
+        }
     });
 }
 function initAccordion(target = '.accordion') {
@@ -1376,6 +1379,7 @@ function submitApp(form) {
     let characterName = form.querySelector('#character').options[form.querySelector('#character').selectedIndex].innerText.toLowerCase().trim();
     let characterId = form.querySelector('#character').options[form.querySelector('#character').selectedIndex].value.trim();
     let cheatsheet = form.querySelector('#cheatsheet').value.trim().replaceAll('\n', '');
+    let freeform = form.querySelector('#freeform').value.trim().replaceAll('\n', '');
     let miscTitles = Array.from(form.querySelectorAll('.app-info .title')).map(item => item.value.toLowerCase().trim());
     let miscContents = Array.from(form.querySelectorAll('.app-info .content')).map(item => item.value.trim().replaceAll('\n', ''));
     let miscFormatted = {};
@@ -1390,6 +1394,7 @@ function submitApp(form) {
         ID: characterId,
         Site: site,
         Cheatsheet: cheatsheet,
+        Freeform: freeform,
         Misc: JSON.stringify(miscFormatted),
     };
 
@@ -1789,7 +1794,6 @@ function addRecord(form) {
         sendAjaxSync(item, form, data.length, i);
     });
 }
-
 function countWords(e) {
     let form = e.closest('form');
     let content = form.querySelector('textarea');
@@ -1974,10 +1978,13 @@ function initIsotope() {
     });
 
     // use value of search field to filter
-    document.querySelector(typeSearch).addEventListener('keyup', e => {
-        appendSearchQuery('typesearch', e.currentTarget.value);
+    const searchInput = document.querySelector(typeSearch);
+    const handleKeyUp = debounce((e) => {
+        console.log('Searching for:', e.target.value);
+        appendSearchQuery('typesearch', e.target.value);
         setCustomFilter();
-    });
+    }, 300);
+    searchInput.addEventListener('keyup', handleKeyUp);
 
     // bind sort button click
     let sortButtons = document.querySelectorAll(sorts);
@@ -1991,6 +1998,16 @@ function initIsotope() {
             e.currentTarget.classList.add('is-checked');
         });
     });
+}
+function debounce(func, wait) {
+    let timeout;
+    return function(...args) {
+        const context = this;
+        clearTimeout(timeout); // Cancel previous timer
+        timeout = setTimeout(() => {
+            func.apply(context, args); // Execute after 'wait' period
+        }, wait);
+    };
 }
 function toggleFilters(e) {
     e.closest('.filters--wrap').querySelector('.filters--collapsible').classList.toggle('is-open');
@@ -2304,6 +2321,9 @@ function recordReplySend(e) {
             year: 'numeric'
         }).format(new Date()),
     };
+
+    e.currentTarget.closest('.record--inline').querySelector('.word-count').value = '';
+    e.currentTarget.closest('.record--inline').querySelector('.post').value = '';
     sendInlineRecordAjax(data, container);
 }
 function markComplete(e) {
@@ -2315,10 +2335,7 @@ function markComplete(e) {
         SubmissionType: 'thread-status',
         ThreadID: e.dataset.id,
         Site: e.dataset.site,
-        Character: JSON.stringify({
-            name: character,
-            id: characterID,
-        }),
+        Character: e.dataset.character,
         Status: 'complete'
     }, thread, null, 'complete');
 }
@@ -2394,7 +2411,7 @@ function formatThread(thread) {
             <span class="loading">Updating...</span>
         </button>`;
 
-    return `<div class="thread spy-track grid-item grid-item ${thread.character.name.split(' ')[0]} ${partnerClasses} ${featuringClasses} status--${thread.status} type--${thread.type} delay--${getDelay(thread.updated)} ${extraTags} site--${thread.site.ID}">
+    return `<div class="thread lux-track grid-item grid-item ${thread.character.name.split(' ')[0]} ${partnerClasses} ${featuringClasses} status--${thread.status} type--${thread.type} delay--${getDelay(thread.updated)} ${extraTags} site--${thread.site.ID}">
         <div class="thread--wrap">
             <div class="thread--main">
                 <div class="thread--dates">
@@ -2473,6 +2490,34 @@ function prepCharacters(data, site, longform) {
         }
     });
 
+    characters.forEach(character => {
+        let apps = [];
+        if(site !== 'all') {
+            let entry = longform.filter(item => item.Character === character.Character && item.Site === site)[0];
+            if(entry) {
+                apps.push({
+                    site: entry.Site,
+                    ...((entry.Cheatsheet && entry.Cheatsheet !== '') && {cheatsheet: entry.Cheatsheet}),
+                    ...((entry.Freeform && entry.Freeform !== '') && {freeform: entry.Freeform}),
+                    ...((entry.Misc && entry.Misc !== '') && {misc: JSON.parse(entry.Misc)}),
+                });
+            }
+        } else {
+            let entries = longform.filter(item => item.Character === character.Character);
+            if(entries.length > 0) {
+                entries.forEach(entry => {
+                    apps.push({
+                        site: entry.Site,
+                        ...((entry.Cheatsheet && entry.Cheatsheet !== '') && {cheatsheet: entry.Cheatsheet}),
+                        ...((entry.Freeform && entry.Freeform !== '') && {freeform: entry.Freeform}),
+                        ...((entry.Misc && entry.Misc !== '') && {misc: JSON.parse(entry.Misc)}),
+                    });
+                });
+            }
+        }
+        character.Apps = apps;
+    });
+    
     return characters;
 }
 function populateCharacters(array, siteObject) {
@@ -2507,12 +2552,14 @@ function populateCharacters(array, siteObject) {
                     character.extras = instance.extras;
                 }
             });
+            character.apps = array[i].Apps[0];
         } else {
             character.ships = array[i].Ships;
             character.tags = array[i].Tags;
             character.sites = array[i].Sites;
             character.basics = array[i].Basics;
             character.id = null;
+            character.apps = array[i].Apps;
         }
         html += formatCharacter(character, siteObject.length > 1, siteObject);
     }
@@ -2609,13 +2656,40 @@ function formatSingleInstance(character, sites) {
     for(item in character.extras) {
         extrasHTML += `<li><b>${item}</b><span>${character.extras[item]}</span></li>`;
     }
-    
-    let charName = character.character.toLowerCase().trim();
-    if (charName === `dawson o brian`) { 
-        charName = `dawson o'brian`;
-    }
 
-    return `<div class="character spy-track grid-item has-modal ${tagsString} ${character.character.split(' ')[0]}">
+    let longformHTML = ``;
+    if(character.apps) {
+        if(character.apps.cheatsheet) {
+            longformHTML += `<div class="app--block accordion">
+                <strong class="accordion--trigger">Cheatsheet</strong>
+                <span class="scroll accordion--content">${character.apps.cheatsheet}</span>
+            </div>`;
+        }
+        if(character.apps.freeform) {
+            longformHTML += `<div class="app--block freeform accordion">
+                <strong class="accordion--trigger">Freeform</strong>
+                <span class="scroll accordion--content">${character.apps.freeform}</span>
+            </div>`;
+        }
+        for(item in character.apps.misc) {
+            if(character.apps.misc[item] !== '') {
+                if(item !== 'horses') {
+                    longformHTML += `<div class="app--block accordion">
+                        <strong class="accordion--trigger">${item}</strong>
+                        <span class="scroll accordion--content">${character.apps.misc[item]}</span>
+                    </div>`;
+                } else {
+                    longformHTML += `<div class="app--block accordion">
+                        <strong class="accordion--trigger">${item}</strong>
+                        <span class="scroll accordion--content"><textarea>${character.apps.misc[item]}</textarea></span>
+                    </div>`;
+                }
+            }
+        }
+    }
+    
+    
+    return `<div class="character lux-track grid-item has-modal ${tagsString} ${character.character.split(' ')[0]}">
         <div class="character--wrap">
             <div class="character--image"><img src="${character.basics.image}" loading="lazy" /></div>
             <div class="character--main">
@@ -2630,10 +2704,8 @@ function formatSingleInstance(character, sites) {
                 </div>
                 <div class="character--info">
                     <button onclick="openModal(this)" data-type="info">info</button>
+                    ${longformHTML !== '' ? `<button onclick="openModal(this)" data-type="longform">app</button>` : ``}
                     ${character.ships.length > 0 ? `<button onclick="openModal(this)" data-type="ships">relationships</button>` : ``}
-                    <a href="https://spywrites.tumblr.com/tagged/muse:  ${charName}" target="_blank">tumblr</a>
-                    <a href="https://spywrites.tumblr.com/tagged/img: ${charName}" target="_blank">images</a>
-                    <a href="https://spywrites.tumblr.com/tagged/mood: ${charName}" target="_blank">aesthetic</a>
                     ${character.links.map(item => `<a href="${item.url}" target="_blank">${item.title}</a>`).join('')}
                 </div>
             </div>
@@ -2649,6 +2721,13 @@ function formatSingleInstance(character, sites) {
                         <li><b>Face</b><span>${character.basics.face}</span></li>
                         ${extrasHTML}
                     </ul>
+                </div>
+            </div>
+        </div>
+        <div class="character--modal" data-type="longform">
+            <div class="character--modal-inner">
+                <div class="character--modal-inner-scroll apps">
+                    ${longformHTML}
                 </div>
             </div>
         </div>
@@ -2713,11 +2792,13 @@ function formatMultipleInstance(character, sites) {
         let basics = character.basics.filter(item => item.site === siteInstance.site)[0].basics;
         let extras = character.basics.filter(item => item.site === siteInstance.site)[0].extras;
         let ships = character.ships.filter(item => item.site === siteInstance.site)[0].characters;
+        let siteApp = character.apps.filter(app => app.site === siteInstance.site)[0];
         let site = sites.filter(item => item.Site === siteInstance.site)[0];
 
         siteImages += `<img src="${basics.image}" loading="lazy" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}" />`;
         siteLabels += `<button onclick="switchSite(this)" data-site="${site.Site}" class="${i === 0 ? 'is-active' : ''}">${site.Site}</button>`;
         siteModalButtons += `<button onclick="openModal(this)" data-type="info" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}">info</button>
+            ${siteApp ? `<button onclick="openModal(this)" data-type="longform" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}">app</button>` : ``}
             <button onclick="openModal(this)" data-type="ships" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}">relationships</button>
             <button onclick="openModal(this)" data-type="links" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}">links</button>`;
         siteProfiles += `<a href="${site.URL}/${site.Directory}${charSite.id}" target="_blank" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}">${capitalize(character.character)}</a>`;
@@ -2743,10 +2824,37 @@ function formatMultipleInstance(character, sites) {
             shipHTML += `<li><b>${ship}</b><i>${combinedShips[ship].writer === 'npc' ? combinedShips[ship].writer : `played by ${combinedShips[ship].writer}`}</i><i>${combinedShips[ship].relationship}</i></li>`
         }
 
-        let charName = character.character.toLowerCase().trim();
-        if (charName === `dawson o brian`) {
-            charName = `dawson o'brian`;
+        let longformHTML = ``;
+        if(siteApp) {
+            if(siteApp.cheatsheet) {
+                longformHTML += `<div class="app--block accordion">
+                    <strong class="accordion--trigger">Cheatsheet</strong>
+                    <span class="scroll accordion--content">${siteApp.cheatsheet}</span>
+                </div>`;
+            }
+            if(siteApp.freeform) {
+                longformHTML += `<div class="app--block freeform accordion">
+                    <strong class="accordion--trigger">Freeform</strong>
+                    <span class="scroll accordion--content">${siteApp.freeform}</span>
+                </div>`;
+            }
+            for(item in siteApp.misc) {
+                if(siteApp.misc[item] !== '') {
+                    if(item !== 'horses') {
+                        longformHTML += `<div class="app--block accordion">
+                            <strong class="accordion--trigger">${item}</strong>
+                            <span class="scroll accordion--content">${siteApp.misc[item]}</span>
+                        </div>`;
+                    } else {
+                        longformHTML += `<div class="app--block accordion">
+                            <strong class="accordion--trigger">${item}</strong>
+                            <span class="scroll accordion--content"><textarea>${siteApp.misc[item]}</textarea></span>
+                        </div>`;
+                    }
+                }
+            }
         }
+
         siteModals += `<div class="character--modal" data-type="info" data-site="${site.Site}">
                 <div class="character--modal-inner">
                     <div class="character--modal-inner-scroll">
@@ -2757,6 +2865,13 @@ function formatMultipleInstance(character, sites) {
                             <li><b>Face</b><span>${basics.face}</span></li>
                             ${extrasHTML}
                         </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="character--modal" data-type="longform" data-site="${site.Site}">
+                <div class="character--modal-inner">
+                    <div class="character--modal-inner-scroll apps">
+                        ${longformHTML}
                     </div>
                 </div>
             </div>
@@ -2774,9 +2889,6 @@ function formatMultipleInstance(character, sites) {
                 <div class="character--modal-inner">
                     <div class="character--modal-inner-scroll">
                         <ul>
-                            <li><a href="https://spywrites.tumblr.com/tagged/muse: ${charName}" target="_blank">tumblr</a></li>
-                            <li><a href="https://spywrites.tumblr.com/tagged/img: ${charName}" target="_blank">images</a></li>
-                            <li><a href="https://spywrites.tumblr.com/tagged/mood: ${charName}" target="_blank">aesthetic</a></li>
                             ${character.links.map(item => `<li><a href="${item.url}" target="_blank">${item.title}</a></li>`).join('')}
                         </ul>
                     </div>
@@ -2784,7 +2896,7 @@ function formatMultipleInstance(character, sites) {
             </div>`;
     });
     
-    return `<div class="character spy-track grid-item ${tagsString} ${character.character.split(' ')[0]} has-modal">
+    return `<div class="character lux-track grid-item ${tagsString} ${character.character.split(' ')[0]} has-modal">
         <div class="character--wrap" data-site="${character.sites[0].site}">
             <div class="character--image">
                 ${siteImages}
@@ -2805,6 +2917,7 @@ function formatMultipleInstance(character, sites) {
         ${siteModals}
     </div>`;
 }
+const markdownSafe = ['.apps .freeform.app--block > .scroll'];
 function initMarkdownLists() {
     let quickLists = document.querySelectorAll('tl');
     if(quickLists.length > 0) {
