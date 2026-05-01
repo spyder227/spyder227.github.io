@@ -237,10 +237,10 @@
   margin-bottom: var(--space--sm);
   background: var(--bg--tertiary);
   border-left: var(--border--thick); }
-  .thread:has(.status--mine), .thread:has([data-status="mine"]) {
+  .thread:has(.status--mine), .thread:has([data-status="mine"]), .thread:has(.status--planned), .thread:has([data-status="planned"]) {
     border-color: var(--bg-accent);
     background: rgba(var(--accent-rgb), 0.4); }
-    .thread:has(.status--mine) button, .thread:has([data-status="mine"]) button {
+    .thread:has(.status--mine) button, .thread:has([data-status="mine"]) button, .thread:has(.status--planned) button, .thread:has([data-status="planned"]) button {
       border: 1px solid var(--spy-border); }
   .thread.status--mine .inactiveOnly, .thread.status--theirs .inactiveOnly {
     display: none; }

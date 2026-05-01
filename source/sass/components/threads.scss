@@ -324,7 +324,9 @@
     border-left: var(--border--thick);
 
     &:has(.status--mine),
-    &:has([data-status="mine"]) {
+    &:has([data-status="mine"]),
+    &:has(.status--planned),
+    &:has([data-status="planned"]) {
         border-color: var(--bg-accent);
         background: rgba( var(--accent-rgb), 0.4 );
 
