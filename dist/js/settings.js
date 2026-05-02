@@ -7,11 +7,11 @@ const threadTags = ["vital","rapidfire","platonic","romantic","antagonistic","co
 const chartColors = [
     '#6c90c7', //blue
     '#699e9c', //teal
+    '#799e6c', //green
     '#c283ac', //pink
     '#b483c2', //purple
     '#afa073', //yellow
     '#a9826b', //orange
-    '#799e6c', //green
     '#b66363' //red
 ];
 
