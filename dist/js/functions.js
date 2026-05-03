@@ -2479,14 +2479,12 @@ function populateCharacters(array, siteObject) {
                     character.extras = instance.extras;
                 }
             });
-            character.apps = array[i].Apps[0];
         } else {
             character.ships = array[i].Ships;
             character.tags = array[i].Tags;
             character.sites = array[i].Sites;
             character.basics = array[i].Basics;
             character.id = null;
-            character.apps = array[i].Apps;
         }
         html += formatCharacter(character, siteObject.length > 1, siteObject);
     }
