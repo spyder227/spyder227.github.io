@@ -194,6 +194,41 @@
     line-height:100%;
 }
 </style>
+                            <div class="charts--thread-status charts--breakdown">
+    <h2 class="site--names">splux discord</h1>
+    <canvas id="splux"></canvas>
+</div>
+<script>
+    fetch(`https://opensheet.elk.sh/${sheetID}/Threads`)
+    .then((response) => response.json())
+    .then((threadData) => {
+        fetch(`https://opensheet.elk.sh/${sheetID}/Sites`)
+        .then((response) => response.json())
+        .then((siteData) => {
+            //set overall variables
+            let siteName = 'splux discord';
+            let siteObject = siteName !== 'all' ? siteData.filter(item => item.Site === siteName) : siteData;
+            let threadStats = createThreadStats(threadData, siteObject);
+
+            /*Thread Status*/
+            new Chart(document.getElementById('splux'), {
+                ...chartOptions,
+                data: {
+                    labels: threadStats[0].status.tags.map(item => item.toUpperCase()),
+                    datasets: [{
+                        data: threadStats[0].status.totals,
+                        ...datasetOptions
+                    }]
+                },
+            });
+        });
+    });
+</script>
+<style>
+.site--names {
+    line-height:100%;
+}
+</style>
                         </div>
                     </section>
                 </p>

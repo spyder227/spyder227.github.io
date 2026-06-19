@@ -43,6 +43,7 @@
     "IE >= 11"
   ],
   "devDependencies": {
+    "baseline-browser-mapping": "^2.10.38",
     "gulp-file-include": "^2.3.0",
     "webpack": "^4.39.3"
   }
