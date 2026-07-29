@@ -1109,6 +1109,7 @@ function submitCharacter(form) {
         gender: form.querySelector('#gender').value.trim().toLowerCase(),
         pronouns: form.querySelector('#pronouns').value.trim().toLowerCase(),
         age: form.querySelector('#ageValue').value.trim().toLowerCase(),
+        zodiac: form.querySelector('#zodiac').value.trim().toLowerCase(),
         face: form.querySelector('#face').value.trim().toLowerCase(),
         image: form.querySelector('#image').value.trim(),
     };

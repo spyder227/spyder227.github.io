@@ -1990,6 +1990,29 @@ section.links {
                 flex-direction: column;
         gap: var(--space--xs); }
 
+.charts--index {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 100%;
+  grid-template-columns: 100%;
+  gap: var(--space--sm);
+  margin: 0 auto var(--space--sm); }
+  @media (min-width: 601px) {
+    .charts--index:not(:has(.charts--number)) {
+      -ms-grid-columns: (calc((100% / 2) - ((var(--space--sm) * 1) / 2)))[2];
+      grid-template-columns: repeat(2, calc((100% / 2) - ((var(--space--sm) * 1) / 2))); }
+    .charts--index:has(.charts--number) {
+      -ms-grid-columns: (calc((100% / 3) - ((var(--space--sm) * 2) / 3)))[3];
+      grid-template-columns: repeat(3, calc((100% / 3) - ((var(--space--sm) * 2) / 3))); } }
+  @media (min-width: 1025px) {
+    .charts--index {
+      -ms-grid-columns: (calc((100% / 5) - ((var(--space--sm) * 4) / 5)))[5] !important;
+      grid-template-columns: repeat(5, calc((100% / 5) - ((var(--space--sm) * 4) / 5))) !important; } }
+  .charts--index > div {
+    background: var(--bg--tertiary);
+    border: var(--border--primary);
+    padding: var(--space--lg); }
+
 .charts--triple {
   display: -ms-grid;
   display: grid;
@@ -2073,7 +2096,8 @@ section.links {
 
 .charts--breakdown h2 {
   margin: 0 0 var(--space--md);
-  font-size: 0.5rem;
+  font-size: 0.7rem;
+  font-family: var(--font--sans);
   text-transform: uppercase;
   letter-spacing: 0.2em;
   font-weight: 900;
