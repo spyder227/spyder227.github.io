@@ -2594,6 +2594,8 @@ function formatSingleInstance(character, sites) {
                     ${character.basics.gender ? `<span>${character.basics.gender}</span>` : ''}
                     ${character.basics.pronouns ? `<span>${character.basics.pronouns}</span>` : ''}
                     ${character.basics.age ? `<span><span class="character--age">${character.basics.age}</span> years old</span>` : ''}
+                    ${character.basics.birthday ? `<span>${character.basics.birthday}</span>` : ''}
+                    ${character.basics.zodiac ? `<span>${character.basics.zodiac}</span>` : ''}
                     ${character.basics.face ? `<span>${character.basics.face}</span>` : ''}
                 </div>
                 <div class="character--title">
@@ -2614,6 +2616,8 @@ function formatSingleInstance(character, sites) {
                         <li><b>Gender</b><span>${character.basics.gender}</span></li>
                         <li><b>Pronouns</b><span>${character.basics.pronouns}</span></li>
                         <li><b>Age</b><span>${character.basics.age} years old</span></li>
+                        <li><b>Birthday</b><span>${character.basics.birthday}</span></li>
+                        <li><b>Zodiac</b><span>${character.basics.zodiac}</span></li>
                         <li><b>Face</b><span>${character.basics.face}</span></li>
                         ${extrasHTML}
                     </ul>
@@ -2718,6 +2722,8 @@ function formatMultipleInstance(character, sites) {
                             <li><b>Gender</b><span>${basics.gender}</span></li>
                             <li><b>Pronouns</b><span>${basics.pronouns}</span></li>
                             <li><b>Age</b><span>${basics.age} years old</span></li>
+                            <li><b>Birthday</b><span>${basics.birthday}</span></li>
+                            <li><b>Zodiac</b><span>${basics.zodiac}</span></li>
                             <li><b>Face</b><span>${basics.face}</span></li>
                             ${extrasHTML}
                         </ul>
