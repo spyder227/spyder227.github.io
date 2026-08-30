@@ -271,8 +271,8 @@
         .then((response) => response.json())
         .then((tagData) => {
             storedTags = [...tagData];
-            
-        fetch(`https://opensheet.elk.sh/${sheetID}/Partners`)
+
+            fetch(`https://opensheet.elk.sh/${sheetID}/Partners`)
             .then((response) => response.json())
             .then((partnerData) => {
                 storedPartners = [...partnerData];
@@ -281,6 +281,7 @@
                 initEditCharacterSelect(document.querySelector('[data-form="edit-character"] #character'), storedCharacters);
                 document.querySelector('#loading').remove();
             });
+        });
     });
 </script>
             </section>
