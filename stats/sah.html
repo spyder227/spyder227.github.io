@@ -190,7 +190,7 @@
                 if(siteName === 'all') {
                     document.querySelector('.charts--characters').innerHTML = `<b>${characterStats.total}</b><span>${characterStats.total === 1 ? 'Unique Character' : 'Unique Characters'}</span>`;
                 } else {
-                    document.querySelector('.charts--characters').innerHTML = `<b>${characterStats.total}</b><span>${characterStats.total === 1 ? 'Character' : 'Characters'}</span>`;
+                    document.querySelector('.charts--characters').innerHTML = `<b>${characterStats.total}</b><span>${characterStats.total === 1 ? 'Active Character' : 'Active Characters'}</span>`;
                 }
                 document.querySelector('.charts--threads').innerHTML = `<b>${threadStats[0].active}</b><span>${threadStats[0].active === 1 ? 'Active Thread' : 'Active Threads'}</span>`;
                 document.querySelector('.charts--completed').innerHTML = `<b>${threadStats[0].completed}</b><span>${threadStats[0].completed === 1 ? 'Completed Thread' : 'Completed Threads'}</span>`;

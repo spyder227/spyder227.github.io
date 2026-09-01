@@ -1567,21 +1567,25 @@ function updateCharacter(form, data) {
         //add to existing
         for(instance in existingTags) {
             if(existingTags[instance].site === site) {
-                for(set in existingTags[instance].tags) {
-                    for(newSet in tagArray) {
+                if(existingTags[instance].tags.length > 0) {
+                    for(set in existingTags[instance].tags) {
+                        for(newSet in tagArray) {
 
-                        if(existingTags[instance].tags[set].type === tagArray[newSet].type) {
-                            if(replacingTags.includes(tagArray[newSet].type)) {
-                                existingTags[instance].tags[set].tags = tagArray[newSet].tags;
+                            if(existingTags[instance].tags[set].type === tagArray[newSet].type) {
+                                if(replacingTags.includes(tagArray[newSet].type)) {
+                                    existingTags[instance].tags[set].tags = tagArray[newSet].tags;
+                                } else {
+                                    existingTags[instance].tags[set].tags = [...existingTags[instance].tags[set].tags, ...tagArray[newSet].tags];
+                                }
                             } else {
-                                existingTags[instance].tags[set].tags = [...existingTags[instance].tags[set].tags, ...tagArray[newSet].tags];
-                            }
-                        } else {
-                            if(!notExistingTags.includes(tagArray[newSet].type)) {
-                                notExistingTags.push(tagArray[newSet].type);
+                                if(!notExistingTags.includes(tagArray[newSet].type)) {
+                                    notExistingTags.push(tagArray[newSet].type);
+                                }
                             }
                         }
                     }
+                } else {
+                    existingTags[instance].tags = [...tagArray];
                 }
             }
         }
@@ -2331,7 +2335,9 @@ function formatThread(thread) {
             partnersText += `, `;
         }
         partnerClasses += `partner--${featured.writer}`;
-        featuringClasses += `featured--${featured.name.split(' ')[0]}-${featured.name.split(' ')[1] ? featured.name.split(' ')[1][0] : ''}`;
+        let featuredArray = featured.name.toLowerCase().trim().split(' ');
+        let featuredClass = featuredArray.length > 1 ? `${featuredArray[0]}-${featuredArray[1][0]}` : featuredArray[0];
+        featuringClasses += `featured--${featuredClass}`;
         featuringText += `<a href="${thread.site.URL}/${thread.site.Directory}${featured.id}">${featured.name}</a>`;
         partnersText += `<a href="${thread.site.URL}/${thread.site.Directory}${featured.writerId}">${featured.writer}</a>`;
     });
@@ -2505,6 +2511,10 @@ function formatCharacter(character, viewAll, sites) {
 }
 function formatSingleInstance(character, sites) {
     let tagsString = ``;
+    let availableTagTypes = character.tags.map(item => item.tags.length > 0 ? item.type : '').filter(item => item !== '');
+    if(availableTagTypes.length === 0 || !availableTagTypes.includes('status')) {
+        tagsString += `status--inactive`;
+    }
     for(type in character.tags) {
         character.tags[type].tags.forEach((set, i) => {
             tagsString += ` `;
@@ -2880,7 +2890,7 @@ function formatMarkdown(str, identifier, opening, closing) {
 
 /***** STATS AND CHARTS FUNCTIONS *****/
 function createCharacterStats(data, site, sites) {
-    let siteName, characters;
+    let siteName, characters, activeCharacters = [];
     let stats = {
         genders: {
             tags: [],
@@ -2899,7 +2909,19 @@ function createCharacterStats(data, site, sites) {
 
     if(site.length === 1) {
         siteName = site[0].Site;
-        characters = data.map(item => JSON.parse(item.Basics).filter(instance => instance.site === siteName)[0] ? JSON.parse(item.Basics).filter(instance => instance.site === siteName)[0].basics : 'remove').filter(item => item !== 'remove');
+        let siteCharacters = data.filter(item => JSON.parse(item.Sites).map(item => item.site).includes(siteName));
+        siteCharacters.forEach(character => {
+            let siteTags = JSON.parse(character.Tags).filter(instance => instance.site === siteName)[0].tags;
+            if(siteTags.length > 0) {
+                siteTags.forEach(tagSet => {
+                    if(tagSet.type === 'status' && tagSet.tags.includes('active')) {
+                        activeCharacters.push(character);
+                    }
+                })
+            }
+        });
+
+        characters = activeCharacters.map(item => JSON.parse(item.Basics).filter(instance => instance.site === siteName)[0] ? JSON.parse(item.Basics).filter(instance => instance.site === siteName)[0].basics : 'remove').filter(item => item !== 'remove');
 
         stats.total = characters.length;
 
@@ -2912,7 +2934,7 @@ function createCharacterStats(data, site, sites) {
         });
     } else {
         let activeSites = sites.filter(item => item.Close === '').map(item => item.Site);
-        characters = data.map(item => ({...item, Basics: JSON.parse(item.Basics)}));
+        characters = activeCharacters.length > 0 ? activeCharacters.map(item => ({...item, Basics: JSON.parse(item.Basics)})) : data.map(item => ({...item, Basics: JSON.parse(item.Basics)}));
         let activeCount = 0;
         characters.forEach(character => {
             let sites = character.Basics.map(item => item.site);

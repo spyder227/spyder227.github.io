@@ -27,6 +27,19 @@
                         </div>
                     </div>
                 }
+                <!--Status-->
+                @@if (sitename !== 'all') {
+                    <div class="characters--filter filter--parent">
+                        <button onClick="openFilters(this)">Status</button>
+                        <div class="characters--filter-dropdown">
+                            <div class="characters--filter-group filter--status" data-filter-group="status">
+                                <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>any</b></label>
+                                <label><span><input type="checkbox" value=".status--active"></span><b>active</b></label>
+                                <label><span><input type="checkbox" value=".status--inactive"></span><b>inactive</b></label>
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
