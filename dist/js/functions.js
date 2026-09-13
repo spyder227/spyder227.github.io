@@ -101,6 +101,14 @@ function initMenus() {
             });
             document.querySelector('#loading').remove();
         }
+        //and edit tag form
+        if(document.querySelector('[data-form="edit-tags"]')) {
+            document.querySelectorAll('.accordion.sites').forEach(el => {
+                initTagSites(el, storedSites);
+                initAccordion();
+            });
+            document.querySelector('#loading').remove();
+        }
         if(document.querySelector('body.index')) {
             initIndex([...storedSites]);
         }
@@ -1368,7 +1376,17 @@ function updateTags(form, data) {
 
     let existing = data.filter(item => item.Tag === title)[0];
     if(newSites.length > 0) {
-        let combined = [...JSON.parse(existing.Sites), ...newSites];
+        let combined;
+        //replace all
+        if(JSON.parse(existing.Sites)[0] === 'all' && newSites.length > 0 && !newSites.includes('all')) {
+            combined = [ ...newSites];
+        }
+        //switch to all
+        else if(newSites.includes('all')) {
+            combined = ['all'];
+        } else {
+            combined = [...JSON.parse(existing.Sites), ...newSites];
+        }
         existing.Sites = JSON.stringify(combined);
     }
     if(newTags.length > 0) {
@@ -2408,7 +2426,17 @@ function prepTags(data, site) {
     let html = ``;
 
     activeTags.forEach(set => {
-        html += `<div class="characters--filter filter--parent">
+        html += `${set.Tag === 'true age' ? `<div class="characters--filter filter--parent">
+            <button onClick="openFilters(this)">Mortality</button>
+            <div class="characters--filter-dropdown">
+                <div class="characters--filter-group filter--sites" data-filter-group="mortality">
+                    <label class="all is-checked"><span><input type="checkbox" class="all" value="" checked=""></span><b>any</b></label>
+                    <label><span><input type="checkbox" value=".trueage--mortal"></span><b>Mortal</b></label>
+                    <label><span><input type="checkbox" value=".trueage--immortal"></span><b>Immortal</b></label>
+                </div>
+            </div>
+        </div>` : ''}
+        <div class="characters--filter filter--parent">
             <button onClick="openFilters(this)">${set.Tag}</button>
             <div class="characters--filter-dropdown">
                 <div class="characters--filter-group filter--sites" data-filter-group="${cleanText(set.Tag)}">
