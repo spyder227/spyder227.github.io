@@ -109,9 +109,6 @@ function initMenus() {
             });
             document.querySelector('#loading').remove();
         }
-        if(document.querySelector('body.index')) {
-            initIndex([...storedSites]);
-        }
     });
 }
 function initAccordion(target = '.accordion') {
