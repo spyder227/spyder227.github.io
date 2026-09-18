@@ -2,7 +2,7 @@
     <button onClick="toggleFilters(this)" class="mobileOnly">View Filters</button>
     <div class="filters--collapsible">
         <div class="characters--filters">
-                <div class="characters--filters-inner">
+            <div class="characters--filters-inner">
                 <input id="quicksearch" class="forminput memberlist-namesearch" type="text" size="25" name="name" value="" placeholder="Filter by name...">
                 <!--Sorting-->
                 <div class="characters--filter filter--parent">
@@ -16,7 +16,7 @@
                         }
                     </div>
                 </div>
-            <!--Site-->
+                <!--Site-->
                 @@if (sitename === 'all') {
                     <div class="characters--filter filter--parent">
                         <button onClick="openFilters(this)">Site</button>
@@ -69,66 +69,98 @@
         fetch(`https://opensheet.elk.sh/${sheetID}/Characters`)
         .then((response) => response.json())
         .then((characterData) => {
-            fetch(`https://opensheet.elk.sh/${sheetID}/Sites`)
+            fetch(`https://opensheet.elk.sh/${sheetID}/Freeforms`)
             .then((response) => response.json())
-            .then((siteData) => {
-                let siteObject = siteName !== 'all' ? siteData.filter(item => item.Site === siteName) : siteData;
-                let tags = prepTags(tagData, siteName);
-                let characters = prepCharacters(characterData, siteName);
-                populateCharacters(characters, siteObject);
+            .then((longformData) => {
+                fetch(`https://opensheet.elk.sh/${sheetID}/Sites`)
+                .then((response) => response.json())
+                .then((siteData) => {
+                    let siteObject = siteName !== 'all' ? siteData.filter(item => item.Site === siteName) : siteData;
+                    let tags = prepTags(tagData, siteName);
+                    let characters = prepCharacters(characterData, siteName, longformData);
+                    populateCharacters(characters, siteObject);
+                }).then(() => {
+                    //initialize isotope
+                    // quick search regex
+                    let qsRegex;
+                    let elements = document.querySelectorAll(gridItem);
 
-                //initialize isotope
-                // quick search regex
-                let qsRegex;
-                let elements = document.querySelectorAll(gridItem);
-
-                // init Isotope
-                $container.isotope({
-                    itemSelector: gridItem,
-                    percentPosition: true,
-                    filter: defaultShow,
-                    getSortData: {
-                        characterAsc: '.character--title',
-                        characterDesc: '.character--title',
-                        ageAsc: '.character--age parseInt',
-                        ageDesc: '.character--age parseInt',
-                    },
-                    sortAscending: {
-                        characterAsc: true,
-                        characterDesc: false,
-                        ageAsc: true,
-                        ageDesc: false,
-                    }
-                });
-                setTimeout(function() {
-                    $container.isotope('layout');
-                }, 300);
-                initIsotope();
-            }).then(() => {
-                document.querySelectorAll('.character--label').forEach(label => {
-                    label.addEventListener('click', e => {
-                        let tabSet = e.currentTarget.closest('.character--info');
-                        let labels = tabSet.querySelectorAll('.character--label');
-                        let tabs = tabSet.querySelectorAll('.character--tab');
-                        let index = Array.from(labels).indexOf.call(labels, e.currentTarget);
-
-                        if(e.currentTarget.classList.contains('is-open')) {
-                            labels.forEach(label => label.classList.remove('is-open'));
-                            tabs.forEach(tab => tab.classList.remove('is-open'));
-                            tabs.forEach(tab => tab.style.top = '0%');
-                        } else {
-                            labels.forEach(label => label.classList.remove('is-open'));
-                            tabs.forEach(tab => tab.classList.remove('is-open'));
-                            e.currentTarget.classList.add('is-open');
-                            tabs.forEach(tab => tab.style.top = `${index * -100}%`);
+                    // init Isotope
+                    $container.isotope({
+                        itemSelector: gridItem,
+                        percentPosition: true,
+                        filter: defaultShow,
+                        getSortData: {
+                            characterAsc: '.character--title',
+                            characterDesc: '.character--title',
+                            ageAsc: '.character--age parseInt',
+                            ageDesc: '.character--age parseInt',
+                        },
+                        sortAscending: {
+                            characterAsc: true,
+                            characterDesc: false,
+                            ageAsc: true,
+                            ageDesc: false,
                         }
-                        $container.isotope('layout');
                     });
-                });
-                document.querySelectorAll('.site--label').forEach(label => {
-                    label.addEventListener('click', e => {
-                        e.currentTarget.closest('.character').querySelector('.character--image img').setAttribute('src', e.currentTarget.dataset.image);
+
+                    //handle filter storage
+                    let queryParamsArray = window.location.search.split('&').map(param => param.split('='));
+                    let queryParams = {};
+                    queryParamsArray.forEach(param => {
+                        queryParams[param[0]] = param[1];
                     });
+                    for (const param in queryParams) {
+                        if(param !== '') {
+                            let key = param;
+                            let values = queryParams[param].split('_');
+
+                            if(document.querySelector(`[data-filter-group="${key}"]`) && values.length > 0) {
+                                document.querySelector(`[data-filter-group="${key}"] .all`).classList.remove('is-checked');
+                                values.filter(item => item !== '').forEach(value => {
+                                    document.querySelector(`[data-filter-group="${key}"] [value="${value}"]`)
+                                    .closest('label')
+                                    .classList.add('is-checked');
+                                });
+                                setCustomFilter();
+                            }
+                        }
+                    }
+
+                    if(window.location.search.split('typesearch=')[1]) {
+                        document.querySelector(typeSearch).value = window.location.search.split('typesearch=')[1].split('&')[0].replaceAll('+', ' ');
+                        setCustomFilter();
+                    }
+                    initIsotope();
+                }).then(() => {
+                    document.querySelectorAll('.character--label').forEach(label => {
+                        label.addEventListener('click', e => {
+                            let tabSet = e.currentTarget.closest('.character--info');
+                            let labels = tabSet.querySelectorAll('.character--label');
+                            let tabs = tabSet.querySelectorAll('.character--tab');
+                            let index = Array.from(labels).indexOf.call(labels, e.currentTarget);
+
+                            if(e.currentTarget.classList.contains('is-open')) {
+                                labels.forEach(label => label.classList.remove('is-open'));
+                                tabs.forEach(tab => tab.classList.remove('is-open'));
+                                tabs.forEach(tab => tab.style.top = '0%');
+                            } else {
+                                labels.forEach(label => label.classList.remove('is-open'));
+                                tabs.forEach(tab => tab.classList.remove('is-open'));
+                                e.currentTarget.classList.add('is-open');
+                                tabs.forEach(tab => tab.style.top = `${index * -100}%`);
+                            }
+                            $container.isotope('layout');
+                        });
+                    });
+                    document.querySelectorAll('.site--label').forEach(label => {
+                        label.addEventListener('click', e => {
+                            e.currentTarget.closest('.character').querySelector('.character--image img').setAttribute('src', e.currentTarget.dataset.image);
+                        });
+                    });
+
+                    initAccordion();
+                    initMarkdownLists();
                 });
             });
         });
