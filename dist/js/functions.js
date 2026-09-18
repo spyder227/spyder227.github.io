@@ -142,6 +142,51 @@ function initAccordion(target = '.accordion') {
         })
     })
 }
+function initIndex(sites) {
+    sites.sort((a, b) => {
+        if(a.Close === '' && b.Close !== '') return -1;
+        else if(a.Close !== '' && b.Close === '') return 1;
+        else if(a.Site < b.Site) return -1;
+        else if(a.Site > b.Site) return 1;
+        else return 0;
+    });
+    fetch(`https://opensheet.elk.sh/${sheetID}/Characters`)
+    .then((response) => response.json())
+    .then((characterData) => {
+        storedCharacters = [...characterData];
+
+        fetch(`https://opensheet.elk.sh/${sheetID}/Threads`)
+        .then((response) => response.json())
+        .then((threadData) => {
+            storedThreads = [...threadData];
+
+            fetch(`https://opensheet.elk.sh/${sheetID}/Writing`)
+            .then((response) => response.json())
+            .then((recordData) => {
+                storedRecords = [...recordData];
+
+
+                let html = ``;
+                sites.forEach((site, i) => {
+                    let siteCharacters = storedCharacters.filter(item => item.Sites.includes(site.Site));
+                    let siteThreads = storedThreads.filter(item => item.Site === site.Site);
+                    let siteRecords = storedRecords.filter(item => item.Site === site.Site);
+                    
+                    if(i === 0) {
+                        html += `<h2 class="h2">Active</h2><div class="grid">`;
+                    } else if(sites[i - 1].Close === '' && site.Close !== '') {
+                        html += `</div><h2 class="h2">Inactive</h2><div class="grid">`;
+                    }
+                    html += formatSiteBlock(site, siteCharacters, siteThreads, siteRecords);
+                    if(sites.length - 1 === i) {
+                        html += `</div>`;
+                    }
+                });
+                document.querySelector('main').innerHTML = html;
+            });
+        });
+    });
+}
 function formatSiteBlock(site, characters, threads, records) {
     return `<div class="site">
         <div class="site--stats">
@@ -305,6 +350,15 @@ function initTags(el, site, data) {
                 </div>
             </div>`;
     });
+    html += `<div class="accordion--trigger">Status</div>
+        <div class="accordion--content">
+            <div class="multiselect">
+                <label>
+                    <span><input type="checkbox" class="tag" name="status" value="active" /></span>
+                    <b>Active</b>
+                </label>
+            </div>
+        </div>`;
 
     el.querySelector('.clip-tags').innerHTML = html;
     initAccordion('.accordion .clip-tags');
@@ -465,6 +519,7 @@ function initTagSelect(el, data) {
 }
 function adjustTagSites(el) {
     let existing = el.options[el.selectedIndex].dataset.sites.split(', ');
+    console.log(existing);
     el.closest('form').querySelectorAll(`.sites .multiselect label`).forEach(label => label.classList.remove('hidden'));
     existing.forEach(site => {
         if(el.closest('form').querySelector(`input[value="${site}"]`)) {
@@ -1560,6 +1615,7 @@ function updateCharacter(form, data) {
     //add tags
     if(selected.includes('addTags')) {
         let siteTags = form.querySelectorAll('input.tag:checked');
+
         let tagList = {};
         let tagArray = [];
         let replacingTags = [];
@@ -1695,8 +1751,7 @@ function updateCharacter(form, data) {
 function updateThread(form, data) {
     let currentTitle = form.querySelector('#title').options[form.querySelector('#title').selectedIndex].innerText.trim().toLowerCase();
     let site = form.querySelector('#site').options[form.querySelector('#site').selectedIndex].innerText.trim().toLowerCase();
-    console.log(currentTitle);
-    console.log(site);
+
     let existing = data.filter(item => item.Title === currentTitle && item.Site === site)[0];
     let selected = Array.from(form.querySelectorAll('.updates input:checked')).map(item => item.value);
 
@@ -1958,7 +2013,6 @@ function initIsotope() {
     // use value of search field to filter
     const searchInput = document.querySelector(typeSearch);
     const handleKeyUp = debounce((e) => {
-        console.log('Searching for:', e.target.value);
         appendSearchQuery('typesearch', e.target.value);
         setCustomFilter();
     }, 300);
@@ -2353,6 +2407,7 @@ function formatThread(thread) {
             partnersText += `, `;
         }
         partnerClasses += `partner--${featured.writer}`;
+
         let featuredArray = featured.name.toLowerCase().trim().split(' ');
         let featuredClass = featuredArray.length > 1 ? `${featuredArray[0]}-${featuredArray[1][0]}` : featuredArray[0];
         featuringClasses += `featured--${featuredClass}`;
@@ -2391,7 +2446,7 @@ function formatThread(thread) {
             <span class="loading">Updating...</span>
         </button>`;
 
-    return `<div class="thread lux-track grid-item grid-item ${thread.character.name.split(' ')[0]} ${partnerClasses} ${featuringClasses} status--${thread.status} type--${thread.type} delay--${getDelay(thread.updated)} ${extraTags} site--${thread.site.ID}">
+    return `<div class="thread spy-track grid-item grid-item ${thread.character.name.split(' ')[0]} ${partnerClasses} ${featuringClasses} status--${thread.status} type--${thread.type} delay--${getDelay(thread.updated)} ${extraTags} site--${thread.site.ID}">
         <div class="thread--wrap">
             <div class="thread--main">
                 <div class="thread--dates">
@@ -2449,7 +2504,7 @@ function prepTags(data, site) {
     
     document.querySelector('.characters--filters-inner').insertAdjacentHTML('beforeend', html);
 }
-function prepCharacters(data, site) {
+function prepCharacters(data, site, longform) {
     data.forEach((item, i) => {
         data[i].Sites = JSON.parse(item.Sites);
         data[i].Links = JSON.parse(item.Links);
@@ -2646,8 +2701,6 @@ function formatSingleInstance(character, sites) {
         }
     });
     shipHTML += `</ul>`;
-
-    
     let extrasHTML = ``;
     for(item in character.extras) {
         extrasHTML += `<li><b>${item}</b><span>${character.extras[item]}</span></li>`;
@@ -2685,7 +2738,7 @@ function formatSingleInstance(character, sites) {
     }
     
     
-    return `<div class="character lux-track grid-item has-modal ${tagsString} ${character.character.split(' ')[0]}">
+    return `<div class="character spy-track grid-item has-modal ${tagsString} ${character.character.split(' ')[0]}">
         <div class="character--wrap">
             <div class="character--image"><img src="${character.basics.image}" loading="lazy" /></div>
             <div class="character--main">
@@ -2702,6 +2755,7 @@ function formatSingleInstance(character, sites) {
                 </div>
                 <div class="character--info">
                     <button onclick="openModal(this)" data-type="info">info</button>
+                    ${longformHTML !== '' ? `<button onclick="openModal(this)" data-type="longform">app</button>` : ``}
                     ${character.ships.length > 0 ? `<button onclick="openModal(this)" data-type="ships">relationships</button>` : ``}
                     ${character.links.map(item => `<a href="${item.url}" target="_blank">${item.title}</a>`).join('')}
                 </div>
@@ -2720,6 +2774,13 @@ function formatSingleInstance(character, sites) {
                         <li><b>Face</b><span>${character.basics.face}</span></li>
                         ${extrasHTML}
                     </ul>
+                </div>
+            </div>
+        </div>
+        <div class="character--modal" data-type="longform">
+            <div class="character--modal-inner">
+                <div class="character--modal-inner-scroll apps">
+                    ${longformHTML}
                 </div>
             </div>
         </div>
@@ -2784,11 +2845,13 @@ function formatMultipleInstance(character, sites) {
         let basics = character.basics.filter(item => item.site === siteInstance.site)[0].basics;
         let extras = character.basics.filter(item => item.site === siteInstance.site)[0].extras;
         let ships = character.ships.filter(item => item.site === siteInstance.site)[0].characters;
+        let siteApp = character.apps.filter(app => app.site === siteInstance.site)[0];
         let site = sites.filter(item => item.Site === siteInstance.site)[0];
 
         siteImages += `<img src="${basics.image}" loading="lazy" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}" />`;
         siteLabels += `<button onclick="switchSite(this)" data-site="${site.Site}" class="${i === 0 ? 'is-active' : ''}">${site.Site}</button>`;
         siteModalButtons += `<button onclick="openModal(this)" data-type="info" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}">info</button>
+            ${siteApp ? `<button onclick="openModal(this)" data-type="longform" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}">app</button>` : ``}
             <button onclick="openModal(this)" data-type="ships" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}">relationships</button>
             <button onclick="openModal(this)" data-type="links" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}">links</button>`;
         siteProfiles += `<a href="${site.URL}/${site.Directory}${charSite.id}" target="_blank" data-site="${site.Site}" class="switchable ${i === 0 ? '' : 'hidden'}">${capitalize(character.character)}</a>`;
@@ -2814,6 +2877,37 @@ function formatMultipleInstance(character, sites) {
             shipHTML += `<li><b>${ship}</b><i>${combinedShips[ship].writer === 'npc' ? combinedShips[ship].writer : `played by ${combinedShips[ship].writer}`}</i><i>${combinedShips[ship].relationship}</i></li>`
         }
 
+        let longformHTML = ``;
+        if(siteApp) {
+            if(siteApp.cheatsheet) {
+                longformHTML += `<div class="app--block accordion">
+                    <strong class="accordion--trigger">Cheatsheet</strong>
+                    <span class="scroll accordion--content">${siteApp.cheatsheet}</span>
+                </div>`;
+            }
+            if(siteApp.freeform) {
+                longformHTML += `<div class="app--block freeform accordion">
+                    <strong class="accordion--trigger">Freeform</strong>
+                    <span class="scroll accordion--content">${siteApp.freeform}</span>
+                </div>`;
+            }
+            for(item in siteApp.misc) {
+                if(siteApp.misc[item] !== '') {
+                    if(item !== 'horses') {
+                        longformHTML += `<div class="app--block accordion">
+                            <strong class="accordion--trigger">${item}</strong>
+                            <span class="scroll accordion--content">${siteApp.misc[item]}</span>
+                        </div>`;
+                    } else {
+                        longformHTML += `<div class="app--block accordion">
+                            <strong class="accordion--trigger">${item}</strong>
+                            <span class="scroll accordion--content"><textarea>${siteApp.misc[item]}</textarea></span>
+                        </div>`;
+                    }
+                }
+            }
+        }
+
         siteModals += `<div class="character--modal" data-type="info" data-site="${site.Site}">
                 <div class="character--modal-inner">
                     <div class="character--modal-inner-scroll">
@@ -2826,6 +2920,13 @@ function formatMultipleInstance(character, sites) {
                             <li><b>Face</b><span>${basics.face}</span></li>
                             ${extrasHTML}
                         </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="character--modal" data-type="longform" data-site="${site.Site}">
+                <div class="character--modal-inner">
+                    <div class="character--modal-inner-scroll apps">
+                        ${longformHTML}
                     </div>
                 </div>
             </div>
@@ -2850,7 +2951,7 @@ function formatMultipleInstance(character, sites) {
             </div>`;
     });
     
-    return `<div class="character lux-track grid-item ${tagsString} ${character.character.split(' ')[0]} has-modal">
+    return `<div class="character spy-track grid-item ${tagsString} ${character.character.split(' ')[0]} has-modal">
         <div class="character--wrap" data-site="${character.sites[0].site}">
             <div class="character--image">
                 ${siteImages}
@@ -3015,7 +3116,7 @@ function createCharacterStats(data, site, sites) {
         stats.total = characters.length;
 
         characters.map(item => item.age = groupAges(item.age));
-    
+
         characters.forEach(character => {
             countStats(stats.genders, character.gender);
             countStats(stats.pronouns, character.pronouns);
