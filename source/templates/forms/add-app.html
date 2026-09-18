@@ -1,0 +1,51 @@
+<div id="loading"><i class="fa-solid fa-cog fa-spin"></i></div>
+<h1>Add App Info</h1>
+<form data-form="add-app">
+    <label>
+        <b>Site</b>
+        <span><select id="site" required>
+            <option value="">(select)</option>
+        </select></span>
+    </label>
+    <label>
+        <b>Character</b>
+        <span><select id="character" required>
+            <option value="">(select)</option>
+        </select></span>
+    </label>
+    <label>
+        <b>Cheatsheet</b>
+        <span><textarea type="text" id="cheatsheet" placeholder="(Optional)"></textarea></span>
+    </label>
+    <label>
+        <b>Freeform</b>
+        <span><textarea type="text" id="freeform" placeholder="(Optional)"></textarea></span>
+    </label>
+    <div class="field-wrap fullWidth adjustable">
+        <b>Extra Info</b>
+        <div class="rows"></div>
+        <div class="multi-buttons" data-row-type="add-appinfo">
+            <button type="button" onclick="addRow(this)">+ New Row</button>
+            <button type="button" onclick="removeRow(this)">- Remove Row</button>
+        </div>
+    </div>
+    <button type="submit" class="fullWidth">Submit</button>
+</form>
+<script>
+    let storedApps = [];
+    fetch(`https://opensheet.elk.sh/${sheetID}/Characters`)
+    .then((response) => response.json())
+    .then((charData) => {
+        storedCharacters = [...charData];
+        
+        fetch(`https://opensheet.elk.sh/${sheetID}/Freeforms`)
+        .then((response) => response.json())
+        .then((appData) => {
+            storedApps = [...appData];
+            
+        }).then(() => {
+            initSiteSelects();
+            document.querySelector('#loading').remove();
+        });
+    });
+</script>
