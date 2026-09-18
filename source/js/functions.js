@@ -2479,6 +2479,34 @@ function prepCharacters(data, site) {
             return 0;
         }
     });
+
+    characters.forEach(character => {
+        let apps = [];
+        if(site !== 'all') {
+            let entry = longform.filter(item => item.Character === character.Character && item.Site === site)[0];
+            if(entry) {
+                apps.push({
+                    site: entry.Site,
+                    ...((entry.Cheatsheet && entry.Cheatsheet !== '') && {cheatsheet: entry.Cheatsheet}),
+                    ...((entry.Freeform && entry.Freeform !== '') && {freeform: entry.Freeform}),
+                    ...((entry.Misc && entry.Misc !== '') && {misc: JSON.parse(entry.Misc)}),
+                });
+            }
+        } else {
+            let entries = longform.filter(item => item.Character === character.Character);
+            if(entries.length > 0) {
+                entries.forEach(entry => {
+                    apps.push({
+                        site: entry.Site,
+                        ...((entry.Cheatsheet && entry.Cheatsheet !== '') && {cheatsheet: entry.Cheatsheet}),
+                        ...((entry.Freeform && entry.Freeform !== '') && {freeform: entry.Freeform}),
+                        ...((entry.Misc && entry.Misc !== '') && {misc: JSON.parse(entry.Misc)}),
+                    });
+                });
+            }
+        }
+        character.Apps = apps;
+    });
     
     return characters;
 }
@@ -2514,12 +2542,14 @@ function populateCharacters(array, siteObject) {
                     character.extras = instance.extras;
                 }
             });
+            character.apps = array[i].Apps[0];
         } else {
             character.ships = array[i].Ships;
             character.tags = array[i].Tags;
             character.sites = array[i].Sites;
             character.basics = array[i].Basics;
             character.id = null;
+            character.apps = array[i].Apps;
         }
         html += formatCharacter(character, siteObject.length > 1, siteObject);
     }
@@ -2616,12 +2646,43 @@ function formatSingleInstance(character, sites) {
         }
     });
     shipHTML += `</ul>`;
+
+    
     let extrasHTML = ``;
     for(item in character.extras) {
         extrasHTML += `<li><b>${item}</b><span>${character.extras[item]}</span></li>`;
     }
 
-    
+    let longformHTML = ``;
+    if(character.apps) {
+        if(character.apps.cheatsheet) {
+            longformHTML += `<div class="app--block accordion">
+                <strong class="accordion--trigger">Cheatsheet</strong>
+                <span class="scroll accordion--content">${character.apps.cheatsheet}</span>
+            </div>`;
+        }
+        if(character.apps.freeform) {
+            longformHTML += `<div class="app--block freeform accordion">
+                <strong class="accordion--trigger">Freeform</strong>
+                <span class="scroll accordion--content">${character.apps.freeform}</span>
+            </div>`;
+        }
+        for(item in character.apps.misc) {
+            if(character.apps.misc[item] !== '') {
+                if(item !== 'horses') {
+                    longformHTML += `<div class="app--block accordion">
+                        <strong class="accordion--trigger">${item}</strong>
+                        <span class="scroll accordion--content">${character.apps.misc[item]}</span>
+                    </div>`;
+                } else {
+                    longformHTML += `<div class="app--block accordion">
+                        <strong class="accordion--trigger">${item}</strong>
+                        <span class="scroll accordion--content"><textarea>${character.apps.misc[item]}</textarea></span>
+                    </div>`;
+                }
+            }
+        }
+    }
     
     
     return `<div class="character lux-track grid-item has-modal ${tagsString} ${character.character.split(' ')[0]}">
