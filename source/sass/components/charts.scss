@@ -17,7 +17,7 @@
         }
 
         @include mq-up(md) {
-            grid-template-columns: repeat(5, calc((100% / 5) - ((var(--space--sm) * 4) / 5))) !important;
+            grid-template-columns: repeat(4, calc((100% / 4) - ((var(--space--sm) * 3) / 4))) !important;
         }
 
         & > div {
