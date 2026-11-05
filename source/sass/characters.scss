@@ -1,94 +1,229 @@
-.spy-track,
-.spy {
-    --rgb: var(--rgb);
-    --dkrgb: var(--rgb-dark, var(--rgb));
-
-    &.adeline {--rgb: 217, 132, 148;}
-    &.adrian {--rgb: 196, 172, 106;}
-    &.alexander {--rgb: 87, 116, 125;}
-    &.annabeth {--rgb: 65, 78, 125;}
-    &.ashton {--rgb: 158, 40, 11;}
-    &.athena {--rgb: 168, 50, 42;}
-    &.august {--rgb: 122, 108, 135;}
-    &.avery {--rgb: 166, 41, 56;}
-    &.bailey {--rgb: 189, 125, 163;}
-    &.bane {--rgb: 196, 88, 67;}
-    &.bastien {--rgb: 91, 49, 163;}
-    &.beau {--rgb: 219, 130, 92;}
-    &.casey {--rgb: 133, 70, 68;}
-    &.cathal {--rgb: 145, 70, 142;}
-    &.catherine {--rgb: 218, 94, 135;}
-    &.celeste {--rgb: 188, 129, 212;}
-    &.connor, &.derek {--rgb: 90, 112, 160;}
-    &.cyrus {--rgb: 120, 140, 88;}
-    &.dawson {--rgb: 74, 119, 85;}
-    &.dixon, &.dean {--rgb: 143, 118, 83;}
-    &.eleanor {--rgb: 207, 157, 189;}
-    &.emily {--rgb: 194, 87, 94;}
-    &.evelyn {--rgb: 201, 169, 183;}
-    &.hazel {--rgb: 111, 138, 109;} 
-    &.isaac {--rgb: 130, 151, 179;}
-    &.jack, &.remington {--rgb: 113, 130, 104;}
-    &.jacob {--rgb: 211, 164, 89;} /* archived character */
-    &.james {--rgb: 151, 93, 123;} /* archived character */
-    &.jamie {--rgb: 102, 94, 81;}
-    &.janus {--rgb: 167, 167, 201;}
-    &.jemma {--rgb: 61, 50, 99;} /* archived character */
-    &.julianna {--rgb: 138, 29, 49;}
-    &.kieran {--rgb: 108, 112, 145;}
-    &.killian {--rgb: 153, 55, 94;}
-    &.leila {--rgb: 191, 155, 82;}
-    &.lilac {--rgb: 90, 150, 89;}
-    &.lorelai {--rgb: 147, 115, 147;}
-    &.mace {--rgb: 90, 115, 148;}
-    &.mary {--rgb: 173, 154, 179;}
-    &.matteo, &.astarion {--rgb: 212, 93, 69;}
-    &.maverick {--rgb: 129, 205, 222;}
-    &.nathan {--rgb: 212, 154, 74}
-    &.nicholas {--rgb: 122, 102, 81;}
-    &.nimue {--rgb: 63, 175, 176;}
-    &.nox, &.dionysus {--rgb: 128, 80, 128;}
-    &.oliver {--rgb: 135, 196, 140;}
-    &.philippa, &.pippa {--rgb: 138, 73, 98;}
-    &.piper {--rgb: 116, 161, 181;}
-    &.proserpina {--rgb: 126, 103, 145;}
-    &.prudence {--rgb: 102, 88, 166;}
-    &.rafael {--rgb: 120, 42, 24;}
-    &.raymond {--rgb: 209, 130, 203;}
-    &.reicher {--rgb: 163, 108, 85;}
-    &.rowan {--rgb: 176, 117, 49;}
-    &.ryland {--rgb: 118, 145, 102;}
-    &.sakai {--rgb: 136, 71, 89;}
-    &.saoirse {--rgb: 50, 122, 79;}
-    &.sebastián {--rgb: 128, 156, 70;}
-    &.sirius {--rgb: 104, 140, 118;}
-    &.staff, &.npc, &.open {--rgb: 166, 166, 166;}
-    &.stephen {--rgb: 169, 199, 113;}
-    &.tabitha {--rgb: 128, 33, 33;}
-    &.theodore {--rgb: 126, 191, 171;} /* archived character */
-    &.vega {--rgb: 107, 99, 87;}
-    &.verona {--rgb: 143, 179, 199;} /* archived character */
-    &.violet {--rgb: 175, 137, 176;}
-    &.wren {--rgb: 94, 54, 24;}
-    &.zelda {--rgb: 83, 147, 148;}
+[data-author="spyder"] {
+  tag-wrap tag-image {
+    width: 100%;
+    height: 100%;
+  }
 }
 
-/*TOTL STYLES*/
+[data-character="Adrian Barnum"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/697da93d06e3403ed620d36636ae5836/2a39ac7b7775f475-2e/s1280x1920/a52c171cef902fceaf344588280e1c61bad13e11.png);
+    background-size: cover;
+  }
+}
 
-.spyder-track,
-.spyder {
-    --accent: rgb(var(--rgb));
-    --dkAccent: rgb(var(--rgb-dark, var(--rgb)));
+[data-character="Annabeth Riva"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/73bc6f2dc97b61b12b89d285428746fb/1fdbcc817a5fb81a-70/s400x600/0b7d1e94b660344c87a7a409099b5a7db78030dc.png);
+    background-size: cover;
+  }
+}
 
-    .totl & {
-        --accent: rgb(var(--rgb-dark, var(--rgb)));
-        --ltaccent: rgb(var(--rgb));
-        --ltaccent-40: rgba(var(--rgb), 0.4);
-        --ltaccent-55: rgba(var(--rgb), 0.55);
-    }
-    
-    &.emily,
-    .totl.m-2371 & {
-        --rgb: 194, 87, 94;
-    }
+[data-character="August Dresden"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/6746b491512963b96db50176555ea03a/bb2f50e9263ace1b-af/s250x400/0cbf0586ff8f77029bcaa6aa54029f74d1c8bcae.gifv);
+    background-size: cover;
+  }
+}
+
+[data-character="Avery Beaumont"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/cc4e6a5e48340008277cd4502b248d4c/tumblr_inline_oabddexU9N1sljtd1_100.png);
+    background-size: cover;
+  }
+}
+
+[data-character="Casey Fox"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/2a280a0a9114b09a8e1ca27dabfe0f58/c18a8ead06a98e6c-53/s500x750/f5bd1adf7fe343313815456afa3cfcb957291321.jpg);
+    background-size: cover;
+  }
+}
+
+[data-character="Cathal Hemlock"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/aaf42ead3388cb782de718f02e3b5a89/0fe6ecf6fc471eaa-69/s500x750/d52c83514f97ab40d51e3610c713f2218a1df4c8.png);
+    background-size: cover;
+  }
+}
+
+[data-character="Celeste Antonenko"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/4109824fa89c9d47738abc9b7cd307c6/44be361f2a203a66-ec/s400x600/ce558a06608a80f18904282e601e4fc4e15a30ed.jpg);
+    background-size: cover;
+  }
+}
+
+[data-character="Charlotte Blythe"] {
+  tag-image {
+    background-image: url(https://i.pinimg.com/1200x/f9/8d/49/f98d494bf311bf6b175d69bd21bc1ff5.jpg);
+    background-size: cover;
+  }
+}
+
+[data-character="Chernobog of the Slavs"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/008c0cf8668c26eff9c93e9e040fd46d/4f10b05be8d86c64-ef/s1280x1920/82905131557f64d532147be7c7f52faf8b39896e.png);
+    background-size: cover;
+  }
+}
+
+[data-character="Cian Jones"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/32f4471de90f8e493a507277c69ff95e/8037caf7324ae530-ac/s1280x1920/bce796311db9b7535c585ac61b142bb3e475d5eb.jpg);
+    background-size: cover;
+  }
+}
+
+[data-character="Connor Avery"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/feb1da09c1742b679415755bcbe00e4c/ed705979caf9ecfb-cc/s400x600/83bce6ee770079bfaa63b89c769dfd803b321090.jpg);
+    background-size: cover;
+  }
+}
+
+[data-character="Cyrus Kazemi"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/e5b2ecc474ed6e8f53ff7eef157a3ba6/259fbc42332323e4-c6/s1280x1920/1709ec0e8942c8e32c31d43b22304d40bb68f80e.jpg);
+    background-size: cover;
+  }
+}
+
+[data-character="Dawson O'Brian"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/150a2cb4a3d9375bab5578c989bf30a2/50c6f8929a0adfe0-76/s1280x1920/687fe240dffbb587b7db96e5a24c09cff10d6695.png);
+    background-size: cover;
+  }
+}
+
+[data-character="Dionysus Of The Greeks"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/2f357a382b9981a02336df451d79c406/90130db4725de609-4f/s400x600/7cc578ee00cd5429f2d3fbd005416f4f23f871b7.png);
+    background-size: cover;
+  }
+}
+
+[data-character="Emily Lawry"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/8943f826d3af991c1210cea46375ca28/288279d7399389f9-bd/s400x600/7965b994e76ddbb57fe42d17ae0dc4b938e6d8f3.png);
+    background-size: cover;
+  }
+}
+
+[data-character="Isaac Mendoza"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/e16834bae4c76153df40246fecfd6e8b/cb3dad74de27a7de-ce/s1280x1920/28d891e5e74ec316b56db70087c0e93020e92a0f.gifv);
+    background-size: cover;
+  }
+}
+
+[data-character="Julianna Reynolds"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/8f810176d35e43670c0b47f12ae53e6a/219ec6f84211e870-6f/s1280x1920/a10ac6cdedbed4a89d0612f000307da79dce95d5.jpg);
+    background-size: cover;
+  }
+}
+
+[data-character="Kieran Jenkins"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/94e685281e443115f153d8a827d98948/d7fa5f794dd28014-de/s1280x1920/4ac96a460dc9f38a208693d1e7172a57ae85d7cd.png);
+    background-size: cover;
+  }
+}
+
+[data-character="Lilac Corrigan"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/8292f0a8b65721016ed106910f80f9ac/c07799f17c38b195-e8/s250x400/0096959ab833766e327f1b601f03437e92a458a9.jpg);
+    background-size: cover;
+  }
+}
+
+[data-character="Lorelai Grimm"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/d09b32e6835127218aad72c8e2a435c7/61fbcec3ecc76271-42/s400x600/ee52b839749e3d39031eb31e023e712164f01cf7.jpg);
+    background-size: cover;
+  }
+}
+
+[data-character="Mace Pyrrhus"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/8423c6a8a47978f00a82669d4a54b8b9/7c010354b4d5e2ea-e3/s1280x1920/9b2790b65ea2c68bbaae43100c8e9ca146edf7a9.jpg);
+    background-size: cover;
+  }
+}
+
+[data-character="Matteo diAngelo"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/7f394fb6bf09f1ccb224f3c463282284/2dcf17459e0f6238-b3/s1280x1920/aee8ce53e5739a762e71d83f0a25b2cfa269ec85.jpg);
+    background-size: cover;
+  }
+}
+
+[data-character="Nathan Morales"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/34b4ae05e6f91223bcdc66d55b9652a6/1e3260516a762c96-a8/s1280x1920/e4206e165444045d03f61772fa8cdd95f7722b04.jpg);
+    background-size: cover;
+  }
+}
+
+[data-character="Nimue Evans"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/7f53b6096bc655a0450c8022b8eeaf45/6fe139d6ac5e3de0-a4/s1280x1920/d87cfb6126dcc9b0452a7a825ca0854cc59a5e1a.jpg);
+    background-size: cover;
+  }
+}
+
+[data-character="Proserpina of the Romans"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/634ad36278f043867a523244c34186ac/a6a62f29ef89242b-5b/s1280x1920/46e6075d98a780f929972cafbe15dadc0f56850a.jpg);
+    background-size: cover;
+  }
+}
+
+[data-character="Rafael Ortega"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/feb570ac47b150370d8f95edbb63a19d/65aa5d6c116fb42e-f9/s1280x1920/082af0a8cc9dcecc8430f4194469d00061112477.jpg);
+    background-size: cover;
+  }
+}
+
+[data-character="Reicher Voss"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/2f7a417a1264b1b159616e5c1994429e/ebf73d515f412b52-32/s1280x1920/3c2cc058e08e00fc2f65fb62368924ff8373a7c2.jpg);
+    background-size: cover;
+  }
+}
+
+[data-character="Ryan Maxwell"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/8b2e04fae35308bf9e1b25724f7cb2e0/c1ac53ee70137afc-49/s1280x1920/37687842291c232682dec60faf2309b1880f1f5e.png);
+    background-size: cover;
+  }
+}
+[data-character="Somang Moon"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/c0f65f2e5951896d6020fef6080aa13a/ececa210e81a109b-f2/s1280x1920/23661337818aafc765f7fc0137eaae7f28ec7a7b.jpg);
+    background-size: cover;
+  }
+}
+
+[data-character="Stephen Harris"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/2ceb0d369d31488d1ee4b6c8579c94c5/3facf6877f0fcd49-3c/s1280x1920/d342aadad9b7e4148c13952cb81f31b27fb40065.jpg);
+    background-size: cover;
+  }
+}
+
+[data-character="Thoth of the Egyptians"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/5db760e1eea904d6c9ebc91bb7b08b1a/9df022b6a5dc78b9-37/s1280x1920/ada0dc5c70fc7e6e1b9cd73279725b923bd33b6b.jpg);
+    background-size: cover;
+  }
+}
+
+[data-character="Vesper Knox"] {
+  tag-image {
+    background-image: url(https://64.media.tumblr.com/a52d811a28d2074bea7f7420ef8e8076/56bd2cb8932421fc-7b/s1280x1920/5f48974b7785ea573f730c2c4d0bf345b569a742.jpg);
+    background-size: cover;
+  }
 }
